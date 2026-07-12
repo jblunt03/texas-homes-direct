@@ -26,10 +26,6 @@ const FAQ_ITEMS = [
     a: 'We work with lenders that approve buyers with scores as low as 400 — sometimes lower with a co-signer or larger down payment. We don\'t pull your credit during pre-qualification, so you can find out where you stand without any impact to your score.',
   },
   {
-    q: 'Are pre-owned homes really worth it?',
-    a: 'For a lot of families, yes — a reconditioned 2018 doublewide can cost half what a new one does and live just as well. Every used home on our lot is inspected, repaired, and warrantied for major systems.',
-  },
-  {
     q: 'What about warranties and after-the-sale support?',
     a: "New homes carry the manufacturer's structural warranty (typically 1–2 years) plus appliance and systems coverage. We handle warranty claims for you for the life of the home — call us, not the factory.",
   },

@@ -4,10 +4,9 @@ import Link from 'next/link'
 import Image from 'next/image'
 import type { Listing } from '@/lib/sampleListings'
 
-type Filter = 'all' | 'single' | 'double' | 'used'
+type Filter = 'all' | 'single' | 'double'
 
 function tagForListing(listing: Listing): Filter {
-  if (listing.type === 'repo') return 'used'
   if (listing.wideType === 'Double Wide') return 'double'
   return 'single'
 }
@@ -19,7 +18,7 @@ export default function BrowseClient({
   initialType: string
   listings: Listing[]
 }) {
-  const validFilters: Filter[] = ['all', 'single', 'double', 'used']
+  const validFilters: Filter[] = ['all', 'single', 'double']
   const init = validFilters.includes(initialType as Filter) ? (initialType as Filter) : 'all'
   const [activeFilter, setActiveFilter] = useState<Filter>(init)
 
@@ -32,14 +31,12 @@ export default function BrowseClient({
     all: listings.length,
     single: listings.filter((l) => tagForListing(l) === 'single').length,
     double: listings.filter((l) => tagForListing(l) === 'double').length,
-    used: listings.filter((l) => tagForListing(l) === 'used').length,
   }
 
   const filters: { key: Filter; label: string }[] = [
     { key: 'all', label: `All homes` },
     { key: 'single', label: 'Singlewide' },
     { key: 'double', label: 'Doublewide' },
-    { key: 'used', label: 'Used / pre-owned' },
   ]
 
   return (
@@ -125,15 +122,10 @@ export default function BrowseClient({
         <div className="bmh-container">
           <div className="bmh-inv-grid">
             {filtered.map((listing) => {
-              const tag = tagForListing(listing)
-              const badgeCls =
-                listing.featured ? 'bmh-badge-coral' :
-                tag === 'used'   ? 'bmh-badge-dark'  : 'bmh-badge-caps'
-              const badgeLabel =
-                listing.featured ? 'Featured' :
-                tag === 'used'   ? 'Pre-owned' : 'In stock'
+              const badgeCls = listing.featured ? 'bmh-badge-coral' : 'bmh-badge-caps'
+              const badgeLabel = listing.featured ? 'Featured' : 'In stock'
               const subText = [
-                listing.wideType ?? (tag === 'used' ? 'Used singlewide' : 'Singlewide'),
+                listing.wideType ?? 'Singlewide',
                 listing.year.toString(),
                 listing.manufacturer ?? '',
               ]

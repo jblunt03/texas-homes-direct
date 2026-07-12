@@ -153,7 +153,6 @@ export default function ContactForm() {
             <option>Browsing the inventory</option>
             <option>Financing pre-qualification</option>
             <option>Custom factory order</option>
-            <option>Used / pre-owned homes</option>
             <option>Land + home package</option>
             <option>Just general questions</option>
           </select>

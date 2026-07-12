@@ -18,13 +18,14 @@ export default function LocationContent({ slug, city, region, intro }: Props) {
 
   const matches = sampleListings.filter(
     (l) =>
-      l.city.toLowerCase() === city.toLowerCase() || l.region === region,
+      l.type !== 'repo' &&
+      (l.city.toLowerCase() === city.toLowerCase() || l.region === region),
   )
 
   const faqs = [
     {
       q: `What do manufactured home prices look like in ${city}, Texas?`,
-      a: `In the ${city} area, single-wides typically run $48,000-$80,000 and double-wides run $85,000-$145,000 depending on age, size, and finish-out. Pre-owned homes in this area are usually 15-30% below those numbers. We update our pricing weekly based on current inventory.`,
+      a: `In the ${city} area, single-wides typically run $48,000-$80,000 and double-wides run $85,000-$145,000 depending on age, size, and finish-out. We update our pricing weekly based on current inventory.`,
     },
     {
       q: `Do I need to own land to buy a manufactured home near ${city}?`,
@@ -36,7 +37,7 @@ export default function LocationContent({ slug, city, region, intro }: Props) {
     },
     {
       q: `How long does the process take in ${city}?`,
-      a: `From signed paperwork to keys in your hand, the typical timeline in the ${city} area is 8-14 weeks. That includes financing, permits, factory order or pre-owned home prep, delivery, and final inspection. We keep you updated at every step.`,
+      a: `From signed paperwork to keys in your hand, the typical timeline in the ${city} area is 8-14 weeks. That includes financing, permits, factory order, delivery, and final inspection. We keep you updated at every step.`,
     },
   ]
 

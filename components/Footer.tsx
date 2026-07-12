@@ -54,7 +54,6 @@ export default function Footer() {
             <h5>Shop</h5>
             <Link href="/browse?type=single">Singlewides</Link>
             <Link href="/browse?type=double">Doublewides</Link>
-            <Link href="/browse?type=used">Used homes</Link>
           </div>
 
           {/* Buy */}

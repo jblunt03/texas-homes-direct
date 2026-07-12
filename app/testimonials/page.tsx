@@ -25,7 +25,7 @@ const REVIEWS = [
   {
     init: 'EM',
     name: 'Emily M.',
-    meta: 'Tulsa, OK · Used singlewide · Jun 2025',
+    meta: 'Tulsa, OK · Singlewide · Jun 2025',
     quote:
       'As first-time buyers we were nervous. They explained every line of the contract, helped us understand the permits, and never made us feel like we were asking dumb questions.',
   },
@@ -39,16 +39,16 @@ const REVIEWS = [
   {
     init: 'CR',
     name: 'Carla R.',
-    meta: 'Midland, TX · Used doublewide · Apr 2025',
+    meta: 'Midland, TX · Doublewide · Apr 2025',
     quote:
-      'I called five other places about a used doublewide and got run-arounds. Texas Homes Direct had one inspected and ready to walk the next morning. Done deal in two weeks.',
+      'I called five other places about a new doublewide and got run-arounds. Texas Homes Direct had a factory order confirmed and on schedule the next morning. Done deal in two weeks.',
   },
   {
     init: 'PK',
     name: 'Pete & Karen V.',
-    meta: 'Hondo, TX · Used singlewide · Mar 2025',
+    meta: 'Hondo, TX · Singlewide · Mar 2025',
     quote:
-      'Bought a used singlewide for our property outside Hondo. Delivery was on schedule, leveling was perfect, and the crew picked up every scrap of trash before they left.',
+      'Bought a new singlewide for our property outside Hondo. Delivery was on schedule, leveling was perfect, and the crew picked up every scrap of trash before they left.',
   },
   {
     init: 'AM',

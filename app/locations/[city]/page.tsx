@@ -34,7 +34,7 @@ const cityMap: Record<
     name: 'Laredo',
     region: 'South TX',
     intro:
-      'Laredo and the Webb County area have a long history of manufactured housing — both new and pre-owned homes come through here regularly. Bilingual service is standard. Many families here own family land already and want straightforward, no-pressure financing options.',
+      'Laredo and the Webb County area have a long history of manufactured housing — new homes come through here regularly. Bilingual service is standard. Many families here own family land already and want straightforward, no-pressure financing options.',
   },
   mcallen: {
     name: 'McAllen',
@@ -70,7 +70,7 @@ const cityMap: Record<
     name: 'Tyler',
     region: 'East TX',
     intro:
-      'East Texas is one of the easier markets to put a manufactured home in — sandy soil means cheaper septic, shallow water tables mean cheaper wells. Tyler, Longview, and surrounding Smith / Gregg counties all have steady inventory of both new and quality pre-owned homes.',
+      'East Texas is one of the easier markets to put a manufactured home in — sandy soil means cheaper septic, shallow water tables mean cheaper wells. Tyler, Longview, and surrounding Smith / Gregg counties all have steady inventory of new homes.',
   },
   waco: {
     name: 'Waco',
@@ -117,7 +117,7 @@ export async function generateMetadata({
   if (!info) return { title: 'Location Not Found' }
   return {
     title: `Manufactured Homes for Sale in ${info.name}, Texas`,
-    description: `Browse manufactured homes for sale near ${info.name}, Texas. New and pre-owned inventory, real financing numbers, no dealership pressure. Talk to Justin directly.`,
+    description: `Browse manufactured homes for sale near ${info.name}, Texas. New inventory, real financing numbers, no dealership pressure. Talk to Justin directly.`,
     alternates: {
       canonical: `https://texashomesdirect.com/locations/${params.city}`,
     },

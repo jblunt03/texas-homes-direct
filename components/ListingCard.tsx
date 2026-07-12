@@ -32,14 +32,8 @@ export default function ListingCard({ listing, compact = false }: Props) {
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
-          <span
-            className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-bold uppercase tracking-wider ${
-              listing.type === 'repo'
-                ? 'bg-accent text-white'
-                : 'bg-gold text-navy'
-            }`}
-          >
-            {listing.type === 'repo' ? t.listing.repoBadge : t.listing.newBadge}
+          <span className="inline-flex items-center rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy">
+            {t.listing.newBadge}
           </span>
           {listing.hudCertified && (
             <span className="inline-flex items-center rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-navy">

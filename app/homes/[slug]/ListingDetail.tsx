@@ -159,12 +159,11 @@ function SidebarForm({ slug }: { slug: string }) {
 
 /* ── Related listing card (matches browse page) ──────────── */
 function RelatedCard({ listing }: { listing: Listing }) {
-  const isUsed = listing.type === 'repo'
   const isDouble = listing.wideType === 'Double Wide'
-  const badgeCls = listing.featured ? 'bmh-badge-coral' : isUsed ? 'bmh-badge-dark' : 'bmh-badge-caps'
-  const badgeLabel = listing.featured ? 'Featured' : isUsed ? 'Pre-owned' : 'In stock'
+  const badgeCls = listing.featured ? 'bmh-badge-coral' : 'bmh-badge-caps'
+  const badgeLabel = listing.featured ? 'Featured' : 'In stock'
   const subText = [
-    listing.wideType ?? (isUsed ? 'Used singlewide' : 'Singlewide'),
+    listing.wideType ?? 'Singlewide',
     listing.year.toString(),
     listing.manufacturer ?? '',
   ]
@@ -225,8 +224,6 @@ export default function ListingDetail({
 }) {
   const [mainImg, setMainImg] = useState(0)
 
-  const isRepo = listing.type === 'repo'
-
   return (
     <div style={{ background: 'var(--color-canvas)' }}>
 
@@ -241,9 +238,7 @@ export default function ListingDetail({
         <div className="bmh-container">
           {/* badge row */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
-            <span className={`bmh-badge-caps ${isRepo ? 'bmh-badge-dark' : 'bmh-badge-coral'}`}>
-              {isRepo ? 'Pre-owned' : 'New'}
-            </span>
+            <span className="bmh-badge-caps bmh-badge-coral">New</span>
             {listing.hudCertified && (
               <span className="bmh-badge-caps">HUD Certified</span>
             )}

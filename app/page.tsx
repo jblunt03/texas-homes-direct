@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title:
     'Texas Homes Direct — Quality manufactured homes at the best prices in Texas',
   description:
-    'The best prices on manufactured homes in Texas, New Mexico, and Oklahoma. Singlewides, doublewides, and pre-owned — delivered and set up anywhere we serve. Family-owned & faith-based.',
+    'The best prices on manufactured homes in Texas, New Mexico, and Oklahoma. Singlewides and doublewides — delivered and set up anywhere we serve. Family-owned & faith-based.',
 }
 
 export default async function HomePage() {
@@ -59,7 +59,6 @@ export default async function HomePage() {
                     <option value="">Any type</option>
                     <option value="single">Singlewide</option>
                     <option value="double">Doublewide</option>
-                    <option value="used">Used / pre-owned</option>
                   </select>
                 </div>
                 <div className="bmh-field">
@@ -92,7 +91,6 @@ export default async function HomePage() {
               <div className="bmh-hero-pills">
                 <span className="bmh-pill bmh-pill-static">Singlewide</span>
                 <span className="bmh-pill bmh-pill-static">Doublewide</span>
-                <span className="bmh-pill bmh-pill-static">Used homes</span>
               </div>
               <Link href="/calculator" className="bmh-hero-card">
                 <span
@@ -420,13 +418,8 @@ export default async function HomePage() {
 
           <div className="bmh-inv-grid">
             {featured.map((listing) => {
-              const badge =
-                listing.type === 'repo'
-                  ? { label: 'Best value', cls: 'bmh-badge-coral' }
-                  : { label: 'New', cls: 'bmh-badge-coral' }
-              const subLabel = [
-                listing.wideType ?? (listing.type === 'repo' ? 'Used singlewide' : 'Singlewide'),
-              ]
+              const badge = { label: 'New', cls: 'bmh-badge-coral' }
+              const subLabel = [listing.wideType ?? 'Singlewide']
                 .filter(Boolean)
                 .join(' · ')
 
@@ -607,7 +600,7 @@ export default async function HomePage() {
                 <div>
                   <div className="bmh-testi-name">Emily M.</div>
                   <div className="bmh-testi-meta">
-                    Tulsa, OK · Used singlewide
+                    Tulsa, OK · Singlewide
                   </div>
                 </div>
               </div>

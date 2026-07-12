@@ -229,7 +229,7 @@ export function mapPage(page: PageObjectResponse): Listing {
 /** Fetch all listings from Notion, paginating automatically. Falls back to sample data. */
 export async function fetchAllListings(): Promise<Listing[]> {
   const client = getClient()
-  if (!client) return sampleListings
+  if (!client) return sampleListings.filter(l => l.type !== 'repo')
 
   const results: PageObjectResponse[] = []
   let cursor: string | undefined
@@ -247,8 +247,8 @@ export async function fetchAllListings(): Promise<Listing[]> {
     cursor = resp.has_more ? (resp.next_cursor ?? undefined) : undefined
   } while (cursor)
 
-  // Only return pages that have a valid slug
-  return results.map(mapPage).filter(l => Boolean(l.slug))
+  // Only return pages that have a valid slug — used/pre-owned homes are not offered
+  return results.map(mapPage).filter(l => Boolean(l.slug) && l.type !== 'repo')
 }
 
 /** Returns just the slugs — used by generateStaticParams. Falls back to sample data. */
@@ -261,7 +261,8 @@ export async function fetchAllSlugs(): Promise<string[]> {
 export async function fetchListingBySlug(slug: string): Promise<Listing | null> {
   const client = getClient()
   if (!client) {
-    return sampleListings.find(l => l.slug === slug) ?? null
+    const listing = sampleListings.find(l => l.slug === slug) ?? null
+    return listing && listing.type !== 'repo' ? listing : null
   }
 
   try {
@@ -275,9 +276,12 @@ export async function fetchListingBySlug(slug: string): Promise<Listing | null> 
     })
     const page = resp.results[0]
     if (!page || !isFullPage(page)) return null
-    return mapPage(page)
+    const listing = mapPage(page)
+    // Used/pre-owned homes are not offered
+    return listing.type !== 'repo' ? listing : null
   } catch {
     // Fallback to sample data if Notion query fails
-    return sampleListings.find(l => l.slug === slug) ?? null
+    const listing = sampleListings.find(l => l.slug === slug) ?? null
+    return listing && listing.type !== 'repo' ? listing : null
   }
 }

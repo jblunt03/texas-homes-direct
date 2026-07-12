@@ -38,7 +38,7 @@ export const translations = {
     },
     featured: {
       heading: 'Featured Homes This Week',
-      sub: 'Hand-picked inventory from across Texas — new and pre-owned.',
+      sub: 'Hand-picked inventory from across Texas, all new.',
       viewAll: 'View All Homes',
     },
     about: {
@@ -75,7 +75,7 @@ export const translations = {
       bannerCTA: 'Start Chatting',
       pageTitle: 'AI Home Advisor',
       pageSub:
-        'Trained on Texas market data, Justin\'s playbook, and every home in our inventory. Ask anything — pricing, financing, site prep, pre-owned homes. In English or Spanish.',
+        'Trained on Texas market data, Justin\'s playbook, and every home in our inventory. Ask anything — pricing, financing, site prep. In English or Spanish.',
       placeholder: 'Type your question here...',
       send: 'Send',
       welcome:
@@ -108,7 +108,6 @@ export const translations = {
       viewDetails: 'View Details',
       hudCertified: 'HUD Certified',
       newBadge: 'NEW',
-      repoBadge: 'USED',
       askAbout: 'Ask About This Home',
       features: 'Features & Specs',
       financing: 'See Financing Options',
@@ -117,7 +116,7 @@ export const translations = {
     },
     browse: {
       heading: 'Browse Texas Manufactured Homes',
-      sub: 'Filter by price, beds, baths, and region. New and pre-owned homes updated weekly.',
+      sub: 'Filter by price, beds, baths, and region. New homes updated weekly.',
       filters: 'Filters',
       priceRange: 'Price Range',
       beds: 'Bedrooms',
@@ -192,7 +191,7 @@ export const translations = {
     },
     featured: {
       heading: 'Casas Destacadas Esta Semana',
-      sub: 'Inventario seleccionado a mano de todo Texas — nuevas y usadas.',
+      sub: 'Inventario seleccionado a mano de todo Texas, todas nuevas.',
       viewAll: 'Ver Todas las Casas',
     },
     about: {
@@ -229,7 +228,7 @@ export const translations = {
       bannerCTA: 'Empezar Chat',
       pageTitle: 'Asesor AI de Casas',
       pageSub:
-        'Entrenado con datos del mercado de Texas, el manual de Justin, y cada casa en nuestro inventario. Pregunta lo que quieras — precios, financiamiento, preparación del lote, casas usadas. En inglés o español.',
+        'Entrenado con datos del mercado de Texas, el manual de Justin, y cada casa en nuestro inventario. Pregunta lo que quieras — precios, financiamiento, preparación del lote. En inglés o español.',
       placeholder: 'Escribe tu pregunta aquí...',
       send: 'Enviar',
       welcome:
@@ -262,7 +261,6 @@ export const translations = {
       viewDetails: 'Ver Detalles',
       hudCertified: 'Certificada HUD',
       newBadge: 'NUEVA',
-      repoBadge: 'USADA',
       askAbout: 'Preguntar Sobre Esta Casa',
       features: 'Características',
       financing: 'Ver Opciones de Financiamiento',
@@ -271,7 +269,7 @@ export const translations = {
     },
     browse: {
       heading: 'Ver Casas Manufacturadas en Texas',
-      sub: 'Filtra por precio, recámaras, baños, y región. Casas nuevas y usadas actualizadas cada semana.',
+      sub: 'Filtra por precio, recámaras, baños, y región. Casas nuevas actualizadas cada semana.',
       filters: 'Filtros',
       priceRange: 'Rango de Precio',
       beds: 'Recámaras',
