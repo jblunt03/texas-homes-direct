@@ -25,8 +25,8 @@ export default async function HomePage() {
         <div className="bmh-container">
           <div className="bmh-hero-inner">
             <Image
-              src="/hero-pearl.jpg"
-              alt="Doublewide manufactured home on Texas land at sunset"
+              src="/homes/the-dove/IMG_0895.jpg.jpeg"
+              alt="Marathon Homes singlewide with wraparound porch at sunset in Texas"
               fill
               className="bmh-hero-bg"
               priority
@@ -156,8 +156,8 @@ export default async function HomePage() {
               style={{ position: 'relative' }}
             >
               <Image
-                src="/lifestyle-hillcountry.jpg"
-                alt="Black board-and-batten doublewide with cedar shutters on a Texas Hill Country lot"
+                src="/homes/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg"
+                alt="Marathon Homes The Mallard — black board-and-batten doublewide with cedar shutters on a Texas lot"
                 fill
                 style={{ objectFit: 'cover' }}
                 sizes="(max-width: 960px) 100vw, 55vw"
@@ -207,8 +207,8 @@ export default async function HomePage() {
                   From $48k
                 </span>
                 <Image
-                  src="/homes/the-skipjack/6-Jackson.jpg.jpeg"
-                  alt="Singlewide manufactured home exterior"
+                  src="/homes/the-dove/IMG_0895.jpg.jpeg"
+                  alt="Marathon Homes singlewide manufactured home exterior"
                   fill
                   className="object-cover"
                 />
@@ -234,8 +234,8 @@ export default async function HomePage() {
                   Most popular
                 </span>
                 <Image
-                  src="/homes/the-ranch/OakCreek-Ranch-1.jpeg"
-                  alt="Doublewide manufactured home exterior"
+                  src="/homes/the-pintail/8-Sterling.png"
+                  alt="Marathon Homes doublewide manufactured home exterior"
                   fill
                   className="object-cover"
                 />
