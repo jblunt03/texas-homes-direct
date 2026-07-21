@@ -130,20 +130,19 @@ export default async function HomePage() {
                   color: 'var(--color-ink)',
                 }}
               >
-                Your trusted Texas
+                What Is
                 <br />
                 <em style={{ color: 'var(--color-primary)' }}>
-                  manufactured-home dealer.
+                  Texas Homes Direct?
                 </em>
               </h2>
             </div>
             <div>
               <p className="bmh-lead">
-                We&rsquo;re a small, family-owned, faith-based business. Since
-                2024 we&rsquo;ve been changing the manufactured-home industry in
-                Texas, Oklahoma, and New Mexico — helping families find quality
-                homes at honest prices, with no high-pressure sales, no hidden
-                fees, just the best price and a clear path to move-in day.
+                We sell manufactured homes factory-direct — no dealership lot, no markup, no
+                games. You get real pricing, financing built into the process from day one,
+                and delivery and setup handled for you. Same quality home you&rsquo;d find at
+                a dealership. Just the price it should actually be.
               </p>
             </div>
           </div>
@@ -180,167 +179,6 @@ export default async function HomePage() {
                 <div className="bmh-stat-value">50+</div>
                 <div className="bmh-stat-label">Floor plans available</div>
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ============ BROWSE BY TYPE ============ */}
-      <section className="bmh-section bmh-surface-card">
-        <div className="bmh-container">
-          <div className="bmh-section-head">
-            <h2>
-              Shop the kind of home
-              <br />
-              that fits <em>your life.</em>
-            </h2>
-            <p className="bmh-lead">
-              From a starter singlewide to a four-bedroom doublewide, every home
-              on our lot is priced to give Texas families more for their money.
-            </p>
-          </div>
-
-          <div className="bmh-inv-grid">
-            <Link href="/browse?type=single" className="bmh-inv-card">
-              <div className="bmh-ratio-4x3 bmh-inv-card-media" style={{overflow:'hidden'}}>
-                <span className="bmh-badge-caps bmh-badge-coral bmh-inv-card-tag">
-                  From $48k
-                </span>
-                <Image
-                  src="/homes/the-dove/IMG_0895.jpg.jpeg"
-                  alt="Marathon Homes singlewide manufactured home exterior"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="bmh-inv-card-body">
-                <h3 className="bmh-inv-card-title">Singlewides</h3>
-                <p className="bmh-inv-card-sub">
-                  Compact, efficient, and the most affordable way into
-                  homeownership.
-                </p>
-                <div className="bmh-inv-card-footer">
-                  <span className="bmh-caption bmh-muted">
-                    1–4 bedrooms · 600–1,200 sq ft
-                  </span>
-                  <span className="bmh-inv-card-link">Browse →</span>
-                </div>
-              </div>
-            </Link>
-
-            <Link href="/browse?type=double" className="bmh-inv-card">
-              <div className="bmh-ratio-4x3 bmh-inv-card-media" style={{overflow:'hidden'}}>
-                <span className="bmh-badge-caps bmh-badge-coral bmh-inv-card-tag">
-                  Most popular
-                </span>
-                <Image
-                  src="/homes/the-pintail/8-Sterling.png"
-                  alt="Marathon Homes doublewide manufactured home exterior"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="bmh-inv-card-body">
-                <h3 className="bmh-inv-card-title">Doublewides</h3>
-                <p className="bmh-inv-card-sub">
-                  Two halves joined on site — full kitchens, larger bedrooms,
-                  real family-home feel.
-                </p>
-                <div className="bmh-inv-card-footer">
-                  <span className="bmh-caption bmh-muted">
-                    3–6 bedrooms · 1,200–2,400 sq ft
-                  </span>
-                  <span className="bmh-inv-card-link">Browse →</span>
-                </div>
-              </div>
-            </Link>
-
-          </div>
-        </div>
-      </section>
-
-      {/* ============ WHY US ============ */}
-      <section
-        className="bmh-section"
-        style={{ background: 'var(--color-canvas)' }}
-      >
-        <div className="bmh-container">
-          <div className="bmh-section-head bmh-section-head-center">
-            <span className="bmh-eyebrow">Why Texas Homes Direct</span>
-            <div className="bmh-spacer-sm" />
-            <h2>
-              The best price in Texas —
-              <br />
-              and that&rsquo;s just the start.
-            </h2>
-          </div>
-
-          <div className="bmh-feature-grid-3">
-            <div className="bmh-feature">
-              <span className="bmh-feature-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
-                </svg>
-              </span>
-              <h4>Honest, lowest pricing</h4>
-              <p>
-                We price homes lower than the big-box dealers and we keep it
-                transparent — no high-pressure quotes, no hidden delivery fees,
-                no last-minute add-ons.
-              </p>
-            </div>
-
-            <div className="bmh-feature">
-              <span className="bmh-feature-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <circle cx="12" cy="10" r="3" />
-                  <path d="M12 2a8 8 0 0 0-8 8c0 5.4 6.5 11.4 7.4 12.2.3.3.9.3 1.2 0 .9-.8 7.4-6.8 7.4-12.2a8 8 0 0 0-8-8z" />
-                </svg>
-              </span>
-              <h4>Delivered everywhere we serve</h4>
-              <p>
-                Texas, New Mexico, and Oklahoma — we coordinate transport,
-                setup, and skirting. You sign one contract, we handle the rest
-                until you&rsquo;re holding keys.
-              </p>
-            </div>
-
-            <div className="bmh-feature">
-              <span className="bmh-feature-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M20 7L9 18l-5-5" />
-                </svg>
-              </span>
-              <h4>Financing for real people</h4>
-              <p>
-                Voted best financing in Texas. Less-than-perfect credit? We work
-                with lenders who specialize in manufactured-home loans — get
-                pre-qualified in minutes and we never pull your credit.
-              </p>
             </div>
           </div>
         </div>

@@ -28,6 +28,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'browse',
     'advisor',
     'calculator',
+    'locations',
     'about',
     'contact',
     'blog',

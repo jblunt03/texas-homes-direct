@@ -83,6 +83,9 @@ export default function Footer() {
         <div className="bmh-footer-bottom">
           <span>© {year} Texas Homes Direct. All rights reserved.</span>
           <span>Serving Texas · New Mexico · Oklahoma</span>
+          <Link href="/blog" className="bmh-pill bmh-pill-static">
+            Blog
+          </Link>
         </div>
       </div>
     </footer>

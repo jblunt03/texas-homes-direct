@@ -6,10 +6,10 @@ import { usePathname } from 'next/navigation'
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/browse', label: 'Inventory' },
-  { href: '/calculator', label: 'Financing' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/calculator', label: 'Free Pre-Approval' },
+  { href: '/locations', label: 'Locations' },
   { href: '/testimonials', label: 'Reviews' },
-  { href: '/about', label: 'About' },
+  { href: '/about', label: 'About Us' },
 ]
 
 export default function Navbar() {
