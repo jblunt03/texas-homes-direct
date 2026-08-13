@@ -6,7 +6,7 @@ const SESSION_KEY = 'stw_seen_v1'
 
 // TEMPORARY — testing only. Set to true so the popup fires on every page load,
 // ignoring the once-per-session rule. Set back to false before this goes live.
-const DEV_ALWAYS_SHOW = true
+const DEV_ALWAYS_SHOW = false
 
 const PRIZES = [
   { name: 'Free Delivery', value: '$10,000 value' },
