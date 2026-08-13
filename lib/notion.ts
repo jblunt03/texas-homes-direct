@@ -11,9 +11,13 @@
 import { Client, isFullPage } from '@notionhq/client'
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import { sampleListings, type Listing } from './sampleListings'
+import listingImageManifest from './generated/listingImages.json'
 
 const DATABASE_ID =
   process.env.NOTION_DATABASE_ID ?? '27653b36-31bf-4424-87d2-117ed420bd77'
+
+type ImageManifest = Record<string, { images: string[] }>
+const IMAGE_MANIFEST = listingImageManifest as ImageManifest
 
 let _client: Client | null = null
 
@@ -86,7 +90,10 @@ function urlProp(page: PageObjectResponse, name: string): string | undefined {
 }
 
 /** Image URLs — prefer the `Image URLs` text field (permanent), then Notion S3 attachments */
-function images(page: PageObjectResponse): string[] {
+function images(page: PageObjectResponse, slug: string): string[] {
+  const synced = IMAGE_MANIFEST[slug]?.images
+  if (synced && synced.length > 0) return synced
+
   const permanent = rt(page, 'Image URLs')
   if (permanent) {
     return permanent.split('\n').map((s: string) => s.trim()).filter(Boolean)
@@ -206,7 +213,7 @@ export function mapPage(page: PageObjectResponse): Listing {
     wideType,
     region,
     city,
-    images: images(page),
+    images: images(page, slug),
     features,
     description,
     monthlyPayment,

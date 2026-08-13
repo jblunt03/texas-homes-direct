@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -9,35 +10,28 @@ export default function Footer() {
         <div className="bmh-footer-grid">
           {/* Brand intro */}
           <div className="bmh-footer-intro">
-            <Link href="/" className="bmh-brand" aria-label="Texas Homes Direct home">
-              <span className="bmh-brand-mark">
-                <svg
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  aria-hidden="true"
-                >
-                  <path
-                    d="M3 11 L12 3 L21 11 V20 A1 1 0 0 1 20 21 H4 A1 1 0 0 1 3 20 Z"
-                    stroke="#fff"
-                    strokeWidth="1.8"
-                    strokeLinejoin="round"
-                  />
-                  <path
-                    d="M9 21 V14 H15 V21"
-                    stroke="#fff"
-                    strokeWidth="1.8"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-              </span>
-              <span className="bmh-brand-name bmh-brand-name-light">
-                Texas <em>Homes</em> Direct
-              </span>
+            <Link
+              href="/"
+              className="bmh-brand"
+              aria-label="Texas Homes Direct home"
+              style={{
+                background: '#fff',
+                borderRadius: 12,
+                padding: '10px 16px',
+                display: 'inline-flex',
+              }}
+            >
+              <Image
+                src="/brand/logo.png"
+                alt="Texas Homes Direct"
+                width={220}
+                height={220}
+                style={{ height: 64, width: 'auto' }}
+              />
             </Link>
             <p>
               A small, family-owned, faith-based business. Quality manufactured
-              homes at the best prices in Texas, New Mexico, and Oklahoma —
+              homes at the best prices in Texas —
               delivered, set up, and ready for keys.
             </p>
             <div className="bmh-spacer-md" />
@@ -82,7 +76,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="bmh-footer-bottom">
           <span>© {year} Texas Homes Direct. All rights reserved.</span>
-          <span>Serving Texas · New Mexico · Oklahoma</span>
+          <span>Serving all of Texas</span>
           <Link href="/blog" className="bmh-pill bmh-pill-static">
             Blog
           </Link>

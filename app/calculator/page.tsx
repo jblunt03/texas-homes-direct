@@ -1,11 +1,12 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import type { Metadata } from 'next'
 import FaqAccordion from '@/components/FaqAccordion'
 
 export const metadata: Metadata = {
   title: 'Free Mortgage Analysis — Texas Homes Direct',
   description:
-    "A 10-minute pre-qualification tells you exactly what kind of home is in reach. We don't pull your credit. Voted best financing in Texas.",
+    "A 3-minute pre-qualification tells you exactly what kind of home is in reach. We don't pull your credit. Voted best financing in Texas.",
 }
 
 const CIRRUS_URL =
@@ -40,33 +41,55 @@ export default function CalculatorPage() {
       {/* PAGE HEADER */}
       <section className="bmh-page-header" style={{ background: 'var(--color-canvas)' }}>
         <div className="bmh-container">
-          <span className="bmh-eyebrow">Voted best financing in Texas · No obligation</span>
-          <h1>
-            Know your budget
-            <br />
-            <em>before you fall in love.</em>
-          </h1>
-          <p className="bmh-lead">
-            A 10-minute pre-qualification tells you exactly what kind of home is in reach,
-            what your monthly payment will look like, and which lenders are ready to work
-            with you — and we don&rsquo;t pull your credit.
-          </p>
-          <div className="bmh-spacer-lg" />
-          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-            <a
-              href={CIRRUS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="bmh-btn bmh-btn-primary bmh-btn-lg"
+          <div className="bmh-split-6-5">
+            <div>
+              <span className="bmh-eyebrow">Voted best financing in Texas · No obligation</span>
+              <h1>
+                Know your budget
+                <br />
+                <em>before you fall in love.</em>
+              </h1>
+              <p className="bmh-lead">
+                A 3-minute pre-qualification tells you exactly what kind of home is in reach,
+                what your monthly payment will look like, your down payment and which lenders
+                are ready to work with you — and we don&rsquo;t pull your credit.
+              </p>
+              <div className="bmh-spacer-lg" />
+              <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+                <a
+                  href={CIRRUS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bmh-btn bmh-btn-primary bmh-btn-lg"
+                >
+                  Start your free analysis →
+                </a>
+                <a
+                  href="tel:+18303811309"
+                  className="bmh-btn bmh-btn-secondary bmh-btn-lg"
+                >
+                  Or call (830) 381-1309
+                </a>
+              </div>
+            </div>
+            <div
+              style={{
+                position: 'relative',
+                aspectRatio: '4 / 3',
+                borderRadius: 'var(--radius-lg, 16px)',
+                overflow: 'hidden',
+                boxShadow: '0 20px 48px rgba(15, 23, 42, 0.16)',
+              }}
             >
-              Start your free analysis →
-            </a>
-            <a
-              href="tel:+18303811309"
-              className="bmh-btn bmh-btn-secondary bmh-btn-lg"
-            >
-              Or call (830) 381-1309
-            </a>
+              <Image
+                src="/lifestyle-hillcountry.jpg"
+                alt="Texas Homes Direct manufactured home in the Hill Country"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 960px) 100vw, 40vw"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -78,7 +101,7 @@ export default function CalculatorPage() {
             <span className="bmh-eyebrow">Voted best financing in Texas</span>
             <div className="bmh-spacer-sm" />
             <h2>
-              Three steps. Ten minutes.
+              Three steps. Three minutes.
               <br />
               <em>No surprises.</em>
             </h2>
@@ -89,7 +112,7 @@ export default function CalculatorPage() {
               <span className="bmh-step-num">01</span>
               <h4>Fill out the secure form</h4>
               <p>
-                Basic info: name, address, income, employment. Takes about ten minutes.
+                Basic info: name, address, income, employment. Takes about three minutes.
                 The form is run by Cirrus Solutions, a licensed lender platform — your data
                 is encrypted end-to-end.
               </p>
@@ -126,94 +149,8 @@ export default function CalculatorPage() {
             </a>
             <div className="bmh-spacer-sm" />
             <p className="bmh-caption bmh-muted">
-              Opens in a new tab. Hosted by Cirrus Solutions &amp; South Texas Home Center
+              Opens in a new tab. Hosted by Cirrus Solutions
             </p>
-          </div>
-        </div>
-      </section>
-
-      {/* WHY DO THIS */}
-      <section className="bmh-section bmh-surface-card">
-        <div className="bmh-container">
-          <div className="bmh-split">
-            <div>
-              <span className="bmh-eyebrow">Why it&rsquo;s worth ten minutes</span>
-              <div className="bmh-spacer-sm" />
-              <h2
-                style={{
-                  fontFamily: 'var(--font-serif)', fontWeight: 400,
-                  fontSize: 'clamp(34px,4.4vw,52px)', letterSpacing: '-1px',
-                  lineHeight: 1.05, color: 'var(--color-ink)', margin: 0,
-                }}
-              >
-                Shop with a number
-                <br />in your pocket.
-              </h2>
-              <div className="bmh-spacer-md" />
-              <p className="bmh-lead">
-                Most buyers walk a dozen homes before they realize the one they love is
-                $20,000 outside their budget. The credit analysis flips that around — you
-                know your number first, so every home you walk is a real possibility.
-              </p>
-            </div>
-            <div>
-              <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
-                {[
-                  {
-                    icon: <path d="M20 6L9 17l-5-5" />,
-                    title: 'No pull — credit unaffected',
-                    body: 'No ding to your score. You can shop dealers all day without consequence.',
-                  },
-                  {
-                    icon: <path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6l8-3z" />,
-                    title: 'Encrypted, never sold',
-                    body: 'Your info goes to our lenders — and nowhere else. No spam calls, no resold leads.',
-                  },
-                  {
-                    icon: <><circle cx="12" cy="12" r="9" /><path d="M12 7v5l3 2" /></>,
-                    title: 'One business day turnaround',
-                    body: "You'll hear from a real person on our team — most of the time within hours.",
-                  },
-                  {
-                    icon: <><circle cx="12" cy="12" r="10" /><path d="M9 12l2 2 4-4" /></>,
-                    title: 'No obligation to buy',
-                    body: 'Use the number anywhere. Many of our buyers use the analysis to negotiate at other dealers too.',
-                  },
-                ].map((item, i) => (
-                  <div key={i} style={{ display: 'flex', gap: 16, alignItems: 'flex-start' }}>
-                    <span
-                      className="bmh-feature-icon"
-                      style={{ flexShrink: 0, width: 48, height: 48 }}
-                    >
-                      <svg
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="1.6"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        aria-hidden="true"
-                      >
-                        {item.icon}
-                      </svg>
-                    </span>
-                    <div>
-                      <h4
-                        style={{
-                          fontFamily: 'var(--font-sans)', fontWeight: 500,
-                          fontSize: 18, color: 'var(--color-ink)', margin: '0 0 4px',
-                        }}
-                      >
-                        {item.title}
-                      </h4>
-                      <p style={{ color: 'var(--color-body)', margin: 0, lineHeight: 1.55 }}>
-                        {item.body}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -357,14 +294,14 @@ export default function CalculatorPage() {
               </span>
               <div className="bmh-spacer-sm" />
               <h2>
-                Ten minutes today,{' '}
+                Three minutes today,{' '}
                 <em>your home this season.</em>
               </h2>
             </div>
             <div>
               <p>
                 The analysis is free, we don&rsquo;t pull your credit, and you&rsquo;ll
-                know more about your real options in ten minutes than most buyers learn in a
+                know more about your real options in three minutes than most buyers learn in a
                 month of dealer-shopping.
               </p>
               <div className="bmh-spacer-md" />

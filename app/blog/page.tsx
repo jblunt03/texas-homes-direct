@@ -4,7 +4,7 @@ import BlogClient, { type BlogPostItem } from './BlogClient'
 export const metadata: Metadata = {
   title: "Buyer's Blog — Texas Homes Direct",
   description:
-    'Plain-language guides on financing, floor plans, land prep, and delivery for manufactured home buyers in Texas, New Mexico, and Oklahoma.',
+    'Plain-language guides on financing, floor plans, land prep, and delivery for manufactured home buyers in Texas.',
 }
 
 const POSTS: BlogPostItem[] = [

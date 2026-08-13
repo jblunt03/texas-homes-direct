@@ -2,6 +2,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { fetchAllListings } from '@/lib/notion'
+import SpinToWinPopup from '@/components/SpinToWinPopup'
 
 export const revalidate = 3000
 
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
   title:
     'Texas Homes Direct — Quality manufactured homes at the best prices in Texas',
   description:
-    'The best prices on manufactured homes in Texas, New Mexico, and Oklahoma. Singlewides and doublewides — delivered and set up anywhere we serve. Family-owned & faith-based.',
+    'The best prices on manufactured homes in Texas. Singlewides and doublewides — delivered and set up anywhere we serve. Family-owned & faith-based.',
 }
 
 export default async function HomePage() {
@@ -20,13 +21,15 @@ export default async function HomePage() {
 
   return (
     <>
+      <SpinToWinPopup />
+
       {/* ============ HERO ============ */}
       <section className="bmh-hero">
         <div className="bmh-container">
           <div className="bmh-hero-inner">
             <Image
-              src="/homes/the-dove/IMG_0895.jpg.jpeg"
-              alt="Marathon Homes singlewide with wraparound porch at sunset in Texas"
+              src="/hero-pearl.jpg"
+              alt="Doublewide manufactured home with wraparound porch at sunset in Texas"
               fill
               className="bmh-hero-bg"
               priority
@@ -38,18 +41,16 @@ export default async function HomePage() {
                 className="bmh-eyebrow"
                 style={{ color: 'var(--color-primary)' }}
               >
-                Factory Direct Pricing. No Markup.
+                A Small Texas Family, Doing Right by Yours
               </span>
               <div className="bmh-spacer-sm" />
               <h1>
-                Real Homes. Real Numbers.
-                <br />
-                No Runaround.
+                The Dealership We Refused to Become.
               </h1>
               <p className="bmh-hero-sub">
-                We work directly with the factory to bring you real pricing —
-                no games, no inflated numbers. See homes in person at select
-                partner locations, or start right here.
+                We&rsquo;re faith-based, family-owned, and built this company
+                to bring honest, factory-direct pricing to Texas families —
+                without the games other dealerships play.
               </p>
 
               <form action="/browse" method="get" className="bmh-hero-search">
@@ -102,7 +103,7 @@ export default async function HomePage() {
                 <span className="bmh-hero-card-title bmh-serif-italic">
                   Find a home that suits your budget.
                 </span>
-                <span className="bmh-hero-card-link">Apply now →</span>
+                <span className="bmh-hero-card-link">Get my monthly payment →</span>
               </Link>
             </div>
           </div>
@@ -130,19 +131,21 @@ export default async function HomePage() {
                   color: 'var(--color-ink)',
                 }}
               >
-                What Is
+                What Makes
                 <br />
                 <em style={{ color: 'var(--color-primary)' }}>
-                  Texas Homes Direct?
+                  Texas Homes Direct Different?
                 </em>
               </h2>
             </div>
             <div>
               <p className="bmh-lead">
-                We sell manufactured homes factory-direct — no dealership lot, no markup, no
-                games. You get real pricing, financing built into the process from day one,
-                and delivery and setup handled for you. Same quality home you&rsquo;d find at
-                a dealership. Just the price it should actually be.
+                We&rsquo;re real people, not salesmen trying to max out your budget. So why
+                are we so inexpensive? We sell homes directly from our factory to your lot —
+                no middleman, no markup stacked on markup, no games. Just real
+                pricing, financing built into the process from day one, and delivery and
+                setup handled for you. Same quality home you&rsquo;d find at a dealership.
+                Just the price it should actually be.
               </p>
             </div>
           </div>
@@ -156,7 +159,7 @@ export default async function HomePage() {
             >
               <Image
                 src="/homes/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg"
-                alt="Marathon Homes The Mallard — black board-and-batten doublewide with cedar shutters on a Texas lot"
+                alt="Texas Homes Direct The Mallard — black board-and-batten doublewide with cedar shutters on a Texas lot"
                 fill
                 style={{ objectFit: 'cover' }}
                 sizes="(max-width: 960px) 100vw, 55vw"
@@ -222,7 +225,7 @@ export default async function HomePage() {
               <h4>Prep the land</h4>
               <p>
                 We&rsquo;ll review your land or help you find a lot. Permits,
-                pad, utilities — we keep a checklist and a timeline.
+                pad, utilities — we make it turnkey and stress-free.
               </p>
             </div>
             <div className="bmh-step">
@@ -281,7 +284,11 @@ export default async function HomePage() {
                         src={listing.images[0]}
                         alt={`${listing.title} exterior`}
                         fill
-                        style={{ objectFit: 'cover' }}
+                        style={
+                          listing.floorplanUrl && listing.images[0] === listing.floorplanUrl
+                            ? { objectFit: 'contain', background: '#fff', padding: 12 }
+                            : { objectFit: 'cover' }
+                        }
                         sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
                       />
                     </div>
@@ -359,7 +366,9 @@ export default async function HomePage() {
               <p>
                 No credit pull, no obligation. You&rsquo;ll walk away knowing
                 your budget, your monthly, and what kind of home is in reach.
-                Most folks finish in under ten minutes.
+                Most folks finish in under three minutes. We can even roll
+                utilities and other land improvements right into your loan —
+                one payment, no separate bills to juggle.
               </p>
               <div className="bmh-spacer-md" />
               <Link
@@ -411,7 +420,7 @@ export default async function HomePage() {
               <div className="bmh-stars">★★★★★</div>
               <p className="bmh-testi-quote">
                 &ldquo;They walked me through the credit analysis, picked the
-                right floor plan, and had the home set on my land in Roswell six
+                right floor plan, and had the home set on my land in Abilene six
                 weeks later. Couldn&rsquo;t ask for more.&rdquo;
               </p>
               <div className="bmh-testi-foot">
@@ -419,7 +428,7 @@ export default async function HomePage() {
                 <div>
                   <div className="bmh-testi-name">Javier G.</div>
                   <div className="bmh-testi-meta">
-                    Roswell, NM · 2BR singlewide
+                    Abilene, TX · 2BR singlewide
                   </div>
                 </div>
               </div>
@@ -438,7 +447,7 @@ export default async function HomePage() {
                 <div>
                   <div className="bmh-testi-name">Emily M.</div>
                   <div className="bmh-testi-meta">
-                    Tulsa, OK · Singlewide
+                    Waco, TX · Singlewide
                   </div>
                 </div>
               </div>

@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Reviews — Texas Homes Direct',
   description:
-    'See what Texas, New Mexico, and Oklahoma families are saying about Texas Homes Direct. 4.9 stars across 487 verified reviews.',
+    'See what Texas families are saying about Texas Homes Direct. 4.9 stars across 487 verified reviews.',
 }
 
 const REVIEWS = [
@@ -18,14 +18,14 @@ const REVIEWS = [
   {
     init: 'JG',
     name: 'Javier G.',
-    meta: 'Roswell, NM · 2BR singlewide · Jul 2025',
+    meta: 'Abilene, TX · 2BR singlewide · Jul 2025',
     quote:
-      'They walked me through the credit analysis, picked the right floor plan, and had the home set on my land in Roswell six weeks later. Couldn\'t ask for more.',
+      'They walked me through the credit analysis, picked the right floor plan, and had the home set on my land in Abilene six weeks later. Couldn\'t ask for more.',
   },
   {
     init: 'EM',
     name: 'Emily M.',
-    meta: 'Tulsa, OK · Singlewide · Jun 2025',
+    meta: 'Waco, TX · Singlewide · Jun 2025',
     quote:
       'As first-time buyers we were nervous. They explained every line of the contract, helped us understand the permits, and never made us feel like we were asking dumb questions.',
   },
@@ -60,7 +60,7 @@ const REVIEWS = [
   {
     init: 'SO',
     name: 'Sandra O.',
-    meta: 'Lawton, OK · 3BR doublewide · Jan 2025',
+    meta: 'San Angelo, TX · 3BR doublewide · Jan 2025',
     quote:
       'The owner called me back personally after I left a question on the website. Six months in, I\'m still glad I picked them. No regrets, no surprises.',
   },
@@ -142,7 +142,7 @@ export default function TestimonialsPage() {
               </span>
               <div className="bmh-spacer-sm" />
               <h2 style={{ fontSize: 'clamp(28px,3.6vw,44px)', letterSpacing: '-0.5px' }}>
-                &ldquo;They gave us the same straight answer the third time we asked it. That&rsquo;s how I knew we&rsquo;d picked the right dealer.&rdquo;
+                &ldquo;They gave us the real out-the-door price up front. No hidden fees, no bait-and-switch — nothing like the other lots.&rdquo;
               </h2>
             </div>
             <div>

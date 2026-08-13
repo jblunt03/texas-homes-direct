@@ -5,13 +5,13 @@ import FaqAccordion from '@/components/FaqAccordion'
 export const metadata: Metadata = {
   title: 'Contact Us — Texas Homes Direct',
   description:
-    "Drop us a note, give us a call, or stop by the lot. We answer the phone ourselves. Serving Texas, New Mexico, and Oklahoma.",
+    "Drop us a note, give us a call, or stop by the lot. We answer the phone ourselves. Serving all of Texas.",
 }
 
 const FAQ_ITEMS = [
   {
-    q: 'Do you really deliver to all of Texas, New Mexico, and Oklahoma?',
-    a: 'Yes — every corner of all three states. Our crews coordinate transport, blocking, leveling, tie-down, and skirting. You\'ll get a single delivered-and-set price with no surprise fees.',
+    q: 'Do you really deliver to all of Texas?',
+    a: 'Yes — every corner of the state. Our crews coordinate transport, blocking, leveling, tie-down, and skirting. You\'ll get a single delivered-and-set price with no surprise fees.',
   },
   {
     q: 'How long does it take from signing to move-in?',
@@ -193,11 +193,9 @@ export default function ContactPage() {
                 <div style={{ height: 1, background: 'var(--color-hairline)', margin: '20px 0' }} />
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
                   <span className="bmh-pill bmh-pill-static" style={{ fontSize: 12 }}>Texas</span>
-                  <span className="bmh-pill bmh-pill-static" style={{ fontSize: 12 }}>New Mexico</span>
-                  <span className="bmh-pill bmh-pill-static" style={{ fontSize: 12 }}>Oklahoma</span>
                 </div>
                 <p className="bmh-caption bmh-muted" style={{ marginTop: 14 }}>
-                  We deliver, set, and service homes anywhere in our three-state region.
+                  We deliver, set, and service homes anywhere in the state.
                 </p>
               </div>
             </div>

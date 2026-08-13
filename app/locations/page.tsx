@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 export const metadata: Metadata = {
   title: 'Locations — Texas Homes Direct',
   description:
-    'Where Texas Homes Direct delivers and sets up manufactured homes across Texas, New Mexico, and Oklahoma.',
+    'Where Texas Homes Direct delivers and sets up manufactured homes across Texas.',
 }
 
 export default function LocationsPage() {
@@ -19,9 +19,8 @@ export default function LocationsPage() {
           Find us <em>near you.</em>
         </h1>
         <p className="bmh-lead">
-          We&rsquo;re building out a full map of the cities and regions we serve across Texas,
-          New Mexico, and Oklahoma. In the meantime, reach out and we&rsquo;ll tell you exactly
-          what we can do in your area.
+          We&rsquo;re building out a full map of the cities and regions we serve across Texas.
+          In the meantime, reach out and we&rsquo;ll tell you exactly what we can do in your area.
         </p>
         <div className="bmh-spacer-md" />
         <Link href="/contact" className="bmh-btn bmh-btn-primary bmh-btn-lg">

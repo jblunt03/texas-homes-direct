@@ -179,7 +179,11 @@ function RelatedCard({ listing }: { listing: Listing }) {
             src={listing.images[0]}
             alt={`${listing.title} exterior`}
             fill
-            style={{ objectFit: 'cover' }}
+            style={
+              listing.floorplanUrl && listing.images[0] === listing.floorplanUrl
+                ? { objectFit: 'contain', background: '#fff', padding: 12 }
+                : { objectFit: 'cover' }
+            }
             sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
           />
         </div>
@@ -284,7 +288,11 @@ export default function ListingDetail({
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 80vw"
-                style={{ objectFit: 'cover' }}
+                style={
+                  listing.floorplanUrl && listing.images[mainImg] === listing.floorplanUrl
+                    ? { objectFit: 'contain', background: '#fff', padding: 24 }
+                    : { objectFit: 'cover' }
+                }
               />
             ) : (
               <div
@@ -694,7 +702,7 @@ export default function ListingDetail({
             </div>
             <div>
               <p>
-                A free 10-minute pre-qualification shows you which homes fit your budget and what
+                A free 3-minute pre-qualification shows you which homes fit your budget and what
                 your monthly payment looks like — no credit pull, no obligation.
               </p>
               <div className="bmh-spacer-md" />

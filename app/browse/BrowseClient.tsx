@@ -11,6 +11,15 @@ function tagForListing(listing: Listing): Filter {
   return 'single'
 }
 
+/** True when the listing has no real photos — its only "image" is the floor plan. */
+function isFloorplanOnly(listing: Listing): boolean {
+  return Boolean(
+    listing.floorplanUrl &&
+      listing.images.length === 1 &&
+      listing.images[0] === listing.floorplanUrl
+  )
+}
+
 export default function BrowseClient({
   initialType,
   listings,
@@ -22,10 +31,13 @@ export default function BrowseClient({
   const init = validFilters.includes(initialType as Filter) ? (initialType as Filter) : 'all'
   const [activeFilter, setActiveFilter] = useState<Filter>(init)
 
-  const filtered =
+  const filtered = (
     activeFilter === 'all'
       ? listings
       : listings.filter((l) => tagForListing(l) === activeFilter)
+  )
+    .slice()
+    .sort((a, b) => Number(isFloorplanOnly(a)) - Number(isFloorplanOnly(b)))
 
   const counts = {
     all: listings.length,
@@ -151,7 +163,11 @@ export default function BrowseClient({
                         src={listing.images[0]}
                         alt={`${listing.title} exterior`}
                         fill
-                        style={{ objectFit: 'cover' }}
+                        style={
+                          listing.floorplanUrl && listing.images[0] === listing.floorplanUrl
+                            ? { objectFit: 'contain', background: '#fff', padding: 12 }
+                            : { objectFit: 'cover' }
+                        }
                         sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
                       />
                     </div>

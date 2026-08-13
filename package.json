@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync:images": "node --env-file=.env.local scripts/sync-notion-images.ts"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.27.0",

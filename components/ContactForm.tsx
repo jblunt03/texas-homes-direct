@@ -137,7 +137,7 @@ export default function ContactForm() {
               <span className="bmh-req" aria-hidden="true">*</span>
             </span>
             <div className="bmh-radio-group">
-              {['Texas', 'New Mexico', 'Oklahoma', 'Other'].map((state) => (
+              {['Texas', 'Other'].map((state) => (
                 <label key={state} className="bmh-radio-pill">
                   <input type="radio" name="landWhere" value={state.toLowerCase().replace(' ', '-')} />
                   <span>{state}</span>

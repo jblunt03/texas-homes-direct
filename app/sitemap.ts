@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { sampleListings } from '@/lib/sampleListings'
 import { blogPosts } from '@/lib/blogPosts'
+import { teamMembers } from '@/lib/teamMembers'
 
 const cities = [
   'san-antonio',
@@ -29,6 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'advisor',
     'calculator',
     'locations',
+    'commercial',
     'about',
     'contact',
     'blog',
@@ -56,5 +58,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))
-  return [...staticPages, ...listings, ...locationPages, ...blogPages]
+  const teamPages = teamMembers.map((m) => ({
+    url: `${base}/about/${m.slug}`,
+    lastModified: new Date(),
+    changeFrequency: 'monthly' as const,
+    priority: 0.5,
+  }))
+  return [...staticPages, ...listings, ...locationPages, ...blogPages, ...teamPages]
 }

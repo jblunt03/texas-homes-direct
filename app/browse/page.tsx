@@ -7,7 +7,7 @@ export const revalidate = 3000
 export const metadata: Metadata = {
   title: 'Inventory — Texas Homes Direct',
   description:
-    'Browse singlewides and doublewides. Every home priced to give Texas families more for their money. Delivered anywhere in TX, NM, or OK.',
+    'Browse singlewides and doublewides. Every home priced to give Texas families more for their money. Delivered anywhere in Texas.',
 }
 
 export default async function BrowsePage({

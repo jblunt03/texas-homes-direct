@@ -24,13 +24,29 @@ export default function ListingCard({ listing, compact = false }: Props) {
       className="group flex flex-col overflow-hidden rounded-xl bg-white shadow-card transition-all hover:-translate-y-1 hover:border-gold hover:shadow-card-hover border border-transparent"
     >
       <div className="relative aspect-[16/10] w-full overflow-hidden bg-navy">
-        <Image
-          src={listing.images[0]}
-          alt={listing.title}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover transition-transform duration-500 group-hover:scale-105"
-        />
+        {listing.images[0] ? (
+          listing.floorplanUrl && listing.images[0] === listing.floorplanUrl ? (
+            <Image
+              src={listing.images[0]}
+              alt={listing.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-contain bg-white p-4 transition-transform duration-500 group-hover:scale-105"
+            />
+          ) : (
+            <Image
+              src={listing.images[0]}
+              alt={listing.title}
+              fill
+              sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          )
+        ) : (
+          <div className="flex h-full w-full items-center justify-center bg-navy-50 text-center text-xs font-medium text-navy/50">
+            Photos coming soon
+          </div>
+        )}
         <div className="absolute left-3 top-3 flex flex-col gap-1.5">
           <span className="inline-flex items-center rounded-full bg-gold px-3 py-1 text-xs font-bold uppercase tracking-wider text-navy">
             {t.listing.newBadge}

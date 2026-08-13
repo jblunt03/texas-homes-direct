@@ -1,14 +1,15 @@
 'use client'
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/browse', label: 'Inventory' },
   { href: '/calculator', label: 'Free Pre-Approval' },
-  { href: '/locations', label: 'Locations' },
   { href: '/testimonials', label: 'Reviews' },
+  { href: '/commercial', label: 'Commercial' },
   { href: '/about', label: 'About Us' },
 ]
 
@@ -21,30 +22,14 @@ export default function Navbar() {
       <div className="bmh-container bmh-nav-inner">
         {/* Brand */}
         <Link href="/" className="bmh-brand" aria-label="Texas Homes Direct home">
-          <span className="bmh-brand-mark">
-            <svg
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              aria-hidden="true"
-            >
-              <path
-                d="M3 11 L12 3 L21 11 V20 A1 1 0 0 1 20 21 H4 A1 1 0 0 1 3 20 Z"
-                stroke="#fff"
-                strokeWidth="1.8"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M9 21 V14 H15 V21"
-                stroke="#fff"
-                strokeWidth="1.8"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </span>
-          <span className="bmh-brand-name">
-            Texas <em>Homes</em> Direct
-          </span>
+          <Image
+            src="/brand/logo.png"
+            alt="Texas Homes Direct"
+            width={220}
+            height={220}
+            priority
+            style={{ height: 108, width: 'auto' }}
+          />
         </Link>
 
         {/* Desktop nav links */}
@@ -62,22 +47,6 @@ export default function Navbar() {
 
         {/* CTA area */}
         <div className="bmh-nav-cta">
-          <a href="tel:+18303811309" className="bmh-nav-phone">
-            <svg
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z" />
-            </svg>
-            (830) 381-1309
-          </a>
           <Link href="/contact" className="bmh-btn bmh-btn-dark bmh-btn-sm">
             Contact us
           </Link>
