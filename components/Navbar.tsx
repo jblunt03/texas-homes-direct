@@ -10,7 +10,6 @@ const NAV_LINKS = [
   { href: '/calculator', label: 'Free Pre-Approval' },
   { href: '/testimonials', label: 'Reviews' },
   { href: '/commercial', label: 'Commercial' },
-  { href: '/about', label: 'About Us' },
 ]
 
 export default function Navbar() {
