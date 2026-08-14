@@ -37,13 +37,6 @@ export default async function HomePage() {
             />
 
             <div className="bmh-hero-content">
-              <span
-                className="bmh-eyebrow"
-                style={{ color: 'var(--color-primary)' }}
-              >
-                A Small Texas Family, Doing Right by Yours
-              </span>
-              <div className="bmh-spacer-sm" />
               <h1>
                 The Dealership We Refused to Become.
               </h1>
