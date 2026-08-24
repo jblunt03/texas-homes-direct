@@ -1,6 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
+    // Disabled: Vercel's Image Optimization API is metered per source image and
+    // the account hit its plan quota (402 Payment Required on every image).
+    // Serving originals as-is avoids that billing limit entirely.
+    unoptimized: true,
     remotePatterns: [
       { protocol: 'https', hostname: 'via.placeholder.com' },
       { protocol: 'https', hostname: 'images.unsplash.com' },
