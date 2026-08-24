@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default async function BrowsePage({
   searchParams,
 }: {
-  searchParams: { type?: string }
+  searchParams: { type?: string; budget?: string; beds?: string; baths?: string }
 }) {
   const allListings = await fetchAllListings()
   const listings = allListings.filter(
@@ -23,6 +23,9 @@ export default async function BrowsePage({
   return (
     <BrowseClient
       initialType={searchParams.type ?? 'all'}
+      initialBudget={searchParams.budget ?? ''}
+      initialBeds={searchParams.beds ?? ''}
+      initialBaths={searchParams.baths ?? ''}
       listings={listings}
     />
   )

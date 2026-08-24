@@ -1693,6 +1693,7 @@ export const sampleListings: Listing[] = [
     sqft: 1493,
     year: 2026,
     type: 'new',
+    wideType: 'Double Wide',
     region: 'South TX',
     city: 'San Antonio',
     images: [

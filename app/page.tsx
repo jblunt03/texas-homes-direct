@@ -59,10 +59,9 @@ export default async function HomePage() {
                   <label htmlFor="h-budget">Budget</label>
                   <select id="h-budget" name="budget" defaultValue="">
                     <option value="">Any budget</option>
-                    <option value="750">Under $750/mo</option>
-                    <option value="1000">$750–$1,000/mo</option>
-                    <option value="1500">$1,000–$1,500/mo</option>
-                    <option value="1501">$1,500/mo+</option>
+                    <option value="750-1000">$750–$1,000/mo</option>
+                    <option value="1000-1500">$1,000–$1,500/mo</option>
+                    <option value="1500-plus">$1,500/mo+</option>
                   </select>
                 </div>
                 <div className="bmh-field">
@@ -73,6 +72,14 @@ export default async function HomePage() {
                     <option value="2">2 bedrooms</option>
                     <option value="3">3 bedrooms</option>
                     <option value="4">4+ bedrooms</option>
+                  </select>
+                </div>
+                <div className="bmh-field">
+                  <label htmlFor="h-bath">Bathrooms</label>
+                  <select id="h-bath" name="baths" defaultValue="">
+                    <option value="">Any</option>
+                    <option value="1">1 bathroom</option>
+                    <option value="2">2+ bathrooms</option>
                   </select>
                 </div>
                 <button type="submit" className="bmh-btn bmh-btn-primary">

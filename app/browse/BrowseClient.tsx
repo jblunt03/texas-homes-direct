@@ -1,10 +1,64 @@
 'use client'
-import { useState } from 'react'
+import { useState, type CSSProperties } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Listing } from '@/lib/sampleListings'
 
 type Filter = 'all' | 'single' | 'double'
+
+const BUDGET_OPTIONS = [
+  { value: '', label: 'Any budget' },
+  { value: '750-1000', label: '$750–$1,000/mo' },
+  { value: '1000-1500', label: '$1,000–$1,500/mo' },
+  { value: '1500-plus', label: '$1,500/mo+' },
+]
+
+const BEDS_OPTIONS = [
+  { value: '', label: 'Any' },
+  { value: '1', label: '1 bedroom' },
+  { value: '2', label: '2 bedrooms' },
+  { value: '3', label: '3 bedrooms' },
+  { value: '4', label: '4+ bedrooms' },
+]
+
+const BATHS_OPTIONS = [
+  { value: '', label: 'Any' },
+  { value: '1', label: '1 bathroom' },
+  { value: '2', label: '2+ bathrooms' },
+]
+
+const selectStyle: CSSProperties = {
+  height: 38,
+  padding: '0 12px',
+  border: '1px solid var(--color-hairline)',
+  borderRadius: 'var(--radius-md)',
+  background: 'var(--color-canvas)',
+  font: 'var(--type-body-sm)',
+  color: 'var(--color-ink)',
+  cursor: 'pointer',
+}
+
+function matchesBudget(listing: Listing, budget: string): boolean {
+  if (!budget) return true
+  const payment = listing.monthlyPayment
+  if (!payment) return false
+  if (budget === '750-1000') return payment >= 750 && payment <= 1000
+  if (budget === '1000-1500') return payment > 1000 && payment <= 1500
+  if (budget === '1500-plus') return payment > 1500
+  return true
+}
+
+function matchesBeds(listing: Listing, beds: string): boolean {
+  if (!beds) return true
+  const min = Number(beds)
+  return min >= 4 ? listing.beds >= 4 : listing.beds === min
+}
+
+function matchesBaths(listing: Listing, baths: string): boolean {
+  if (!baths) return true
+  const min = Number(baths)
+  return min >= 2 ? listing.baths >= 2 : listing.baths === min
+}
 
 function tagForListing(listing: Listing): Filter {
   if (listing.wideType === 'Double Wide') return 'double'
@@ -22,20 +76,35 @@ function isFloorplanOnly(listing: Listing): boolean {
 
 export default function BrowseClient({
   initialType,
+  initialBudget = '',
+  initialBeds = '',
+  initialBaths = '',
   listings,
 }: {
   initialType: string
+  initialBudget?: string
+  initialBeds?: string
+  initialBaths?: string
   listings: Listing[]
 }) {
   const validFilters: Filter[] = ['all', 'single', 'double']
   const init = validFilters.includes(initialType as Filter) ? (initialType as Filter) : 'all'
   const [activeFilter, setActiveFilter] = useState<Filter>(init)
-
-  const filtered = (
-    activeFilter === 'all'
-      ? listings
-      : listings.filter((l) => tagForListing(l) === activeFilter)
+  const [budget, setBudget] = useState(
+    BUDGET_OPTIONS.some((o) => o.value === initialBudget) ? initialBudget : ''
   )
+  const [beds, setBeds] = useState(
+    BEDS_OPTIONS.some((o) => o.value === initialBeds) ? initialBeds : ''
+  )
+  const [baths, setBaths] = useState(
+    BATHS_OPTIONS.some((o) => o.value === initialBaths) ? initialBaths : ''
+  )
+
+  const filtered = listings
+    .filter((l) => activeFilter === 'all' || tagForListing(l) === activeFilter)
+    .filter((l) => matchesBudget(l, budget))
+    .filter((l) => matchesBeds(l, beds))
+    .filter((l) => matchesBaths(l, baths))
     .slice()
     .sort((a, b) => Number(isFloorplanOnly(a)) - Number(isFloorplanOnly(b)))
 
@@ -102,20 +171,50 @@ export default function BrowseClient({
                 </button>
               ))}
             </div>
-            <div style={{ display: 'flex', gap: 10, alignItems: 'center' }}>
+            <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
+              <select
+                className="bmh-field"
+                style={selectStyle}
+                value={budget}
+                onChange={(e) => setBudget(e.target.value)}
+                aria-label="Budget"
+              >
+                {BUDGET_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="bmh-field"
+                style={selectStyle}
+                value={beds}
+                onChange={(e) => setBeds(e.target.value)}
+                aria-label="Bedrooms"
+              >
+                {BEDS_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.value === '' ? 'Any bedrooms' : o.label}
+                  </option>
+                ))}
+              </select>
+              <select
+                className="bmh-field"
+                style={selectStyle}
+                value={baths}
+                onChange={(e) => setBaths(e.target.value)}
+                aria-label="Bathrooms"
+              >
+                {BATHS_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.value === '' ? 'Any bathrooms' : o.label}
+                  </option>
+                ))}
+              </select>
               <span className="bmh-caption bmh-muted">Sort by</span>
               <select
                 className="bmh-field"
-                style={{
-                  height: 38,
-                  padding: '0 12px',
-                  border: '1px solid var(--color-hairline)',
-                  borderRadius: 'var(--radius-md)',
-                  background: 'var(--color-canvas)',
-                  font: 'var(--type-body-sm)',
-                  color: 'var(--color-ink)',
-                  cursor: 'pointer',
-                }}
+                style={selectStyle}
                 defaultValue="Featured"
               >
                 <option>Featured</option>
