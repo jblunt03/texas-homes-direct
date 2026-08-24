@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import FaqAccordion from '@/components/FaqAccordion'
 
@@ -42,19 +43,6 @@ const CONTACT_TILES = [
     detailSize: 28,
     sub: 'Mon–Sat, 8:00 AM–6:00 PM CST',
   },
-  {
-    href: '/calculator',
-    icon: (
-      <>
-        <path d="M3 11 L12 3 L21 11 V20 A1 1 0 0 1 20 21 H4 A1 1 0 0 1 3 20 Z" />
-        <path d="M9 21 V14 H15 V21" />
-      </>
-    ),
-    heading: 'Visit the lot',
-    detail: 'San Antonio, TX · Seguin, TX',
-    detailSize: 22,
-    sub: 'Walk-ins welcome',
-  },
 ]
 
 export default function ContactPage() {
@@ -63,30 +51,30 @@ export default function ContactPage() {
       {/* PAGE HEADER */}
       <section className="bmh-page-header" style={{ background: 'var(--color-canvas)' }}>
         <div className="bmh-container">
-          <span className="bmh-eyebrow">Get in touch</span>
-          <h1>
-            Let&rsquo;s find your
-            <br />
-            <em>forever home.</em>
-          </h1>
-          <p className="bmh-lead">
-            Whether you&rsquo;ve already picked out a floor plan or you&rsquo;re just kicking the
-            tires — drop us a note, give us a call, or stop by the lot. We answer the phone, and
-            we answer it ourselves.
-          </p>
-        </div>
-      </section>
-
-      {/* QUICK CONTACT TILES */}
-      <section className="bmh-section-sm" style={{ background: 'var(--color-canvas)' }}>
-        <div className="bmh-container">
-          <div className="bmh-feature-grid-3">
-            {CONTACT_TILES.map((tile) => (
+          <div className="bmh-split" style={{ alignItems: 'center' }}>
+            <div>
+              <span className="bmh-eyebrow">Get in touch</span>
+              <h1>
+                Let&rsquo;s find your
+                <br />
+                <em>forever home.</em>
+              </h1>
+              <p className="bmh-lead">
+                Whether you&rsquo;ve already picked out a floor plan or you&rsquo;re just kicking the
+                tires — drop us a note or give us a call. We answer the phone, and
+                we answer it ourselves.
+              </p>
+              <div className="bmh-spacer-md" />
               <a
-                key={tile.heading}
-                href={tile.href}
+                href={CONTACT_TILES[0].href}
                 className="bmh-card-canvas"
-                style={{ textDecoration: 'none', display: 'flex', flexDirection: 'column', gap: 14 }}
+                style={{
+                  textDecoration: 'none',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: 14,
+                  maxWidth: 280,
+                }}
               >
                 <span className="bmh-feature-icon">
                   <svg
@@ -98,7 +86,7 @@ export default function ContactPage() {
                     strokeLinejoin="round"
                     aria-hidden="true"
                   >
-                    {tile.icon}
+                    {CONTACT_TILES[0].icon}
                   </svg>
                 </span>
                 <h4
@@ -110,24 +98,34 @@ export default function ContactPage() {
                     margin: 0,
                   }}
                 >
-                  {tile.heading}
+                  {CONTACT_TILES[0].heading}
                 </h4>
                 <p
                   style={{
                     fontFamily: 'var(--font-serif)',
-                    fontSize: tile.detailSize,
+                    fontSize: CONTACT_TILES[0].detailSize,
                     letterSpacing: '-0.3px',
                     color: 'var(--color-ink)',
                     margin: 0,
                   }}
                 >
-                  {tile.detail}
+                  {CONTACT_TILES[0].detail}
                 </p>
                 <p className="bmh-caption bmh-muted" style={{ margin: 0 }}>
-                  {tile.sub}
+                  {CONTACT_TILES[0].sub}
                 </p>
               </a>
-            ))}
+            </div>
+            <div className="bmh-lifestyle-photo bmh-ratio-4x3" style={{ position: 'relative' }}>
+              <Image
+                src="/homes/the-pronghorn/Image.jpeg"
+                alt="Texas Homes Direct manufactured home exterior on a Texas lot"
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="(max-width: 960px) 100vw, 50vw"
+                priority
+              />
+            </div>
           </div>
         </div>
       </section>
@@ -154,15 +152,8 @@ export default function ContactPage() {
               <ContactForm />
             </div>
 
-            {/* RIGHT: map + hours */}
+            {/* RIGHT: hours */}
             <div>
-              <div className="bmh-ph bmh-ratio-4x3">
-                <span className="bmh-ph-label">
-                  Map — San Antonio area lot location with pins for service area
-                </span>
-              </div>
-              <div className="bmh-spacer-md" />
-
               <div className="bmh-card" style={{ padding: 28 }}>
                 <h4
                   style={{
@@ -173,7 +164,7 @@ export default function ContactPage() {
                     marginBottom: 16,
                   }}
                 >
-                  Hours &amp; service area
+                  Hours
                 </h4>
                 <div
                   style={{
@@ -190,13 +181,6 @@ export default function ContactPage() {
                   <span className="bmh-muted">Sunday</span>
                   <span>By appointment</span>
                 </div>
-                <div style={{ height: 1, background: 'var(--color-hairline)', margin: '20px 0' }} />
-                <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                  <span className="bmh-pill bmh-pill-static" style={{ fontSize: 12 }}>Texas</span>
-                </div>
-                <p className="bmh-caption bmh-muted" style={{ marginTop: 14 }}>
-                  We deliver, set, and service homes anywhere in the state.
-                </p>
               </div>
             </div>
           </div>

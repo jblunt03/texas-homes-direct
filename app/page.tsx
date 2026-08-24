@@ -140,6 +140,11 @@ export default async function HomePage() {
                 setup handled for you. Same quality home you&rsquo;d find at a dealership.
                 Just the price it should actually be.
               </p>
+              <div className="bmh-spacer-sm" />
+              <p className="bmh-lead">
+                We can handle the utilities too — septic, water, electric, whatever your
+                lot needs — so the home is truly turnkey.
+              </p>
             </div>
           </div>
 

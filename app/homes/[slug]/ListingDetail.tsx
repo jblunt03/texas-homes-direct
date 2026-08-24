@@ -362,30 +362,29 @@ export default function ListingDetail({
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns:
-                  listing.matterportUrl && listing.floorplanUrl
-                    ? 'minmax(0,1.6fr) minmax(0,1fr)'
-                    : '1fr',
+                gridTemplateColumns: listing.floorplanUrl
+                  ? 'minmax(0,1.6fr) minmax(0,1fr)'
+                  : '1fr',
                 gap: 24,
                 alignItems: 'start',
               }}
             >
-              {/* Matterport iframe */}
-              {listing.matterportUrl && (
-                <div>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-sans)',
-                      fontWeight: 500,
-                      fontSize: 13,
-                      textTransform: 'uppercase',
-                      letterSpacing: '0.08em',
-                      color: 'var(--color-muted)',
-                      marginBottom: 12,
-                    }}
-                  >
-                    Virtual tour
-                  </p>
+              {/* Matterport iframe (or a "coming soon" placeholder when no tour exists yet) */}
+              <div>
+                <p
+                  style={{
+                    fontFamily: 'var(--font-sans)',
+                    fontWeight: 500,
+                    fontSize: 13,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    color: 'var(--color-muted)',
+                    marginBottom: 12,
+                  }}
+                >
+                  Virtual tour
+                </p>
+                {listing.matterportUrl ? (
                   <div
                     style={{
                       position: 'relative',
@@ -409,8 +408,34 @@ export default function ListingDetail({
                       }}
                     />
                   </div>
-                </div>
-              )}
+                ) : (
+                  <div
+                    style={{
+                      position: 'relative',
+                      aspectRatio: '16 / 9',
+                      borderRadius: 'var(--radius-lg)',
+                      overflow: 'hidden',
+                      background: 'var(--color-canvas)',
+                      border: '1px dashed var(--color-hairline)',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    <p
+                      style={{
+                        fontFamily: 'var(--font-sans)',
+                        fontWeight: 500,
+                        fontSize: 14,
+                        color: 'var(--color-muted)',
+                        margin: 0,
+                      }}
+                    >
+                      Coming soon
+                    </p>
+                  </div>
+                )}
+              </div>
 
               {/* Floor plan image */}
               {listing.floorplanUrl && (
