@@ -27,7 +27,7 @@ export default function Navbar() {
             width={220}
             height={220}
             priority
-            style={{ height: 108, width: 'auto' }}
+            style={{ height: 124, width: 'auto' }}
           />
         </Link>
 
