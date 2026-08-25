@@ -405,7 +405,7 @@
 .bmh-hero-sub { font-size: 17px; color: var(--color-on-dark-soft); max-width: 480px; margin: 20px 0 32px; line-height: 1.55; }
 .bmh-hero-search {
   background: var(--color-canvas); border-radius: var(--radius-lg); padding: 16px;
-  display: grid; grid-template-columns: 1fr 1.3fr 1.1fr 1.1fr auto; gap: 12px; max-width: 920px;
+  display: grid; grid-template-columns: 1.3fr 1.3fr 1fr 1fr auto; gap: 12px; max-width: 960px;
 }
 @media (max-width: 900px) { .bmh-hero-search { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 520px) { .bmh-hero-search { grid-template-columns: 1fr; } }
