@@ -173,7 +173,6 @@ export default function BrowseClient({
             </div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
               <select
-                className="bmh-field"
                 style={selectStyle}
                 value={budget}
                 onChange={(e) => setBudget(e.target.value)}
@@ -186,7 +185,6 @@ export default function BrowseClient({
                 ))}
               </select>
               <select
-                className="bmh-field"
                 style={selectStyle}
                 value={beds}
                 onChange={(e) => setBeds(e.target.value)}
@@ -199,7 +197,6 @@ export default function BrowseClient({
                 ))}
               </select>
               <select
-                className="bmh-field"
                 style={selectStyle}
                 value={baths}
                 onChange={(e) => setBaths(e.target.value)}
@@ -213,7 +210,6 @@ export default function BrowseClient({
               </select>
               <span className="bmh-caption bmh-muted">Sort by</span>
               <select
-                className="bmh-field"
                 style={selectStyle}
                 defaultValue="Featured"
               >
