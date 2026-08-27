@@ -87,7 +87,6 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: 'San Antonio',
     images: [
-      '/homes/the-dove/Dove-Hero.png',
       '/homes/the-dove/IMG_0895.jpg.jpeg',
       '/homes/the-dove/IMG_0079-1-scaled.jpg.jpeg',
       '/homes/the-dove/IMG_0074-1-scaled.jpg.jpeg',
@@ -1974,11 +1973,11 @@ export const sampleListings: Listing[] = [
     status: 'Active',
     floorplanUrl: '/homes/the-badger/Badger-FloorPlan.png',
   },
-  // ─── BMH-64 · The Dove (Fleetwood) ─────────────────────────────────────────────
+  // ─── BMH-64 · The Raven (Fleetwood) ─────────────────────────────────────────────
   {
     id: 'BMH-64',
-    slug: 'fleetwood-dove-3bed-2bath-single-wide',
-    title: 'The Dove',
+    slug: 'fleetwood-raven-3bed-2bath-single-wide',
+    title: 'The Raven',
     manufacturer: 'Fleetwood',
     model: 'Nina',
     price: 0,
@@ -1991,22 +1990,22 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: 'San Antonio',
     images: [
-      '/homes/the-dove-fleetwood/img-01.jpeg',
-      '/homes/the-dove-fleetwood/img-02.png',
-      '/homes/the-dove-fleetwood/img-03.png',
-      '/homes/the-dove-fleetwood/img-04.png',
-      '/homes/the-dove-fleetwood/img-05.png',
+      '/homes/the-raven/img-01.jpeg',
+      '/homes/the-raven/img-02.png',
+      '/homes/the-raven/img-03.png',
+      '/homes/the-raven/img-04.png',
+      '/homes/the-raven/img-05.png',
     ],
     features: ['3 Bed / 2 Bath', '1,216 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Dove is a 1,216 square foot Fleetwood singlewide with 3 beds and 2 baths.',
+      'The Raven is a 1,216 square foot Fleetwood singlewide with 3 beds and 2 baths.',
     monthlyPayment: 899,
     downPayment: 0,
     available: true,
     hudCertified: true,
     featured: false,
     status: 'Active',
-    floorplanUrl: '/homes/the-dove-fleetwood/Dove-FloorPlan.png',
+    floorplanUrl: '/homes/the-raven/Raven-FloorPlan.png',
   },
   // ─── BMH-65 · The Coyote ─────────────────────────────────────────────
   {
