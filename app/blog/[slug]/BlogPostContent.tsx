@@ -67,9 +67,9 @@ export default function BlogPostContent({
   post: BlogPost
   related: BlogPost[]
 }) {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const fmtDate = (d: string) =>
-    new Date(d).toLocaleDateString(lang === 'es' ? 'es-MX' : 'en-US', {
+    new Date(d).toLocaleDateString('en-US', {
       month: 'long',
       day: 'numeric',
       year: 'numeric',
@@ -100,7 +100,7 @@ export default function BlogPostContent({
             href="/blog"
             className="text-sm font-semibold text-gold-700 hover:text-gold"
           >
-            ← {lang === 'es' ? 'Volver al Blog' : 'Back to Blog'}
+            ← Back to Blog
           </Link>
           <h1 className="mt-4 font-display text-3xl font-extrabold leading-tight text-navy sm:text-5xl">
             {post.title}
@@ -151,11 +151,7 @@ export default function BlogPostContent({
       <section className="bg-white py-14">
         <div className="mx-auto max-w-2xl px-4 sm:px-6 lg:px-8">
           <LeadForm
-            title={
-              lang === 'es'
-                ? '¿Listo para encontrar tu casa? Habla con Justin.'
-                : 'Ready to find your home? Talk to Justin.'
-            }
+            title="Ready to find your home? Talk to Justin."
             source={`blog-${post.slug}`}
           />
         </div>

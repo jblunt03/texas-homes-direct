@@ -12,6 +12,7 @@ export interface BlogPostItem {
   cat: BlogCat
   catLabel: string
   phLabel: string
+  featured?: boolean
 }
 
 const FILTERS: { key: BlogCat; label: string }[] = [
@@ -23,16 +24,6 @@ const FILTERS: { key: BlogCat; label: string }[] = [
   { key: 'buying',    label: 'First-time buyers' },
 ]
 
-const FEATURED = {
-  slug: 'how-to-finance-mobile-home-on-family-land-texas',
-  catLabel: 'Financing',
-  readTime: '9 min',
-  title: 'How to finance a manufactured home in Texas — without getting taken for a ride.',
-  excerpt:
-    "A plain-English walkthrough of chattel loans, land-in-lieu, FHA Title I, conventional manufactured-home loans, and what a \"good\" rate actually looks like in 2026. We'll show you the questions to ask your lender before you sign anything.",
-  phLabel: 'Featured post — financing guide cover',
-}
-
 export default function BlogClient({ posts }: { posts: BlogPostItem[] }) {
   const [activeFilter, setActiveFilter] = useState<BlogCat>('all')
   const [subscribed, setSubscribed] = useState(false)
@@ -40,6 +31,7 @@ export default function BlogClient({ posts }: { posts: BlogPostItem[] }) {
   const [newsletterError, setNewsletterError] = useState<string | null>(null)
   const [email, setEmail] = useState('')
 
+  const featured = posts.find((p) => p.featured) ?? posts[0]
   const filtered = activeFilter === 'all' ? posts : posts.filter((p) => p.cat === activeFilter)
 
   return (
@@ -88,7 +80,7 @@ export default function BlogClient({ posts }: { posts: BlogPostItem[] }) {
         <div className="bmh-container">
           <div className="bmh-post-feature">
             <div className="bmh-ph bmh-ratio-4x3">
-              <span className="bmh-ph-label">{FEATURED.phLabel}</span>
+              <span className="bmh-ph-label">{featured.phLabel}</span>
             </div>
             <div className="bmh-post-feature-body">
               <span className="bmh-badge-caps bmh-badge-coral">Featured</span>
@@ -104,20 +96,20 @@ export default function BlogClient({ posts }: { posts: BlogPostItem[] }) {
                   margin: 0,
                 }}
               >
-                {FEATURED.title}
+                {featured.title}
               </h2>
               <div className="bmh-spacer-md" />
-              <p className="bmh-lead">{FEATURED.excerpt}</p>
+              <p className="bmh-lead">{featured.excerpt}</p>
               <div className="bmh-spacer-md" />
               <div className="bmh-post-meta">
                 <span>By the Texas Homes Direct team</span>
                 <span className="bmh-post-dot" />
-                <span>{FEATURED.readTime} read</span>
+                <span>{featured.readTime} read</span>
                 <span className="bmh-post-dot" />
-                <span>{FEATURED.catLabel}</span>
+                <span>{featured.catLabel}</span>
               </div>
               <div className="bmh-spacer-md" />
-              <Link href={`/blog/${FEATURED.slug}`} className="bmh-btn bmh-btn-primary">
+              <Link href={`/blog/${featured.slug}`} className="bmh-btn bmh-btn-primary">
                 Read the guide →
               </Link>
             </div>

@@ -62,6 +62,7 @@ export default function Footer() {
           {/* Company */}
           <div>
             <h5>Company</h5>
+            <Link href="/cities">Cities we serve</Link>
             <Link href="/contact">Service area</Link>
             <a href="tel:+18303811309">(830) 381-1309</a>
           </div>

@@ -1,25 +1,7 @@
 import { MetadataRoute } from 'next'
 import { sampleListings } from '@/lib/sampleListings'
 import { blogPosts } from '@/lib/blogPosts'
-
-const cities = [
-  'san-antonio',
-  'houston',
-  'dallas',
-  'austin',
-  'laredo',
-  'mcallen',
-  'corpus-christi',
-  'el-paso',
-  'lubbock',
-  'amarillo',
-  'tyler',
-  'waco',
-  'victoria',
-  'alice',
-  'pleasanton',
-  'seguin',
-]
+import { publishedCities } from '@/lib/cities'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://texashomesdirect.com'
@@ -28,7 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'browse',
     'advisor',
     'calculator',
-    'locations',
+    'cities',
     'commercial',
     'contact',
     'blog',
@@ -44,8 +26,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'weekly' as const,
     priority: 0.7,
   }))
-  const locationPages = cities.map((c) => ({
-    url: `${base}/locations/${c}`,
+  // Driven by publishedCities() so a new city page appears here automatically
+  // the moment its `published` flag flips to true in lib/cities.ts.
+  const cityPages = publishedCities().map((c) => ({
+    url: `${base}/mobile-homes-${c.slug}-tx`,
     lastModified: new Date(),
     changeFrequency: 'monthly' as const,
     priority: 0.9,
@@ -56,5 +40,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))
-  return [...staticPages, ...listings, ...locationPages, ...blogPages]
+  return [...staticPages, ...listings, ...cityPages, ...blogPages]
 }

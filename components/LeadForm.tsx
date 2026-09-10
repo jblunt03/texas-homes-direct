@@ -13,7 +13,7 @@ export default function LeadForm({
   compact = false,
   source = 'website',
 }: LeadFormProps) {
-  const { t, lang } = useLang()
+  const { t } = useLang()
   const [submitting, setSubmitting] = useState(false)
   const [success, setSuccess] = useState(false)
   const [error, setError] = useState<string | null>(null)
@@ -35,7 +35,7 @@ export default function LeadForm({
       const res = await fetch('/api/lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ ...form, firstName: form.name, source, language: lang }),
+        body: JSON.stringify({ ...form, firstName: form.name, source }),
       })
       if (!res.ok) throw new Error('Submit failed')
       setSuccess(true)
@@ -65,7 +65,7 @@ export default function LeadForm({
           </svg>
         </div>
         <h3 className="mt-4 font-display text-2xl font-bold text-navy">
-          {lang === 'en' ? 'Thanks!' : '¡Gracias!'}
+          Thanks!
         </h3>
         <p className="mt-2 text-navy/70">{t.leadForm.success}</p>
         <p className="mt-3 text-sm font-semibold text-gold-700">— Justin</p>

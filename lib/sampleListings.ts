@@ -134,7 +134,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: 'San Antonio',
     images: [
-      '/homes/the-gadwall/Gadwall-Hero.png',
+      '/homes/the-gadwall/Gadwall-Hero.jpg',
       '/homes/the-gadwall/IMG_1787-2-scaled.jpg.jpeg',
       '/homes/the-gadwall/IMG_1786-2-scaled.jpg.jpeg',
       '/homes/the-gadwall/IMG_1785-2-scaled.jpg.jpeg',
@@ -495,7 +495,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: 'San Antonio',
     images: [
-      '/homes/the-wood-duck/Wood-Duck-Hero.png',
+      '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
       '/homes/the-coleman/Coleman-Updated-Photo.webp',
       '/homes/the-coleman/Coleman-Gallery-2.webp',
       '/homes/the-coleman/Coleman-Gallery-3.webp',
@@ -730,7 +730,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: 'San Antonio',
     images: [
-      '/homes/the-mesquite/Mesquite-Body-1.png',
+      '/homes/the-mesquite/Mesquite-Body-1.jpg',
       '/homes/the-mesquite/Mesquite-Body-2.webp',
       '/homes/the-mesquite/Mesquite-Body-3.webp',
       '/homes/the-mesquite/Mesquite-Body-4.webp',
@@ -805,7 +805,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: 'San Antonio',
     images: [
-      '/homes/the-terra/Terra-Hero.png',
+      '/homes/the-terra/Terra-Hero.jpg',
       '/homes/the-terra/terra1-1.webp',
       '/homes/the-terra/terra-2.webp',
       '/homes/the-terra/terra-3.webp',
@@ -1224,7 +1224,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: 'San Antonio',
     images: [
-      '/homes/the-pearland/918F558B-6E95-44EF-9CD5-E240C3BBDDBE.png',
+      '/homes/the-pearland/918F558B-6E95-44EF-9CD5-E240C3BBDDBE.jpg',
       '/homes/the-pearland/IMG_7164.webp',
       '/homes/the-pearland/image-5.webp',
       '/homes/the-pearland/image-6.webp',
@@ -1766,7 +1766,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: 'San Antonio',
     images: [
-      '/homes/the-javelina/hero.png',
+      '/homes/the-javelina/hero.jpg',
     ],
     features: ['1 Bed / 1 Bath', '546 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:

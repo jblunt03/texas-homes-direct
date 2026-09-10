@@ -9,22 +9,17 @@ interface Message {
 }
 
 export default function ChatInterface() {
-  const { t, lang, setLang } = useLang()
-  const [messages, setMessages] = useState<Message[]>([])
+  const { t } = useLang()
+  const [messages, setMessages] = useState<Message[]>([
+    {
+      role: 'assistant',
+      content: t.advisor.welcome,
+      timestamp: Date.now(),
+    },
+  ])
   const [input, setInput] = useState('')
   const [typing, setTyping] = useState(false)
   const scrollRef = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    setMessages([
-      {
-        role: 'assistant',
-        content: t.advisor.welcome,
-        timestamp: Date.now(),
-      },
-    ])
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [lang])
 
   useEffect(() => {
     if (scrollRef.current) {
@@ -49,15 +44,11 @@ export default function ChatInterface() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           messages: next.map(({ role, content }) => ({ role, content })),
-          language: lang,
         }),
       })
       const data = await res.json()
       const reply =
-        data.content ||
-        (lang === 'es'
-          ? 'Disculpa, tuve un problema. Llama a Justin directo al (830) 381-1309.'
-          : 'Sorry, I had a hiccup. Call Justin directly at (830) 381-1309.')
+        data.content || 'Sorry, I had a hiccup. Call Justin directly at (830) 381-1309.'
       setMessages([
         ...next,
         { role: 'assistant', content: reply, timestamp: Date.now() },
@@ -67,10 +58,7 @@ export default function ChatInterface() {
         ...next,
         {
           role: 'assistant',
-          content:
-            lang === 'es'
-              ? 'No me pude conectar. Por favor llama a Justin: (830) 381-1309.'
-              : "I couldn't connect. Please call Justin directly: (830) 381-1309.",
+          content: "I couldn't connect. Please call Justin directly: (830) 381-1309.",
           timestamp: Date.now(),
         },
       ])
@@ -88,21 +76,11 @@ export default function ChatInterface() {
           </div>
           <div>
             <p className="font-display text-sm font-bold text-navy">
-              {lang === 'es' ? "Asesor AI de Justin" : "Justin's AI Advisor"}
+              Justin's AI Advisor
             </p>
-            <p className="text-xs text-emerald-600">
-              ● {lang === 'es' ? 'En línea ahora' : 'Online now'}
-            </p>
+            <p className="text-xs text-emerald-600">● Online now</p>
           </div>
         </div>
-        <button
-          onClick={() => setLang(lang === 'en' ? 'es' : 'en')}
-          className="flex h-10 items-center rounded-md border border-navy-100 px-3 text-xs font-semibold text-navy transition hover:border-gold"
-        >
-          <span className={lang === 'en' ? 'text-gold-700' : ''}>EN</span>
-          <span className="mx-1 text-navy/30">|</span>
-          <span className={lang === 'es' ? 'text-gold-700' : ''}>ES</span>
-        </button>
       </div>
 
       <div ref={scrollRef} className="flex-1 overflow-y-auto px-4 py-6">

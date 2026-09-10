@@ -20,13 +20,13 @@ export const blogPosts: BlogPost[] = [
     content: `Putting a manufactured home on your own land in Texas is one of the most rewarding investments a family can make — but it also comes with a process most buyers are never walked through. Here is exactly what to expect, in the order it happens.
 
 ## 1. Confirm Your Land Is Buildable
-Before anything else, check three things with your county: (1) zoning allows a manufactured home, (2) the lot meets minimum acreage for a septic system (most TX counties require at least 0.5 acres for an aerobic system), and (3) there are no deed restrictions that prohibit manufactured homes. A 15-minute phone call to your county planning office will save you months of delay. Counties like Bexar, Travis, and Harris have specific overlays you need to know about.
+Before anything else, check three things with your county: (1) zoning allows a manufactured home, (2) the lot meets minimum acreage for a septic system, and (3) there are no deed restrictions that prohibit manufactured homes. Requirements vary from county to county, so a 15-minute phone call to your county planning office will save you months of delay.
 
 ## 2. Pull Your Texas Department of Insurance Installation Permit
 Texas regulates manufactured home installation through the Texas Department of Insurance, Manufactured Housing Division. You will need a TDI Statement of Ownership (SOL) and an installation permit before the home is set. Your installer typically handles the permit, but you should verify it is filed. The fee runs about $35–$55.
 
 ## 3. Pick Your Foundation Type
-Two main options in Texas: pier and beam (most common, $3,500–$7,000) or a concrete runner / monolithic slab ($8,000–$15,000). Pier and beam is faster and typically less expensive. Slab is more permanent and may have long-term insurance advantages, but adds 2–4 weeks to your timeline. If you want to retire the title under SB 785 and convert to real property, both foundation types qualify as long as they are properly anchored.
+Two main options in Texas: pier and beam (most common, $3,500–$7,000) or a concrete runner / monolithic slab ($8,000–$15,000). Pier and beam is faster and typically less expensive. Slab is more permanent and may have long-term insurance advantages, but adds 2–4 weeks to your timeline. If you want to retire the title under Texas Occupations Code Chapter 1201 and convert to real property, both foundation types qualify as long as they are properly anchored.
 
 ## 4. Get Utilities Hooked Up
 Utility costs vary significantly depending on where in Texas your land is located. Realistic ranges:
@@ -50,21 +50,21 @@ Understanding the full cost picture upfront — home, site prep, utilities, perm
   },
   {
     slug: 'what-is-sb-785-texas-mobile-home',
-    title: 'What Is SB 785 and Why It Matters for Texas Mobile Home Buyers',
+    title: 'What Is Title Retirement and Why It Matters for Texas Mobile Home Buyers',
     excerpt:
-      'The 2011 Texas law that lets you convert your manufactured home to real property — and what that means for your financing options.',
+      'The Texas law that lets you convert your manufactured home to real property — and what that means for your financing options.',
     date: '2025-02-28',
     readTime: '6 min',
     author: 'Justin',
-    content: `If you own land and you are buying a manufactured home in Texas, SB 785 is one of the most important laws you should understand before you sign anything. Here is a plain-language explanation of what it is, what it does, and what questions to ask your lender and dealer about whether it applies to your situation.
+    content: `If you own land and you are buying a manufactured home in Texas, title retirement under Texas Occupations Code Chapter 1201 is one of the most important things you should understand before you sign anything. Here is a plain-language explanation of what it is, what it does, and what questions to ask your lender and dealer about whether it applies to your situation.
 
 ## The Quick Version
-Senate Bill 785, passed in 2011, allows a manufactured home in Texas to be officially converted from **personal property** (titled similarly to a vehicle) to **real property** (treated like a traditional house with land) when it is permanently affixed to land you own. Once that conversion happens, your home is generally treated by the tax assessor, lenders, and insurance companies the same as any site-built house.
+Texas Occupations Code Chapter 1201 allows a manufactured home in Texas to be officially converted from **personal property** (titled similarly to a vehicle) to **real property** (treated like a traditional house with land) when it is permanently affixed to land you own. Once that conversion happens, your home is generally treated by the tax assessor, lenders, and insurance companies the same as any site-built house.
 
 ## What Changes After Conversion
-Before SB 785 conversion, manufactured homes are typically financed as **chattel loans** — personal property loans secured by the home itself. These are offered through specialized manufactured home lenders and have their own terms, rates, and requirements.
+Before Chapter 1201 conversion, manufactured homes are typically financed as **chattel loans** — personal property loans secured by the home itself. These are offered through specialized manufactured home lenders and have their own terms, rates, and requirements.
 
-After SB 785 conversion (called "title retirement" or "Statement of Ownership Election"), the home may be eligible to be financed as **real property**. That can open access to different loan programs, including:
+After Chapter 1201 conversion (called "title retirement" or "Statement of Ownership Election"), the home may be eligible to be financed as **real property**. That can open access to different loan programs, including:
 - Conventional mortgage programs (Fannie Mae MH Advantage, Freddie Mac CHOICEHome)
 - FHA Title II programs
 - VA loans for eligible veterans
@@ -73,7 +73,7 @@ After SB 785 conversion (called "title retirement" or "Statement of Ownership El
 
 Each loan type has its own credit requirements, down payment terms, rates, and timelines. Your lender is the right resource for current rate comparisons specific to your financial profile.
 
-## What You Need to Qualify for SB 785 Conversion
+## What You Need to Qualify for Chapter 1201 Conversion
 1. You (or a co-owner) must own the land.
 2. The home must be permanently installed with axles and wheels removed.
 3. You file a **Statement of Ownership** with the Texas Department of Insurance, Manufactured Housing Division, electing real property treatment.
@@ -90,9 +90,9 @@ Each loan type has its own credit requirements, down payment terms, rates, and t
 The whole process takes 2–6 weeks and costs around $55–$150 in filing fees. A real estate attorney can handle it for $300–$700 if you prefer not to file paperwork yourself.
 
 ## One Important Consideration
-SB 785 conversion works in both directions. If you ever want to sell the home separately from the land, or move the home, you would need to reverse the election. Some lenders will not write a chattel loan on a home that has already been converted. Talk to your dealer and lender before electing real property treatment if there is any chance you may want to relocate the home later.
+Chapter 1201 conversion works in both directions. If you ever want to sell the home separately from the land, or move the home, you would need to reverse the election. Some lenders will not write a chattel loan on a home that has already been converted. Talk to your dealer and lender before electing real property treatment if there is any chance you may want to relocate the home later.
 
-## Is SB 785 Right for You?
+## Is This Right for You?
 That depends on your land ownership, credit profile, timeline, and long-term plans. There is no single answer that fits every buyer. The best approach is to discuss it with your lender and dealer at the same time you are evaluating financing options — not after you have already committed to a loan type.
 
 At Texas Homes Direct, we work with lenders across all of these programs and can help you understand which financing paths are available to you based on your specific situation.`,
@@ -144,7 +144,7 @@ At Texas Homes Direct, every home in our inventory is HUD-certified, fully docum
     slug: 'how-to-finance-mobile-home-on-family-land-texas',
     title: 'How to Finance a Mobile Home on Family Land in Texas',
     excerpt:
-      'Land-in-lieu, chattel, SB 785 conversion — a plain-language overview of the financing programs available to Texas families.',
+      'Land-in-lieu, chattel, Chapter 1201 conversion — a plain-language overview of the financing programs available to Texas families.',
     date: '2025-01-30',
     readTime: '9 min',
     author: 'Justin',
@@ -169,11 +169,11 @@ You pledge your land's equity in place of a cash down payment. Offered by severa
 **What to know:** This program is commonly used by buyers who have land equity but limited cash on hand. Because the land becomes collateral, understanding the full terms before committing is important.
 
 ## Option 3: Real Property Mortgage
-When a manufactured home is permanently affixed to land you own and the title is retired under Texas SB 785, the home may be eligible for real property financing — the same mortgage programs used for site-built homes.
+When a manufactured home is permanently affixed to land you own and the title is retired under Texas Occupations Code Chapter 1201, the home may be eligible for real property financing — the same mortgage programs used for site-built homes.
 
 **Programs available:** FHA Title II, Fannie Mae MH Advantage, Freddie Mac CHOICEHome, VA loans (for eligible veterans), and USDA Rural Development (for qualifying rural properties and income levels).
 
-**Typical requirements:** Credit scores of 620 or higher are generally required. A permanent foundation and SB 785 title conversion are necessary. Closing timelines are typically 45–90 days.
+**Typical requirements:** Credit scores of 620 or higher are generally required. A permanent foundation and Chapter 1201 title conversion are necessary. Closing timelines are typically 45–90 days.
 
 **What to know:** Real property mortgages come with different rate structures, term lengths, and underwriting requirements than chattel loans. Each program under this category has its own eligibility criteria. A lender who works with manufactured home real property loans can walk you through which programs you qualify for.
 
@@ -250,7 +250,7 @@ Texas counties have specific requirements depending on your location, lot size, 
 - Requirements: required in most rural Texas counties for new installs, in counties with clay soil, smaller lots, or near water bodies.
 - Lifespan: 20–30 years, requires quarterly maintenance contract (~$300/year).
 
-**Counties that require aerobic for new installs:** Bexar, Comal, Hays, Travis, Bandera, Kendall, Williamson, Caldwell, and most counties surrounding any lake or river. Check with your county environmental office for current requirements.
+**Which type you'll need depends on your county, lot size, and soil.** Requirements vary quite a bit across Texas — check with your county environmental office for current requirements before you budget for one over the other.
 
 **Permits:** Texas Commission on Environmental Quality (TCEQ) handles the rules, but local Authorized Agents (usually your county environmental office) issue the permit. Cost: $300–$700.
 
