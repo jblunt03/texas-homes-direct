@@ -24,7 +24,7 @@ export async function generateMetadata({
       publishedTime: post.date,
       authors: [post.author],
     },
-    alternates: { canonical: `https://texashomesdirect.com/blog/${post.slug}` },
+    alternates: { canonical: `https://www.texashomesdirect.com/blog/${post.slug}` },
   }
 }
 

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   description:
     'Texas Homes Direct delivers new, HUD-certified manufactured and mobile homes to families all across Texas. Find your city and get a free, no-pressure quote.',
   alternates: {
-    canonical: 'https://texashomesdirect.com/cities',
+    canonical: 'https://www.texashomesdirect.com/cities',
   },
 }
 
@@ -57,13 +57,13 @@ export default function CitiesPage() {
     name: 'Mobile Homes for Sale Across Texas | Cities We Serve',
     description:
       'Texas Homes Direct delivers new, HUD-certified manufactured and mobile homes to families all across Texas.',
-    url: 'https://texashomesdirect.com/cities',
+    url: 'https://www.texashomesdirect.com/cities',
     mainEntity: {
       '@type': 'ItemList',
       itemListElement: allPublished.map((c, i) => ({
         '@type': 'ListItem',
         position: i + 1,
-        url: `https://texashomesdirect.com/mobile-homes-${c.slug}-tx`,
+        url: `https://www.texashomesdirect.com/mobile-homes-${c.slug}-tx`,
         name: `Mobile Homes for Sale in ${c.name}, TX`,
       })),
     },

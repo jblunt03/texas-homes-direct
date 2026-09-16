@@ -74,7 +74,7 @@ export default async function HomeListingPage({
       availability: listing.available
         ? 'https://schema.org/InStock'
         : 'https://schema.org/OutOfStock',
-      url: `https://texashomesdirect.com/homes/${listing.slug}`,
+      url: `https://www.texashomesdirect.com/homes/${listing.slug}`,
     },
   }
 

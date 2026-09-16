@@ -8,7 +8,7 @@ import FaqAccordion from '@/components/FaqAccordion'
 
 const CIRRUS_URL =
   'https://creditapp.cirrussolutions.com/GeneratedLink/Index/ae6a6bcb-8358-f111-a334-005056b4717b'
-const SITE_URL = 'https://texashomesdirect.com'
+const SITE_URL = 'https://www.texashomesdirect.com'
 
 const TURNKEY_ITEMS = [
   { title: 'Water', desc: 'Hookup to your existing line or well' },

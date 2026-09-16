@@ -14,7 +14,7 @@ export function generateMetadata(): Metadata {
     title: `Mobile Homes for Sale in ${city.name}, TX`,
     description: content.metaDescription,
     alternates: {
-      canonical: `https://texashomesdirect.com/mobile-homes-goldthwaite-tx`,
+      canonical: `https://www.texashomesdirect.com/mobile-homes-goldthwaite-tx`,
     },
   }
 }

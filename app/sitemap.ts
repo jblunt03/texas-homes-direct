@@ -4,7 +4,7 @@ import { blogPosts } from '@/lib/blogPosts'
 import { publishedCities } from '@/lib/cities'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = 'https://texashomesdirect.com'
+  const base = 'https://www.texashomesdirect.com'
   const staticPages = [
     '',
     'browse',

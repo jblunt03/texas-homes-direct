@@ -19,7 +19,7 @@ const montserrat = Montserrat({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://texashomesdirect.com'),
+  metadataBase: new URL('https://www.texashomesdirect.com'),
   title: {
     default:
       'Texas Homes Direct | Manufactured Homes for Sale in Texas',
@@ -40,7 +40,7 @@ export const metadata: Metadata = {
     title: 'Texas Homes Direct | Manufactured Homes for Sale in Texas',
     description:
       "Texas's most transparent manufactured home marketplace. Real homes. Real numbers. Real talk.",
-    url: 'https://texashomesdirect.com',
+    url: 'https://www.texashomesdirect.com',
     siteName: 'Texas Homes Direct',
     locale: 'en_US',
     type: 'website',
@@ -51,18 +51,18 @@ export const metadata: Metadata = {
     description: 'Texas manufactured homes. Real numbers. No pressure.',
   },
   alternates: {
-    canonical: 'https://texashomesdirect.com',
+    canonical: 'https://www.texashomesdirect.com',
   },
 }
 
 const localBusinessJsonLd = {
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': 'https://texashomesdirect.com/#business',
+  '@id': 'https://www.texashomesdirect.com/#business',
   name: 'Texas Homes Direct',
   description:
     "Texas's most transparent manufactured home marketplace. Owned and operated by Justin.",
-  url: 'https://texashomesdirect.com',
+  url: 'https://www.texashomesdirect.com',
   telephone: '+1-830-381-1309',
   priceRange: '$$',
   areaServed: { '@type': 'State', name: 'Texas' },
