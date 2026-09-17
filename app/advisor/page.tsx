@@ -1,12 +1,10 @@
-import type { Metadata } from 'next'
-import ChatInterface from '@/components/ChatInterface'
+import { notFound } from 'next/navigation'
 
-export const metadata: Metadata = {
-  title: 'AI Home Advisor',
-  description:
-    "Justin's 24/7 AI Home Advisor — trained on Texas market data, financing rules, and every home in our inventory. Get real answers in English or Spanish.",
-}
-
+// /advisor is temporarily taken offline (returns 404) while the AI advisor
+// is on hold. The component (components/ChatInterface.tsx) and API route
+// (app/api/chat/route.ts) are left in place — to bring the page back,
+// restore the ChatInterface render below and re-add the nav/footer/CTA
+// links that were removed when this was disabled.
 export default function AdvisorPage() {
-  return <ChatInterface />
+  notFound()
 }
