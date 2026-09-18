@@ -65,6 +65,21 @@ these is a launch blocker, not a style note.
     (optional field — only the batch-1 15 cities have it as of 2026-09-10;
     the original 16 still need this pass). The component renders the
     "Your Price, Explained" section only when this field is present.
+- **What "setup" actually includes** (the `TURNKEY_ITEMS` checklist in
+  `CityPageContentV2.tsx`, rendered under "We Handle It All"): water,
+  septic, electric, base pad, block, tie down, underpinning, skirting,
+  trim out, and AC. As of 2026-09-18 this is the full, correct list — block
+  and tie down were missing entirely until then, and trim out/AC were only
+  listed in `OUT_THE_DOOR_ITEMS` (the price checklist), not here. AC and
+  trim out intentionally appear in *both* checklists — `TURNKEY_ITEMS`
+  describes the physical on-site work, `OUT_THE_DOOR_ITEMS` describes price
+  inclusions — and that's fine, they read as two different sections on the
+  page, not a duplicate. When writing per-city prose that references "what's
+  included in setup" (e.g. FAQ answers), draw from this full 10-item list
+  rather than just "pad, underpinning, skirting, utility hookups" — the
+  narrower phrasing was a repeated source of near-duplicate FAQ answers
+  across cities, and the fuller vocabulary gives more room for genuinely
+  distinct sentences per city.
 
 Also still in force from earlier rounds, enforced by `scripts/write_city_content.py`'s doc comment:
 - Facts not given to you don't get invented, period — descriptive local

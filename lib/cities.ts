@@ -64,10 +64,10 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'Seguin',
     'Hill Country',
-    false
+    true
   ),
   city('San Marcos', 'Hill Country'),
-  city('New Braunfels', 'Hill Country'),
+  city('New Braunfels', 'Hill Country', true),
   city('Kerrville', 'Hill Country'),
   city('Fredericksburg', 'Hill Country'),
   city('Boerne', 'Hill Country'),
@@ -108,9 +108,9 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Georgetown', 'Central Texas'),
   city('Round Rock', 'Central Texas'),
   city('Taylor', 'Central Texas'),
-  city('Bastrop', 'Central Texas'),
-  city('Lockhart', 'Central Texas'),
-  city('Elgin', 'Central Texas'),
+  city('Bastrop', 'Central Texas', true),
+  city('Lockhart', 'Central Texas', true),
+  city('Elgin', 'Central Texas', true),
   city('Hutto', 'Central Texas'),
   city('Copperas Cove', 'Central Texas'),
   city('Gatesville', 'Central Texas'),
@@ -120,6 +120,15 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Woodway', 'Central Texas'),
   city('Bellmead', 'Central Texas'),
   city('Robinson', 'Central Texas'),
+  city('Luling', 'Central Texas', true),
+  city('Smithville', 'Central Texas', true),
+  city('Giddings', 'Central Texas', true),
+  city('La Grange', 'Central Texas', true),
+  city('Schulenburg', 'Central Texas', true),
+  city('Flatonia', 'Central Texas', true),
+  city('Caldwell', 'Central Texas'),
+  city('Columbus', 'Central Texas'),
+  city('Hallettsville', 'Central Texas'),
 
   // ─── East Texas ──────────────────────────────────────────────────
   city(
@@ -196,7 +205,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'Pleasanton',
     'South Texas',
-    false
+    true
   ),
   city('Edinburg', 'South Texas'),
   city('Mission', 'South Texas'),
@@ -208,10 +217,10 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Eagle Pass', 'South Texas'),
   city('Del Rio', 'South Texas'),
   city('Beeville', 'South Texas'),
-  city('Floresville', 'South Texas'),
+  city('Floresville', 'South Texas', true),
   city('Rio Bravo', 'South Texas'),
   city('Hidalgo', 'South Texas'),
-  city('Cuero', 'South Texas'),
+  city('Cuero', 'South Texas', true),
   city('Goliad', 'South Texas'),
   city('Edna', 'South Texas'),
   city('Orange Grove', 'South Texas'),
@@ -219,6 +228,11 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Jourdanton', 'South Texas'),
   city('Poteet', 'South Texas'),
   city('Charlotte', 'South Texas'),
+  city('Gonzales', 'South Texas', true),
+  city('Yoakum', 'South Texas'),
+  city('Karnes City', 'South Texas'),
+  city('Pearsall', 'South Texas'),
+  city('Yorktown', 'South Texas'),
 
   // ─── Panhandle ───────────────────────────────────────────────────
   city(

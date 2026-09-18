@@ -15,8 +15,12 @@ const TURNKEY_ITEMS = [
   { title: 'Septic', desc: 'Full system install where needed' },
   { title: 'Electric', desc: 'Service run and connected' },
   { title: 'Base pad', desc: 'Level foundation pad, prepped and set' },
+  { title: 'Block', desc: 'Home leveled and blocked in place' },
+  { title: 'Tie Down', desc: 'Anchoring system installed per code' },
   { title: 'Underpinning', desc: 'Structural support beneath the home' },
   { title: 'Skirting', desc: 'Finished exterior enclosure around the base' },
+  { title: 'Trim Out', desc: 'Interior and exterior finish work' },
+  { title: 'AC', desc: 'Central air conditioning installed on-site' },
 ]
 
 // Fixed list — same 9 items in every home's out-the-door price, regardless
