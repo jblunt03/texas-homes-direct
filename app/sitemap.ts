@@ -13,6 +13,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'commercial',
     'contact',
     'blog',
+    'manufactured-vs-mobile-home',
+    'how-pricing-works',
+    'whats-included-in-setup',
   ].map((p) => ({
     url: p ? `${base}/${p}` : base,
     lastModified: new Date(),

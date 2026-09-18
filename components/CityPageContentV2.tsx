@@ -4,40 +4,12 @@ import type { CityEntry } from '@/lib/cities'
 import { TEXAS_CITIES } from '@/lib/cities'
 import type { CityContent } from '@/lib/cityContent'
 import { sampleListings } from '@/lib/sampleListings'
+import { TURNKEY_ITEMS, OUT_THE_DOOR_ITEMS } from '@/lib/setupItems'
 import FaqAccordion from '@/components/FaqAccordion'
 
 const CIRRUS_URL =
   'https://creditapp.cirrussolutions.com/GeneratedLink/Index/ae6a6bcb-8358-f111-a334-005056b4717b'
 const SITE_URL = 'https://www.texashomesdirect.com'
-
-const TURNKEY_ITEMS = [
-  { title: 'Water', desc: 'Hookup to your existing line or well' },
-  { title: 'Septic', desc: 'Full system install where needed' },
-  { title: 'Electric', desc: 'Service run and connected' },
-  { title: 'Base pad', desc: 'Level foundation pad, prepped and set' },
-  { title: 'Block', desc: 'Home leveled and blocked in place' },
-  { title: 'Tie Down', desc: 'Anchoring system installed per code' },
-  { title: 'Underpinning', desc: 'Structural support beneath the home' },
-  { title: 'Skirting', desc: 'Finished exterior enclosure around the base' },
-  { title: 'Trim Out', desc: 'Interior and exterior finish work' },
-  { title: 'AC', desc: 'Central air conditioning installed on-site' },
-]
-
-// Fixed list — same 9 items in every home's out-the-door price, regardless
-// of city. Do not add "utility costs" here: those are estimated by phone
-// and then bid exactly by a contractor on the actual property, since land
-// conditions vary too much to quote sight unseen. See CLAUDE.md.
-const OUT_THE_DOOR_ITEMS = [
-  { title: 'AC', desc: 'Central air conditioning included' },
-  { title: 'Setup', desc: 'Full site setup, detailed above' },
-  { title: 'Delivery', desc: 'Transport from the factory to your site' },
-  { title: 'Appliances', desc: 'Standard appliance package' },
-  { title: 'Trim Out', desc: 'Interior and exterior finish work' },
-  { title: 'Wood Steps', desc: 'Entry steps built and installed' },
-  { title: 'Tax', desc: 'Sales tax included in the price' },
-  { title: 'Title', desc: 'Title work handled for you' },
-  { title: 'License', desc: 'Licensing and registration handled for you' },
-]
 
 const CheckIcon = () => (
   <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
@@ -355,6 +327,23 @@ export default function CityPageContentV2({
             <h2 className="bmh-city-h2">Frequently Asked Questions</h2>
             <div className="bmh-spacer-sm" />
             <FaqAccordion items={content.faq} defaultOpen={0} />
+          </div>
+
+          <div className="bmh-spacer-md" />
+
+          <div className="bmh-city-prose">
+            <p className="bmh-caption" style={{ marginBottom: 10 }}>Want the fuller picture?</p>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
+              <Link href="/manufactured-vs-mobile-home" className="bmh-pill bmh-pill-static">
+                Mobile Home vs. Manufactured Home →
+              </Link>
+              <Link href="/how-pricing-works" className="bmh-pill bmh-pill-static">
+                How Pricing Works →
+              </Link>
+              <Link href="/whats-included-in-setup" className="bmh-pill bmh-pill-static">
+                What&rsquo;s Included in Setup →
+              </Link>
+            </div>
           </div>
         </div>
       </section>

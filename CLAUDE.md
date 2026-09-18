@@ -117,13 +117,22 @@ Follow this every time you add or edit a batch of city pages:
    `scripts/write_city_content.py`: 1 intro paragraph, exactly 2 buying
    paragraphs, exactly 2 `pricingExplainer` paragraphs (firm out-the-door
    price, then how utility costs are actually estimated — see the hard rule
-   above), 1 local-proof line, and 7 FAQ items (5 core + 2 on pricing/
-   utilities). Follow the hard rules above. Do not copy an existing city's
-   paragraph and reword it — start from that city's actual county name and
-   write new sentences. Target **900–1,100 words** of real substance per
-   page (check with the word-count snippet in the Page speed section below)
-   — thin pages underperform; don't pad, add another genuinely useful
-   section or FAQ instead.
+   above), 1 local-proof line, and 3–5 FAQ items covering only genuinely
+   city-specific topics (permitting-varies, delivery coverage, land
+   ownership, sizing, financing accessibility, or the city's own assigned
+   differentiator concept). **Do not write a definition, setup-scope,
+   price-lock, or utility-pricing FAQ per city** — see "Explainer pages"
+   below; those four topics live on shared pages now, linked from every
+   city page's FAQ section, not repeated per city. Follow the hard rules
+   above. Do not copy an existing city's paragraph and reword it — start
+   from that city's actual county name and write new sentences. Target
+   **900–1,100 words** of real substance per page (check with the
+   word-count snippet in the Page speed section below) — thin pages
+   underperform; don't pad, add another genuinely useful section or FAQ
+   instead. As of 2026-09-18, removing the four rotated FAQ topics dropped
+   most pages to roughly 650–750 words — closing that gap with a genuinely
+   new, city-specific FAQ or section is unfinished work for the next batch,
+   not something to pad around.
    **Audit concepts, not just wording, before moving on** — read all the
    new intros (or whichever field you just wrote) back to back and check
    each one leads on a genuinely different idea (cost, turnkey setup,
@@ -152,6 +161,46 @@ Follow this every time you add or edit a batch of city pages:
    the checker compares.
 9. **Do not commit or deploy without explicit, fresh instruction** — this
    holds every session, not just once.
+
+## Explainer pages — topics that don't belong in per-city FAQ rotation
+
+As of batch 2 (2026-09-18), some FAQ topics were fundamentally the same
+question on every page, just paraphrased — they aren't city-specific facts,
+so hand-writing 40+ near-identical answers was both busywork and a
+duplication-checker liability (see the batch-2 review: three topics
+repeatedly collided across cities no matter how the sentences were
+reworded). These now live on three standalone pages instead, and every
+city page links to them from its FAQ section (a short "Want the fuller
+picture?" link row, not a Q&A item):
+
+- **`/manufactured-vs-mobile-home`** — the mobile-home-vs-manufactured-home
+  legal definition (the June 1976 HUD Code cutoff). Never write this as a
+  per-city FAQ again.
+- **`/how-pricing-works`** — out-the-door home pricing (what's included,
+  why the quoted price doesn't change) *and* the utility
+  estimate-then-contractor-bid process. Never write a per-city FAQ asking
+  whether the quoted price is final, what's included in the price, or how
+  utility costs are determined — link here instead.
+- **`/whats-included-in-setup`** — the full setup checklist
+  (`lib/setupItems.ts` → `TURNKEY_ITEMS`), item by item. Never write a
+  per-city FAQ asking what setup includes, whether Texas Homes Direct
+  handles setup vs. just delivery, or whether setup costs can be financed —
+  link here instead.
+
+Each of these three pages is a real, complete page (own H1, body sections,
+FAQPage/BreadcrumbList/WebPage+speakable JSON-LD, its own FAQ accordion) —
+not a stub. If a topic needs updating (e.g. the setup item list changes
+again), edit the shared source (`lib/setupItems.ts` for the two
+checklists) and the relevant explainer page, not 40 city entries.
+
+A city's FAQ can still ask about setup or pricing *from a genuinely
+city-specific angle* that isn't just restating the shared topic — e.g.
+Lockhart's "what paperwork do you handle" or La Grange's "what does the
+on-site inspection check" are fine, because they're actually about that
+city's process, not a rehash of the generic checklist. The line: would this
+exact question and answer, with the city name swapped out, work verbatim
+on any other city's page? If yes, it belongs on an explainer page, not in
+`CITY_COPY`.
 
 ## Evidence rule — show, don't tell
 
@@ -189,8 +238,9 @@ you're confident.
 - **Structured data on every city page** (all emitted by
   `CityPageContentV2.tsx` — component-level, so every page that uses it
   gets these automatically):
-  - `FAQPage` — `mainEntity` array matching the visible FAQ exactly (5 or 7
-    items).
+  - `FAQPage` — `mainEntity` array matching the visible FAQ exactly (3–5
+    items per city as of batch 2 — see "Explainer pages" above for why the
+    count varies and isn't fixed at 5/7 anymore).
   - `LocalBusiness` (page-level) — `areaServed` set to the city, with
     `containedInPlace` naming the county and state.
   - `BreadcrumbList` — Home → Cities → `[City], TX`, matching the visible
