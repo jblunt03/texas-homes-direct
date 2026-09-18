@@ -117,22 +117,41 @@ Follow this every time you add or edit a batch of city pages:
    `scripts/write_city_content.py`: 1 intro paragraph, exactly 2 buying
    paragraphs, exactly 2 `pricingExplainer` paragraphs (firm out-the-door
    price, then how utility costs are actually estimated — see the hard rule
-   above), 1 local-proof line, and 3–5 FAQ items covering only genuinely
-   city-specific topics (permitting-varies, delivery coverage, land
-   ownership, sizing, financing accessibility, or the city's own assigned
-   differentiator concept). **Do not write a definition, setup-scope,
-   price-lock, or utility-pricing FAQ per city** — see "Explainer pages"
-   below; those four topics live on shared pages now, linked from every
-   city page's FAQ section, not repeated per city. Follow the hard rules
-   above. Do not copy an existing city's paragraph and reword it — start
-   from that city's actual county name and write new sentences. Target
-   **900–1,100 words** of real substance per page (check with the
-   word-count snippet in the Page speed section below) — thin pages
-   underperform; don't pad, add another genuinely useful section or FAQ
-   instead. As of 2026-09-18, removing the four rotated FAQ topics dropped
-   most pages to roughly 650–750 words — closing that gap with a genuinely
-   new, city-specific FAQ or section is unfinished work for the next batch,
-   not something to pad around.
+   above), exactly 2 `gettingStarted` paragraphs (see below), 1 local-proof
+   line, and 3–5 FAQ items covering only genuinely city-specific topics
+   (permitting-varies, delivery coverage, land ownership, sizing, financing
+   accessibility, or the city's own assigned differentiator concept). **Do
+   not write a definition, setup-scope, price-lock, or utility-pricing FAQ
+   per city** — see "Explainer pages" below; those four topics live on
+   shared pages now, linked from every city page's FAQ section, not
+   repeated per city. Follow the hard rules above. Do not copy an existing
+   city's paragraph and reword it — start from that city's actual county
+   name and write new sentences. Target **850–950 words** of real substance
+   per page (check with the word-count snippet in the Page speed section
+   below) — thin pages underperform; don't pad, add another genuinely
+   useful section or FAQ instead. This target was lowered from 900–1,100 on
+   2026-09-18: after retiring the four rotated FAQ topics (below) and
+   adding the `gettingStarted` section, most pages land around 700–820
+   words. That's the honest number for this page structure — a second
+   invented section just to clear 950 was explicitly rejected in favor of
+   real substance. If a future addition closes the remaining gap
+   genuinely, raise the target again; don't pad existing sections to hit
+   it.
+   **`gettingStarted` must add genuinely new content, not restate the
+   intro/buying concept in different words.** The first version of this
+   section (2026-09-18) mostly echoed each city's own intro hook one
+   section later on the same page — passed the cross-city duplication
+   checker fine, but was still repetition on a single page, which that
+   checker can't catch (it only compares a field against the *same* field
+   on *other* cities, not against *other fields on the same page*). Fixed
+   by checking `gettingStarted` against that city's own `intro`/`buying`
+   text directly — a quick 6-gram shingle comparison, not part of
+   `check_duplication.py` but worth running by hand (or scripting again)
+   any time this field is edited. The fix itself: reorient toward the
+   *mechanics* of starting (what determines the next step — land status,
+   lot size, what the first call actually covers) rather than restating
+   *why* the city's differentiator matters, which the intro/buying section
+   already covers.
    **Audit concepts, not just wording, before moving on** — read all the
    new intros (or whichever field you just wrote) back to back and check
    each one leads on a genuinely different idea (cost, turnkey setup,
@@ -271,11 +290,12 @@ you're confident.
   a city is exactly: flip `published: true` in `lib/cities.ts`; the
   sitemap, the `/cities` hub, and internal "nearby" links all pick it up
   automatically.
-- **Word count target: 900–1,100 words** of real substance per page (intro
-  + buying + pricingExplainer + localProof + FAQ + nav/CTA chrome, measured
-  on the full rendered DOM including the collapsed FAQ answers — they're
-  server-rendered, see above, so they count). Thin pages underperform;
-  comprehensive pages that answer every decision-making question do
+- **Word count target: 850–950 words** of real substance per page (intro +
+  buying + pricingExplainer + gettingStarted + localProof + FAQ + nav/CTA
+  chrome, measured on the full rendered DOM including the collapsed FAQ
+  answers — they're server-rendered, see above, so they count). Thin pages
+  underperform; comprehensive pages that answer every decision-making
+  question do
   better. Don't pad — if a page is short, that means it's missing a real
   section or FAQ, not that existing sentences need padding.
 - **Page speed:** hero/secondary images are served via

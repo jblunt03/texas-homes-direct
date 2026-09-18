@@ -166,6 +166,20 @@ export default function CityPageContentV2({
         </div>
       </section>
 
+      {/* ── GETTING STARTED ──────────────────────────────────────── */}
+      {content.gettingStarted && (
+        <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+          <div className="bmh-container">
+            <div className="bmh-city-prose">
+              <h2 className="bmh-city-h2">Getting Started in {content.county} County</h2>
+              {content.gettingStarted.map((paragraph, i) => (
+                <p key={i} className="bmh-lead" style={{ marginTop: 12 }}>{paragraph}</p>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* ── BUYING SECTION + CHECKLIST ───────────────────────────── */}
       <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
         <div className="bmh-container">

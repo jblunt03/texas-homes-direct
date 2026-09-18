@@ -71,6 +71,8 @@ def collect_fields():
             entries.append(("buying", i, p))
         for i, p in enumerate(copy.get("pricingExplainer", [])):
             entries.append(("pricingExplainer", i, p))
+        for i, p in enumerate(copy.get("gettingStarted", [])):
+            entries.append(("gettingStarted", i, p))
         entries.append(("localProof", 0, copy["localProof"]))
         for i, item in enumerate(copy["faq"]):
             entries.append(("faq_a", i, item["a"]))
