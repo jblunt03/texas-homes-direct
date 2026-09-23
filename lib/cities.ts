@@ -95,6 +95,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Comfort', 'Hill Country', true),
   city('Hondo', 'Hill Country', true),
   city('Devine', 'Hill Country', true),
+  city('Hamilton', 'Hill Country', true),
 
   // ─── Central Texas ───────────────────────────────────────────────
   city(
@@ -102,20 +103,20 @@ export const TEXAS_CITIES: CityEntry[] = [
     'Central Texas',
     false
   ),
-  city('Temple', 'Central Texas'),
-  city('Killeen', 'Central Texas'),
-  city('Belton', 'Central Texas'),
-  city('Georgetown', 'Central Texas'),
+  city('Temple', 'Central Texas', true),
+  city('Killeen', 'Central Texas', true),
+  city('Belton', 'Central Texas', true),
+  city('Georgetown', 'Central Texas', true),
   city('Round Rock', 'Central Texas'),
-  city('Taylor', 'Central Texas'),
+  city('Taylor', 'Central Texas', true),
   city('Bastrop', 'Central Texas', true),
   city('Lockhart', 'Central Texas', true),
   city('Elgin', 'Central Texas', true),
   city('Hutto', 'Central Texas'),
-  city('Copperas Cove', 'Central Texas'),
-  city('Gatesville', 'Central Texas'),
-  city('Cameron', 'Central Texas'),
-  city('Brenham', 'Central Texas'),
+  city('Copperas Cove', 'Central Texas', true),
+  city('Gatesville', 'Central Texas', true),
+  city('Cameron', 'Central Texas', true),
+  city('Brenham', 'Central Texas', true),
   city('Hewitt', 'Central Texas'),
   city('Woodway', 'Central Texas'),
   city('Bellmead', 'Central Texas'),
@@ -126,9 +127,13 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('La Grange', 'Central Texas', true),
   city('Schulenburg', 'Central Texas', true),
   city('Flatonia', 'Central Texas', true),
-  city('Caldwell', 'Central Texas'),
-  city('Columbus', 'Central Texas'),
-  city('Hallettsville', 'Central Texas'),
+  city('Caldwell', 'Central Texas', true),
+  city('Columbus', 'Central Texas', true),
+  city('Hallettsville', 'Central Texas', true),
+  city('Sealy', 'Central Texas', true),
+  city('Navasota', 'Central Texas', true),
+  city('Rockdale', 'Central Texas', true),
+  city('Harker Heights', 'Central Texas', true),
 
   // ─── East Texas ──────────────────────────────────────────────────
   city(
@@ -216,12 +221,12 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Uvalde', 'South Texas'),
   city('Eagle Pass', 'South Texas'),
   city('Del Rio', 'South Texas'),
-  city('Beeville', 'South Texas'),
+  city('Beeville', 'South Texas', true),
   city('Floresville', 'South Texas', true),
   city('Rio Bravo', 'South Texas'),
   city('Hidalgo', 'South Texas'),
   city('Cuero', 'South Texas', true),
-  city('Goliad', 'South Texas'),
+  city('Goliad', 'South Texas', true),
   city('Edna', 'South Texas'),
   city('Orange Grove', 'South Texas'),
   city('Premont', 'South Texas'),
@@ -229,10 +234,12 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Poteet', 'South Texas'),
   city('Charlotte', 'South Texas'),
   city('Gonzales', 'South Texas', true),
-  city('Yoakum', 'South Texas'),
-  city('Karnes City', 'South Texas'),
+  city('Yoakum', 'South Texas', true),
+  city('Karnes City', 'South Texas', true),
   city('Pearsall', 'South Texas'),
-  city('Yorktown', 'South Texas'),
+  city('Yorktown', 'South Texas', true),
+  city('Kenedy', 'South Texas', true),
+  city('Refugio', 'South Texas', true),
 
   // ─── Panhandle ───────────────────────────────────────────────────
   city(
@@ -277,6 +284,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Ingleside', 'Gulf Coast'),
   city('Robstown', 'Gulf Coast'),
   city('Aransas Pass', 'Gulf Coast'),
+  city('Sinton', 'Gulf Coast', true),
 
   // ─── DFW ─────────────────────────────────────────────────────────
   city(

@@ -103,9 +103,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-gadwall/Gadwall-Hero.jpg',
     secondaryAlt: 'Double wide manufactured home exterior available near Austin, TX',
     popularHomes: [
-      'marathon-pigeon-3bed-2bath-double-wide',
-      'marathon-mallard-4bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-loving-3bed-2bath-double-wide',
+      'fleetwood-rattlesnake-3bed-2bath-single-wide',
+      'fleetwood-moose-4bed-2bath-double-wide',
     ],
   },
 
@@ -151,9 +151,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-dove/IMG_0895.jpg.jpeg',
     secondaryAlt: 'Mobile home exterior available for delivery near Seguin, TX',
     popularHomes: [
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-dove-1bed-1bath-single-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
+      'fleetwood-axis-3bed-2bath-double-wide',
+      'marathon-ranger-2bed-1bath-single-wide',
+      'marathon-daniel-1bed-1bath-park-model',
     ],
     lastModified: '2026-09-18',
   },
@@ -192,9 +192,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-spoonbill/Spoonbill-Hero.png',
     secondaryAlt: 'Single wide mobile home exterior available near Waco, TX',
     popularHomes: [
-      'marathon-mallard-4bed-2bath-double-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-amarillo-2bed-2bath-single-wide',
+      'marathon-grayson-4bed-2bath-double-wide',
+      'marathon-temple-3bed-2bath-single-wide',
     ],
   },
 
@@ -236,9 +236,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-javelina/hero.jpg',
     secondaryAlt: 'Compact single wide mobile home available near Tyler, TX',
     popularHomes: [
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-pigeon-3bed-2bath-double-wide',
-      'marathon-dove-1bed-1bath-single-wide',
+      'marathon-redhead-3bed-2bath-double-wide',
+      'marathon-longview-3bed-2bath-single-wide',
+      'marathon-widgeon-4bed-2bath-double-wide',
     ],
   },
 
@@ -280,9 +280,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-moose/hero.jpeg',
     secondaryAlt: 'Double wide manufactured home available for delivery near El Paso, TX',
     popularHomes: [
-      'marathon-pigeon-3bed-2bath-double-wide',
-      'marathon-mallard-4bed-2bath-double-wide',
-      'marathon-amarillo-2bed-2bath-single-wide',
+      'marathon-grapevine-2bed-2bath-single-wide',
+      'marathon-bailey-3bed-2bath-double-wide',
+      'marathon-darrell-1bed-1bath-park-model',
     ],
   },
 
@@ -316,9 +316,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
     secondaryAlt: 'Double wide manufactured home available for delivery near San Antonio, TX',
     popularHomes: [
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-pigeon-3bed-2bath-double-wide',
-      'marathon-mallard-4bed-2bath-double-wide',
+      'marathon-hays-4bed-2bath-double-wide',
+      'marathon-pearland-3bed-2bath-single-wide',
+      'marathon-pintail-4bed-2bath-double-wide',
     ],
   },
 
@@ -360,9 +360,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-terra/Terra-Hero.jpg',
     secondaryAlt: 'Compact mobile home available for delivery near Laredo, TX',
     popularHomes: [
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-dove-1bed-1bath-single-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
+      'fleetwood-jackrabbit-3bed-2bath-double-wide',
+      'fleetwood-bobcat-3bed-2bath-single-wide',
+      'fleetwood-coyote-2bed-2bath-single-wide',
     ],
   },
 
@@ -400,9 +400,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-katy/Katy-Hero.png',
     secondaryAlt: 'Single wide mobile home available for delivery near McAllen, TX',
     popularHomes: [
-      'marathon-widgeon-4bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-dove-1bed-1bath-single-wide',
+      'marathon-coleman-3bed-2bath-double-wide',
+      'fleetwood-armadillo-3bed-2bath',
+      'marathon-bell-3bed-2bath-double-wide',
     ],
   },
 
@@ -440,9 +440,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-javelina/hero.jpg',
     secondaryAlt: 'Single wide mobile home available for delivery near Victoria, TX',
     popularHomes: [
-      'marathon-mallard-4bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-dove-1bed-1bath-single-wide',
+      'marathon-cisco-2bed-2bath-single-wide',
+      'fleetwood-roadrunner-3bed-2bath',
+      'marathon-spoonbill-3bed-2bath-single-wide',
     ],
   },
 
@@ -484,9 +484,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-chapman/Chapman-Hero.png',
     secondaryAlt: 'Manufactured home available for delivery near Alice, TX',
     popularHomes: [
-      'marathon-dove-1bed-1bath-single-wide',
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-amarillo-2bed-2bath-single-wide',
+      'fleetwood-badger-3bed-2bath-double-wide',
+      'marathon-beaumont-3bed-2bath-single-wide',
+      'fleetwood-peredavid-3bed-2bath-double-wide',
     ],
   },
 
@@ -532,9 +532,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-katy/Katy-Hero.png',
     secondaryAlt: 'Manufactured home available for delivery near Pleasanton, TX',
     popularHomes: [
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-dove-1bed-1bath-single-wide',
-      'marathon-pigeon-3bed-2bath-double-wide',
+      'marathon-conroe-2bed-2bath-single-wide',
+      'marathon-gadwall-3bed-2bath-double-wide',
+      'marathon-mesquite-3bed-2bath-single-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -573,9 +573,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-chapman/Chapman-Hero.png',
     secondaryAlt: 'Single wide manufactured home available for delivery near Amarillo, TX',
     popularHomes: [
-      'marathon-amarillo-2bed-2bath-single-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-caldwell-4bed-2bath-double-wide',
+      'marathon-jackson-1bed-1bath-park-model',
+      'marathon-chapman-1bed-1bath-park-model',
     ],
   },
 
@@ -613,9 +613,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-katy/Katy-Hero.png',
     secondaryAlt: 'Manufactured home available for delivery near Lubbock, TX',
     popularHomes: [
-      'marathon-widgeon-4bed-2bath-double-wide',
-      'marathon-amarillo-2bed-2bath-single-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-breckenridge-3bed-2bath-single-wide',
+      'fleetwood-pronghorn-4bed-2bath-double-wide',
+      'marathon-abilene-2bed-1bath-single-wide',
     ],
   },
 
@@ -657,9 +657,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-gadwall/Gadwall-Hero.jpg',
     secondaryAlt: 'Double wide manufactured home available for delivery near Corpus Christi, TX',
     popularHomes: [
-      'marathon-mallard-4bed-2bath-double-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-dawson-4bed-2bath-double-wide',
+      'marathon-lanny-1bed-1bath-park-model',
+      'marathon-pigeon-3bed-2bath-double-wide',
     ],
   },
 
@@ -701,9 +701,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
     secondaryAlt: 'Manufactured home available for delivery near the DFW metro',
     popularHomes: [
-      'marathon-mallard-4bed-2bath-double-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
-      'marathon-pigeon-3bed-2bath-double-wide',
+      'fleetwood-javelina-1bed-1bath-single-wide',
+      'marathon-jasper-3bed-2bath-double-wide',
+      'marathon-dove-1bed-1bath-single-wide',
     ],
   },
 
@@ -741,8 +741,8 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-katy/Katy-Hero.png',
     secondaryAlt: 'Single wide manufactured home available for delivery near Houston, TX',
     popularHomes: [
-      'marathon-pigeon-3bed-2bath-double-wide',
-      'marathon-mallard-4bed-2bath-double-wide',
+      'marathon-fisher-3bed-2bath-double-wide',
+      'fleetwood-raven-3bed-2bath-single-wide',
       'marathon-katy-3bed-2bath-single-wide',
     ],
   },
@@ -789,9 +789,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-terra/Terra-Hero.jpg',
     secondaryAlt: 'Compact mobile home available for delivery near San Saba, TX',
     popularHomes: [
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-dove-1bed-1bath-single-wide',
-      'marathon-pigeon-3bed-2bath-double-wide',
+      'marathon-trinity-4bed-2bath-double-wide',
+      'marathon-longview-3bed-2bath-single-wide',
+      'marathon-woodduck-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -842,9 +842,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-katy/Katy-Hero.png',
     secondaryAlt: 'Single wide manufactured home available for delivery near Lampasas, TX',
     popularHomes: [
-      'marathon-coleman-3bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
+      'marathon-brewster-3bed-2bath-double-wide',
+      'marathon-grapevine-2bed-2bath-single-wide',
+      'marathon-grayson-4bed-2bath-double-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -891,9 +891,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-gadwall/Gadwall-Hero.jpg',
     secondaryAlt: 'Double wide manufactured home available for delivery near Llano, TX',
     popularHomes: [
-      'marathon-mesquite-3bed-2bath-single-wide',
-      'marathon-gadwall-3bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-breckenridge-3bed-2bath-single-wide',
+      'fleetwood-moose-4bed-2bath-double-wide',
+      'marathon-beaumont-3bed-2bath-single-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -940,9 +940,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-javelina/hero.jpg',
     secondaryAlt: 'Compact mobile home available for delivery near Goldthwaite, TX',
     popularHomes: [
-      'marathon-pearland-3bed-2bath-single-wide',
-      'fleetwood-javelina-1bed-1bath-single-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-daniel-1bed-1bath-park-model',
+      'marathon-mallard-4bed-2bath-double-wide',
+      'marathon-chapman-1bed-1bath-park-model',
     ],
     lastModified: '2026-09-10',
   },
@@ -993,9 +993,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-chapman/Chapman-Hero.png',
     secondaryAlt: 'Manufactured home available for delivery near Brady, TX',
     popularHomes: [
-      'marathon-grayson-4bed-2bath-double-wide',
-      'marathon-chapman-1bed-1bath-park-model',
-      'marathon-katy-3bed-2bath-single-wide',
+      'fleetwood-badger-3bed-2bath-double-wide',
+      'fleetwood-rattlesnake-3bed-2bath-single-wide',
+      'marathon-hays-4bed-2bath-double-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -1042,9 +1042,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-dove/IMG_0895.jpg.jpeg',
     secondaryAlt: 'Single wide mobile home available for delivery near Mason, TX',
     popularHomes: [
-      'marathon-spoonbill-3bed-2bath-single-wide',
-      'marathon-dove-1bed-1bath-single-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
+      'marathon-bell-3bed-2bath-double-wide',
+      'marathon-amarillo-2bed-2bath-single-wide',
+      'marathon-trinity-4bed-2bath-double-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -1095,9 +1095,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-terra/Terra-Hero.jpg',
     secondaryAlt: 'Compact mobile home available for delivery near Junction, TX',
     popularHomes: [
-      'marathon-woodduck-3bed-2bath-double-wide',
-      'marathon-terra-2bed-1bath-park-model',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-brewster-3bed-2bath-double-wide',
+      'fleetwood-armadillo-3bed-2bath',
+      'marathon-pigeon-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -1144,9 +1144,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
     secondaryAlt: 'Double wide manufactured home available for delivery near Burnet, TX',
     popularHomes: [
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
-      'marathon-pigeon-3bed-2bath-double-wide',
+      'marathon-pearland-3bed-2bath-single-wide',
+      'marathon-caldwell-4bed-2bath-double-wide',
+      'fleetwood-coyote-2bed-2bath-single-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -1193,9 +1193,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-pigeon/Marathon-Archer-7.jpeg',
     secondaryAlt: 'Double wide manufactured home available for delivery near Blanco, TX',
     popularHomes: [
-      'fleetwood-moose-4bed-2bath-double-wide',
-      'marathon-pigeon-3bed-2bath-double-wide',
       'marathon-katy-3bed-2bath-single-wide',
+      'marathon-pintail-4bed-2bath-double-wide',
+      'fleetwood-raven-3bed-2bath-single-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -1238,9 +1238,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-katy/Katy-Hero.png',
     secondaryAlt: 'Single wide manufactured home available for delivery near Johnson City, TX',
     popularHomes: [
-      'marathon-mallard-4bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
+      'fleetwood-bobcat-3bed-2bath-single-wide',
+      'fleetwood-jackrabbit-3bed-2bath-double-wide',
+      'marathon-bailey-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -1287,9 +1287,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-brewster/Brewster-Body-1.jpg',
     secondaryAlt: 'Manufactured home available for delivery near Comfort, TX',
     popularHomes: [
-      'marathon-gadwall-3bed-2bath-double-wide',
-      'marathon-brewster-3bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-jasper-3bed-2bath-double-wide',
+      'fleetwood-javelina-1bed-1bath-single-wide',
+      'marathon-loving-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -1336,9 +1336,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-javelina/hero.jpg',
     secondaryAlt: 'Compact mobile home available for delivery near Bandera, TX',
     popularHomes: [
-      'marathon-coleman-3bed-2bath-double-wide',
-      'fleetwood-javelina-1bed-1bath-single-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'fleetwood-roadrunner-3bed-2bath',
+      'marathon-cisco-2bed-2bath-single-wide',
+      'fleetwood-peredavid-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -1385,9 +1385,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-mesquite/Mesquite-Body-1.jpg',
     secondaryAlt: 'Single wide manufactured home available for delivery near Hondo, TX',
     popularHomes: [
-      'fleetwood-pronghorn-4bed-2bath-double-wide',
-      'marathon-mesquite-3bed-2bath-single-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-terra-2bed-1bath-park-model',
+      'marathon-woodduck-3bed-2bath-double-wide',
+      'marathon-darrell-1bed-1bath-park-model',
     ],
     lastModified: '2026-09-10',
   },
@@ -1438,9 +1438,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-terra/Terra-Hero.jpg',
     secondaryAlt: 'Compact mobile home available for delivery near Devine, TX',
     popularHomes: [
-      'marathon-pearland-3bed-2bath-single-wide',
-      'marathon-terra-2bed-1bath-park-model',
-      'marathon-dove-1bed-1bath-single-wide',
+      'marathon-lanny-1bed-1bath-park-model',
+      'marathon-widgeon-4bed-2bath-double-wide',
+      'marathon-temple-3bed-2bath-single-wide',
     ],
     lastModified: '2026-09-10',
   },
@@ -1487,9 +1487,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
     secondaryAlt: 'Double wide manufactured home available for delivery near Castroville, TX',
     popularHomes: [
-      'marathon-spoonbill-3bed-2bath-single-wide',
-      'marathon-woodduck-3bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-dove-1bed-1bath-single-wide',
+      'fleetwood-axis-3bed-2bath-double-wide',
+      'marathon-jackson-1bed-1bath-park-model',
     ],
     lastModified: '2026-09-10',
   },
@@ -1536,8 +1536,8 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-katy/Katy-Hero.png',
     secondaryAlt: 'Single wide manufactured home available for delivery near New Braunfels, TX',
     popularHomes: [
-      'marathon-pigeon-3bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-terra-2bed-1bath-park-model',
+      'marathon-kendall-3bed-2bath-double-wide',
       'marathon-mallard-4bed-2bath-double-wide',
     ],
     lastModified: '2026-09-18',
@@ -1589,9 +1589,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-javelina/hero.jpg',
     secondaryAlt: 'Compact mobile home available for delivery near Lockhart, TX',
     popularHomes: [
-      'marathon-widgeon-4bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-dove-1bed-1bath-single-wide',
+      'marathon-dawson-4bed-2bath-double-wide',
+      'marathon-mesquite-3bed-2bath-single-wide',
+      'marathon-fisher-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -1642,9 +1642,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-terra/Terra-Hero.jpg',
     secondaryAlt: 'Compact mobile home available for delivery near Luling, TX',
     popularHomes: [
-      'marathon-mallard-4bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
-      'fleetwood-javelina-1bed-1bath-single-wide',
+      'marathon-gadwall-3bed-2bath-double-wide',
+      'marathon-abilene-2bed-1bath-single-wide',
+      'marathon-redhead-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -1695,9 +1695,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-gadwall/Gadwall-Hero.jpg',
     secondaryAlt: 'Double wide manufactured home available for delivery near Gonzales, TX',
     popularHomes: [
-      'marathon-gadwall-3bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-dove-1bed-1bath-single-wide',
+      'marathon-coleman-3bed-2bath-double-wide',
+      'marathon-conroe-2bed-2bath-single-wide',
+      'marathon-kendall-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -1744,9 +1744,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
     secondaryAlt: 'Double wide manufactured home available for delivery near Floresville, TX',
     popularHomes: [
-      'marathon-woodduck-3bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-terra-2bed-1bath-park-model',
+      'marathon-spoonbill-3bed-2bath-single-wide',
+      'fleetwood-pronghorn-4bed-2bath-double-wide',
+      'marathon-ranger-2bed-1bath-single-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -1793,9 +1793,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-brewster/Brewster-Body-1.jpg',
     secondaryAlt: 'Manufactured home available for delivery near Smithville, TX',
     popularHomes: [
-      'marathon-coleman-3bed-2bath-double-wide',
-      'marathon-brewster-3bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-bell-3bed-2bath-double-wide',
+      'fleetwood-javelina-1bed-1bath-single-wide',
+      'marathon-fisher-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -1842,9 +1842,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-pearland/918F558B-6E95-44EF-9CD5-E240C3BBDDBE.jpg',
     secondaryAlt: 'Manufactured home available for delivery near Elgin, TX',
     popularHomes: [
+      'fleetwood-raven-3bed-2bath-single-wide',
+      'marathon-caldwell-4bed-2bath-double-wide',
       'marathon-mesquite-3bed-2bath-single-wide',
-      'marathon-pearland-3bed-2bath-single-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -1891,9 +1891,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
     secondaryAlt: 'Double wide manufactured home available for delivery near Bastrop, TX',
     popularHomes: [
-      'marathon-katy-3bed-2bath-single-wide',
-      'marathon-widgeon-4bed-2bath-double-wide',
-      'marathon-pigeon-3bed-2bath-double-wide',
+      'marathon-pintail-4bed-2bath-double-wide',
+      'marathon-longview-3bed-2bath-single-wide',
+      'marathon-dove-1bed-1bath-single-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -1940,9 +1940,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-pigeon/Marathon-Archer-7.jpeg',
     secondaryAlt: 'Double wide manufactured home available for delivery near Giddings, TX',
     popularHomes: [
-      'fleetwood-moose-4bed-2bath-double-wide',
-      'marathon-pigeon-3bed-2bath-double-wide',
+      'fleetwood-pronghorn-4bed-2bath-double-wide',
       'marathon-katy-3bed-2bath-single-wide',
+      'marathon-dawson-4bed-2bath-double-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -1985,9 +1985,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-chapman/Chapman-Hero.png',
     secondaryAlt: 'Manufactured home available for delivery near La Grange, TX',
     popularHomes: [
-      'marathon-grayson-4bed-2bath-double-wide',
-      'marathon-chapman-1bed-1bath-park-model',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-brewster-3bed-2bath-double-wide',
+      'marathon-cisco-2bed-2bath-single-wide',
+      'fleetwood-axis-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -2034,9 +2034,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-brewster/Brewster-Body-1.jpg',
     secondaryAlt: 'Manufactured home available for delivery near Schulenburg, TX',
     popularHomes: [
-      'marathon-gadwall-3bed-2bath-double-wide',
-      'marathon-brewster-3bed-2bath-double-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-widgeon-4bed-2bath-double-wide',
+      'fleetwood-armadillo-3bed-2bath',
+      'marathon-coleman-3bed-2bath-double-wide',
     ],
     lastModified: '2026-09-18',
   },
@@ -2087,9 +2087,9 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-terra/Terra-Hero.jpg',
     secondaryAlt: 'Compact mobile home available for delivery near Flatonia, TX',
     popularHomes: [
-      'marathon-woodduck-3bed-2bath-double-wide',
-      'marathon-terra-2bed-1bath-park-model',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-lanny-1bed-1bath-park-model',
+      'marathon-redhead-3bed-2bath-double-wide',
+      'marathon-darrell-1bed-1bath-park-model',
     ],
     lastModified: '2026-09-18',
   },
@@ -2136,11 +2136,1236 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     secondaryImage: '/homes/the-mesquite/Mesquite-Body-1.jpg',
     secondaryAlt: 'Single wide manufactured home available for delivery near Cuero, TX',
     popularHomes: [
-      'fleetwood-pronghorn-4bed-2bath-double-wide',
-      'marathon-mesquite-3bed-2bath-single-wide',
-      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-ranger-2bed-1bath-single-wide',
+      'marathon-jasper-3bed-2bath-double-wide',
+      'fleetwood-rattlesnake-3bed-2bath-single-wide',
     ],
     lastModified: '2026-09-18',
+  },
+
+  columbus: {
+    county: 'Colorado',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Columbus, TX and Colorado County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Columbus sits right on I-10, which means Texas Homes Direct can reach a Colorado County property from either the Houston side or the San Antonio side without a detour — delivery logistics that don't depend on which direction you're coming from.",
+    buyingHeading: 'Buying a Mobile Home in Colorado County',
+    buying: [
+      "That two-direction access matters when a Columbus-area buyer is on a tighter schedule than most — there's no single choke point our trucks have to route through.",
+      "Compared to site-built construction, a HUD-code manufactured home still runs meaningfully less for a Colorado County family, without a drop in construction quality.",
+    ],
+    pricingExplainer: [
+      "Once a Columbus-area buyer has a quote in hand, that number doesn't move — everything itemized above is already accounted for, regardless of delivery direction.",
+      "Colorado County land varies enough that utility costs get a phone estimate first, then an exact bid once our contractor has actually walked the property.",
+    ],
+    gettingStarted: [
+      "The first real question for a Columbus-area buyer is the property itself — where it sits relative to I-10 shapes delivery scheduling more than almost anything else.",
+      "From there, it's financing and floor plan, worked out in whichever order makes sense for you — neither one has to come first.",
+    ],
+    localProof:
+      "Colorado County buyers we've worked with have been delivered to from both directions along I-10, depending on where their property actually sits.",
+    faq: [
+      {
+        q: "Does it matter which direction you deliver from for a Columbus property?",
+        a: "Not for pricing or process — we scope the route based on where your property actually is, whether that means coming from Houston or San Antonio.",
+      },
+      {
+        q: "Do I need to already own land in Colorado County?",
+        a: "No. Family property, land you've already purchased, or a lot you're still deciding on all work the same way with us.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "A single wide ships as one section and costs less upfront; a double wide ships as two sections joined on-site for meaningfully more square footage.",
+      },
+    ],
+    nearby: ['sealy', 'la-grange', 'schulenburg', 'eagle-lake'],
+    heroImage: '/homes/the-spoonbill/Spoonbill-Hero.png',
+    heroAlt: 'Double wide manufactured home exterior near Columbus, TX',
+    secondaryImage: '/homes/the-katy/Katy-Hero.png',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Columbus, TX',
+    popularHomes: [
+      'marathon-loving-3bed-2bath-double-wide',
+      'marathon-conroe-2bed-2bath-single-wide',
+      'marathon-gadwall-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  sealy: {
+    county: 'Austin',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Sealy, TX and Austin County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A lot of Sealy-area buyers have never actually seen how a manufactured home gets built, so Texas Homes Direct walks through the HUD code construction process in plain terms — what's inspected, when, and why it matters for a home you'll own for decades.",
+    buyingHeading: 'Buying a Mobile Home in Austin County',
+    buying: [
+      "Every home is built to the same federal HUD code and passes factory inspection before it ships to an Austin County address — the same standard whether it's headed to Sealy or anywhere else in Texas.",
+      "Understanding what that construction standard actually covers helps a Sealy-area buyer compare a manufactured home honestly against a site-built house, instead of guessing at the difference.",
+    ],
+    pricingExplainer: [
+      "Once you understand what's built into the construction standard, the price makes more sense too — everything itemized above is already part of your Sealy-area quote.",
+      "Utility costs are the one piece that depends on your specific Austin County property, so we start with a phone estimate and follow with an exact bid once a contractor has seen the site.",
+    ],
+    gettingStarted: [
+      "Most Sealy-area buyers start with questions about how the home is actually built, not the paperwork — which is where we'd rather start too.",
+      "Once that part makes sense, we move to your property and your timeline, working through both at whatever pace you're comfortable with.",
+    ],
+    localProof:
+      "We've walked more than a few Austin County families through exactly what HUD-code construction involves before they ever committed to a floor plan.",
+    faq: [
+      {
+        q: "What does 'HUD code' actually mean for the home I'd be buying?",
+        a: "It's the federal construction and safety standard every manufactured home built after June 1976 has to meet — structural design, materials, fire safety — verified by factory inspection before the home ships.",
+      },
+      {
+        q: "Do I need to already own land in Austin County?",
+        a: "Not at all — some Sealy-area buyers already have land squared away, others are still shopping for a lot, and some are working through family property.",
+      },
+      {
+        q: "Do you deliver throughout Austin County?",
+        a: "We do, across all of Austin County — reach out with your address and we'll confirm the details for your property.",
+      },
+    ],
+    nearby: ['columbus', 'brenham', 'bellville', 'katy'],
+    heroImage: '/homes/the-katy/Katy-Hero.png',
+    heroAlt: 'Double wide manufactured home exterior near Sealy, TX',
+    secondaryImage: '/homes/the-terra/Terra-Hero.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Sealy, TX',
+    popularHomes: [
+      'marathon-amarillo-2bed-2bath-single-wide',
+      'marathon-mallard-4bed-2bath-double-wide',
+      'marathon-daniel-1bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  brenham: {
+    county: 'Washington',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Brenham, TX and Washington County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A lot of Washington County properties near Brenham come with more acreage than a typical in-town lot, and that changes what setup actually looks like — longer utility runs, more site prep, sometimes a completely different approach to the pad.",
+    buyingHeading: 'Buying a Mobile Home in Washington County',
+    buying: [
+      "We scope a larger rural property the same careful way we'd scope a smaller one — nothing about acreage gets a generic answer near Brenham.",
+      "Rural acreage or a smaller in-town lot, the cost gap between a HUD-code manufactured home and a comparable site-built house near Brenham stays about the same.",
+    ],
+    pricingExplainer: [
+      "Whatever your Washington County property looks like, the out-the-door home price is fixed the moment you see your quote — everything itemized above is already included.",
+      "Utility costs are the exception, simply because rural acreage varies too much to price sight-unseen. A phone estimate starts the conversation, and a contractor's on-site visit finishes it.",
+    ],
+    gettingStarted: [
+      "For a Brenham-area buyer, the first real conversation is about the property itself — how many acres, what's already run to it, and what still needs to happen before a home can go on it.",
+      "Once we understand the site, floor plan and financing follow naturally, sized to what actually fits the land you've got.",
+    ],
+    localProof:
+      "Washington County buyers we've worked with have ranged from a small in-town lot to several acres of family land, and we've scoped each one individually.",
+    faq: [
+      {
+        q: "Does a larger rural property cost more to set up near Brenham?",
+        a: "It depends on what the site already has — existing utility access matters more than acreage alone. We'll give you a real answer after seeing what your property needs.",
+      },
+      {
+        q: "Do I need to already own land in Washington County?",
+        a: "No — we hear from Washington County buyers whether they already have land, are mid-purchase on a lot, or are sorting out family property.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "A single wide ships as one section and keeps costs lower; a double wide ships as two sections joined on-site for a larger household.",
+      },
+    ],
+    nearby: ['giddings', 'navasota', 'sealy', 'caldwell'],
+    heroImage: '/homes/the-moose/hero.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Brenham, TX',
+    secondaryImage: '/homes/the-javelina/hero.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Brenham, TX',
+    popularHomes: [
+      'marathon-beaumont-3bed-2bath-single-wide',
+      'fleetwood-badger-3bed-2bath-double-wide',
+      'fleetwood-bobcat-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  navasota: {
+    county: 'Grimes',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Navasota, TX and Grimes County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A number of Navasota-area buyers already have a mobile home on their property — one that's aging out — and are looking at what it takes to replace it with something built to current standards, not just patch the old one again.",
+    buyingHeading: 'Buying a Mobile Home in Grimes County',
+    buying: [
+      "Replacing an older mobile home near Navasota usually means dealing with removal as much as installation, and we walk through both pieces before you commit to anything.",
+      "A new manufactured home meeting current HUD code is a different construction standard entirely from an older mobile home — not just a fresher version of the same thing.",
+    ],
+    pricingExplainer: [
+      "A Navasota-area buyer sees one complete number, replacement home or new build alike — everything itemized above is already folded into that quote.",
+      "The land itself, not the home it's replacing, is what determines the utility number for a Grimes County property. A phone estimate opens the conversation, and a contractor's visit closes it.",
+    ],
+    gettingStarted: [
+      "If there's already a mobile home on your Navasota-area property, that's the first thing worth telling us — it changes the setup conversation more than almost anything else.",
+      "From there, we walk through what removal and replacement actually involve, then move into floor plan and financing once the site itself is understood.",
+    ],
+    localProof:
+      "We've worked with Grimes County families replacing an aging mobile home as often as we've worked with buyers starting on a completely open lot.",
+    faq: [
+      {
+        q: "Do you handle removing an old mobile home near Navasota?",
+        a: "That's part of the conversation we have once we know your specific situation — reach out and we'll cover what applies to your property.",
+      },
+      {
+        q: "Is a new manufactured home actually different from an older mobile home?",
+        a: "Yes — construction standards changed significantly with the federal HUD code, and everything we sell meets the current standard, not an older one.",
+      },
+      {
+        q: "Do you deliver throughout Grimes County?",
+        a: "We do — reach out with your Grimes County address and we'll confirm what delivery and setup look like at your site.",
+      },
+    ],
+    nearby: ['brenham', 'bryan', 'conroe', 'caldwell'],
+    heroImage: '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Navasota, TX',
+    secondaryImage: '/homes/the-gadwall/Gadwall-Hero.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Navasota, TX',
+    popularHomes: [
+      'marathon-breckenridge-3bed-2bath-single-wide',
+      'marathon-kendall-3bed-2bath-double-wide',
+      'marathon-pearland-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  caldwell: {
+    county: 'Burleson',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Caldwell, TX and Burleson County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A good share of Caldwell-area land has been passed down through Burleson County families for a generation or more, and Texas Homes Direct treats that kind of property differently — not as a blank lot, but as land with its own history and its own quirks.",
+    buyingHeading: 'Buying a Mobile Home in Burleson County',
+    buying: [
+      "Family land near Caldwell sometimes comes with an old well, a partial fence line, or a structure that's been there for decades — we work around what's actually there instead of assuming a clean slate.",
+      "A manufactured home built to current HUD code still costs meaningfully less than site-built construction, whether the land under it has been in the family for one year or fifty.",
+    ],
+    pricingExplainer: [
+      "Whatever the history of your Burleson County property, the out-the-door price is the same fixed number once you see your quote — everything itemized above is included.",
+      "Utility costs are the one variable, since older family land can have older infrastructure that needs a real look. A phone estimate starts it, and a contractor's visit finishes it.",
+    ],
+    gettingStarted: [
+      "For a lot of Caldwell-area buyers, the first real conversation is about the land itself — what's already there, what's been added over the years, and what still needs work.",
+      "Once we understand the property's actual history, floor plan and financing come next, worked out around what the land can realistically support.",
+    ],
+    localProof:
+      "We've worked with Burleson County families setting up on land that had been theirs for decades, and with buyers on a lot purchased just months earlier.",
+    faq: [
+      {
+        q: "Does older infrastructure on family land slow down setup near Caldwell?",
+        a: "Not usually — we just need to see what's actually there first. An older well or partial utility line gets accounted for like anything else on the site.",
+      },
+      {
+        q: "Do I need a permit for a manufactured home in Burleson County?",
+        a: "Every property is a little different, so we'd rather you confirm the specifics with Burleson County directly than get an answer here that might not actually apply to your lot.",
+      },
+      {
+        q: "What happens once I've picked a home?",
+        a: "After that, our team handles the build schedule, gets the home to your site, and manages the full setup — you'll hear from us along the way.",
+      },
+    ],
+    nearby: ['brenham', 'giddings', 'bryan', 'rockdale'],
+    heroImage: '/homes/the-pronghorn/Image.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Caldwell, TX',
+    secondaryImage: '/homes/the-mesquite/Mesquite-Body-1.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Caldwell, TX',
+    popularHomes: [
+      'marathon-bailey-3bed-2bath-double-wide',
+      'fleetwood-coyote-2bed-2bath-single-wide',
+      'marathon-spoonbill-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  cameron: {
+    county: 'Milam',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Cameron, TX and Milam County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Cameron-area families outgrowing a starter home usually need one thing above all: another bedroom, or two, without starting the whole search over. Texas Homes Direct carries floor plans built for exactly that kind of growth.",
+    buyingHeading: 'Buying a Mobile Home in Milam County',
+    buying: [
+      "A four-bedroom double wide gives a growing Milam County household real separation between bedrooms, not just more square footage crammed into the same layout.",
+      "Moving up in floor plan doesn't mean a different financing process — a larger home near Cameron is quoted and financed the same straightforward way as a smaller one.",
+    ],
+    pricingExplainer: [
+      "No matter which floor plan size a Cameron-area family settles on, the number holds once it's quoted — everything itemized above is already accounted for.",
+      "We won't guess at utility costs from a phone call alone — Milam County land varies too much for that. A contractor's on-site visit is what turns the estimate into a real number.",
+    ],
+    gettingStarted: [
+      "For a Cameron-area family outgrowing their current space, the first real question is how many bedrooms actually solves the problem — not just how much bigger.",
+      "Once we know what the household needs, we match floor plans to that number and walk through financing for whichever one fits.",
+    ],
+    localProof:
+      "We've helped Milam County families move from a cramped starter setup into a floor plan that actually matches how many people are living there.",
+    faq: [
+      {
+        q: "What's the biggest floor plan available near Cameron?",
+        a: "We carry four-bedroom double wides among other layouts — reach out and we'll walk through what's currently available sized for your household.",
+      },
+      {
+        q: "Do I need to already own land in Milam County?",
+        a: "No. Some Milam County families already have their site, some are still hunting for one, and some are working through land that's been in the family.",
+      },
+      {
+        q: "Do you deliver throughout Milam County?",
+        a: "We do — send over your address and we'll lay out exactly what delivery and setup involve at your location.",
+      },
+    ],
+    nearby: ['rockdale', 'caldwell', 'taylor', 'temple'],
+    heroImage: '/homes/the-gadwall/Gadwall-Hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Cameron, TX',
+    secondaryImage: '/homes/the-chapman/Chapman-Hero.png',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Cameron, TX',
+    popularHomes: [
+      'marathon-jackson-1bed-1bath-park-model',
+      'marathon-grayson-4bed-2bath-double-wide',
+      'marathon-grapevine-2bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  rockdale: {
+    county: 'Milam',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Rockdale, TX and Milam County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "An older mobile home and a new HUD-code manufactured home don't run the same utility bill, and that gap is part of what brings a lot of Rockdale-area families to Texas Homes Direct in the first place.",
+    buyingHeading: 'Buying a Mobile Home in Milam County',
+    buying: [
+      "Current HUD code requires meaningfully better insulation and construction standards than older mobile homes were built to, which shows up directly in what a Milam County family pays to heat and cool their home.",
+      "A new manufactured home near Rockdale still costs less upfront than comparable site-built construction, on top of the ongoing efficiency difference.",
+    ],
+    pricingExplainer: [
+      "Once you've got a quote in hand for a Rockdale-area home, that's the number — everything itemized above is already folded in, efficiency savings and all.",
+      "Efficiency savings are one thing; the utility hookup bid is another, and that one still depends on your specific Rockdale-area property. A phone estimate opens it, a contractor's visit closes it.",
+    ],
+    gettingStarted: [
+      "A lot of Rockdale-area buyers start by asking what they'd actually save on utilities moving from an older home to a new one — a fair question, and one we're glad to walk through.",
+      "From there, it's the usual next steps: your property, your floor plan, and financing that fits your budget.",
+    ],
+    localProof:
+      "We've talked more than a few Milam County families through the real difference between an older mobile home's utility costs and a new HUD-code home's.",
+    faq: [
+      {
+        q: "Is a new manufactured home actually more efficient than an older mobile home?",
+        a: "Generally yes, though how much you'd actually save depends on the specific home you're replacing — an older single-pane, poorly-sealed unit shows a bigger gap than one that's held up well.",
+      },
+      {
+        q: "Do I need to already own land in Milam County?",
+        a: "It's not required. Milam County buyers show up with land already secured, a lot they're still deciding on, or family property in the mix, and any of those works.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "A single wide ships as one continuous section for a lower cost; a double wide arrives in two sections joined on-site for a noticeably bigger home.",
+      },
+    ],
+    nearby: ['cameron', 'taylor', 'giddings', 'elgin'],
+    heroImage: '/homes/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Rockdale, TX',
+    secondaryImage: '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Rockdale, TX',
+    popularHomes: [
+      'marathon-temple-3bed-2bath-single-wide',
+      'fleetwood-roadrunner-3bed-2bath',
+      'marathon-pigeon-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  taylor: {
+    county: 'Williamson',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Taylor, TX and Williamson County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Before a Taylor-area buyer talks numbers with us, we'd rather they run our free mortgage analysis tool first — no credit pull, no obligation, just a real sense of what a Williamson County budget actually supports.",
+    buyingHeading: 'Buying a Mobile Home in Williamson County',
+    buying: [
+      "That tool exists so a Taylor-area buyer walks into the real conversation already knowing roughly what they can afford, instead of guessing.",
+      "Site-built construction in Williamson County costs noticeably more than a comparable HUD-code manufactured home, without any step down in quality.",
+    ],
+    pricingExplainer: [
+      "Once you've got real numbers from the mortgage tool, the actual quote confirms them — everything itemized above is already built into the out-the-door price.",
+      "Utility costs are the one number the tool can't predict, since Williamson County land varies too much. A phone estimate comes first, then an exact bid once a contractor has seen the property.",
+    ],
+    gettingStarted: [
+      "The first step for most Taylor-area buyers is the mortgage analysis tool — five minutes, no credit pull, and a real number to plan around before anything else happens.",
+      "From there, the conversation moves to your property and which floor plan actually fits the number you just saw.",
+    ],
+    localProof:
+      "A lot of Williamson County buyers near Taylor start with our mortgage tool before they've even picked a floor plan — that's exactly how it's meant to work.",
+    faq: [
+      {
+        q: "Does the mortgage analysis tool affect my credit?",
+        a: "No — it's a soft check with no credit pull, meant to give you real numbers before you commit to anything.",
+      },
+      {
+        q: "Do I need to already own land in Williamson County?",
+        a: "Not upfront. Whether you've already got a Williamson County lot, you're still looking, or you're navigating family land, we can move forward.",
+      },
+      {
+        q: "Do you deliver throughout Williamson County?",
+        a: "We do — every part of Williamson County. Send your address and we'll break down what delivery and setup involve at your specific location.",
+      },
+    ],
+    nearby: ['georgetown', 'elgin', 'rockdale', 'round-rock'],
+    heroImage: '/homes/the-coleman/Coleman-Gallery-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Taylor, TX',
+    secondaryImage: '/homes/the-brewster/Brewster-Body-1.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Taylor, TX',
+    popularHomes: [
+      'marathon-trinity-4bed-2bath-double-wide',
+      'marathon-chapman-1bed-1bath-park-model',
+      'fleetwood-peredavid-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  georgetown: {
+    county: 'Williamson',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Georgetown, TX and Williamson County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A single-level floor plan with no stairs to manage is usually what brings a Georgetown-area buyer looking to downsize to Texas Homes Direct — less house to maintain, without giving up real living space.",
+    buyingHeading: 'Buying a Mobile Home in Williamson County',
+    buying: [
+      "A smaller single wide keeps upkeep simple for a Georgetown-area buyer who doesn't need the extra bedrooms anymore, while still meeting the same HUD construction standard as any other home we sell.",
+      "Downsizing doesn't mean downgrading — every floor plan we offer near Georgetown, large or small, passes the same factory inspection before it ships.",
+    ],
+    pricingExplainer: [
+      "A smaller floor plan generally means a smaller number, but the same rule applies either way — everything itemized above is already built into your Williamson County quote.",
+      "Utility costs are the one thing that doesn't shrink with the floor plan, since they depend on the property itself. A phone estimate starts it, an exact contractor bid finishes it.",
+    ],
+    gettingStarted: [
+      "For a Georgetown-area buyer downsizing, the first real conversation is about what you're actually trying to simplify — fewer bedrooms, less yard, or both.",
+      "Once we know what you're downsizing away from, we can match a floor plan that fits the smaller footprint you're after.",
+    ],
+    localProof:
+      "We've helped Williamson County buyers near Georgetown move into a simpler single-level home without feeling like they gave anything up.",
+    faq: [
+      {
+        q: "What's the smallest floor plan available for a Georgetown-area buyer?",
+        a: "We carry compact single-section homes down to smaller footprints — reach out and we'll walk through what's currently available.",
+      },
+      {
+        q: "Is downsizing to a manufactured home a big financing change?",
+        a: "Not usually — financing works the same way regardless of floor plan size, and a smaller home often means a smaller monthly payment.",
+      },
+      {
+        q: "Do you deliver throughout Williamson County?",
+        a: "Yes — give us your address and we'll walk through what delivery and setup actually look like for your property.",
+      },
+    ],
+    nearby: ['round-rock', 'taylor', 'burnet', 'cedar-park'],
+    heroImage: '/homes/the-terra/Terra-Hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Georgetown, TX',
+    secondaryImage: '/homes/the-dove/IMG_0895.jpg.jpeg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Georgetown, TX',
+    popularHomes: [
+      'fleetwood-moose-4bed-2bath-double-wide',
+      'marathon-abilene-2bed-1bath-single-wide',
+      'marathon-hays-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  yoakum: {
+    county: 'Lavaca',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Yoakum, TX and Lavaca County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A lot of Yoakum-area properties are working ranches or farms, not just residential lots, and that means setup has to work around outbuildings, fence lines, and equipment that's already there.",
+    buyingHeading: 'Buying a Mobile Home in Lavaca County',
+    buying: [
+      "We scope a Lavaca County ranch property the same careful way we'd scope any other site — what's already there shapes the plan, not the other way around.",
+      "A manufactured home built to current HUD code still runs meaningfully less than comparable site-built construction, working ranch or not.",
+    ],
+    pricingExplainer: [
+      "Whatever your Yoakum-area property looks like — barns, corrals, or open pasture — the out-the-door home price is the same fixed number once quoted.",
+      "Utility hookups don't come with a flat number, since ranch and farm properties near Yoakum vary too much for that. We open with a phone estimate, then a contractor walks the land for the real figure.",
+    ],
+    gettingStarted: [
+      "For a Yoakum-area buyer on a working property, the first real question is what's already out there — outbuildings, fencing, equipment — since that shapes where the home actually goes.",
+      "Once we understand the layout, we move into floor plan and financing, same as we would for any other property.",
+    ],
+    localProof:
+      "We've set up homes on working ranch and farm properties across Lavaca County, working around what was already on the land rather than starting from scratch.",
+    faq: [
+      {
+        q: "Can you set up around existing barns or outbuildings near Yoakum?",
+        a: "Yes — we assess the actual site, including what's already there, before finalizing where the home goes.",
+      },
+      {
+        q: "Do I need a permit for a manufactured home in Lavaca County?",
+        a: "Permitting comes down to the specific property more than a blanket rule, so it's worth a direct call to Lavaca County to confirm what applies to yours.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "Sizing mostly comes down to your lot and your budget — a single wide keeps both lower, while a double wide gives a growing Yoakum-area household more room to spread out.",
+      },
+    ],
+    nearby: ['hallettsville', 'cuero', 'gonzales', 'shiner'],
+    heroImage: '/homes/the-chapman/Chapman-Hero.png',
+    heroAlt: 'Double wide manufactured home exterior near Yoakum, TX',
+    secondaryImage: '/homes/the-pigeon/Marathon-Archer-7.jpeg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Yoakum, TX',
+    popularHomes: [
+      'marathon-terra-2bed-1bath-park-model',
+      'marathon-woodduck-3bed-2bath-double-wide',
+      'fleetwood-jackrabbit-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  hallettsville: {
+    county: 'Lavaca',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Hallettsville, TX and Lavaca County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "If a Hallettsville-area buyer is comparing quotes from more than one dealer, we'll put ours in writing, itemized, so it's an actual apples-to-apples comparison instead of two numbers that don't mean the same thing.",
+    buyingHeading: 'Buying a Mobile Home in Lavaca County',
+    buying: [
+      "A quote that isn't itemized can hide what's actually included — a Lavaca County buyer deserves to see setup, delivery, and utilities broken out, not folded into one vague number.",
+      "Whichever quote you're comparing, a HUD-code manufactured home consistently comes in well under site-built construction costs near Hallettsville.",
+    ],
+    pricingExplainer: [
+      "An itemized quote is exactly what you'll get from us — everything listed above is already built into the out-the-door price for a Hallettsville-area buyer.",
+      "Utility costs are the one line that can't be itemized upfront, since Lavaca County land varies too much. A phone estimate starts it, and a contractor's exact bid finishes it.",
+    ],
+    gettingStarted: [
+      "If you're shopping more than one dealer near Hallettsville, bring us their quote — we'll walk through ours side by side so you can see exactly what's different.",
+      "Once you've compared real numbers, the next step is your property and your timeline for deciding.",
+    ],
+    localProof:
+      "More than one Lavaca County buyer has brought us a competing quote to compare, and we've walked through the line-item differences together.",
+    faq: [
+      {
+        q: "Will you look at a competing quote from another dealer near Hallettsville?",
+        a: "Yes — bring it and we'll walk through the itemized differences so you can see what's actually being compared.",
+      },
+      {
+        q: "Do I need to already own land in Lavaca County?",
+        a: "No — land already owned, a lot still being purchased, or family property still in the works are all fine places to start with us.",
+      },
+      {
+        q: "Do you deliver throughout Lavaca County?",
+        a: "We cover all of Lavaca County — share your address and we'll confirm the specifics for your site.",
+      },
+    ],
+    nearby: ['yoakum', 'schulenburg', 'flatonia', 'gonzales'],
+    heroImage: '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Hallettsville, TX',
+    secondaryImage: '/homes/the-katy/Katy-Hero.png',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Hallettsville, TX',
+    popularHomes: [
+      'marathon-chapman-1bed-1bath-park-model',
+      'marathon-pigeon-3bed-2bath-double-wide',
+      'marathon-daniel-1bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  yorktown: {
+    county: 'DeWitt',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Yorktown, TX and DeWitt County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A number of Yorktown-area buyers come to Texas Homes Direct after being told no somewhere else, and that's usually where the real conversation starts — a second look, not a repeat of the first rejection.",
+    buyingHeading: 'Buying a Mobile Home in DeWitt County',
+    buying: [
+      "Between financing directly and working with outside public and private lenders, a DeWitt County buyer who's been turned down before often still has a workable path with us.",
+      "A DeWitt County family ends up paying noticeably less for a HUD-code manufactured home than for site-built construction, whatever the financing search has looked like so far.",
+    ],
+    pricingExplainer: [
+      "Whatever your financing path ends up being, the out-the-door price for a Yorktown-area buyer works the same way — everything itemized above is already included.",
+      "Utility costs are the one variable, since DeWitt County land varies too much to quote sight unseen. A phone estimate starts it, an exact contractor bid finishes it.",
+    ],
+    gettingStarted: [
+      "If you've been told no somewhere else, that's genuinely useful for us to know upfront — it doesn't rule anything out, it just tells us where to start.",
+      "From there, we walk through financing options directly, then move into your property and floor plan once that part's settled.",
+    ],
+    localProof:
+      "We've worked with DeWitt County buyers near Yorktown who came to us after being turned down elsewhere, and found a path that actually worked.",
+    faq: [
+      {
+        q: "I was denied financing somewhere else — is it worth trying again near Yorktown?",
+        a: "Often, yes. Between in-house financing and outside public and private lenders, we frequently find a path even after another lender said no.",
+      },
+      {
+        q: "Do I need to already own land in DeWitt County?",
+        a: "No — a DeWitt County buyer might already have land, might be shopping for a lot, or might be working through family property. All three are fine starting points.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "A single wide is one section and costs less; a double wide is two sections joined on-site with more total space.",
+      },
+    ],
+    nearby: ['cuero', 'goliad', 'victoria', 'gonzales'],
+    heroImage: '/homes/the-pigeon/Marathon-Archer-7.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Yorktown, TX',
+    secondaryImage: '/homes/the-terra/Terra-Hero.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Yorktown, TX',
+    popularHomes: [
+      'marathon-hays-4bed-2bath-double-wide',
+      'marathon-amarillo-2bed-2bath-single-wide',
+      'marathon-kendall-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  goliad: {
+    county: 'Goliad',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Goliad, TX and Goliad County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Goliad is one of the oldest towns in Texas, and the pace of a conversation with Texas Homes Direct matches that a little — no rush, no script, just an actual conversation about what a Goliad County family needs.",
+    buyingHeading: 'Buying a Mobile Home in Goliad County',
+    buying: [
+      "That unhurried approach matters most when a Goliad-area buyer has specific questions about their property or their timeline — a scripted answer doesn't hold up to real questions.",
+      "Site-built construction runs well ahead of a comparable HUD-code manufactured home in cost, historic setting or not.",
+    ],
+    pricingExplainer: [
+      "For a Goliad-area buyer, there's no revised number waiting after the first one — everything itemized above is already locked into the price you're quoted.",
+      "Utility hookups are the exception to that fixed number — Goliad County land is inconsistent enough that a phone estimate only opens the conversation, and the contractor's on-site bid is the figure that matters.",
+    ],
+    gettingStarted: [
+      "There's no set script for a first conversation near Goliad — we'll talk through your property, your timeline, and your actual questions in whatever order makes sense to you.",
+      "Once we've covered what matters to you, we move into floor plan and financing at whatever pace works.",
+    ],
+    localProof:
+      "Goliad County families have taken their time with us, asking real questions before deciding, and we've never rushed anyone through it.",
+    faq: [
+      {
+        q: "Do I need a permit for a manufactured home in Goliad County?",
+        a: "Requirements vary by county and by property, so it's worth confirming directly with Goliad County. We can help point you toward the right office.",
+      },
+      {
+        q: "Do I need to already own land in Goliad County?",
+        a: "It's not a prerequisite. Goliad County buyers come to us with land secured, a lot still in progress, or family property being worked through.",
+      },
+      {
+        q: "What happens once I've picked a home?",
+        a: "From there, we take the lead on the build timeline, delivery, and setup, checking in with you rather than going quiet until it's done.",
+      },
+    ],
+    nearby: ['yorktown', 'victoria', 'cuero', 'beeville'],
+    heroImage: '/homes/the-mesquite/Mesquite-Body-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Goliad, TX',
+    secondaryImage: '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Goliad, TX',
+    popularHomes: [
+      'fleetwood-jackrabbit-3bed-2bath-double-wide',
+      'marathon-katy-3bed-2bath-single-wide',
+      'fleetwood-badger-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  'karnes-city': {
+    county: 'Karnes',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Karnes City, TX and Karnes County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A fair number of Karnes City-area buyers are new to the area entirely — relocating for work, for family, or just a fresh start — and don't have the local context a longtime resident would. Texas Homes Direct fills in that gap without making you feel behind.",
+    buyingHeading: 'Buying a Mobile Home in Karnes County',
+    buying: [
+      "We walk a new-to-the-area Karnes County buyer through the same process as anyone else, just with a little more explanation along the way about how things work locally.",
+      "New to the area or not, a HUD-code manufactured home still gets a Karnes County family into a new home for meaningfully less than building from scratch.",
+    ],
+    pricingExplainer: [
+      "Whether you've lived in Karnes County for years or just arrived, the out-the-door price works the same way — everything itemized above is already built in.",
+      "Utility costs are the one number that depends on the specific property, not how long you've been in the area. A phone estimate starts it, a contractor's exact bid finishes it.",
+    ],
+    gettingStarted: [
+      "If you're new to Karnes City, that's worth telling us upfront — we'll walk through the process a little more thoroughly than we would with someone who's done this before.",
+      "From there, it's the same path as anyone else: property, floor plan, and financing, explained clearly at each step.",
+    ],
+    localProof:
+      "We've helped more than a few families relocating to Karnes County get oriented on the process before they'd even settled into the area.",
+    faq: [
+      {
+        q: "I just moved to the area — where do I even start near Karnes City?",
+        a: "Right here. Reach out and we'll walk through the whole process, starting with your property situation and what you're looking for.",
+      },
+      {
+        q: "Do I need to already own land in Karnes County?",
+        a: "Not necessarily. Some Karnes County buyers already have a site, others are still looking, and some are working through property that's stayed in the family.",
+      },
+      {
+        q: "Do you deliver throughout Karnes County?",
+        a: "Yes. Send your address over and we'll spell out what delivery and setup will look like at your property.",
+      },
+    ],
+    nearby: ['floresville', 'kenedy', 'cuero', 'pleasanton'],
+    heroImage: '/homes/the-pearland/918F558B-6E95-44EF-9CD5-E240C3BBDDBE.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Karnes City, TX',
+    secondaryImage: '/homes/the-gadwall/Gadwall-Hero.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Karnes City, TX',
+    popularHomes: [
+      'fleetwood-roadrunner-3bed-2bath',
+      'marathon-jackson-1bed-1bath-park-model',
+      'marathon-brewster-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  kenedy: {
+    county: 'Karnes',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Kenedy, TX and Karnes County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A Kenedy-area buyer doesn't have to wait until their land purchase closes to lock in a home price with Texas Homes Direct — the two don't have to move in lockstep.",
+    buyingHeading: 'Buying a Mobile Home in Karnes County',
+    buying: [
+      "Locking in a floor plan and price while a Karnes County land deal is still in progress gives a buyer one less variable to manage during closing.",
+      "A HUD-code manufactured home puts a Karnes County family into a new home for noticeably less than site-built construction, whether your land deal has closed yet or not.",
+    ],
+    pricingExplainer: [
+      "Once a Kenedy-area buyer locks in a floor plan, the out-the-door price holds — everything itemized above stays fixed regardless of how long the land purchase takes.",
+      "Utility costs are the exception, since they depend on the specific property once it's yours. A phone estimate can start early, but the exact bid waits until a contractor can walk the land.",
+    ],
+    gettingStarted: [
+      "If your Karnes County land purchase is still in progress, that's fine — a Kenedy-area buyer can lock in a floor plan and price now and finish the land side separately.",
+      "Once both pieces are settled, we move straight into setup, using whatever timeline actually fits your situation.",
+    ],
+    localProof:
+      "We've locked in floor plans and pricing for Karnes County buyers whose land deals were still closing, so nothing had to wait on the other.",
+    faq: [
+      {
+        q: "Can I pick a home before my land purchase near Kenedy is finished?",
+        a: "Yes — we can lock in a floor plan and price while your land purchase is still in progress, so the two aren't dependent on each other.",
+      },
+      {
+        q: "Do I need to already own land in Karnes County?",
+        a: "No. Whether you've already got land, you're still shopping for a lot, or you're working through family property, we'll meet you where you are.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "A single wide ships as one section for a lower entry cost; a double wide ships as two sections joined on-site, giving you meaningfully more room.",
+      },
+    ],
+    nearby: ['karnes-city', 'floresville', 'cuero', 'beeville'],
+    heroImage: '/homes/the-grayson/IMG_0789.webp',
+    heroAlt: 'Double wide manufactured home exterior near Kenedy, TX',
+    secondaryImage: '/homes/the-brewster/Brewster-Body-1.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Kenedy, TX',
+    popularHomes: [
+      'marathon-jasper-3bed-2bath-double-wide',
+      'fleetwood-rattlesnake-3bed-2bath-single-wide',
+      'fleetwood-coyote-2bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  beeville: {
+    county: 'Bee',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Beeville, TX and Bee County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A lot of Bee County land near Beeville isn't tied up in subdivision rules or HOA restrictions the way in-town lots can be, which gives a buyer more say over their own property than a typical suburban lot would.",
+    buyingHeading: 'Buying a Mobile Home in Bee County',
+    buying: [
+      "That flexibility matters when a Beeville-area buyer wants to place a home, an outbuilding, or a garden a certain way — fewer outside rules to work around.",
+      "Open acreage or a more restricted lot, a HUD-code manufactured home still costs a Bee County family meaningfully less than comparable site-built construction.",
+    ],
+    pricingExplainer: [
+      "A Bee County quote doesn't move once you've seen it — everything itemized above is already built into the number, regardless of what your property looks like.",
+      "Utilities are the one line we won't pin down sight-unseen. We start with a phone estimate and follow it with a contractor's exact bid once they've actually walked the site.",
+    ],
+    gettingStarted: [
+      "For a Beeville-area buyer on open rural land, the first real question is simply what the property has and doesn't have yet — utilities, access, a cleared site.",
+      "From there, floor plan and financing come next, worked out around what your specific land actually needs.",
+    ],
+    localProof:
+      "We've set up homes on unrestricted rural properties across Bee County where buyers had far more flexibility than a typical subdivision lot allows.",
+    faq: [
+      {
+        q: "Are there fewer restrictions on rural land near Beeville?",
+        a: "Often, yes, compared to a subdivision — but specifics depend on your particular property, so it's worth confirming directly with Bee County for anything county-regulated.",
+      },
+      {
+        q: "Do I need to already own land in Bee County?",
+        a: "No. A Bee County buyer might already own the land, might be closing on a lot, or might be sorting through family property — all three work.",
+      },
+      {
+        q: "Do you deliver throughout Bee County?",
+        a: "Every part of it — send over your Bee County address and we'll spell out exactly what delivery and setup involve at your location.",
+      },
+    ],
+    nearby: ['goliad', 'kenedy', 'sinton', 'refugio'],
+    heroImage: '/homes/the-javelina/hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Beeville, TX',
+    secondaryImage: '/homes/the-katy/Katy-Hero.png',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Beeville, TX',
+    popularHomes: [
+      'marathon-coleman-3bed-2bath-double-wide',
+      'marathon-cisco-2bed-2bath-single-wide',
+      'marathon-widgeon-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  refugio: {
+    county: 'Refugio',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Refugio, TX and Refugio County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Selling a current home while buying a new manufactured one is its own kind of logistics puzzle, and Texas Homes Direct works with Refugio-area buyers managing exactly that — two moving pieces, one plan.",
+    buyingHeading: 'Buying a Mobile Home in Refugio County',
+    buying: [
+      "We can lock in a floor plan and financing for a Refugio County buyer while a current home sale is still working through closing, so neither piece holds up the other.",
+      "Mid-transition or fully settled, a HUD-code manufactured home still puts a Refugio County family into a new home for noticeably less than building new.",
+    ],
+    pricingExplainer: [
+      "A Refugio-area buyer's out-the-door number doesn't shift based on how long the current home sale takes — everything itemized above is locked in the moment you're quoted.",
+      "Utility costs are the exception, tied to the new property itself. A phone estimate can start early, with the exact bid following once a contractor has walked the land.",
+    ],
+    gettingStarted: [
+      "If you're selling a current home while buying near Refugio, tell us that upfront — we'll work the timeline around both pieces instead of assuming a simple, single transaction.",
+      "From there, floor plan and financing move forward on their own track while the sale works through its own process.",
+    ],
+    localProof:
+      "We've coordinated with Refugio County buyers managing a current home sale and a new manufactured home purchase at the same time.",
+    faq: [
+      {
+        q: "Can you work with my timeline if I'm selling my current home near Refugio?",
+        a: "Yes — tell us where things stand and we'll coordinate the floor plan and financing side without forcing your sale onto a rigid schedule.",
+      },
+      {
+        q: "Do I need to already own land in Refugio County?",
+        a: "It doesn't have to be settled yet. Refugio County buyers reach out with land already secured, a lot still being decided, or family property in progress.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "A single wide comes as a single section at a lower price point; a double wide comes as two sections joined once they're on your property, for more square footage.",
+      },
+    ],
+    nearby: ['beeville', 'goliad', 'sinton', 'victoria'],
+    heroImage: '/homes/the-brewster/Brewster-Body-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Refugio, TX',
+    secondaryImage: '/homes/the-spoonbill/Spoonbill-Hero.png',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Refugio, TX',
+    popularHomes: [
+      'marathon-longview-3bed-2bath-single-wide',
+      'marathon-grayson-4bed-2bath-double-wide',
+      'marathon-grapevine-2bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  sinton: {
+    county: 'San Patricio',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Sinton, TX and San Patricio County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "San Patricio County stretches across a fair amount of ground, and Texas Homes Direct covers all of it from Sinton out to the smaller communities around it — delivery coverage that doesn't stop at the town line.",
+    buyingHeading: 'Buying a Mobile Home in San Patricio County',
+    buying: [
+      "Whether a Sinton-area buyer is close to town or out toward the county line, the same team and the same process apply — nothing changes based on distance within the county.",
+      "No matter where in San Patricio County it's headed, a HUD-code manufactured home runs meaningfully under the cost of comparable site-built construction.",
+    ],
+    pricingExplainer: [
+      "The out-the-door price for a Sinton-area buyer holds regardless of exactly where in the county the property sits — everything itemized above is already included.",
+      "Utility costs are the one variable tied to the specific site. A phone estimate starts it, and a contractor's exact bid follows once they've actually seen the property.",
+    ],
+    gettingStarted: [
+      "The first real question for a Sinton-area buyer is simply where in San Patricio County the property sits — we cover the whole county, so this shapes scheduling, not whether we can deliver.",
+      "Once location's settled, we move into your property's specific setup needs and then floor plan and financing.",
+    ],
+    localProof:
+      "We've delivered across San Patricio County, from properties close to Sinton itself out to smaller communities nearby.",
+    faq: [
+      {
+        q: "Do you deliver throughout San Patricio County, or just Sinton itself?",
+        a: "All of San Patricio County — send your address and we'll confirm delivery and setup specifics for your property.",
+      },
+      {
+        q: "Do I need to already own land in San Patricio County?",
+        a: "Not yet, and that's fine. San Patricio County buyers reach out with land already secured, a lot in progress, or family property still being decided.",
+      },
+      {
+        q: "What happens once I've picked a home?",
+        a: "Once that's settled, we manage the build, get the home to your property, and complete setup, keeping you in the loop the whole way.",
+      },
+    ],
+    nearby: ['beeville', 'refugio', 'robstown', 'ingleside'],
+    heroImage: '/homes/the-spoonbill/Spoonbill-Hero.png',
+    heroAlt: 'Double wide manufactured home exterior near Sinton, TX',
+    secondaryImage: '/homes/the-katy/Katy-Hero.png',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Sinton, TX',
+    popularHomes: [
+      'marathon-woodduck-3bed-2bath-double-wide',
+      'fleetwood-armadillo-3bed-2bath',
+      'fleetwood-peredavid-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  gatesville: {
+    county: 'Coryell',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Gatesville, TX and Coryell County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Before a Gatesville-area buyer ever picks up the phone with us, they can see the full setup checklist and out-the-door pricing breakdown — nothing held back for the first call, nothing that only comes out once you're already talking to someone.",
+    buyingHeading: 'Buying a Mobile Home in Coryell County',
+    buying: [
+      "That upfront transparency matters to a Coryell County buyer who'd rather research on their own terms before a conversation starts, not be walked through it live for the first time.",
+      "Whether you call first or read everything first, the bottom line stays the same: a HUD-code manufactured home costs a Coryell County family noticeably less than site-built construction.",
+    ],
+    pricingExplainer: [
+      "The full setup checklist and out-the-door pricing are laid out above before you ever have to ask — everything itemized is already built into your Gatesville-area quote.",
+      "Utility costs are the one piece that can't be published in advance, since Coryell County land varies too much. A phone estimate starts it, a contractor's exact bid finishes it.",
+    ],
+    gettingStarted: [
+      "A Gatesville-area buyer can read through the full checklist and pricing breakdown above before ever reaching out — there's nothing held back for the first conversation.",
+      "When you are ready to talk, we pick up from your property and your specific questions, not from scratch.",
+    ],
+    localProof:
+      "Coryell County buyers near Gatesville have told us they appreciated seeing the full breakdown before their first call, not during it.",
+    faq: [
+      {
+        q: "Do I need to call before I can see pricing details for Gatesville?",
+        a: "No — the setup checklist and out-the-door pricing breakdown are available to review before you ever reach out.",
+      },
+      {
+        q: "Do I need to already own land in Coryell County?",
+        a: "No — Coryell County buyers come to us with land already picked out, a lot still under consideration, or family property still being sorted.",
+      },
+      {
+        q: "Do you deliver throughout Coryell County?",
+        a: "The full county — send your address and we'll break down exactly what delivery and setup involve at your specific location.",
+      },
+    ],
+    nearby: ['copperas-cove', 'lampasas', 'hamilton', 'temple'],
+    heroImage: '/homes/the-katy/Katy-Hero.png',
+    heroAlt: 'Double wide manufactured home exterior near Gatesville, TX',
+    secondaryImage: '/homes/the-terra/Terra-Hero.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Gatesville, TX',
+    popularHomes: [
+      'fleetwood-axis-3bed-2bath-double-wide',
+      'marathon-spoonbill-3bed-2bath-single-wide',
+      'marathon-dawson-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  'copperas-cove': {
+    county: 'Coryell',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Copperas Cove, TX and Coryell County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "A Copperas Cove-area buyer can see every financing option we offer before ever stepping into a conversation — in-house, public lenders, private lenders — laid out plainly instead of introduced one at a time as the conversation goes.",
+    buyingHeading: 'Buying a Mobile Home in Coryell County',
+    buying: [
+      "Seeing every financing path upfront lets a Coryell County buyer walk into the real conversation already knowing which option probably fits, instead of discovering it mid-call.",
+      "A Coryell County family still comes out ahead on cost with a HUD-code manufactured home versus building from scratch, no matter which financing path ends up fitting.",
+    ],
+    pricingExplainer: [
+      "The out-the-door price for a Copperas Cove-area buyer holds regardless of which financing path you choose — everything itemized above is already built in.",
+      "Utility costs are the one number financing can't predict, since they depend on the property itself. A phone estimate starts it, a contractor's exact bid finishes it.",
+    ],
+    gettingStarted: [
+      "Before anything else, a Copperas Cove-area buyer can review all three financing paths — in-house, public, private — to get a sense of which one probably fits before talking to anyone.",
+      "Once you've got a sense of the financing side, we move into your property and floor plan next.",
+    ],
+    localProof:
+      "We've laid out every financing option upfront for Coryell County buyers near Copperas Cove before their first real conversation with us.",
+    faq: [
+      {
+        q: "What financing options are available for a Copperas Cove-area buyer?",
+        a: "In-house financing, public lending programs, and private lenders — all reviewed upfront so you know your options before committing to anything.",
+      },
+      {
+        q: "Do I need to already own land in Coryell County?",
+        a: "No — some Coryell County buyers already have their site, some are still shopping, and some are working through property that's stayed in the family.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "Section count is the real difference — one for a single wide, two joined on-site for a double wide, which is also where the extra square footage comes from.",
+      },
+    ],
+    nearby: ['gatesville', 'lampasas', 'killeen', 'harker-heights'],
+    heroImage: '/homes/the-moose/hero.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Copperas Cove, TX',
+    secondaryImage: '/homes/the-javelina/hero.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Copperas Cove, TX',
+    popularHomes: [
+      'marathon-ranger-2bed-1bath-single-wide',
+      'fleetwood-pronghorn-4bed-2bath-double-wide',
+      'marathon-fisher-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  killeen: {
+    county: 'Bell',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Killeen, TX and Bell County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "With Fort Cavazos right next door, a lot of Killeen-area buyers are relocating on military orders, and Texas Homes Direct works with that reality directly — financing and timelines that account for a move you didn't fully control the timing of.",
+    buyingHeading: 'Buying a Mobile Home in Bell County',
+    buying: [
+      "A military family relocating to Bell County often has less lead time than a typical buyer, and we adjust the process to fit that reality rather than expecting you to fit ours.",
+      "On orders or settled locally, a HUD-code manufactured home gets a Bell County family into a new home for noticeably less than comparable site-built construction.",
+    ],
+    pricingExplainer: [
+      "A Killeen-area quote is fixed the moment you see it, PCS orders or not — everything itemized above is already built into the number, with nothing added mid-move.",
+      "Utility hookups are the one number we won't guess at — a phone estimate opens the conversation, and the exact figure comes only after a contractor has actually seen your property.",
+    ],
+    gettingStarted: [
+      "If you're relocating to Killeen on military orders, tell us that upfront — it changes what questions we ask first and how we prioritize the process.",
+      "From there, we move into your property situation and financing, working around whatever timeline your move actually gives you.",
+    ],
+    localProof:
+      "We've worked with military families relocating to Bell County on orders, adjusting our process to fit a timeline they didn't set themselves.",
+    faq: [
+      {
+        q: "Do you work with military families relocating to Killeen?",
+        a: "Yes — we regularly work with buyers relocating to Fort Cavazos and adjust the process around a military move's realities.",
+      },
+      {
+        q: "Do I need to already own land in Bell County?",
+        a: "Not a requirement. Some Bell County buyers already have a site lined up, some are still searching, and some are working through family land.",
+      },
+      {
+        q: "Do you deliver throughout Bell County?",
+        a: "We cover all of Bell County — send your address and we'll walk through what that means for your specific site.",
+      },
+    ],
+    nearby: ['harker-heights', 'copperas-cove', 'belton', 'temple'],
+    heroImage: '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Killeen, TX',
+    secondaryImage: '/homes/the-gadwall/Gadwall-Hero.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Killeen, TX',
+    popularHomes: [
+      'marathon-conroe-2bed-2bath-single-wide',
+      'marathon-redhead-3bed-2bath-double-wide',
+      'marathon-mesquite-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  'harker-heights': {
+    county: 'Bell',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Harker Heights, TX and Bell County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Harker Heights sits close enough to Killeen, Belton, and Temple that buyers sometimes aren't sure which of us actually covers their address. Short answer: all of them, including Harker Heights, get the same team and the same process.",
+    buyingHeading: 'Buying a Mobile Home in Bell County',
+    buying: [
+      "Whichever Bell County city you're closest to, the pricing and process near Harker Heights don't change depending on which neighbor you're technically nearer to.",
+      "A manufactured home built to current HUD code still costs meaningfully less than comparable site-built construction, wherever in the Bell County cluster it's headed.",
+    ],
+    pricingExplainer: [
+      "A Harker Heights-area quote is fixed the moment you see it, regardless of which nearby city's page brought you here — everything itemized above is already included.",
+      "Utility hookups don't get the same fixed treatment, since Bell County land differs enough lot to lot that a phone estimate is just a starting point until a contractor sees it in person.",
+    ],
+    gettingStarted: [
+      "For a Harker Heights-area buyer, it genuinely doesn't matter whether your address technically reads Harker Heights, Killeen, or Belton — the first real question is your property, not your zip code.",
+      "From there, floor plan and financing move forward the same way they would from any of our Bell County pages, since it's one team covering all of them.",
+    ],
+    localProof:
+      "We've delivered to Harker Heights addresses, Killeen addresses, and Belton addresses without missing a beat between them — it's the same coverage area to us.",
+    faq: [
+      {
+        q: "Does it matter if I'm technically in Killeen or Belton instead of Harker Heights?",
+        a: "Not for us — we treat the whole Bell County cluster as one coverage area, so the city name on your address doesn't change the price or the process.",
+      },
+      {
+        q: "Do I need to already own land in Bell County?",
+        a: "It doesn't have to be. Bell County buyers show up with land already in hand, a lot they're still deciding on, or family property in progress.",
+      },
+      {
+        q: "Do you deliver throughout Bell County?",
+        a: "We cover all of Bell County — give us your address and we'll confirm what that looks like for your specific property.",
+      },
+    ],
+    nearby: ['killeen', 'belton', 'temple', 'copperas-cove'],
+    heroImage: '/homes/the-pronghorn/Image.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Harker Heights, TX',
+    secondaryImage: '/homes/the-mesquite/Mesquite-Body-1.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Harker Heights, TX',
+    popularHomes: [
+      'marathon-abilene-2bed-1bath-single-wide',
+      'marathon-bell-3bed-2bath-double-wide',
+      'marathon-terra-2bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  belton: {
+    county: 'Bell',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Belton, TX and Bell County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Belton Lake draws a specific kind of buyer to the area — people looking for acreage near the water for a second property or a full-time home, not just an in-town lot. Texas Homes Direct works with exactly that kind of Bell County property.",
+    buyingHeading: 'Buying a Mobile Home in Bell County',
+    buying: [
+      "Lake-adjacent acreage near Belton often has different access and utility conditions than an in-town lot, and we scope each site individually rather than assuming a standard package.",
+      "Waterfront acreage or an in-town lot, a HUD-code manufactured home still runs meaningfully under the cost of comparable site-built construction near Belton.",
+    ],
+    pricingExplainer: [
+      "Lake-adjacent property or an in-town lot, the out-the-door price for a Belton-area buyer holds either way — everything itemized above is already built into your quote.",
+      "Utility costs are the one variable, since lake-adjacent land can have its own access and terrain conditions. A phone estimate starts it, an exact contractor bid finishes it.",
+    ],
+    gettingStarted: [
+      "For a Belton-area buyer looking at lake-adjacent property, the first real question is what access the site actually has — road, utilities, distance from the water.",
+      "Once we understand the property, floor plan and financing follow, sized to what actually fits a recreational or full-time setup.",
+    ],
+    localProof:
+      "We've set up homes on acreage near Belton Lake for buyers using the property as a full-time home and as a weekend retreat alike.",
+    faq: [
+      {
+        q: "Can you set up a home on acreage near Belton Lake?",
+        a: "Yes — we scope lake-adjacent properties the same careful way we'd scope any site, accounting for access and terrain before finalizing a plan.",
+      },
+      {
+        q: "Do I need to already own land in Bell County?",
+        a: "No. A lot already secured, one you're still deciding on, or family property that's still being worked out — any of those gets you started with us.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "A single wide arrives as one section and keeps costs down; a double wide arrives as two sections joined on your property for more overall space.",
+      },
+    ],
+    nearby: ['temple', 'killeen', 'harker-heights', 'salado'],
+    heroImage: '/homes/the-gadwall/Gadwall-Hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Belton, TX',
+    secondaryImage: '/homes/the-chapman/Chapman-Hero.png',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Belton, TX',
+    popularHomes: [
+      'marathon-pintail-4bed-2bath-double-wide',
+      'fleetwood-raven-3bed-2bath-single-wide',
+      'marathon-beaumont-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  temple: {
+    county: 'Bell',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Temple, TX and Bell County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Temple's medical center draws staff relocating from all over, and a fair number of them end up comparing a manufactured home against a new subdivision house before deciding — Texas Homes Direct lays out that comparison honestly.",
+    buyingHeading: 'Buying a Mobile Home in Bell County',
+    buying: [
+      "A manufactured home built to current HUD code costs meaningfully less than a comparable new subdivision house near Temple, without stepping down in construction quality.",
+      "Relocating for work doesn't have to mean rushing the decision — a Temple-area buyer gets the same unhurried comparison whether they're moving in a month or deciding a year out.",
+    ],
+    pricingExplainer: [
+      "Relocating for the medical center or not, the out-the-door price for a Temple-area buyer is locked in the moment you see your quote — everything itemized above is already included.",
+      "The exception is utilities, tied entirely to your specific Bell County property — a phone estimate is the starting point, and the contractor's on-site bid is the number that actually counts.",
+    ],
+    gettingStarted: [
+      "For a Temple-area buyer weighing a manufactured home against a new subdivision house, the real comparison starts with actual numbers, not assumptions about either option.",
+      "Once the cost comparison makes sense, we move into your property situation and financing, whatever your timeline for relocating looks like.",
+    ],
+    localProof:
+      "We've walked more than a few Bell County families relocating for work through a real, honest comparison against new subdivision construction near Temple.",
+    faq: [
+      {
+        q: "How does a manufactured home actually compare to a new subdivision house near Temple?",
+        a: "Typically for meaningfully less, without a drop in HUD-code construction quality — run our free mortgage analysis tool to see real numbers for your budget.",
+      },
+      {
+        q: "Do I need to already own land in Bell County?",
+        a: "No. Whether your Bell County land is already secured, still being purchased, or tied up in family property, we'll work with where things stand.",
+      },
+      {
+        q: "Do you deliver throughout Bell County?",
+        a: "Yes. Share your address and we'll lay out what delivery and setup actually look like at your location.",
+      },
+    ],
+    nearby: ['belton', 'killeen', 'cameron', 'salado'],
+    heroImage: '/homes/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Temple, TX',
+    secondaryImage: '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Temple, TX',
+    popularHomes: [
+      'marathon-lanny-1bed-1bath-park-model',
+      'marathon-loving-3bed-2bath-double-wide',
+      'marathon-temple-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
+  },
+
+  hamilton: {
+    county: 'Hamilton',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Hamilton, TX and Hamilton County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Hamilton County is one of the smaller counties Texas Homes Direct serves, and that doesn't change how much attention a Hamilton-area buyer gets — the same process, the same care, regardless of county size.",
+    buyingHeading: 'Buying a Mobile Home in Hamilton County',
+    buying: [
+      "A smaller county doesn't mean fewer options for a Hamilton-area buyer — the same full range of floor plans and financing paths apply here as anywhere else we deliver.",
+      "Small county or not, a HUD-code manufactured home still costs a Hamilton County family noticeably less than comparable site-built construction.",
+    ],
+    pricingExplainer: [
+      "The out-the-door price for a Hamilton-area buyer works exactly the same way as anywhere else we serve — everything itemized above is already built in.",
+      "The one thing we won't lock in over the phone is the utility number, since Hamilton County land is too inconsistent for that to be honest — a contractor's visit sets the real figure.",
+    ],
+    gettingStarted: [
+      "For a Hamilton-area buyer, the first real conversation covers the same ground it would anywhere else we serve — your property, your floor plan preferences, and your financing situation.",
+      "From there, the process moves the same way it would in a larger county, just with fewer other buyers competing for the same delivery slots.",
+    ],
+    localProof:
+      "We've worked with Hamilton County families the same way we'd work with a buyer in a larger, more heavily served county.",
+    faq: [
+      {
+        q: "Do you actually serve all of Hamilton County, or just the town itself?",
+        a: "Every part of Hamilton County — share your address and we'll walk through delivery and setup for your specific site.",
+      },
+      {
+        q: "Do I need to already own land in Hamilton County?",
+        a: "It's not necessary yet. Hamilton County buyers show up at every stage — land already in hand, a lot still being chosen, or family property in the works.",
+      },
+      {
+        q: "What's the difference between a single wide and a double wide?",
+        a: "A single wide is a single section that costs less to start; a double wide is two sections joined on-site, which adds meaningfully more living space.",
+      },
+    ],
+    nearby: ['goldthwaite', 'comanche', 'gatesville', 'stephenville'],
+    heroImage: '/homes/the-coleman/Coleman-Gallery-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Hamilton, TX',
+    secondaryImage: '/homes/the-brewster/Brewster-Body-1.jpg',
+    secondaryAlt: 'Single wide manufactured home available for delivery near Hamilton, TX',
+    popularHomes: [
+      'marathon-pearland-3bed-2bath-single-wide',
+      'marathon-caldwell-4bed-2bath-double-wide',
+      'fleetwood-bobcat-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-23',
   },
 
 }

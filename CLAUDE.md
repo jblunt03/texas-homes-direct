@@ -4,7 +4,18 @@ This file governs how Claude Code should work in this repo, specifically for
 the "Cities We Serve" SEO city-page system (`/cities` hub +
 `/mobile-homes-[slug]-tx` pages). Read this before touching anything under
 `lib/cityContent.ts`, `lib/cities.ts`, `scripts/write_city_content.py`,
-`scripts/check_duplication.py`, or `components/CityPageContentV2.tsx`.
+`scripts/check_duplication.py`, `scripts/check_redundancy.py`,
+`scripts/assign_popular_homes.py`, `scripts/validate_batch.py`, or
+`components/CityPageContentV2.tsx`.
+
+**Validating a batch is one command:** `python3 scripts/validate_batch.py`
+— generates content, runs every check below in order, starts a scratch dev
+server to verify word count/schema/no-localhost, tears it down, and prints
+PUBLISHABLE or NOT PUBLISHABLE with specifics. See "One-command batch
+validation" further down for what each step checks and how to read a
+failure. Run this before every review with the user — don't run the
+individual checks by hand unless you're iterating on a fix for one specific
+failure it already told you about.
 
 ## Hard rules for all generated city-page content
 
@@ -107,9 +118,14 @@ module docstring for the exact authoring workflow.
 Follow this every time you add or edit a batch of city pages:
 
 1. **Get the raw inputs.** For each new city: name, slug, county, region,
-   hero/secondary image paths + alt text, nearby real (geographically
-   accurate) neighbor slugs, and 3 popular-home slugs from
-   `lib/sampleListings.ts`.
+   hero/secondary image paths + alt text, and nearby real (geographically
+   accurate) neighbor slugs. Don't hand-pick `popularHomes` — leave it as
+   an empty list (or any placeholder) and run
+   `python3 scripts/assign_popular_homes.py` after step 3 below; it
+   recomputes every authored city's `popularHomes`, including the ones
+   already published, from `lib/sampleListings.ts`. See "Popular Homes
+   selection" further down for why this is scripted rather than picked by
+   hand.
 2. **Add structural entries** to `CITIES` in `lib/cities.ts` (published:
    false until content is ready) and to `CITIES` in
    `scripts/write_city_content.py`.
@@ -142,44 +158,149 @@ Follow this every time you add or edit a batch of city pages:
    section (2026-09-18) mostly echoed each city's own intro hook one
    section later on the same page — passed the cross-city duplication
    checker fine, but was still repetition on a single page, which that
-   checker can't catch (it only compares a field against the *same* field
-   on *other* cities, not against *other fields on the same page*). Fixed
-   by checking `gettingStarted` against that city's own `intro`/`buying`
-   text directly — a quick 6-gram shingle comparison, not part of
-   `check_duplication.py` but worth running by hand (or scripting again)
-   any time this field is edited. The fix itself: reorient toward the
-   *mechanics* of starting (what determines the next step — land status,
-   lot size, what the first call actually covers) rather than restating
-   *why* the city's differentiator matters, which the intro/buying section
-   already covers.
+   checker structurally can't catch (it only compares a field against the
+   *same* field on *other* cities, not against *other fields on the same
+   page*). `scripts/check_redundancy.py` exists specifically to catch this
+   class of problem now — see "One-command batch validation" below. The
+   fix, when it flags something: reorient toward the *mechanics* of
+   starting (what determines the next step — land status, lot size, what
+   the first call actually covers) rather than restating *why* the city's
+   differentiator matters, which the intro/buying section already covers.
    **Audit concepts, not just wording, before moving on** — read all the
    new intros (or whichever field you just wrote) back to back and check
    each one leads on a genuinely different idea (cost, turnkey setup,
    permitting handled, financing flexibility, no-pressure, land you already
    own, single vs. double wide, what's included, HUD quality, verifiable
    pricing, monthly payment, credit-approval accessibility, delivery
-   coverage, brand values, etc.). The duplication checker only measures
-   word overlap — two intros can pass it and still open on the same idea
-   in different words, which reads as the same page twice to a human.
-   Rewrite until no two pages in the batch share a lead concept.
-4. **Generate:** `python3 scripts/write_city_content.py` — regenerates
-   `lib/cityContent.ts`.
-5. **Duplication check:** `python3 scripts/check_duplication.py` — compares
-   every published city's intro/buying/localProof/FAQ text against every
-   *other* published city (not just neighbors), after masking out city/
-   county names, using word-8-gram Jaccard similarity. Non-zero exit code
-   and a printed report if anything is too close (default threshold 0.25).
-   **Fix flagged text by rewriting one side with genuinely different
-   sentence structure — never by lowering the threshold.**
-6. **Type-check:** `npx tsc --noEmit`.
-7. **Review with the user.** Show real output, not a description of it (see
-   next section). Flip `published: true` in `lib/cities.ts` only for cities
-   the user has approved.
-8. **Regenerate and re-check** (`write_city_content.py` then
-   `check_duplication.py`) since flipping `published` changes which pages
-   the checker compares.
-9. **Do not commit or deploy without explicit, fresh instruction** — this
+   coverage, brand values, etc.). Neither checker below measures this —
+   two intros can pass both and still open on the same idea in different
+   words, which reads as the same page twice to a human. Rewrite until no
+   two pages in the batch share a lead concept.
+4. **Validate:** `python3 scripts/validate_batch.py` — one command runs
+   everything below and tells you PUBLISHABLE or NOT PUBLISHABLE with
+   specifics. See "One-command batch validation" for what it checks. Don't
+   run the individual scripts by hand except while iterating on a fix for
+   one specific failure it already reported.
+5. **Review with the user.** Show real output, not a description of it (see
+   the Evidence rule below). Flip `published: true` in `lib/cities.ts` only
+   for cities the user has approved.
+6. **Re-validate** (`python3 scripts/validate_batch.py` again) since
+   flipping `published` changes which pages the duplication checker and
+   the schema/word-count checks cover.
+7. **Do not commit or deploy without explicit, fresh instruction** — this
    holds every session, not just once.
+
+## One-command batch validation
+
+`python3 scripts/validate_batch.py` (added 2026-09-18) is the single
+command that tells you whether a batch is publishable. Run it instead of
+the individual scripts, except while actively iterating on a fix for one
+step it already flagged. It stops at the first hard failure and always
+prints a final summary table plus PUBLISHABLE / NOT PUBLISHABLE. Steps, in
+order:
+
+1. **Generate** — `write_city_content.py`, regenerates `lib/cityContent.ts`.
+2. **Cross-city duplication** — `check_duplication.py`. A field (intro,
+   buying, FAQ answer, etc.) against the *same* field on *every other*
+   published city, word-8-gram Jaccard, threshold 0.25.
+3. **Within-page redundancy** — `check_redundancy.py`. Every prose field on
+   a city's page against every *other* field on that *same* city's page
+   (does `gettingStarted` just restate `intro`? does an FAQ answer copy
+   `buying[1]`?). Word-6-gram Jaccard, threshold 0.15. This is the check
+   that catches what #2 structurally cannot — see the `gettingStarted` note
+   above for the real incident that motivated it.
+4. **Hard-rule sweep** — greps the generated source (with comments and the
+   module docstring stripped, so the rules' own descriptions don't
+   self-flag) for: the "THD" abbreviation, delivery-timeline language,
+   named competitors, Spanish-language characters, and a utility-cost
+   claimed positively "upfront" (a negation word like "can't" or "isn't" in
+   the same clause clears it — that's the honest, required framing; only a
+   clause *without* one is a real violation).
+5. **Type-check** — `npx tsc --noEmit`.
+6. **Dev server up** — starts `next dev` on a scratch port (3099, chosen to
+   avoid colliding with a preview already running on the usual port),
+   polls until it responds, tears it down at the end (step 10) no matter
+   what happens in between.
+7. **Word count** — every currently-published city page, against the
+   850–950 target. A page outside that range is a *warning* (printed, not
+   blocking) — the target is aspirational per the note above, and matching
+   it exactly isn't a launch requirement. A page under 600 words *is*
+   blocking — that's not "a bit short," that's a sign a field is missing
+   or empty.
+8–9. **Required schema + no localhost** — for every published city page
+   and the three explainer pages: fetches the rendered HTML, parses every
+   `<script type="application/ld+json">` block, and confirms the required
+   `@type`s are present (`FAQPage`, `BreadcrumbList`, `WebPage`, and for
+   city pages only, `LocalBusiness` + `ImageObject`), that `WebPage`'s
+   `speakable.cssSelector` includes `.bmh-faq-speakable`, and that no
+   JSON-LD `url`/`@id`, canonical `<link>`, or `og:url` on the page points
+   at `localhost`/`127.0.0.1` — a real (if easy to miss) way a dev-only
+   value could ship as if it were the production URL.
+10. **Dev server down** — always runs, including after a failure in 7–9.
+
+If you add a new required field, JSON-LD type, or hard rule, add the check
+to `validate_batch.py` in the same pass — don't leave it as something only
+caught by manual review. That's the whole point of this script existing.
+
+## Popular Homes selection
+
+The "Homes to Get You Started" block (renamed from "Popular Homes to
+Consider" on 2026-09-18 — see below) shows 3 of the 54 real listings in
+`lib/sampleListings.ts` on every city page. Selection is computed by
+`scripts/assign_popular_homes.py`, not picked by hand per city — run it
+after adding a new city or new inventory to `lib/sampleListings.ts`:
+
+```
+python3 scripts/assign_popular_homes.py
+python3 scripts/write_city_content.py
+python3 scripts/validate_batch.py
+```
+
+**Why this exists:** before 2026-09-18, `popularHomes` was hand-picked per
+city (or copy-pasted from a similar city) with no rule behind it. The
+result: 1 of 54 listings (`marathon-katy-3bed-2bath-single-wide`) appeared
+on 39 of 44 pages, and 36 of the 54 real listings never appeared on any
+city page at all. Both numbers were arbitrary, not evidence of anything —
+there's no per-city sales or inquiry data behind which homes are actually
+popular where, so a literal "popularity" ranking was never real to begin
+with.
+
+**Selection rule:** least-used-listing-first rotation across all 54,
+deterministic (same inputs always produce the same assignment — a
+city-slug-seeded tiebreak keeps cities from converging on identical
+triples when their usage counts happen to tie, which a naive least-used
+sort does constantly). Each city's 3 picks are nudged toward including
+both a single-wide-family and a double-wide-family listing — a reasonable
+range to show, not a claim about that county's typical lot size or
+household needs (no such per-city signal exists in the copy — seriously
+considered and rejected; see below). One exception: **New Braunfels** is
+hand-picked (smallest single wide → mid double wide → largest 4-bed double
+wide) because its copy makes an explicit, literal range claim ("compact
+single-section homes...to larger four-bedroom double wides") that the
+selection should actually match.
+
+**What was considered and rejected:** the original ask was "pages leaning
+smaller budget/tighter lot get single wides, pages leaning more space get
+double wides" — fit-based on what each city's own copy already says. On
+inspection, that signal doesn't actually exist: every city that discusses
+single-wide-vs-double-wide sizing at all (15 of 44) presents it as a
+*balanced*, household-dependent choice ("depends on your lot and your
+family's needs"), never a lean specific to that city. The few cities that
+looked like they leaned one way on a keyword scan ("smaller number,"
+"lower price point") were all talking about manufactured-vs-site-built
+cost comparison — a universal claim, not a per-city size signal — not
+home square footage. Inventing a per-city lean where the copy doesn't
+support one would be the same class of fabrication the "typical lot sizes"
+idea was rejected for earlier (see the word-count discussion history) —
+so the rotation is coverage- and range-based, honestly, rather than
+fit-based where "fit" isn't real.
+
+**Heading:** "Popular Homes to Consider" implied a popularity ranking the
+site was never actually running. Renamed to **"Homes to Get You
+Started"** — accurate to what the section does (a representative range to
+look at, not a leaderboard) and echoes the "Getting Started" section
+already on the page. `<h2>` text lives in
+`components/CityPageContentV2.tsx`.
 
 ## Explainer pages — topics that don't belong in per-city FAQ rotation
 

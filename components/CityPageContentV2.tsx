@@ -279,13 +279,14 @@ export default function CityPageContentV2({
         </div>
       </section>
 
-      {/* ── POPULAR HOMES ────────────────────────────────────────── */}
+      {/* ── HOMES TO GET YOU STARTED (fit-based selection, not */}
+      {/* popularity — see scripts/assign_popular_homes.py) ───────── */}
       {popular.length > 0 && (
         <section style={{ background: 'var(--color-canvas)', padding: '40px 0' }}>
           <div className="bmh-container">
             <div className="bmh-section-head" style={{ marginBottom: 0 }}>
               <h2 className="bmh-city-h2" style={{ margin: 0 }}>
-                Popular Homes to <em>Consider</em>
+                Homes to <em>Get You Started</em>
               </h2>
               <Link href="/browse" className="bmh-btn bmh-btn-secondary">
                 View our full inventory →
