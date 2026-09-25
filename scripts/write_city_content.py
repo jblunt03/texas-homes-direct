@@ -1253,6 +1253,10 @@ CITY_COPY = {
             "A manufactured home costs meaningfully less than a comparable site-built house in the Austin area, without giving up HUD-code construction quality. Texas Homes Direct prices every home clearly upfront, so you're comparing real numbers instead of guessing.",
             "Travis County has room for a manufactured home whether you're placing it on family land, your own land, or a lot you're purchasing separately. We'll walk you through what your specific site needs before you commit to anything.",
         ],
+        "pricingExplainer": [
+            "Every Austin-area quote already reflects what it actually costs to build here — once you see the number, it's the number, itemized above and locked in.",
+            "Travis County utility costs are the one thing we won't guess at over the phone. A starting estimate gets the conversation going, and a contractor's on-site visit sets the figure that actually counts.",
+        ],
         "gettingStarted": [
             "Most Austin-area buyers open with a monthly-cost question, and that's genuinely where the first conversation goes — real numbers before floor plans, before setup, before anything else.",
             "Once you've seen a figure that makes sense, we get into your Travis County site: family land, land you already own, or a lot you're still buying all lead to the same walkthrough of what that specific property will need.",
@@ -1262,9 +1266,13 @@ CITY_COPY = {
 {"q": "How much does a manufactured home cost in Austin?",
              "a": "It depends on the floor plan, size, and features you choose, but manufactured homes consistently run below the cost of a comparable site-built home. Run our free mortgage analysis to see real numbers for your budget."},
 {"q": "Do I need to already own land in Travis County?",
-             "a": "No. Some buyers already have land, some are purchasing a lot separately, and some are building on family property. Texas Homes Direct works with buyers at any of those starting points."},
+             "a": "Not at all. Some Travis County buyers already have land, others are mid-purchase on a lot, and some are working through family property — we adapt to wherever you're starting from."},
 {"q": "What's the difference between a single wide and a double wide?",
              "a": "A single wide is one continuous section and typically costs less; a double wide is built from two sections joined on-site and gives you more square footage. Which one makes sense depends on your lot and your family's needs."},
+            {
+                "q": "Does Austin's tech-driven housing market change how manufactured homes are priced?",
+                "a": "Not directly — our pricing is based on the home and your specific Travis County site, not on what's happening in the broader Austin real estate market.",
+            },
 ],
     },
     "seguin": {
@@ -1298,6 +1306,10 @@ CITY_COPY = {
             "McLennan County permitting and setup requirements aren't identical to every other county in Texas, and that's fine — it's our job to sort out, not yours. We coordinate the paperwork so you're not stuck chasing offices on your own.",
             "A double wide gives a Waco-area family more bedrooms and living space than a single wide, built from two sections joined on-site. A single wide costs less and sets up more simply. We'll help you weigh which one actually fits your household.",
         ],
+        "pricingExplainer": [
+            "A McLennan County quote from us doesn't creep upward as the paperwork moves along — everything itemized above is locked in from the first number you see.",
+            "Because utility costs ride on the property, not a formula, we start with a phone estimate and let a contractor's actual visit to your Waco-area land set the real number.",
+        ],
         "gettingStarted": [
             "Two details shape everything else for a Waco-area buyer: whether land is already lined up, and roughly how many bedrooms the household actually needs.",
             "McLennan County's permitting process isn't something you're expected to know going in — we handle that coordination once those two answers are in hand, then walk through single wide versus double wide against your actual lot.",
@@ -1308,6 +1320,14 @@ CITY_COPY = {
              "a": "That comes down to your lot's access, setback requirements, and layout more than raw acreage. We'll go over your specific site before recommending a single wide or double wide."},
 {"q": "Do I need a permit for a manufactured home in McLennan County?",
              "a": "Permitting requirements vary by county and by property, so it's worth confirming with McLennan County directly. We can help point you to the right office."},
+            {
+                "q": "Is a manufactured home a realistic option somewhere as fast-growing as Waco?",
+                "a": "Yes — growth in the area doesn't change the math. A HUD-code manufactured home still costs meaningfully less than comparable site-built construction near Waco.",
+            },
+            {
+                "q": "What happens once I've picked a home?",
+                "a": "From there, our team coordinates the build, delivery to your site, and the full setup, keeping you posted as things move along.",
+            },
 ],
     },
     "tyler": {
@@ -1315,6 +1335,10 @@ CITY_COPY = {
         "buying": [
             "Smith County families looking at the numbers usually find a manufactured home comes in well under what a comparable site-built house would cost, while still meeting the same HUD construction standards.",
             "Some buyers already have utilities in place on their land; others are starting from scratch. Texas Homes Direct scopes the actual setup work your property needs rather than quoting a generic package that may not apply.",
+        ],
+        "pricingExplainer": [
+            "The real monthly number a Tyler-area buyer gets upfront stays real all the way through closing — everything itemized above is already in it, nothing tacked on later.",
+            "Smith County soil and access vary enough lot to lot that a phone estimate alone would be a guess dressed up as a quote. A contractor's visit turns it into a real number.",
         ],
         "gettingStarted": [
             "A real monthly number comes first for most Tyler-area buyers, ahead of floor plans or setup details — there's no reason to guess at affordability before anything else gets discussed.",
@@ -1328,6 +1352,10 @@ CITY_COPY = {
              "a": "Yes — reach out and we'll go over photos and floor plans for homes that fit what you're looking for, so you know what you're getting before you commit."},
 {"q": "Do you sell used homes, or only new ones?",
              "a": "Our focus is new, HUD-certified manufactured homes. Contact us for current availability."},
+            {
+                "q": "Does Tyler's reputation as a gardening and nursery hub affect setting up a home on a landscaped lot?",
+                "a": "Not for setup itself — an established yard doesn't change the process, though we'll work with you on protecting mature landscaping during delivery if that's a concern.",
+            },
 ],
     },
     "el-paso": {
@@ -1335,6 +1363,10 @@ CITY_COPY = {
         "buying": [
             "Texas Homes Direct finances directly, and also works with a mix of public and private lenders — so buyers with less-than-perfect credit still typically have a path forward. The mortgage analysis tool won't pull your credit, so it's a low-risk way to see real numbers.",
             "Some El Paso County buyers already know exactly where their home will go — family land, land they already own, or a lot they're purchasing separately — and some are still deciding. Either way, we'll go over what the specific site requires.",
+        ],
+        "pricingExplainer": [
+            "An El Paso County quote works the same whether your credit history is spotless or not — everything itemized above is locked into the number the moment you see it.",
+            "Utility costs are the one figure we won't pretend to know from a phone call, since El Paso County terrain varies enough to matter. A contractor's on-site visit sets the real bid.",
         ],
         "gettingStarted": [
             "Financing questions usually come first in El Paso, since the mortgage analysis tool gives real numbers without a credit pull — a low-risk way to see where you actually stand before committing to anything.",
@@ -1348,6 +1380,10 @@ CITY_COPY = {
              "a": "Yes — delivery throughout El Paso County is something we handle regularly. Give us your address and we can walk through what it looks like for your particular site."},
 {"q": "Can I get financing with less-than-perfect credit?",
              "a": "Usually, yes. Between in-house financing and outside public and private lending partners, most buyers find something workable even without perfect credit."},
+            {
+                "q": "Is the process different because El Paso is a border city?",
+                "a": "No — the home, the pricing, and the process are the same as anywhere else we serve in Texas. El Paso County's own permitting is the only local variable, and we manage that directly.",
+            },
 ],
     },
     "san-antonio": {
@@ -1355,6 +1391,10 @@ CITY_COPY = {
         "buying": [
             "A manufactured home built to current HUD code gets a Bexar County family into a new home for meaningfully less than comparable site-built construction, without sacrificing quality standards.",
             "Double wide homes arrive in two sections that are joined and finished on-site — a bigger undertaking than a single wide, but one our crews manage as part of your purchase. Either option is financed the same way.",
+        ],
+        "pricingExplainer": [
+            "There's no negotiating a Bexar County quote upward after the fact — everything itemized above is already built into the number you saw on day one.",
+            "What a contractor actually finds on your Bexar County property, not a phone estimate, is what determines the final utility bid — we give you the estimate first, then confirm it in person.",
         ],
         "gettingStarted": [
             "There's no back-and-forth to open a purchase near San Antonio — you get a real price on the home you're looking at first, and the rest of the conversation builds from that number.",
@@ -1364,6 +1404,18 @@ CITY_COPY = {
         "faq": [
 {"q": "Do you deliver to all of Bexar County?",
              "a": "Yes, we deliver throughout Bexar County and the surrounding area. Share your address and we'll confirm the details specific to your property."},
+            {
+                "q": "Do you work with military families relocating to San Antonio's bases?",
+                "a": "Yes — San Antonio has several military installations, and we regularly work with families relocating to the area on orders.",
+            },
+            {
+                "q": "Do I need to already own land in Bexar County?",
+                "a": "It's not a prerequisite. Bexar County buyers reach out with land already secured, a lot still being purchased, or family property still being sorted.",
+            },
+            {
+                "q": "What's the difference between a single wide and a double wide?",
+                "a": "A single wide keeps things simple with one section at a lower price point; a double wide adds a second section joined on-site for a bigger home.",
+            },
 ],
     },
     "laredo": {
@@ -1371,6 +1423,10 @@ CITY_COPY = {
         "buying": [
             "Permitting and setup work differently from one Texas county to the next, and most buyers don't have the time to learn Webb County's specific process. Texas Homes Direct handles that coordination so you're not tracking down paperwork on your own.",
             "A single wide keeps your entry cost lower and your setup simpler; a double wide gives a growing Laredo family more bedrooms and square footage. Both are financed the same way, and we'll help you figure out which one fits.",
+        ],
+        "pricingExplainer": [
+            "A Laredo-area quote holds the same way the rest of our pricing does — everything itemized above is already accounted for, border-city market or not.",
+            "Webb County land conditions are inconsistent enough that we treat a phone estimate as a placeholder, not a promise — the contractor's on-site bid is the number that actually counts.",
         ],
         "gettingStarted": [
             "Price and land come up in that order for a Laredo-area buyer — the price shouldn't hinge on details about your property you haven't worked out yet, so we start with the number.",
@@ -1384,6 +1440,10 @@ CITY_COPY = {
              "a": "No — some buyers already have land, some are buying a lot separately, and some are working with family property. Let us know where things stand and we'll go from there."},
 {"q": "Do you deliver throughout Webb County?",
              "a": "Yes. Give us your address and we'll walk through exactly what delivery and setup involve for your property."},
+            {
+                "q": "Does Laredo's role as a major trade hub affect delivery scheduling?",
+                "a": "Not in a way that changes pricing or process — we scope delivery to your specific Webb County property the same way we would anywhere else.",
+            },
 ],
     },
     "mcallen": {
@@ -1391,6 +1451,10 @@ CITY_COPY = {
         "buying": [
             "We quote setup as part of your home's price, not as a separate bill after delivery. Utility connections, the pad, underpinning, and skirting are all included and financed together for McAllen-area buyers.",
             "Whether you're working with land you already own in Hidalgo County, a lot you're buying separately, or family property, Texas Homes Direct can walk you through what your specific site will need.",
+        ],
+        "pricingExplainer": [
+            "Beyond setup, the rest of a McAllen-area quote is just as fixed — tax, title, license, delivery, and appliances are all itemized above and locked in with the number you're given.",
+            "Utility hookups are the one line item that can't be priced from a phone call alone, since Hidalgo County land varies too much. A contractor's visit is what turns the estimate into a real bid.",
         ],
         "gettingStarted": [
             "The first thing we walk through with a McAllen-area buyer is where the home is actually headed — owned land in Hidalgo County, family property, or a lot still being purchased all move forward the same way.",
@@ -1402,6 +1466,14 @@ CITY_COPY = {
              "a": "It depends more on your lot's access and layout than on total acreage. We'll go over your site before recommending a single wide or double wide."},
 {"q": "Do you sell only new homes, or used ones too?",
              "a": "We primarily carry new, HUD-certified manufactured homes. Reach out for current availability."},
+            {
+                "q": "Do I need to already own land in Hidalgo County?",
+                "a": "No. Some Rio Grande Valley buyers already have land, some are purchasing a lot separately, and some are working through family property.",
+            },
+            {
+                "q": "Do you deliver throughout the Rio Grande Valley, or just McAllen itself?",
+                "a": "Yes, the Rio Grande Valley broadly. Give us your address and we'll walk through what that means for delivery and setup at your property.",
+            },
 ],
     },
     "victoria": {
@@ -1409,6 +1481,10 @@ CITY_COPY = {
         "buying": [
             "A manufactured home built to current HUD code costs noticeably less than comparable site-built construction, without giving up on quality. Texas Homes Direct prices every home clearly so you can compare it honestly against other options.",
             "Some Victoria-area buyers already have a well, septic, and electric on their land; others are starting from raw ground. Either way, we scope the actual setup work your property needs rather than a one-size-fits-all package.",
+        ],
+        "pricingExplainer": [
+            "Once a Victoria-area buyer has a number in hand, that's genuinely the number — everything itemized above is already built into what you were quoted, not added afterward.",
+            "Utility costs are the exception to that fixed pricing, since Victoria County land conditions shift enough to matter. A phone estimate opens it, and a contractor's visit closes it.",
         ],
         "gettingStarted": [
             "Victoria County families typically start where the actual decision gets made: a direct, honest comparison against building a traditional house, laid out before anything else.",
@@ -1420,6 +1496,14 @@ CITY_COPY = {
              "a": "Requirements vary by county and by property, so it's worth checking with Victoria County directly before you buy. We can help point you toward the right office."},
 {"q": "What happens once I've picked a home?",
              "a": "Our team takes care of coordinating the build, getting the home to your site, and completing the setup, keeping you in the loop the whole way."},
+            {
+                "q": "Why is Victoria sometimes called 'the Crossroads'?",
+                "a": "It sits at the junction of several major highways connecting Houston, San Antonio, and the coast — which is also part of why our delivery coverage to the area is straightforward.",
+            },
+            {
+                "q": "What's the difference between a single wide and a double wide?",
+                "a": "Section count is the real distinction: one for a single wide at a lower price, two joined together on-site for a double wide with noticeably more room.",
+            },
 ],
     },
     "alice": {
@@ -1427,6 +1511,10 @@ CITY_COPY = {
         "buying": [
             "There's more than one way to approach the land question in Jim Wells County — family property, land already owned, or a lot purchased separately all work with Texas Homes Direct. What matters is knowing what the specific site needs, which we'll cover once we know where things stand.",
             "A single wide is a practical starting point for a smaller lot or tighter budget; a double wide suits a family that needs more room. Financing and setup work the same either way — it comes down to what fits your situation.",
+        ],
+        "pricingExplainer": [
+            "A Jim Wells County quote from us is complete on arrival — everything itemized above is already folded into the number, whether you're comparing it against other dealers or not.",
+            "Utility hookups are priced differently because they have to be — South Texas land varies enough that a phone estimate is a starting point, not a final figure. A contractor's visit sets the real one.",
         ],
         "gettingStarted": [
             "The property comes up first for most Alice-area buyers, since it shapes everything after — family land, land already owned, or a lot being purchased separately all work the same way with us.",
@@ -1440,6 +1528,10 @@ CITY_COPY = {
              "a": "Yes. Contact us and we'll go over photos and floor plans for options that match your budget."},
 {"q": "Do you deliver throughout Jim Wells County?",
              "a": "Yes, Jim Wells County is part of our regular delivery area. Reach out with your address and we'll go over the specifics for your property."},
+            {
+                "q": "Does Alice's oil and ranching history affect available lot sizes?",
+                "a": "Property sizes vary widely across Jim Wells County regardless of history — we scope your specific site rather than assuming a standard size.",
+            },
 ],
     },
     "pleasanton": {
@@ -1473,6 +1565,10 @@ CITY_COPY = {
             "Some Potter County buyers already have land ready to go; others are still working that part out. Texas Homes Direct works with buyers at either stage and is upfront about what each path involves.",
             "We finance directly, and we also work with outside public and private lenders — so most Amarillo-area buyers find a workable path regardless of their credit situation.",
         ],
+        "pricingExplainer": [
+            "An Amarillo-area quote is fixed the moment we give it to you — everything itemized above is already part of that number, Panhandle wind and all.",
+            "Utility costs are the one line we won't quote sight-unseen, since Potter County land varies enough lot to lot. A phone estimate starts the conversation; a contractor's visit finishes it.",
+        ],
         "gettingStarted": [
             "Financing tends to open the conversation near Amarillo, since it's what determines whether ownership is realistic in the first place — between in-house terms and outside lenders, most Potter County buyers find a path.",
             "After that, the property: some buyers already have a site ready to go, others are still working that out, and we're straightforward with either group about what their specific stage actually involves.",
@@ -1483,6 +1579,14 @@ CITY_COPY = {
              "a": "It depends on the floor plan and features, but manufactured homes are consistently more affordable than comparable site-built construction. The free mortgage analysis tool will give you a number specific to your budget."},
 {"q": "Do you sell used homes, or only new inventory?",
              "a": "Our focus is new, HUD-certified manufactured homes. Reach out for what's currently available."},
+            {
+                "q": "Does Panhandle weather affect setup or delivery near Amarillo?",
+                "a": "We plan around it as needed, but it doesn't change your price — everything itemized in your quote stays fixed regardless of conditions on delivery day.",
+            },
+            {
+                "q": "Do I need to already own land in Potter County?",
+                "a": "No — that's genuinely one of the first things we ask about, not a requirement to clear before reaching out. Wherever your land situation stands, we'll pick up from there.",
+            },
 ],
     },
     "lubbock": {
@@ -1490,6 +1594,10 @@ CITY_COPY = {
         "buying": [
             "Whether a home ends up on family land, land already owned, or a newly purchased lot, Lubbock County buyers get the same thing from Texas Homes Direct: a clear walkthrough of what that specific site will need.",
             "Permitting and setup requirements aren't identical everywhere in Texas, and most buyers have no reason to already know Lubbock County's process. That's what Texas Homes Direct handles, so you're not chasing down paperwork.",
+        ],
+        "pricingExplainer": [
+            "Once you've seen a Lubbock County quote, that number is the number — everything itemized above is already accounted for, no revisions later.",
+            "The one number we won't lock in over the phone is the utility bid, since Lubbock County land varies enough to matter. A contractor's on-site visit is what actually sets it.",
         ],
         "gettingStarted": [
             "Lubbock County buyers tend to start by putting real numbers next to a traditional build, which usually makes the decision easier than expected going in.",
@@ -1500,7 +1608,15 @@ CITY_COPY = {
 {"q": "Do I need a permit for a manufactured home in Lubbock County?",
              "a": "Requirements vary by county and property, so it's worth checking directly with Lubbock County. We can help point you to the right office."},
 {"q": "What happens after I choose a home?",
-             "a": "Our team takes over coordinating the build, delivery to your site, and the full setup, keeping you updated along the way."},
+             "a": "We handle the build schedule, delivery, and setup from there, checking in with you at each step rather than going quiet until it's done."},
+            {
+                "q": "Is a manufactured home a good fit for South Plains agricultural land near Lubbock?",
+                "a": "Often, yes — we scope agricultural and rural properties the same careful way we scope any site, accounting for what's already there before finalizing a plan.",
+            },
+            {
+                "q": "Can I see photos of available homes before deciding?",
+                "a": "Yes, gladly — say which floor plans interest you and we'll send real photos over before you're asked to decide on anything.",
+            },
 ],
     },
     "corpus-christi": {
@@ -1508,6 +1624,10 @@ CITY_COPY = {
         "buying": [
             "For a lot of Nueces County families, the appeal starts with the price gap between a manufactured home and building from the ground up — often a significant difference, without stepping down in construction quality since every home meets current HUD code.",
             "You can review photos and floor plans for available homes before committing to anything. We'd rather you know exactly what you're choosing than decide based on a sales pitch.",
+        ],
+        "pricingExplainer": [
+            "A Nueces County quote is complete the day you see it — everything itemized above is already built in, coastal property or not.",
+            "Utility hookups are the exception, since land near the coast can vary as much as land further inland. A phone estimate opens the conversation, and a contractor's visit sets the real figure.",
         ],
         "gettingStarted": [
             "You can start near Corpus Christi just by asking to see photos and floor plans — no pressure to commit to anything before you've actually looked at what's out there.",
@@ -1521,6 +1641,10 @@ CITY_COPY = {
              "a": "Usually, yes. Between financing directly and working with outside public and private lenders, most buyers find a workable path."},
 {"q": "Do you deliver throughout Nueces County?",
              "a": "Yes. Once we have your address, we can tell you exactly what delivery and setup will involve for your particular lot."},
+            {
+                "q": "Does being on the coast change how a home near Corpus Christi is set up?",
+                "a": "It can affect what a site needs — we assess your specific property, coastal or further inland, rather than applying one standard setup plan.",
+            },
 ],
     },
     "dallas": {
@@ -1528,6 +1652,10 @@ CITY_COPY = {
         "buying": [
             "Every home we sell is built to current HUD code and inspected at the factory before it ever ships — the same baseline standard no matter where in Texas it ends up, Dallas County included.",
             "Some Dallas-area buyers already have utilities in place; others are starting from raw land. Either way, Texas Homes Direct scopes the setup work your property actually needs instead of a generic package.",
+        ],
+        "pricingExplainer": [
+            "A Dallas County quote doesn't move once it's in your hands — everything itemized above is already accounted for, whichever DFW suburb you're technically in.",
+            "Utility costs are the one number that depends on the specific property rather than the general area, so we start with a phone estimate and finish with a contractor's exact on-site bid.",
         ],
         "gettingStarted": [
             "Whether this is actually realistic is usually the real first question for a DFW-area buyer, and the honest answer starts with the numbers rather than a pitch.",
@@ -1541,6 +1669,10 @@ CITY_COPY = {
              "a": "Requirements vary by county and even by city within DFW, so it's worth checking for your specific address. We can help you figure out where to start."},
 {"q": "Can I see homes before deciding?",
              "a": "Contact us and we can send over photos and floor plan details for whatever catches your eye — no need to decide on the spot."},
+            {
+                "q": "Does it matter which DFW suburb my property is actually in?",
+                "a": "Not for pricing — the same process and the same out-the-door number apply across Dallas County and the surrounding DFW area.",
+            },
 ],
     },
     "houston": {
@@ -1548,6 +1680,10 @@ CITY_COPY = {
         "buying": [
             "A single wide can be a practical choice for a smaller lot or tighter budget, while a double wide suits a Houston-area family that needs more room. Financing and setup work the same either way.",
             "Some Harris County buyers already have a well, septic, and electric in place; others are starting from raw land. Texas Homes Direct scopes the setup work your property actually needs rather than a generic package.",
+        ],
+        "pricingExplainer": [
+            "A Harris County quote holds steady from the day you see it — everything itemized above is already priced in, whichever part of the Houston area you're in.",
+            "Utility hookups are the one line that can't be quoted from a phone call alone, since Harris County land varies enough to matter. A contractor's on-site visit sets the number that counts.",
         ],
         "gettingStarted": [
             "A real price and financing that actually makes sense come first for most Houston-area buyers, ahead of any conversation about a specific lot.",
@@ -1559,6 +1695,14 @@ CITY_COPY = {
              "a": "Land ownership isn't a prerequisite here. Texas Homes Direct works with buyers who already have a site, buyers still shopping for one, and buyers planning to use family property."},
 {"q": "What happens after I pick a home?",
              "a": "From there, we take over — coordinating the build, getting it delivered to your site, and finishing the full setup — and you'll hear from us along the way instead of being left to wonder."},
+            {
+                "q": "Is setup different for a property inside Houston versus further out in Harris County?",
+                "a": "The process is the same either way — we scope your specific site rather than assuming a standard package based on how close you are to the city center.",
+            },
+            {
+                "q": "Do you deliver throughout the greater Houston area?",
+                "a": "We do — every part of the greater Houston area. Send your address and we'll spell out what delivery and setup actually involve at your location.",
+            },
 ],
     },
     "san-saba": {
