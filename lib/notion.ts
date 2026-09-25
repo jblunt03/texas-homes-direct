@@ -4,6 +4,15 @@
  * When NOTION_TOKEN is set, all data comes from the live database.
  * When it is not set (local dev without credentials), falls back to sampleListings.
  *
+ * @notionhq/client v5's dataSources.query() takes a *data source* ID, which
+ * is a different object than the parent *database* ID (the "BMH — Home
+ * Listings" database page you'd open in Notion). Passing the database ID
+ * here fails with "Could not find data_source with ID: ..." even with a
+ * fully valid token — this bit us once (2026-09-25) because the query path
+ * was never exercised locally until NOTION_TOKEN was first set for real.
+ * NOTION_DATA_SOURCE_ID matches the same env var name sync-notion-images.ts
+ * uses for the identical value.
+ *
  * ISR note: pages should use `export const revalidate = 3000` (50 min) so that
  * Notion S3 image URLs (which expire after 3600 s) are refreshed before they expire.
  */
@@ -13,8 +22,8 @@ import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoint
 import { sampleListings, type Listing } from './sampleListings'
 import listingImageManifest from './generated/listingImages.json'
 
-const DATABASE_ID =
-  process.env.NOTION_DATABASE_ID ?? '27653b36-31bf-4424-87d2-117ed420bd77'
+const DATA_SOURCE_ID =
+  process.env.NOTION_DATA_SOURCE_ID ?? '34f1b269-5e7f-4cbc-8cee-464089b17143'
 
 type ImageManifest = Record<string, { images: string[] }>
 const IMAGE_MANIFEST = listingImageManifest as ImageManifest
@@ -244,7 +253,7 @@ export async function fetchAllListings(): Promise<Listing[]> {
   do {
     // @notionhq/client v5 uses dataSources.query() instead of databases.query()
     const resp = await client.dataSources.query({
-      data_source_id: DATABASE_ID,
+      data_source_id: DATA_SOURCE_ID,
       start_cursor: cursor,
       page_size: 100,
     })
@@ -275,7 +284,7 @@ export async function fetchListingBySlug(slug: string): Promise<Listing | null> 
   try {
     // @notionhq/client v5 uses dataSources.query() instead of databases.query()
     const resp = await client.dataSources.query({
-      data_source_id: DATABASE_ID,
+      data_source_id: DATA_SOURCE_ID,
       filter: {
         property: 'Slug',
         rich_text: { equals: slug },
