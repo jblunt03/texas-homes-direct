@@ -196,7 +196,12 @@ export function mapPage(page: PageObjectResponse): Listing {
     rt(page, 'Description') ||
     ''
 
-  const city = rt(page, 'Location City') || 'San Antonio'
+  // 'Location City' is empty for every listing in the shared database as of
+  // 2026-09 — Texas Homes Direct delivers statewide with no fixed location,
+  // so there's no honest single-city value to fall back to here. Leave it
+  // empty rather than defaulting to a placeholder city (this used to default
+  // to 'San Antonio' for every listing, which read as a real address).
+  const city = rt(page, 'Location City')
 
   // Manufacturer can be a select or rich_text property
   const manufacturerSel = sel(page, 'Manufacturer')

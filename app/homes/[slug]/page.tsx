@@ -1,9 +1,20 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { fetchAllListings, fetchListingBySlug } from '@/lib/notion'
+import { CITY_CONTENT } from '@/lib/cityContent'
+import { publishedCities } from '@/lib/cities'
 import ListingDetail from './ListingDetail'
 
+const SITE_URL = 'https://www.texashomesdirect.com'
+
 export const revalidate = 3000
+
+/** Published city pages whose "Homes to Get You Started" block features this listing. */
+function citiesFeaturing(slug: string) {
+  return publishedCities()
+    .filter((c) => CITY_CONTENT[c.slug]?.popularHomes.includes(slug))
+    .map((c) => ({ name: c.name, slug: c.slug }))
+}
 
 export async function generateStaticParams() {
   const listings = await fetchAllListings()
@@ -17,8 +28,9 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const listing = await fetchListingBySlug(params.slug)
   if (!listing) return { title: 'Home Not Found' }
-  const title = `${listing.title} — ${listing.city}, TX`
-  const description = `${listing.beds} bed / ${listing.baths} bath manufactured home in ${listing.city}, Texas. ${listing.sqft.toLocaleString()} sqft.${listing.price ? ` Priced at $${listing.price.toLocaleString()}.` : ''} ${listing.description.slice(0, 120)}`
+  const wideType = listing.wideType ?? 'Manufactured'
+  const title = `${listing.title} — ${listing.beds} Bed ${wideType} Manufactured Home`
+  const description = `${listing.beds} bed / ${listing.baths} bath ${wideType.toLowerCase()} manufactured home, ${listing.sqft.toLocaleString()} sqft.${listing.price ? ` Priced at $${listing.price.toLocaleString()}.` : ''} Delivered and set up anywhere in Texas. ${listing.description.slice(0, 100)}`
   return {
     title,
     description,
@@ -60,6 +72,12 @@ export default async function HomeListingPage({
             .slice(0, 3 - sameRegion.length),
         ]
 
+  // No `offers` sub-schema: Google's Product/Merchant-listing validator expects
+  // shippingDetails, hasMerchantReturnPolicy, review, and aggregateRating whenever
+  // `offers` is present, and none of those apply honestly to a financed,
+  // site-delivered home with no retail return policy. Dropping `offers` keeps the
+  // (still accurate) product description without inviting warnings for fields we
+  // won't fabricate. See CLAUDE.md-style reasoning: never invent structured data.
   const productJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Product',
@@ -67,16 +85,19 @@ export default async function HomeListingPage({
     description: listing.description,
     image: listing.images,
     brand: { '@type': 'Brand', name: 'Texas Homes Direct' },
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'USD',
-      price: listing.price,
-      availability: listing.available
-        ? 'https://schema.org/InStock'
-        : 'https://schema.org/OutOfStock',
-      url: `https://www.texashomesdirect.com/homes/${listing.slug}`,
-    },
   }
+
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Inventory', item: `${SITE_URL}/browse` },
+      { '@type': 'ListItem', position: 3, name: listing.title, item: `${SITE_URL}/homes/${listing.slug}` },
+    ],
+  }
+
+  const featuredInCities = citiesFeaturing(listing.slug)
 
   return (
     <>
@@ -84,7 +105,11 @@ export default async function HomeListingPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(productJsonLd) }}
       />
-      <ListingDetail listing={listing} related={related} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      <ListingDetail listing={listing} related={related} featuredInCities={featuredInCities} />
     </>
   )
 }

@@ -45,7 +45,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-pigeon/Marathon-Archer-7.jpeg',
       '/homes/the-pigeon/Marathon-Archer-1.jpeg',
@@ -87,7 +87,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-dove/IMG_0895.jpg.jpeg',
       '/homes/the-dove/IMG_0079-1-scaled.jpg.jpeg',
@@ -134,7 +134,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-gadwall/Gadwall-Hero.jpg',
       '/homes/the-gadwall/IMG_1787-2-scaled.jpg.jpeg',
@@ -182,7 +182,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-pintail/8-Sterling.png',
       '/homes/the-pintail/IMG_7053-scaled.jpg.jpeg',
@@ -226,7 +226,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-spoonbill/Spoonbill-Hero.png',
       '/homes/the-spoonbill/IMG_7169-scaled.jpg.jpeg',
@@ -281,7 +281,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-redhead/IMG_0001-scaled.jpg.jpeg',
       '/homes/the-redhead/3ba5543a-6344-4c4d-8af4-a6c8f13c2ce3-scaled.jpg.jpeg',
@@ -337,7 +337,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
       '/homes/the-coleman/Coleman-Updated-Photo.webp',
@@ -378,7 +378,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
       '/homes/the-widgeon/IMG_0682-scaled.jpg.jpeg',
@@ -431,7 +431,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg',
       '/homes/the-mallard/1a65e343-b855-4512-bad8-199f089d0ff4-scaled.jpg.jpeg',
@@ -486,7 +486,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-coleman/Coleman-Gallery-1.jpg',
       '/homes/the-wood-duck/IMG_0579-scaled.jpeg',
@@ -536,7 +536,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Amarillo-FloorPlan.webp',
     ],
@@ -567,7 +567,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Loving-FloorPlan.webp',
     ],
@@ -598,7 +598,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Conroe-FloorPlan.webp',
     ],
@@ -629,7 +629,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-katy/Katy-Hero.png',
       '/homes/the-katy/katy-interior-01.jpg',
@@ -670,7 +670,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Jasper-FloorPlan.webp',
     ],
@@ -701,7 +701,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Hays-FloorPlan.webp',
     ],
@@ -732,7 +732,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-mesquite/Mesquite-Body-1.jpg',
       '/homes/the-mesquite/Mesquite-Body-2.webp',
@@ -777,7 +777,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Bell-FloorPlan.webp',
     ],
@@ -808,7 +808,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-terra/Terra-Hero.jpg',
       '/homes/the-terra/terra1-1.webp',
@@ -850,7 +850,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-brewster/Brewster-Body-1.jpg',
       '/homes/the-brewster/Brewster-Body-2.png',
@@ -888,7 +888,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Caldwell-FloorPlan.webp',
     ],
@@ -919,7 +919,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Trinity-FloorPlan.webp',
     ],
@@ -950,7 +950,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Bailey-FloorPlan.webp',
     ],
@@ -981,7 +981,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Kendall-FloorPlan.webp',
     ],
@@ -1012,7 +1012,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Grapevine-FloorPlan.webp',
     ],
@@ -1043,7 +1043,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-jackson/Jackson-Body-1.png',
       '/homes/the-jackson/Jackson-Body-2.webp',
@@ -1085,7 +1085,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Abilene-FloorPlan.webp',
     ],
@@ -1116,7 +1116,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Ranger-FloorPlan.webp',
     ],
@@ -1147,7 +1147,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-daniel/Daniel-Body-1.png',
       '/homes/the-chapman/IMG_9474.webp',
@@ -1194,7 +1194,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-chapman/Chapman-Hero.png',
       '/homes/the-daniel/Daniel-Body-2.webp',
@@ -1237,7 +1237,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-pearland/918F558B-6E95-44EF-9CD5-E240C3BBDDBE.jpg',
       '/homes/the-pearland/IMG_7164.webp',
@@ -1283,7 +1283,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Breckenridge-FloorPlan.webp',
     ],
@@ -1314,7 +1314,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Longview-FloorPlan.webp',
     ],
@@ -1345,7 +1345,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Dawson-FloorPlan.webp',
     ],
@@ -1376,7 +1376,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-lanny/7ADF26C5-4FB1-419E-8807-A72A63DB5F18.png',
       '/homes/the-lanny/IMG_9459.webp',
@@ -1422,7 +1422,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Fisher-FloorPlan.webp',
     ],
@@ -1453,7 +1453,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Cisco-FloorPlan.webp',
     ],
@@ -1484,7 +1484,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-temple/5EA4F89E-9B6D-4F21-80E8-ACAB5163349D.png',
       '/homes/the-temple/IMG_0004.webp',
@@ -1528,7 +1528,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-grayson/Image.jpg',
       '/homes/the-grayson/IMG_0789.webp',
@@ -1576,7 +1576,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Darrell-FloorPlan.webp',
     ],
@@ -1607,7 +1607,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/floorplans/Beaumont-FloorPlan.webp',
     ],
@@ -1636,7 +1636,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-pronghorn/Image.jpeg',
       '/homes/the-pronghorn/IMG_0876.jpeg',
@@ -1680,7 +1680,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-armadillo/IMG_0843.png',
       '/homes/the-armadillo/IMG_0847.jpg',
@@ -1720,7 +1720,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-road-runner/IMG_0750.jpg',
       '/homes/the-road-runner/IMG_0863.jpg',
@@ -1759,7 +1759,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-bobcat/IMG_0779.jpeg',
       '/homes/the-bobcat/IMG_0891.jpeg',
@@ -1790,7 +1790,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-javelina/hero.jpg',
     ],
@@ -1820,7 +1820,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-axis-fleetwood/img-01.png',
       '/homes/the-axis-fleetwood/img-02.png',
@@ -1862,7 +1862,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-moose/hero.jpeg',
     ],
@@ -1892,7 +1892,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-jack-rabbit/img-01.jpeg',
       '/homes/the-jack-rabbit/img-02.png',
@@ -1932,7 +1932,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-peredavid/img-01.png',
       '/homes/the-peredavid/img-02.png',
@@ -1973,7 +1973,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Double Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-badger/img-01.png',
       '/homes/the-badger/img-02.png',
@@ -2014,7 +2014,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-raven/img-01.jpeg',
       '/homes/the-raven/img-02.png',
@@ -2048,7 +2048,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-coyote/Coyote-FloorPlan.png',
     ],
@@ -2078,7 +2078,7 @@ export const sampleListings: Listing[] = [
     type: 'new',
     wideType: 'Single Wide',
     region: 'South TX',
-    city: 'San Antonio',
+    city: '',
     images: [
       '/homes/the-rattlesnake/img-01.png',
       '/homes/the-rattlesnake/img-02.png',

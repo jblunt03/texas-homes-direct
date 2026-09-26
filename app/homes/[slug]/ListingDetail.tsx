@@ -222,21 +222,35 @@ function RelatedCard({ listing }: { listing: Listing }) {
 export default function ListingDetail({
   listing,
   related,
+  featuredInCities,
 }: {
   listing: Listing
   related: Listing[]
+  featuredInCities: { name: string; slug: string }[]
 }) {
   const [mainImg, setMainImg] = useState(0)
+  const specLabel = `${listing.beds} bed ${listing.baths} bath ${listing.wideType ?? 'manufactured'} home`
 
   return (
     <div style={{ background: 'var(--color-canvas)' }}>
+
+      {/* ── BREADCRUMBS ───────────────────────────────────── */}
+      <nav aria-label="Breadcrumb" style={{ background: 'var(--color-canvas)', padding: '16px 0 0' }}>
+        <div className="bmh-container" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--color-muted, #6b7280)' }}>
+          <Link href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</Link>
+          <span aria-hidden="true">/</span>
+          <Link href="/browse" style={{ color: 'inherit', textDecoration: 'none' }}>Inventory</Link>
+          <span aria-hidden="true">/</span>
+          <span>{listing.title}</span>
+        </div>
+      </nav>
 
       {/* ── HEADER ────────────────────────────────────────── */}
       <section
         style={{
           background: 'var(--color-canvas)',
           borderBottom: '1px solid var(--color-hairline)',
-          padding: '40px 0 32px',
+          padding: '24px 0 32px',
         }}
       >
         <div className="bmh-container">
@@ -263,7 +277,7 @@ export default function ListingDetail({
             {listing.title}
           </h1>
           <p style={{ color: 'var(--color-muted)', fontFamily: 'var(--font-sans)', fontSize: 15, margin: 0 }}>
-            {listing.city}, Texas &middot; {listing.year}
+            {listing.beds} Bed &middot; {listing.baths} Bath &middot; {listing.wideType} &middot; Delivered Anywhere in Texas
           </p>
         </div>
       </section>
@@ -284,7 +298,7 @@ export default function ListingDetail({
             {listing.images[mainImg] ? (
               <Image
                 src={listing.images[mainImg]}
-                alt={`${listing.title} photo ${mainImg + 1}`}
+                alt={`${listing.title} — ${specLabel}, photo ${mainImg + 1} of ${listing.images.length}`}
                 fill
                 priority
                 sizes="(max-width: 1024px) 100vw, 80vw"
@@ -709,6 +723,34 @@ export default function ListingDetail({
           </div>
         </section>
       )}
+
+      {/* ── FEATURED IN THESE CITIES ─────────────────────────── */}
+      <section className="bmh-section" style={{ background: 'var(--color-canvas)' }}>
+        <div className="bmh-container" style={{ textAlign: 'center' }}>
+          {featuredInCities.length > 0 && (
+            <>
+              <p className="bmh-caption bmh-muted" style={{ marginBottom: 12 }}>
+                This home is featured on city pages for
+              </p>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10, justifyContent: 'center', marginBottom: 24 }}>
+                {featuredInCities.map((c) => (
+                  <Link
+                    key={c.slug}
+                    href={`/mobile-homes-${c.slug}-tx`}
+                    className="bmh-pill bmh-pill-static"
+                    style={{ textDecoration: 'none' }}
+                  >
+                    {c.name}, TX
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+          <Link href="/cities" style={{ color: 'var(--color-primary)', fontWeight: 500, textDecoration: 'none' }}>
+            See every city we deliver to →
+          </Link>
+        </div>
+      </section>
 
       {/* ── CORAL CTA ─────────────────────────────────────── */}
       <section className="bmh-section" style={{ background: 'var(--color-canvas)' }}>
