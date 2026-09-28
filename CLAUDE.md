@@ -242,6 +242,52 @@ If you add a new required field, JSON-LD type, or hard rule, add the check
 to `validate_batch.py` in the same pass — don't leave it as something only
 caught by manual review. That's the whole point of this script existing.
 
+## Variant pools — for repeated concepts across many cities at once
+
+At small batch sizes, every FAQ answer and sentence gets written fully
+fresh per city (see "Content approach" above). At larger batch sizes
+(20+ cities in one pass), a handful of concepts genuinely repeat across
+every city on purpose — "do you need to already own land," "do you
+deliver countywide" — because they're legitimate, allowed per-city FAQ
+topics (see "Explainer pages" below for which topics are *not* allowed to
+repeat). Writing these by hand as a rotation of template sentences with
+the county name swapped in is normal and fine — **but the rotation pool
+must have at least as many distinct entries as the number of cities
+using it.**
+
+**The incident this guards against:** batch 4 (2026-09-28, 35 cities)
+wrote 12-entry pools for the land-ownership and county-delivery FAQ
+answers and indexed into them with `pool[i % len(pool)]`. With 35 cities
+and a 12-entry pool, the index wrapped around every 12th city and handed
+out byte-identical (after city/county masking) text — real duplicate
+content, not a false positive. Nothing caught it until the full
+`check_duplication.py` run printed 722 failures. The bug was silent
+exactly where it was introduced and only visible much later, expensively.
+
+**The fix, two layers:**
+
+1. **Author with `scripts/batch_utils.assign_variants(pool, items, label)`**,
+   not raw `pool[i % len(pool)]` indexing. It raises immediately if
+   `len(pool) < len(items)`, naming exactly how many more entries are
+   needed — fails at the point the bug would be introduced, not dozens of
+   steps later.
+2. **`check_duplication.py` also detects it after the fact**, as a second,
+   independent layer: any field where 3+ cities share byte-identical text
+   after city/county masking gets reported separately as a
+   `VARIANT-POOL WRAPAROUND` failure, named as a distinct cluster (not
+   buried in a long list of ordinary pairwise near-duplicate scores). Two
+   cities converging on similar phrasing independently is a normal thing
+   pairwise similarity scoring catches; three or more cities landing on
+   *identical* text is specifically the wraparound signature and gets its
+   own loud, specific message. This runs as part of the normal
+   `check_duplication.py` / `validate_batch.py` pipeline — no separate
+   command needed.
+
+Prefer catching it with layer 1 — don't rely on layer 2 as the primary
+defense, since fixing 20+ collapsed pairwise failures after the fact
+(batch 4's actual experience) costs far more than sizing the pool
+correctly before splicing content in.
+
 ## Popular Homes selection
 
 The "Homes to Get You Started" block (renamed from "Popular Homes to

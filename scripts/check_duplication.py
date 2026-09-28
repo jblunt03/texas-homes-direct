@@ -82,6 +82,31 @@ def collect_fields():
     return fields
 
 
+def find_exact_clusters(by_field):
+    """Flags 3+ cities sharing byte-identical masked text for the same field.
+
+    This is a distinct signature from an ordinary near-duplicate pair: two
+    cities landing on similar phrasing independently happens; three or more
+    cities producing IDENTICAL text after city/county masking does not — it
+    means a variant pool wrapped around (pool[i % len(pool)] with more cities
+    than pool entries) and silently repeated itself. That happened in batch 4
+    (a 12-entry FAQ-answer pool reused across 35 cities, 722 resulting
+    failures) and went undetected until the full pairwise check ran. This
+    check names the exact-match cluster directly instead of leaving it to be
+    inferred from a long list of pairwise scores.
+    """
+    clusters = []
+    for field_name, entries in by_field.items():
+        by_text = {}
+        for slug, _, idx, text, sh in entries:
+            norm_key = tuple(sorted(sh))
+            by_text.setdefault(norm_key, []).append((slug, idx, text))
+        for group in by_text.values():
+            if len(group) >= 3:
+                clusters.append((field_name, group))
+    return clusters
+
+
 def main():
     fields = collect_fields()
     failures = []
@@ -104,21 +129,36 @@ def main():
             if score > THRESHOLD:
                 failures.append((field_name, slug_a, idx_a, slug_b, idx_b, score, text_a, text_b))
 
+    exact_clusters = find_exact_clusters(by_field)
+
     print(f"Checked {len(by_field)} field categories across {len(CITIES)} published cities.")
     print(f"Highest similarity score seen: {max_seen:.3f} (threshold: {THRESHOLD})")
     print()
 
-    if not failures:
+    if exact_clusters:
+        print(f"VARIANT-POOL WRAPAROUND — {len(exact_clusters)} field(s) shared identical text across 3+ cities:\n")
+        for field_name, group in exact_clusters:
+            slugs = ", ".join(f"{slug}[{idx}]" for slug, idx, _ in group)
+            print(f"[{field_name}] {len(group)} cities share identical text: {slugs}")
+            print(f"  text: {group[0][2][:150]}")
+            print()
+        print("This is the signature of a variant pool with fewer entries than cities")
+        print("using it (pool[i % len(pool)] wrapping around). Use")
+        print("scripts/batch_utils.assign_variants() instead of raw modulo indexing —")
+        print("see CLAUDE.md's \"Variant pools\" section.\n")
+
+    if not failures and not exact_clusters:
         print("PASS — no near-duplicate content found across published city pages.")
         return 0
 
-    failures.sort(key=lambda f: -f[5])
-    print(f"FAIL — {len(failures)} near-duplicate pair(s) found:\n")
-    for field_name, slug_a, idx_a, slug_b, idx_b, score, text_a, text_b in failures:
-        print(f"[{field_name}] {slug_a}[{idx_a}]  <->  {slug_b}[{idx_b}]   similarity={score:.2f}")
-        print(f"  {slug_a}: {text_a[:150]}")
-        print(f"  {slug_b}: {text_b[:150]}")
-        print()
+    if failures:
+        failures.sort(key=lambda f: -f[5])
+        print(f"FAIL — {len(failures)} near-duplicate pair(s) found:\n")
+        for field_name, slug_a, idx_a, slug_b, idx_b, score, text_a, text_b in failures:
+            print(f"[{field_name}] {slug_a}[{idx_a}]  <->  {slug_b}[{idx_b}]   similarity={score:.2f}")
+            print(f"  {slug_a}: {text_a[:150]}")
+            print(f"  {slug_b}: {text_b[:150]}")
+            print()
 
     print("Fix the flagged text (rewrite one side with a genuinely different sentence)")
     print("and re-run this script. Do not lower THRESHOLD to make a failure disappear.")
