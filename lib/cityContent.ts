@@ -1671,7 +1671,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Do you deliver throughout Comal County?",
-        a: "Yes. Share your address and we'll confirm exactly what delivery and setup look like for your property.",
+        a: "Comal County in full — share your address and we'll confirm exactly what delivery and setup look like for your property.",
       },
     ],
     nearby: ['seguin', 'san-marcos', 'boerne', 'schertz'],
@@ -2267,7 +2267,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Do you deliver throughout DeWitt County?",
-        a: "Yes. Share your address and we'll confirm what delivery and setup involve for your property.",
+        a: "DeWitt County farmland and in-town Cuero lots both — share your address and we'll confirm the specifics.",
       },
       {
         q: "What happens once I've picked a home?",
@@ -2712,7 +2712,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Do you deliver throughout Williamson County?",
-        a: "Yes — give us your address and we'll walk through what delivery and setup actually look like for your property.",
+        a: "From central Georgetown out to the edges of Williamson County, we've got it covered — give us your address to see what that means for your property.",
       },
     ],
     nearby: ['round-rock', 'taylor', 'burnet', 'cedar-park'],
@@ -3145,7 +3145,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     faq: [
       {
         q: "Do you deliver throughout San Patricio County, or just Sinton itself?",
-        a: "All of San Patricio County — send your address and we'll confirm delivery and setup specifics for your property.",
+        a: "San Patricio County is fully in range for us — pass along your address and we'll confirm the specifics for your property.",
       },
       {
         q: "Do I need to already own land in San Patricio County?",
@@ -3488,7 +3488,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     faq: [
       {
         q: "Do you actually serve all of Hamilton County, or just the town itself?",
-        a: "Every part of Hamilton County — share your address and we'll walk through delivery and setup for your specific site.",
+        a: "Hamilton County ranch land included — share your address and we'll walk through delivery and setup for your specific site.",
       },
       {
         q: "Do I need to already own land in Hamilton County?",
@@ -3510,6 +3510,1721 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       'fleetwood-bobcat-3bed-2bath-single-wide',
     ],
     lastModified: '2026-09-23',
+  },
+
+  'fort-worth': {
+    county: 'Tarrant',
+    tier: 'metro',
+    metaDescription:
+      "Mobile homes for sale in Fort Worth, TX and Tarrant County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Fort Worth is big enough to have real dealer options, and Texas Homes Direct wants to be judged against them directly: same HUD-code construction, a price that's itemized instead of padded, and financing that doesn't require a credit score you don't have yet.",
+    buyingHeading: 'Buying a Mobile Home in Tarrant County',
+    buying: [
+      "A Tarrant County buyer comparing us to a metro lot should ask the same question every time: what's actually included in that number, and does it change later. Ours doesn't.",
+      "Dollar for dollar, a HUD-code manufactured home in Tarrant County buys more house than site-built construction does at the same budget.",
+    ],
+    pricingExplainer: [
+      "The number you see on a Fort Worth-area quote is the number you pay — everything itemized above is already folded in before you sign anything.",
+      "The utility figure isn't fixed like the rest of the price. It starts as a phone estimate and becomes final only after our contractor inspects the site.",
+    ],
+    gettingStarted: [
+      "For a Fort Worth-area buyer, the fastest path in is usually a straight comparison: what you're currently paying versus what a manufactured home actually costs, real numbers instead of a sales pitch.",
+      "After that, floor plan and financing get worked out together — nothing about the process changes because of which Tarrant County town you're closest to.",
+    ],
+    localProof:
+      "We work with Tarrant County buyers who've already priced this out at two or three other lots and want to see if our number actually holds up — it does.",
+    faq: [
+      {
+        q: "How does your pricing compare to other Fort Worth dealers?",
+        a: "We can't speak to another dealer's numbers, but ours are itemized and fixed the moment you see them — run the free mortgage analysis and compare it against any quote you've already gotten.",
+      },
+      {
+        q: "Do I need to already own land in Tarrant County?",
+        a: "No — Tarrant County buyers show up in every stage: land already secured, still hunting for a lot, or working through family property.",
+      },
+      {
+        q: "Do you deliver throughout Tarrant County?",
+        a: "Fort Worth to the Tarrant County line and everywhere between — send your address and we'll spell out delivery and setup specifics.",
+      },
+    ],
+    nearby: ['arlington', 'weatherford', 'azle', 'burleson'],
+    heroImage: '/homes/the-javelina/hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Fort Worth, TX',
+    secondaryImage: '/the-widgeon/2-Stonewall.jpg.jpeg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Fort Worth, TX',
+    popularHomes: [
+      'marathon-trinity-4bed-2bath-double-wide',
+      'marathon-darrell-1bed-1bath-park-model',
+      'marathon-gadwall-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  arlington: {
+    county: 'Tarrant',
+    tier: 'metro',
+    metaDescription:
+      "Mobile homes for sale in Arlington, TX and Tarrant County. HUD-certified manufactured homes with turnkey setup and honest financing. Free quote today.",
+    intro:
+      "Arlington sits squarely between Fort Worth and Dallas, which means most buyers here have already looked at both — Texas Homes Direct delivers to Arlington addresses without asking which metro you consider home.",
+    buyingHeading: 'Buying a Mobile Home in Tarrant County',
+    buying: [
+      "Because Arlington is one of the more built-up cities in this cluster, land is usually the first real question, not the last — where the home goes often shapes everything else about the plan.",
+      "The construction code hasn't changed the math: Tarrant County buyers still get meaningfully more home for the money than a comparable site-built house.",
+    ],
+    pricingExplainer: [
+      "Nothing gets tacked onto a Arlington-area price after the fact; everything itemized above is baked into the figure from the start.",
+      "Utility hookups get a two-step process: a phone estimate to open things up, then an exact number once our contractor has been on the property.",
+    ],
+    gettingStarted: [
+      "For most Arlington buyers, the very first thing to settle is whether you already have a site lined up or are still working that out — it changes which questions come next.",
+      "From there it's floor plan, then financing, in whatever order makes sense for your Tarrant County situation.",
+    ],
+    localProof:
+      "We've delivered to Arlington addresses on both the Fort Worth and Dallas sides of town without the process changing either way.",
+    faq: [
+      {
+        q: "Do you only work with buyers who already have land in Arlington?",
+        a: "No. Some Arlington buyers have a lot ready, some are still searching, and some are working through family land. We adjust to wherever you're starting.",
+      },
+      {
+        q: "Does it matter if I'm closer to Fort Worth or Dallas?",
+        a: "Not a requirement. Arlington-area buyers show up with a site ready, a search underway, or a family-land question still open.",
+      },
+      {
+        q: "Do you deliver throughout Arlington?",
+        a: "Both the Tarrant and Johnson County sides of Arlington are covered — share your address and we'll walk through what that means for your site.",
+      },
+    ],
+    nearby: ['fort-worth', 'grand-prairie', 'mansfield', 'euless'],
+    heroImage: '/homes/the-brewster/Brewster-Body-1.jpg',
+    heroAlt: 'Single wide manufactured home exterior near Arlington, TX',
+    secondaryImage: '/the-moose/hero.jpeg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Arlington, TX',
+    popularHomes: [
+      'marathon-bailey-3bed-2bath-double-wide',
+      'fleetwood-javelina-1bed-1bath-single-wide',
+      'marathon-breckenridge-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  weatherford: {
+    county: 'Parker',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Weatherford, TX and Parker County. Family-owned manufactured home dealer with honest, no-pressure financing. Free quote today.",
+    intro:
+      "Weatherford is the Parker County seat and the edge of where DFW's suburbs give way to real acreage, and Texas Homes Direct works with both kinds of buyer — tight suburban lots and wide-open Parker County land.",
+    buyingHeading: 'Buying a Mobile Home in Parker County',
+    buying: [
+      "A lot of Parker County land is genuinely rural, which usually means more site work up front — we scope the actual property instead of assuming it's already utility-ready.",
+      "Site-built construction near Parker still runs well ahead of a HUD-code manufactured home on price, without giving up much on build quality.",
+    ],
+    pricingExplainer: [
+      "A Weatherford-area price doesn't move once you've seen it — everything itemized above is already accounted for in that number.",
+      "We won't commit to a utility number without seeing the land. A phone estimate starts it; our contractor's visit finishes it with the real figure.",
+    ],
+    gettingStarted: [
+      "For a Parker County buyer, the property conversation usually comes first and comes in more detail than it would for a smaller in-town lot — how much has been cleared, what's already run to the site.",
+      "Once that's settled, we turn to picking a floor plan and lining up financing at the same time.",
+    ],
+    localProof:
+      "We've scoped Parker County properties ranging from a few acres with nothing run yet to smaller in-town lots that were already fully serviced.",
+    faq: [
+      {
+        q: "Do you deliver to rural Parker County acreage, not just in-town lots?",
+        a: "Yes — we work with both. Rural acreage usually means more site work, which we scope specifically rather than assuming it matches an in-town lot.",
+      },
+      {
+        q: "Do I need to already own land in Parker County?",
+        a: "Not necessary at the start. Parker County buyers reach out with land settled, land still being hunted, or a family inheritance still being sorted through.",
+      },
+      {
+        q: "Do you deliver throughout Parker County?",
+        a: "Parker County acreage or an in-town Weatherford lot, both are covered. Give us your address and we'll spell out the specifics.",
+      },
+    ],
+    nearby: ['fort-worth', 'granbury', 'mineral-wells', 'azle'],
+    heroImage: '/homes/the-mesquite/Mesquite-Body-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Weatherford, TX',
+    secondaryImage: '/the-pigeon/Marathon-Archer-7.jpeg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Weatherford, TX',
+    popularHomes: [
+      'marathon-dove-1bed-1bath-single-wide',
+      'fleetwood-moose-4bed-2bath-double-wide',
+      'marathon-mallard-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  granbury: {
+    county: 'Hood',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Granbury, TX and Hood County. New manufactured homes and honest financing — get your free quote from us today.",
+    intro:
+      "Granbury draws buyers looking to slow down — lake property, retirement, a second home on family land — and Texas Homes Direct treats that differently than a straightforward first-home purchase in a denser market.",
+    buyingHeading: 'Buying a Mobile Home in Hood County',
+    buying: [
+      "Whether the home is a full-time residence or a lake-area property you'll use part of the year, the same HUD-code construction and firm pricing apply either way.",
+      "Hood County families comparing the two options usually find the manufactured route lands them in a bigger, newer home for less than site-built would cost.",
+    ],
+    pricingExplainer: [
+      "What we quote a Granbury-area buyer is what they pay, full stop, with everything itemized above already built into the figure.",
+      "Unlike the rest of the price, utilities start as an estimate. Our contractor's on-site visit turns that into the number that actually matters.",
+    ],
+    gettingStarted: [
+      "For a Granbury buyer, it helps to know upfront whether this is a full-time home or a part-time property — it shapes some of the early planning conversation, though not the pricing.",
+      "The next step is usually floor plan and financing running in parallel, not one before the other.",
+    ],
+    localProof:
+      "Full-time Hood County homeowners and weekend-lake buyers both come through us, and neither gets treated as the unusual case.",
+    faq: [
+      {
+        q: "Do you work with buyers setting up a part-time lake property?",
+        a: "Yes — whether it's a full-time home or a property you'll use seasonally, the pricing and process are the same.",
+      },
+      {
+        q: "Do I need to already own land near Lake Granbury?",
+        a: "No. Whether you already have Hood County land lined up, are still searching, or are working through family property, we'll meet you where you are.",
+      },
+      {
+        q: "Do you deliver throughout Hood County?",
+        a: "We cover the entire county. Send your address and we'll confirm the specifics for your particular property.",
+      },
+    ],
+    nearby: ['weatherford', 'glen-rose', 'cleburne', 'stephenville'],
+    heroImage: '/homes/the-pronghorn/Image.jpeg',
+    heroAlt: 'Single wide manufactured home exterior near Granbury, TX',
+    secondaryImage: '/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Granbury, TX',
+    popularHomes: [
+      'marathon-dawson-4bed-2bath-double-wide',
+      'marathon-jackson-1bed-1bath-park-model',
+      'marathon-ranger-2bed-1bath-single-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  cleburne: {
+    county: 'Johnson',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Cleburne, TX and Johnson County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Cleburne is the Johnson County seat, and a lot of the county's older agricultural land sits around it — Texas Homes Direct works with that land directly rather than assuming every lot looks the same.",
+    buyingHeading: 'Buying a Mobile Home in Johnson County',
+    buying: [
+      "Established agricultural or family land around Cleburne often already has a well or electric in place from a previous structure — we confirm what's actually usable before quoting site work.",
+      "A new HUD-code home costs noticeably less to put on Johnson County land than a comparable site-built house would.",
+    ],
+    pricingExplainer: [
+      "A Cleburne-area price holds firm from first quote to closing — everything itemized above is already part of the number.",
+      "Utility costs are the one place we ask for patience — a phone estimate first, then a firm number once our contractor has seen the property.",
+    ],
+    gettingStarted: [
+      "For a Cleburne buyer on family or older agricultural land, the first real question is what's already there — an existing well or service line changes the site-work conversation quickly.",
+      "After that conversation, floor plan and financing come next — same sequence we'd follow for any Johnson County buyer.",
+    ],
+    localProof:
+      "We've walked Johnson County properties with decades of family history on them, confirming what infrastructure from an older structure was still usable.",
+    faq: [
+      {
+        q: "Can you use existing utilities from an old structure on the land?",
+        a: "Often, yes — we confirm what's actually usable on-site rather than assuming everything needs to be run new.",
+      },
+      {
+        q: "Do I need to already own land in Johnson County?",
+        a: "That's not necessary upfront. Johnson County buyers arrive with a finished lot, an unfinished search, or a family-land question still to resolve.",
+      },
+      {
+        q: "Do you deliver throughout Johnson County?",
+        a: "Yes — Johnson County is fully within our coverage. Share your address for the exact delivery and setup details.",
+      },
+    ],
+    nearby: ['burleson', 'granbury', 'waxahachie', 'mansfield'],
+    heroImage: '/homes/the-coleman/Coleman-Gallery-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Cleburne, TX',
+    secondaryImage: '/the-terra/Terra-Hero.jpg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Cleburne, TX',
+    popularHomes: [
+      'marathon-coleman-3bed-2bath-double-wide',
+      'fleetwood-coyote-2bed-2bath-single-wide',
+      'marathon-grayson-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  burleson: {
+    county: 'Johnson',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Burleson, TX and Johnson County. HUD-certified manufactured homes with turnkey setup and honest financing. Free quote today.",
+    intro:
+      "Burleson has grown fast enough that it now straddles Johnson and Tarrant counties in practice, and Texas Homes Direct treats it as one coverage area regardless of which county line your address falls on.",
+    buyingHeading: 'Buying a Mobile Home in Johnson County',
+    buying: [
+      "New subdivision growth around Burleson means some buyers are looking at smaller, newer lots than the older acreage common elsewhere in Johnson County — we scope either kind the same way.",
+      "Between a manufactured home and site-built construction, the price gap in Johnson County is real — and it isn't a quality tradeoff.",
+    ],
+    pricingExplainer: [
+      "There's no second number waiting later for a Burleson-area buyer; everything itemized above is already in the price you see first.",
+      "We don't finalize utility costs remotely. A phone conversation gives a starting figure; a contractor's site visit gives the number you'll actually pay.",
+    ],
+    gettingStarted: [
+      "For a Burleson buyer, it helps to know whether your lot is in a newer development or on older, larger land — the site-work conversation looks a little different either way.",
+      "From there, we talk floor plan and financing side by side, so neither one surprises you later.",
+    ],
+    localProof:
+      "We've delivered to newer Burleson-area subdivisions and to older, larger lots nearby without treating either one as the exception.",
+    faq: [
+      {
+        q: "Does it matter if my Burleson address is technically Johnson or Tarrant County?",
+        a: "Not to us — we cover Burleson as one area regardless of which county line your specific lot falls on.",
+      },
+      {
+        q: "Do I need to already own land in Burleson?",
+        a: "No — plenty of Johnson County buyers start the process before land is settled, whether they're searching, deciding, or sorting out family property.",
+      },
+      {
+        q: "Do you deliver throughout the Burleson area?",
+        a: "Burleson-area delivery covers both the Johnson and Tarrant sides. Give us your address and we'll walk through what that means for your site.",
+      },
+    ],
+    nearby: ['cleburne', 'fort-worth', 'mansfield', 'midlothian'],
+    heroImage: '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
+    heroAlt: 'Single wide manufactured home exterior near Burleson, TX',
+    secondaryImage: '/the-javelina/hero.jpg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Burleson, TX',
+    popularHomes: [
+      'marathon-trinity-4bed-2bath-double-wide',
+      'fleetwood-javelina-1bed-1bath-single-wide',
+      'marathon-breckenridge-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  waxahachie: {
+    county: 'Ellis',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Waxahachie, TX and Ellis County. Family-owned manufactured home dealer with honest, no-pressure financing. Free quote today.",
+    intro:
+      "Waxahachie is the Ellis County seat, and the courthouse square at its center is the kind of landmark most of the county navigates around — Texas Homes Direct covers Waxahachie and works outward from there across Ellis County.",
+    buyingHeading: 'Buying a Mobile Home in Ellis County',
+    buying: [
+      "Ennis and Midlothian buyers end up on Waxahachie's page as often as the other way around, and the quote tracks your actual property, not which town you searched first.",
+      "Ellis County buyers pricing out both options generally find the manufactured home wins on cost without losing ground on construction standards.",
+    ],
+    pricingExplainer: [
+      "The price we give a Waxahachie-area buyer doesn't change later — everything itemized above is already factored in.",
+      "The utility line works differently from the rest of the quote — a phone estimate to start, a contractor's visit to confirm the real cost.",
+    ],
+    gettingStarted: [
+      "For a Waxahachie-area buyer, the first real step is your property — in-town lot or land further out in Ellis County, since that shapes what site work actually looks like.",
+      "Once we're past that, it's floor plan and financing together — standard sequence for every Ellis County property we work with.",
+    ],
+    localProof:
+      "We've delivered to properties inside Waxahachie city limits and to Ellis County land well outside it, using the same process for both.",
+    faq: [
+      {
+        q: "Do you only serve Waxahachie, or the wider Ellis County area too?",
+        a: "The full county — Waxahachie just happens to be where our Ellis County work is centered, not where it ends.",
+      },
+      {
+        q: "Do I need to already own land in Ellis County?",
+        a: "It doesn't have to be settled yet. Some Ellis County buyers already own their site, some are actively looking, and some have a family-land situation to work through.",
+      },
+      {
+        q: "Do you deliver throughout Ellis County?",
+        a: "Ellis County's courthouse square or its outer edges, we deliver to both — send your address and we'll confirm the specifics.",
+      },
+    ],
+    nearby: ['midlothian', 'ennis', 'cleburne', 'corsicana'],
+    heroImage: '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Waxahachie, TX',
+    secondaryImage: '/the-brewster/Brewster-Body-1.jpg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Waxahachie, TX',
+    popularHomes: [
+      'fleetwood-raven-3bed-2bath-single-wide',
+      'marathon-brewster-3bed-2bath-double-wide',
+      'marathon-darrell-1bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  midlothian: {
+    county: 'Ellis',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Midlothian, TX and Ellis County. New manufactured homes and honest financing — get your free quote from us today.",
+    intro:
+      "Midlothian is one of the faster-growing cities on Ellis County's northern edge, and a lot of buyers here are landing on newly platted lots rather than older acreage — Texas Homes Direct scopes new-development land on its own terms.",
+    buyingHeading: 'Buying a Mobile Home in Ellis County',
+    buying: [
+      "A newer Midlothian-area subdivision lot often has less existing infrastructure than it looks like from the street — we confirm what's actually run before quoting anything.",
+      "The same HUD code that governs every manufactured home also keeps the price well under site-built construction around Ellis County.",
+    ],
+    pricingExplainer: [
+      "A Midlothian-area quote stays exactly what it was quoted at — everything itemized above is already included, not added on.",
+      "We're upfront that utility costs can't be locked in from a phone call alone — an estimate starts it, and our contractor's visit finalizes it.",
+    ],
+    gettingStarted: [
+      "For a Midlothian buyer on a newer lot, the first useful question is what's actually been run to the property already versus what the subdivision plan shows on paper.",
+      "The rest follows a familiar pattern: floor plan, financing, and a property visit, worked out together rather than one at a time.",
+    ],
+    localProof:
+      "We've scoped newly platted Midlothian-area lots where what was actually run to the property didn't fully match the subdivision plan on paper.",
+    faq: [
+      {
+        q: "Is a newer subdivision lot already ready for a manufactured home?",
+        a: "Sometimes, but not always — we confirm what's actually in place rather than assuming the subdivision plan matches reality.",
+      },
+      {
+        q: "Do I need to already own land in Midlothian?",
+        a: "No. Buyers here might already have Ellis County land, might still be shopping for it, or might be figuring out a family property — we work with all three.",
+      },
+      {
+        q: "Do you deliver throughout the Midlothian area?",
+        a: "All of Ellis County, corner to corner — share your address and we'll lay out the delivery and setup specifics.",
+      },
+    ],
+    nearby: ['waxahachie', 'cleburne', 'mansfield', 'burleson'],
+    heroImage: '/homes/the-moose/hero.jpeg',
+    heroAlt: 'Single wide manufactured home exterior near Midlothian, TX',
+    secondaryImage: '/the-mesquite/Mesquite-Body-1.jpg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Midlothian, TX',
+    popularHomes: [
+      'marathon-conroe-2bed-2bath-single-wide',
+      'marathon-fisher-3bed-2bath-double-wide',
+      'marathon-dove-1bed-1bath-single-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  ennis: {
+    county: 'Ellis',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Ennis, TX and Ellis County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Ennis sits along the I-45 corridor at Ellis County's southern edge, and it's noticeably more rural than Waxahachie or Midlothian to its north — Texas Homes Direct treats that as a real difference in what a typical property looks like, not just a shorter drive.",
+    buyingHeading: 'Buying a Mobile Home in Ellis County',
+    buying: [
+      "Ennis-area land tends to run larger and less developed than the newer subdivisions further north in the county, which usually means a more involved site-work conversation.",
+      "Compared side by side, a manufactured home in Ellis County typically costs less than site-built construction of similar size.",
+    ],
+    pricingExplainer: [
+      "Once a Ennis-area buyer sees the number, that's it — everything itemized above is already part of that figure.",
+      "Utility hookups are the exception to a fixed price. A phone estimate opens things up; the real number comes once our contractor sees the land.",
+    ],
+    gettingStarted: [
+      "For an Ennis-area buyer, the property conversation usually runs longer than it would for a smaller in-town lot further north — how much has been cleared, what's already run.",
+      "After that, we shift to floor plan and financing — the same two-track process regardless of where in Ellis County you land.",
+    ],
+    localProof:
+      "We've scoped larger, less-developed Ennis-area properties along the I-45 corridor where groundwork was a bigger part of the conversation than it is further north in the county.",
+    faq: [
+      {
+        q: "Is Ennis-area land usually more rural than the rest of Ellis County?",
+        a: "Often, yes — we typically see larger, less-developed lots here than in Waxahachie or Midlothian, and we scope the site work accordingly.",
+      },
+      {
+        q: "Do I need to already own land near Ennis?",
+        a: "Not at all. We regularly start with Ellis County buyers who haven't locked down land yet, alongside those who already have.",
+      },
+      {
+        q: "Do you deliver throughout the Ennis area?",
+        a: "The I-45 corridor through Ennis and the farmland around it are both covered — send your address for the specifics.",
+      },
+    ],
+    nearby: ['waxahachie', 'corsicana', 'kaufman', 'midlothian'],
+    heroImage: '/homes/the-pigeon/Marathon-Archer-7.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Ennis, TX',
+    secondaryImage: '/the-pronghorn/Image.jpeg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Ennis, TX',
+    popularHomes: [
+      'marathon-hays-4bed-2bath-double-wide',
+      'marathon-spoonbill-3bed-2bath-single-wide',
+      'marathon-gadwall-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  corsicana: {
+    county: 'Navarro',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Corsicana, TX and Navarro County. HUD-certified manufactured homes with turnkey setup and honest financing. Free quote today.",
+    intro:
+      "Corsicana is the Navarro County seat along I-45 between Dallas and Houston, and Texas Homes Direct delivers to Navarro County's mostly agricultural land as directly as it does anywhere closer to the metro.",
+    buyingHeading: 'Buying a Mobile Home in Navarro County',
+    buying: [
+      "Navarro County farmland surrounding Corsicana rarely comes with a standard setup — soil, drainage, and access all shift from one parcel to the next, so we walk each property before quoting.",
+      "For Navarro County buyers weighing the two paths, the manufactured option consistently comes out ahead on price for comparable square footage.",
+    ],
+    pricingExplainer: [
+      "The figure we give Corsicana-area buyers is complete from the first conversation — everything itemized above is already in it.",
+      "We hold off on a final utility number until our contractor has actually seen the property — a phone estimate is just the starting point.",
+    ],
+    gettingStarted: [
+      "A Corsicana-area call usually starts with the land itself — farmland varies enough here that floor plans wait until we know what your specific parcel actually looks like.",
+      "From there we get into floor plan options and financing at the same time, not sequentially.",
+    ],
+    localProof:
+      "Two Corsicana-area farms rarely quote the same — we've walked enough of them to know soil and access change property to property, not just county to county.",
+    faq: [
+      {
+        q: "Do you deliver to agricultural land outside Corsicana city limits?",
+        a: "Yes — Navarro County is mostly working farmland outside town, and we treat that acreage like any other property we quote.",
+      },
+      {
+        q: "Do I need to already own land in Navarro County?",
+        a: "No requirement there. Navarro County land situations run the gamut — already owned, still being searched for, or tied up in family property.",
+      },
+      {
+        q: "Do you deliver throughout Navarro County?",
+        a: "We do, countywide. Give us your address and we'll walk through the delivery and setup details for your site.",
+      },
+    ],
+    nearby: ['ennis', 'waxahachie', 'athens', 'fairfield'],
+    heroImage: '/homes/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg',
+    heroAlt: 'Single wide manufactured home exterior near Corsicana, TX',
+    secondaryImage: '/the-coleman/Coleman-Gallery-1.jpg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Corsicana, TX',
+    popularHomes: [
+      'marathon-widgeon-4bed-2bath-double-wide',
+      'marathon-pearland-3bed-2bath-single-wide',
+      'fleetwood-rattlesnake-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  athens: {
+    county: 'Henderson',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Athens, TX and Henderson County. Family-owned manufactured home dealer with honest, no-pressure financing. Free quote today.",
+    intro:
+      "Athens is the Henderson County seat and sits close enough to several area lakes that a fair number of buyers here are looking at part-time or eventual full-time lake property — Texas Homes Direct works with both.",
+    buyingHeading: 'Buying a Mobile Home in Henderson County',
+    buying: [
+      "Lake-area Henderson County land can be more developed than buyers expect, or considerably less — we confirm the actual site condition before quoting anything.",
+      "A site-built house near Henderson costs more to build than a HUD-code manufactured home of the same size — that gap is the whole reason a lot of buyers look at us first.",
+    ],
+    pricingExplainer: [
+      "A Athens-area price is locked the moment it's quoted — everything itemized above is already built into that number.",
+      "Utility costs get their own process: a phone estimate to begin, then a confirmed figure once our contractor has walked the site.",
+    ],
+    gettingStarted: [
+      "For an Athens-area buyer, it helps early on to know whether the property is meant as a full-time home or a lake place you'll use part of the year — it shapes some of the planning conversation.",
+      "Once that's clear, floor plan and financing move forward together, same as they would for any buyer in Henderson County.",
+    ],
+    localProof:
+      "We've worked with both full-time Henderson County residents and buyers setting up a lake-area property for part-time use.",
+    faq: [
+      {
+        q: "Do you work with buyers setting up a lake-area property near Athens?",
+        a: "Yes — full-time or part-time use, the pricing and process are the same.",
+      },
+      {
+        q: "Do I need to already own land near the lake?",
+        a: "It's not a prerequisite. Some Henderson County buyers have their site already, others are still deciding, and some are working through inherited or family land.",
+      },
+      {
+        q: "Do you deliver throughout Henderson County?",
+        a: "Lake-area land near Athens and the rest of Henderson County alike — send your address and we'll confirm the specifics.",
+      },
+    ],
+    nearby: ['corsicana', 'canton', 'tyler', 'palestine'],
+    heroImage: '/homes/the-terra/Terra-Hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Athens, TX',
+    secondaryImage: '/the-wood-duck/Wood-Duck-Hero.jpg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Athens, TX',
+    popularHomes: [
+      'fleetwood-armadillo-3bed-2bath',
+      'marathon-bailey-3bed-2bath-double-wide',
+      'marathon-redhead-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  canton: {
+    county: 'Van Zandt',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Canton, TX and Van Zandt County. New manufactured homes and honest financing — get your free quote from us today.",
+    intro:
+      "Canton is a small Van Zandt County town best known well beyond the county for First Monday Trade Days, and the rest of the month it's a quiet rural community Texas Homes Direct delivers to like any other.",
+    buyingHeading: 'Buying a Mobile Home in Van Zandt County',
+    buying: [
+      "Outside the trade-days weekends, Canton-area land is mostly quiet, rural, and varies from fully serviced to raw — we scope the actual property either way.",
+      "Van Zandt County land goes further with a manufactured home than it would financing site-built construction at the same budget.",
+    ],
+    pricingExplainer: [
+      "For Canton-area buyers, the quote you get first is the price you pay last — everything itemized above is already included.",
+      "The rest of the price is fixed; utilities aren't, not until our contractor sees the property. A phone estimate is only the opening number.",
+    ],
+    gettingStarted: [
+      "For a Canton-area buyer, the first real step is your specific property — rural Van Zandt County land ranges widely, so we'd rather understand yours before talking floor plans.",
+      "The next conversation covers floor plan and financing at once, so you're not choosing a home blind to what it costs monthly.",
+    ],
+    localProof:
+      "We've delivered to quiet, rural Van Zandt County properties well outside the trade-days crowds most people associate with Canton.",
+    faq: [
+      {
+        q: "Do you deliver to rural land outside Canton, not just near town?",
+        a: "Van Zandt County outside Canton is mostly rural, and we quote that land using the same process as any in-town lot.",
+      },
+      {
+        q: "Do I need to already own land near Canton?",
+        a: "No. We've started the process with Van Zandt County buyers at every stage of the land question, owned or not yet.",
+      },
+      {
+        q: "Do you deliver throughout Van Zandt County?",
+        a: "We cover it all. Share your address and we'll spell out delivery and setup for your specific site.",
+      },
+    ],
+    nearby: ['athens', 'terrell', 'mineola', 'quitman'],
+    heroImage: '/homes/the-javelina/hero.jpg',
+    heroAlt: 'Single wide manufactured home exterior near Canton, TX',
+    secondaryImage: '/the-widgeon/2-Stonewall.jpg.jpeg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Canton, TX',
+    popularHomes: [
+      'marathon-abilene-2bed-1bath-single-wide',
+      'fleetwood-jackrabbit-3bed-2bath-double-wide',
+      'marathon-lanny-1bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  terrell: {
+    county: 'Kaufman',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Terrell, TX and Kaufman County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Terrell sits along I-20 east of Dallas, and Texas Homes Direct works with the same firm pricing and honest financing whether you're commuting into the metro or staying local to Kaufman County.",
+    buyingHeading: 'Buying a Mobile Home in Kaufman County',
+    buying: [
+      "Terrell's position on I-20 makes it a common stop for buyers who work in Dallas but want more land than the closer suburbs offer — we scope that land the same as anywhere else.",
+      "Manufactured construction under current HUD code still beats site-built on price throughout Kaufman County, without cutting corners on the build itself.",
+    ],
+    pricingExplainer: [
+      "Nothing changes between quote and closing for a Terrell-area buyer — everything itemized above is already reflected in the number.",
+      "We won't pretend to know utility costs before seeing the land. A phone estimate starts the conversation; a site visit ends it with a real figure.",
+    ],
+    gettingStarted: [
+      "For a Terrell-area buyer, the first useful question is usually your property — in-town lot or land further out — since that shapes the site-work conversation more than commute distance does.",
+      "After that, it's a floor plan discussion and a financing discussion, running together rather than back to back.",
+    ],
+    localProof:
+      "We've worked with Terrell-area buyers commuting into Dallas along I-20 and with buyers staying entirely local to Kaufman County.",
+    faq: [
+      {
+        q: "Do you work with buyers who commute into Dallas from Terrell?",
+        a: "Yes — commute distance doesn't change the pricing or process, only your own property does.",
+      },
+      {
+        q: "Do I need to already own land in Kaufman County?",
+        a: "No — some Kaufman County buyers walk in with land ready, some are still hunting, and some are sorting through a family situation. We work with all of them.",
+      },
+      {
+        q: "Do you deliver throughout the Terrell area?",
+        a: "Yes, throughout Kaufman County. Send your address and we'll walk you through delivery and setup for your property.",
+      },
+    ],
+    nearby: ['kaufman', 'canton', 'greenville', 'forney'],
+    heroImage: '/homes/the-brewster/Brewster-Body-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Terrell, TX',
+    secondaryImage: '/the-moose/hero.jpeg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Terrell, TX',
+    popularHomes: [
+      'marathon-woodduck-3bed-2bath-double-wide',
+      'marathon-amarillo-2bed-2bath-single-wide',
+      'marathon-pigeon-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  kaufman: {
+    county: 'Kaufman',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Kaufman, TX and Kaufman County. HUD-certified manufactured homes with turnkey setup and honest financing. Free quote today.",
+    intro:
+      "Kaufman is the Kaufman County seat, closer to Dallas than Terrell to its east, and Texas Homes Direct covers the whole county the same way regardless of which town sits closer to your specific address.",
+    buyingHeading: 'Buying a Mobile Home in Kaufman County',
+    buying: [
+      "As the county seat, Kaufman draws buyers from smaller surrounding towns too — we quote based on your actual property, not which page brought you here.",
+      "The price difference between manufactured and site-built holds in Kaufman County: buyers get more home per dollar going the manufactured route.",
+    ],
+    pricingExplainer: [
+      "A Kaufman-area buyer's price is set from the start, with everything itemized above already rolled into that one figure.",
+      "Utility hookups don't get quoted sight-unseen. Expect a phone estimate first, and a contractor-confirmed number after an actual property visit.",
+    ],
+    gettingStarted: [
+      "For a Kaufman-area buyer, the first real step is your property, not which nearby town's name is on your address — that's what actually determines the site-work conversation.",
+      "From there, we move into floor plan and financing as one conversation, not two separate ones.",
+    ],
+    localProof:
+      "We've delivered to properties close to the Kaufman County seat and to land well out toward the county's edges, using the same process for both.",
+    faq: [
+      {
+        q: "Does it matter if I'm closer to Kaufman or Terrell?",
+        a: "Not to us — we treat Kaufman County as one coverage area, so the town closest to your address doesn't change the price or process.",
+      },
+      {
+        q: "Do I need to already own land in Kaufman County?",
+        a: "It's optional at the start. Kaufman County buyers land here with a finished search, an open one, or a family-property question still pending.",
+      },
+      {
+        q: "Do you deliver throughout Kaufman County?",
+        a: "We do — every corner of Kaufman County. Give us your address and we'll confirm the details for your site.",
+      },
+    ],
+    nearby: ['terrell', 'ennis', 'forney', 'mesquite'],
+    heroImage: '/homes/the-mesquite/Mesquite-Body-1.jpg',
+    heroAlt: 'Single wide manufactured home exterior near Kaufman, TX',
+    secondaryImage: '/the-pigeon/Marathon-Archer-7.jpeg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Kaufman, TX',
+    popularHomes: [
+      'marathon-mallard-4bed-2bath-double-wide',
+      'marathon-grapevine-2bed-2bath-single-wide',
+      'marathon-bell-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  greenville: {
+    county: 'Hunt',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Greenville, TX and Hunt County. Family-owned manufactured home dealer with honest, no-pressure financing. Free quote today.",
+    intro:
+      "Greenville is the Hunt County seat and the largest town in a mostly agricultural stretch of blackland prairie northeast of Dallas — Texas Homes Direct works with that land the same way it works anywhere else in the county.",
+    buyingHeading: 'Buying a Mobile Home in Hunt County',
+    buying: [
+      "Hunt County's blackland prairie soil is common around Greenville, and it factors into site work more than buyers sometimes expect — we confirm the actual conditions before quoting.",
+      "In Hunt County, a comparable site-built home simply costs more than a new manufactured one built to the same HUD standards.",
+    ],
+    pricingExplainer: [
+      "The price stays put for Greenville-area buyers — everything itemized above is already part of what we quote up front.",
+      "The utility number isn't final until our contractor has been on-site. A phone estimate is the starting point, not the answer.",
+    ],
+    gettingStarted: [
+      "For a Greenville-area buyer, the property conversation usually covers soil and drainage more than it would in a denser suburban market — that's just what blackland prairie land requires.",
+      "Once we've covered that, floor plan and financing come next — the same process we'd walk any Hunt County buyer through.",
+    ],
+    localProof:
+      "We've scoped Hunt County blackland prairie properties around Greenville where soil conditions shaped the site work more than the buyer originally expected.",
+    faq: [
+      {
+        q: "Does blackland prairie soil around Greenville affect setup?",
+        a: "It can factor into site work, which is why we confirm actual ground conditions on your property rather than assuming a standard setup.",
+      },
+      {
+        q: "Do I need to already own land in Hunt County?",
+        a: "No, not upfront. Hunt County land can be secured, still being searched for, or still tangled up in a family arrangement — any of those works.",
+      },
+      {
+        q: "Do you deliver throughout Hunt County?",
+        a: "Yes indeed. Give us your address and we'll lay out what delivery and setup mean for your specific property.",
+      },
+    ],
+    nearby: ['commerce', 'terrell', 'rockwall', 'sulphur-springs'],
+    heroImage: '/homes/the-pronghorn/Image.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Greenville, TX',
+    secondaryImage: '/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Greenville, TX',
+    popularHomes: [
+      'marathon-katy-3bed-2bath-single-wide',
+      'fleetwood-moose-4bed-2bath-double-wide',
+      'fleetwood-axis-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  commerce: {
+    county: 'Hunt',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Commerce, TX and Hunt County. New manufactured homes and honest financing — get your free quote from us today.",
+    intro:
+      "Commerce is smaller than Greenville to its west, and home to Texas A&M University-Commerce, which puts a different mix of buyers here than the surrounding farmland — Texas Homes Direct works with both the college-town side and the rural side of Hunt County.",
+    buyingHeading: 'Buying a Mobile Home in Hunt County',
+    buying: [
+      "Commerce-area land ranges from small in-town lots near the university to larger agricultural parcels further out — we scope each one on its own terms.",
+      "Hunt County buyers pricing new construction against a manufactured home usually find the gap in the manufactured home's favor, not the other way around.",
+    ],
+    pricingExplainer: [
+      "What we tell a Commerce-area buyer at the start is what they pay at the end, everything itemized above already included.",
+      "We treat utilities as their own conversation — an estimate over the phone, then a real number once our contractor has seen the property in person.",
+    ],
+    gettingStarted: [
+      "For a Commerce-area buyer, it helps to know upfront whether your lot is closer to town or out on larger acreage — the site-work conversation looks a little different either way.",
+      "The next step pairs floor plan selection with financing, so you see both pieces before committing to either.",
+    ],
+    localProof:
+      "We've scoped both smaller in-town Commerce lots and larger agricultural parcels further out in Hunt County.",
+    faq: [
+      {
+        q: "Do you deliver to land outside Commerce city limits?",
+        a: "Yes — most of the surrounding area is agricultural, and we scope that land the same way we would an in-town lot.",
+      },
+      {
+        q: "Do I need to already own land near Commerce?",
+        a: "That's flexible. Some Hunt County buyers have secured land already; others are mid-hunt or working through a family situation.",
+      },
+      {
+        q: "Do you deliver throughout the Commerce area?",
+        a: "All of Hunt County is in range. Send your address and we'll confirm what that looks like for your lot.",
+      },
+    ],
+    nearby: ['greenville', 'sulphur-springs', 'paris', 'bonham'],
+    heroImage: '/homes/the-coleman/Coleman-Gallery-1.jpg',
+    heroAlt: 'Single wide manufactured home exterior near Commerce, TX',
+    secondaryImage: '/the-terra/Terra-Hero.jpg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Commerce, TX',
+    popularHomes: [
+      'marathon-mesquite-3bed-2bath-single-wide',
+      'fleetwood-pronghorn-4bed-2bath-double-wide',
+      'marathon-terra-2bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  rockwall: {
+    county: 'Rockwall',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Rockwall, TX and Rockwall County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Rockwall is the seat of the smallest county in Texas by land area, sitting right on Lake Ray Hubbard — and despite the tight geography, Texas Homes Direct still finds real options for manufactured-home buyers here.",
+    buyingHeading: 'Buying a Mobile Home in Rockwall County',
+    buying: [
+      "Because Rockwall County is so compact, available land can be harder to find than in a larger rural county — we help buyers think through what's realistic for their budget and timeline.",
+      "A manufactured home holds its price advantage over site-built construction in Rockwall County, dollar for dollar and square foot for square foot.",
+    ],
+    pricingExplainer: [
+      "A Rockwall-area quote isn't a starting point — it's the final number, with everything itemized above already built in.",
+      "Utility costs are the one thing we won't fix remotely. A phone estimate opens it; our contractor's on-site visit closes it with the actual figure.",
+    ],
+    gettingStarted: [
+      "For a Rockwall-area buyer, land search is often the real first step, since the county's small size means fewer available lots than a typical rural area — we're happy to talk through the tradeoffs.",
+      "After that, floor plan and financing get discussed together, same as with any other Rockwall County property.",
+    ],
+    localProof:
+      "We've worked with Rockwall County buyers navigating a genuinely tight land market, helping them weigh the lots that were actually available.",
+    faq: [
+      {
+        q: "Is land harder to find in Rockwall County than elsewhere?",
+        a: "It can be, since Rockwall is the smallest county in Texas by area. We're glad to talk through your options as you search.",
+      },
+      {
+        q: "Do I need to already own land near Rockwall?",
+        a: "No. A finished land search isn't the starting line for Rockwall County buyers — some come to us before that's settled.",
+      },
+      {
+        q: "Do you deliver throughout Rockwall County?",
+        a: "Yes, without exception. Share your address and we'll confirm delivery and setup specifics for your property.",
+      },
+    ],
+    nearby: ['royse-city', 'greenville', 'terrell', 'garland'],
+    heroImage: '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Rockwall, TX',
+    secondaryImage: '/the-javelina/hero.jpg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Rockwall, TX',
+    popularHomes: [
+      'marathon-loving-3bed-2bath-double-wide',
+      'marathon-beaumont-3bed-2bath-single-wide',
+      'fleetwood-badger-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  'royse-city': {
+    county: 'Rockwall',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Royse City, TX and Rockwall County. HUD-certified manufactured homes with turnkey setup and honest financing. Free quote today.",
+    intro:
+      "Royse City is one of the fastest-growing towns next to Rockwall, with newer subdivisions filling in what used to be open county land — Texas Homes Direct scopes that new-development land on its own terms.",
+    buyingHeading: 'Buying a Mobile Home in Rockwall County',
+    buying: [
+      "A newer Royse City-area lot often has less infrastructure in place than it appears — we confirm what's actually run to the property before quoting anything.",
+      "Cost is where manufactured homes still separate from site-built construction near Rockwall — same code, meaningfully lower price.",
+    ],
+    pricingExplainer: [
+      "For a Royse City-area buyer, the first price and the closing price are the same one, everything itemized above already included.",
+      "We're honest that utility costs need an in-person look. A phone estimate starts things; our contractor's visit produces the number that sticks.",
+    ],
+    gettingStarted: [
+      "New Royse City lots get one question first from us: what's physically been run to the property, plan documents aside.",
+      "From there, it's floor plan and financing in the same conversation — no reason to separate them.",
+    ],
+    localProof:
+      "More than one Royse City buyer has handed us a subdivision plan that didn't match what was actually run to the lot — we go by what's on the ground.",
+    faq: [
+      {
+        q: "Is a newer Royse City lot already ready for a manufactured home?",
+        a: "Not automatically — plans on paper and what's actually trenched to the lot don't always agree, so we check the ground itself.",
+      },
+      {
+        q: "Do I need to already own land in Royse City?",
+        a: "It's not required upfront. Rockwall County buyers show up with land settled, land pending, or a family property still being sorted out.",
+      },
+      {
+        q: "Do you deliver throughout the Royse City area?",
+        a: "We do, everywhere in Rockwall County. Send your address and we'll confirm the setup details for your site.",
+      },
+    ],
+    nearby: ['rockwall', 'greenville', 'terrell', 'commerce'],
+    heroImage: '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
+    heroAlt: 'Single wide manufactured home exterior near Royse City, TX',
+    secondaryImage: '/the-brewster/Brewster-Body-1.jpg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Royse City, TX',
+    popularHomes: [
+      'marathon-pintail-4bed-2bath-double-wide',
+      'fleetwood-bobcat-3bed-2bath-single-wide',
+      'marathon-daniel-1bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  sherman: {
+    county: 'Grayson',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Sherman, TX and Grayson County. Family-owned manufactured home dealer with honest, no-pressure financing. Free quote today.",
+    intro:
+      "Sherman is the Grayson County seat near Lake Texoma and the Red River, and Texas Homes Direct covers it with the same firm pricing whether your property is close to the lake or further into the county.",
+    buyingHeading: 'Buying a Mobile Home in Grayson County',
+    buying: [
+      "As the larger of the two Grayson County seats-adjacent cities, Sherman draws buyers from a wide radius — we quote based on your specific property, not proximity to town.",
+      "For the same money, Grayson County buyers typically get a larger, newer manufactured home than site-built construction would deliver.",
+    ],
+    pricingExplainer: [
+      "There's no markup waiting for Sherman-area buyers later — everything itemized above is already in the number they're quoted.",
+      "Utility hookups follow their own timeline — a phone estimate first, then an exact figure once our contractor has walked the specific property.",
+    ],
+    gettingStarted: [
+      "For a Sherman-area buyer, the property conversation usually starts with location relative to the lake, since that can affect what site work looks like.",
+      "Once that's out of the way, we move to floor plan and financing, handled together rather than in sequence.",
+    ],
+    localProof:
+      "We've delivered to Sherman-area properties both near Lake Texoma and further inland, scoping each one for its actual site conditions.",
+    faq: [
+      {
+        q: "Does being near Lake Texoma change setup requirements?",
+        a: "It can affect site conditions, which is why we confirm your specific property rather than assuming a standard setup.",
+      },
+      {
+        q: "Do I need to already own land in Grayson County?",
+        a: "No — Grayson County buyers land here at different points: some with a lot ready, some without one yet, some mid-family-property discussion.",
+      },
+      {
+        q: "Do you deliver throughout Grayson County?",
+        a: "Between Sherman, Denison, and the rural stretches, Grayson County is fully covered. Give us your address for the specifics.",
+      },
+    ],
+    nearby: ['denison', 'bonham', 'gainesville', 'mckinney'],
+    heroImage: '/homes/the-moose/hero.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Sherman, TX',
+    secondaryImage: '/the-mesquite/Mesquite-Body-1.jpg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Sherman, TX',
+    popularHomes: [
+      'marathon-cisco-2bed-2bath-single-wide',
+      'fleetwood-peredavid-3bed-2bath-double-wide',
+      'marathon-caldwell-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  denison: {
+    county: 'Grayson',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Denison, TX and Grayson County. New manufactured homes and honest financing — get your free quote from us today.",
+    intro:
+      "Denison sits just north of Sherman, closer to the Red River and Lake Texoma itself, and Texas Homes Direct treats it as its own market rather than an extension of its larger neighbor.",
+    buyingHeading: 'Buying a Mobile Home in Grayson County',
+    buying: [
+      "Denison's proximity to the river and lake means some properties here deal with different drainage and access conditions than land further from the water — we confirm the specifics before quoting.",
+      "Site-built construction around Grayson carries a real cost premium over a HUD-code manufactured home of comparable size.",
+    ],
+    pricingExplainer: [
+      "The number a Denison-area buyer gets up front is the number that sticks, everything itemized above already factored in.",
+      "The one number that isn't locked in upfront is utilities. A phone estimate is a starting point; our contractor's site visit sets the real cost.",
+    ],
+    gettingStarted: [
+      "For a Denison-area buyer, it helps to flag early on if your property is close to the river or lake, since drainage and access sometimes factor into the site-work conversation.",
+      "The rest of the process is floor plan and financing running side by side, same as anywhere else we deliver.",
+    ],
+    localProof:
+      "We've scoped Denison-area properties close to the Red River where drainage and access needed a closer look than land further inland.",
+    faq: [
+      {
+        q: "Does being close to the Red River affect setup near Denison?",
+        a: "It can, depending on drainage and access — we confirm your specific property before quoting site work.",
+      },
+      {
+        q: "Do I need to already own land near Denison?",
+        a: "That's not necessary. Land status varies widely among Grayson County buyers — secured, still searching, or still a family conversation.",
+      },
+      {
+        q: "Do you deliver throughout the Denison area?",
+        a: "From Sherman's edge to the Red River, Grayson County is covered — share your address and we'll confirm what delivery and setup involve.",
+      },
+    ],
+    nearby: ['sherman', 'bonham', 'gainesville', 'whitesboro'],
+    heroImage: '/homes/the-pigeon/Marathon-Archer-7.jpeg',
+    heroAlt: 'Single wide manufactured home exterior near Denison, TX',
+    secondaryImage: '/the-pronghorn/Image.jpeg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Denison, TX',
+    popularHomes: [
+      'marathon-chapman-1bed-1bath-park-model',
+      'marathon-jasper-3bed-2bath-double-wide',
+      'marathon-temple-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  bonham: {
+    county: 'Fannin',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Bonham, TX and Fannin County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Bonham is the Fannin County seat, quieter and more rural than Sherman and Denison to its west, and best known well beyond the county as the hometown of Sam Rayburn — Texas Homes Direct delivers to its farmland the same as anywhere else.",
+    buyingHeading: 'Buying a Mobile Home in Fannin County',
+    buying: [
+      "Fannin County land around Bonham is mostly agricultural and tends to run larger than lots closer to the Sherman-Denison area — we scope the actual acreage before quoting.",
+      "Fannin County families sizing up new construction find manufactured homes consistently priced below the site-built equivalent.",
+    ],
+    pricingExplainer: [
+      "A Bonham-area price doesn't creep upward after the fact — everything itemized above is already part of the original figure.",
+      "We won't guess at what your specific land needs for utilities. A phone estimate opens the conversation; a contractor's visit closes it with a real number.",
+    ],
+    gettingStarted: [
+      "For a Bonham-area buyer, the property conversation usually runs a bit longer than it would in a denser market — larger acreage means more to actually walk through.",
+      "After that, floor plan and financing come up together, the same pairing we use for every Fannin County buyer.",
+    ],
+    localProof:
+      "We've scoped larger Fannin County parcels around Bonham where the acreage itself took longer to walk through than the rest of the process combined.",
+    faq: [
+      {
+        q: "Is Fannin County land around Bonham usually larger acreage?",
+        a: "Often, yes — we typically see bigger, more rural parcels here than closer to Sherman or Denison, and we scope accordingly.",
+      },
+      {
+        q: "Do I need to already own land near Bonham?",
+        a: "No, that's not expected. Fannin County buyers reach out with land already found, still being found, or still a family matter to resolve.",
+      },
+      {
+        q: "Do you deliver throughout Fannin County?",
+        a: "From Sam Rayburn's old stretch of Fannin County to the rest of it, we deliver — send your address for the specifics.",
+      },
+    ],
+    nearby: ['sherman', 'denison', 'commerce', 'paris'],
+    heroImage: '/homes/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Bonham, TX',
+    secondaryImage: '/the-coleman/Coleman-Gallery-1.jpg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Bonham, TX',
+    popularHomes: [
+      'marathon-longview-3bed-2bath-single-wide',
+      'marathon-kendall-3bed-2bath-double-wide',
+      'fleetwood-roadrunner-3bed-2bath',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  paris: {
+    county: 'Lamar',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Paris, TX and Lamar County. HUD-certified manufactured homes with turnkey setup and honest financing. Free quote today.",
+    intro:
+      "Paris is the Lamar County seat and the largest town in this corner of Northeast Texas, best known outside the county for its own scaled Eiffel Tower replica downtown — Texas Homes Direct delivers here the same as anywhere closer to the metro.",
+    buyingHeading: 'Buying a Mobile Home in Lamar County',
+    buying: [
+      "Bonham, Commerce, and the smaller Lamar County towns around Paris all route through the same team, and your quote reflects your property, not which of those pages you clicked first.",
+      "A manufactured home built to current HUD code costs Lamar County buyers less than site-built construction, without a corresponding drop in quality.",
+    ],
+    pricingExplainer: [
+      "For Paris-area buyers, what's quoted is what's owed — everything itemized above is already built into that price.",
+      "Utility costs stay an estimate until our contractor has actually seen the property — that's the one number we won't fix over the phone.",
+    ],
+    gettingStarted: [
+      "For a Paris-area buyer, the property is usually the first real conversation, not proximity to town — that's what actually shapes the site-work conversation.",
+      "From there we get into floor plan and financing in the same breath, not as separate steps.",
+    ],
+    localProof:
+      "Our Lamar County deliveries range from Paris city blocks to acreage bordering Red River County, with the same process either end.",
+    faq: [
+      {
+        q: "Do you only serve Paris, or the wider Lamar County area too?",
+        a: "All of it — Paris is simply where our Lamar County coverage is centered, not a boundary on it.",
+      },
+      {
+        q: "Do I need to already own land in Lamar County?",
+        a: "It's fine either way. Some Lamar County buyers have land locked in, some are searching, and some are working through a family property question.",
+      },
+      {
+        q: "Do you deliver throughout Lamar County?",
+        a: "Every stretch of Lamar County is ours to deliver to. Give us your address and we'll spell out the specifics for your site.",
+      },
+    ],
+    nearby: ['bonham', 'commerce', 'sulphur-springs', 'clarksville'],
+    heroImage: '/homes/the-terra/Terra-Hero.jpg',
+    heroAlt: 'Single wide manufactured home exterior near Paris, TX',
+    secondaryImage: '/the-wood-duck/Wood-Duck-Hero.jpg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Paris, TX',
+    popularHomes: [
+      'fleetwood-axis-3bed-2bath-double-wide',
+      'marathon-ranger-2bed-1bath-single-wide',
+      'fleetwood-javelina-1bed-1bath-single-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  'sulphur-springs': {
+    county: 'Hopkins',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Sulphur Springs, TX and Hopkins County. Family-owned manufactured home dealer with honest, no-pressure financing. Free quote today.",
+    intro:
+      "Sulphur Springs is the Hopkins County seat, a rural stretch of blackland prairie and dairy country between Greenville and the Piney Woods — Texas Homes Direct delivers here the same as anywhere closer to the metro.",
+    buyingHeading: 'Buying a Mobile Home in Hopkins County',
+    buying: [
+      "Hopkins County land around Sulphur Springs runs agricultural more often than not, and site conditions vary enough that we confirm each property individually.",
+      "The value gap between manufactured and site-built hasn't closed in Hopkins County — a manufactured home still costs less for comparable space.",
+    ],
+    pricingExplainer: [
+      "The quote a Sulphur Springs-area buyer receives is the final word on price, with everything itemized above already included.",
+      "Unlike the rest of the quote, utilities need eyes on the property first. A phone estimate starts it; our contractor's visit finishes it.",
+    ],
+    gettingStarted: [
+      "We usually start a Sulphur Springs-area conversation with the land, not the floor plan — Hopkins County properties differ enough that the site comes first.",
+      "Once we've covered your property, the next stop is floor plan and financing, worked out together.",
+    ],
+    localProof:
+      "Hopkins County dairy land and smaller in-town Sulphur Springs lots don't share much in common site-wise, which is exactly why we quote each property on its own.",
+    faq: [
+      {
+        q: "Do you deliver to agricultural land outside Sulphur Springs city limits?",
+        a: "Hopkins County dairy and row-crop land is common around Sulphur Springs, and yes, we deliver to it the same as any in-town lot.",
+      },
+      {
+        q: "Do I need to already own land in Hopkins County?",
+        a: "No. Whether Hopkins County land is secured, in progress, or a family situation, we start the conversation regardless.",
+      },
+      {
+        q: "Do you deliver throughout Hopkins County?",
+        a: "Dairy country and in-town Sulphur Springs lots alike — send your address and we'll confirm the delivery and setup specifics.",
+      },
+    ],
+    nearby: ['greenville', 'commerce', 'paris', 'mount-pleasant'],
+    heroImage: '/homes/the-javelina/hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Sulphur Springs, TX',
+    secondaryImage: '/the-widgeon/2-Stonewall.jpg.jpeg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Sulphur Springs, TX',
+    popularHomes: [
+      'marathon-grayson-4bed-2bath-double-wide',
+      'marathon-spoonbill-3bed-2bath-single-wide',
+      'fleetwood-badger-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  'mount-pleasant': {
+    county: 'Titus',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Mount Pleasant, TX and Titus County. New manufactured homes and honest financing — get your free quote from us today.",
+    intro:
+      "Mount Pleasant is the Titus County seat, further into the East Texas Piney Woods than the Hopkins County towns to its west — Texas Homes Direct treats the wooded terrain here as its own set of site conditions.",
+    buyingHeading: 'Buying a Mobile Home in Titus County',
+    buying: [
+      "Piney Woods land around Mount Pleasant often needs clearing that flatter blackland-prairie counties don't — we scope that work specifically rather than assuming a standard site.",
+      "Buyers in Titus County comparing quotes side by side usually see the manufactured home come in under a site-built equivalent.",
+    ],
+    pricingExplainer: [
+      "A Mount Pleasant-area buyer's number is fixed from the first conversation, everything itemized above already rolled in.",
+      "We're straightforward that utility costs can't be nailed down without a site visit. A phone estimate opens the door; our contractor closes it with a real figure.",
+    ],
+    gettingStarted: [
+      "Timber density drives most of the early conversation for a Mount Pleasant buyer — Titus County's tree cover matters more here than it would on open prairie.",
+      "The next part of the conversation is floor plan and financing, handled as one topic rather than two.",
+    ],
+    localProof:
+      "We've scoped wooded Titus County properties around Mount Pleasant where clearing was a bigger part of the conversation than it would be on open prairie land.",
+    faq: [
+      {
+        q: "Does tree cover around Mount Pleasant affect setup costs?",
+        a: "Clearing costs swing a lot lot to lot in the Piney Woods, so we walk your specific property instead of pricing off a generic wooded-lot assumption.",
+      },
+      {
+        q: "Do I need to already own land near Mount Pleasant?",
+        a: "That's not a requirement. Titus County buyers come to us with land finalized, land still being hunted, or a family-property matter unresolved.",
+      },
+      {
+        q: "Do you deliver throughout Titus County?",
+        a: "Cleared or still-timbered, a Titus County lot is still ours to deliver to — send your address and we'll walk through the specifics.",
+      },
+    ],
+    nearby: ['sulphur-springs', 'mount-vernon', 'pittsburg', 'daingerfield'],
+    heroImage: '/homes/the-brewster/Brewster-Body-1.jpg',
+    heroAlt: 'Single wide manufactured home exterior near Mount Pleasant, TX',
+    secondaryImage: '/the-moose/hero.jpeg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Mount Pleasant, TX',
+    popularHomes: [
+      'marathon-lanny-1bed-1bath-park-model',
+      'marathon-woodduck-3bed-2bath-double-wide',
+      'marathon-mallard-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  gainesville: {
+    county: 'Cooke',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Gainesville, TX and Cooke County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Gainesville sits on I-35 at the Oklahoma border, a genuine crossing point rather than just another Cooke County town, and Texas Homes Direct works with buyers on both sides of that border traffic.",
+    buyingHeading: 'Buying a Mobile Home in Cooke County',
+    buying: [
+      "Cooke County land near Gainesville ranges from smaller in-town lots to larger rural acreage further from the interstate — we scope each on its own terms.",
+      "Cooke County land paired with a manufactured home stretches further than the same land paired with site-built construction.",
+    ],
+    pricingExplainer: [
+      "What you see is what a Gainesville-area buyer pays — everything itemized above is already part of that quoted figure.",
+      "The utility line stays flexible until our contractor has walked the land — a phone estimate is the starting point, not the final word.",
+    ],
+    gettingStarted: [
+      "For a Gainesville-area buyer, the first useful question is usually your property's distance from I-35, since that can shape what's already run to the site.",
+      "After that, it's floor plan and financing together — the process doesn't change based on which Cooke County property you're on.",
+    ],
+    localProof:
+      "We've scoped both interstate-adjacent Gainesville-area lots and larger rural land further out in Cooke County.",
+    faq: [
+      {
+        q: "Do you deliver to rural Cooke County land, not just near I-35?",
+        a: "Yes — we scope rural land the same way we would an interstate-adjacent lot.",
+      },
+      {
+        q: "Do I need to already own land near Gainesville?",
+        a: "No — land doesn't need to be finalized first. Cooke County buyers reach us at every stage of that search.",
+      },
+      {
+        q: "Do you deliver throughout Cooke County?",
+        a: "Yes, all of it. Give us your address and we'll confirm delivery and setup details for your property.",
+      },
+    ],
+    nearby: ['sherman', 'denison', 'decatur', 'whitesboro'],
+    heroImage: '/homes/the-mesquite/Mesquite-Body-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Gainesville, TX',
+    secondaryImage: '/the-pigeon/Marathon-Archer-7.jpeg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Gainesville, TX',
+    popularHomes: [
+      'fleetwood-coyote-2bed-2bath-single-wide',
+      'marathon-caldwell-4bed-2bath-double-wide',
+      'marathon-terra-2bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  decatur: {
+    county: 'Wise',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Decatur, TX and Wise County. HUD-certified manufactured homes with turnkey setup and honest financing. Free quote today.",
+    intro:
+      "Decatur is the Wise County seat where DFW's suburban growth starts thinning into genuinely rural ranch land — Texas Homes Direct covers both ends of that transition without treating either as the exception.",
+    buyingHeading: 'Buying a Mobile Home in Wise County',
+    buying: [
+      "Wise County land around Decatur ranges from established in-town lots to larger ranch acreage further out — we scope the actual property rather than assuming one or the other.",
+      "A HUD-code manufactured home remains the more affordable route into new construction throughout Wise County.",
+    ],
+    pricingExplainer: [
+      "The price we give Decatur-area buyers doesn't shift later — everything itemized above is already in that number from the start.",
+      "Utility hookups are priced in two stages: an estimate by phone, then a confirmed number once our contractor has actually seen the property.",
+    ],
+    gettingStarted: [
+      "For a Decatur-area buyer, the first real step is your property — closer to town or further out on ranch land, since that shapes the site-work conversation.",
+      "From there, floor plan and financing move in step with each other, not one waiting on the other.",
+    ],
+    localProof:
+      "We've scoped both in-town Decatur lots and larger Wise County ranch acreage, treating neither as the unusual case.",
+    faq: [
+      {
+        q: "Do you deliver to ranch land outside Decatur city limits?",
+        a: "Yes — a lot of Wise County is ranch land, and we scope it the same way we would an in-town lot.",
+      },
+      {
+        q: "Do I need to already own land in Wise County?",
+        a: "It isn't necessary yet. Some Wise County buyers already have their site, some are still looking, and some are working out family land.",
+      },
+      {
+        q: "Do you deliver throughout Wise County?",
+        a: "We do — no part of Wise County is outside our range. Send your address for the specifics.",
+      },
+    ],
+    nearby: ['bridgeport', 'gainesville', 'weatherford', 'bowie'],
+    heroImage: '/homes/the-pronghorn/Image.jpeg',
+    heroAlt: 'Single wide manufactured home exterior near Decatur, TX',
+    secondaryImage: '/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Decatur, TX',
+    popularHomes: [
+      'fleetwood-peredavid-3bed-2bath-double-wide',
+      'marathon-daniel-1bed-1bath-park-model',
+      'marathon-trinity-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  bowie: {
+    county: 'Montague',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Bowie, TX and Montague County. Family-owned manufactured home dealer with honest, no-pressure financing. Free quote today.",
+    intro:
+      "Bowie sits in Montague County near the Red River and the Oklahoma line, well outside the DFW growth ring — Texas Homes Direct still delivers here with the same firm pricing as closer to the metro.",
+    buyingHeading: 'Buying a Mobile Home in Montague County',
+    buying: [
+      "Ranch country surrounds Bowie on every side, and Montague County acreage rarely arrives with the same well, fencing, or access setup twice — each parcel gets its own look.",
+      "Price is the clearest difference between the two options in Montague County — manufactured construction comes in under site-built, same code standard.",
+    ],
+    pricingExplainer: [
+      "For Bowie-area buyers, one number covers it all — everything itemized above is already built into that quote.",
+      "We won't finalize a utility cost without a real look at the land. A phone estimate opens the conversation; our contractor's visit ends it.",
+    ],
+    gettingStarted: [
+      "For a Bowie-area buyer, the property conversation usually comes first and takes a little longer — rural Montague County land varies enough that we'd rather understand yours specifically.",
+      "Once that's settled, floor plan and financing come next, paired together the same way for every buyer.",
+    ],
+    localProof:
+      "We've scoped rural Montague County ranch properties around Bowie where site conditions varied enough that no two quotes looked the same.",
+    faq: [
+      {
+        q: "Do you deliver as far out as Bowie and the Red River area?",
+        a: "Yes — distance from the metro doesn't change our pricing or process.",
+      },
+      {
+        q: "Do I need to already own land near Bowie?",
+        a: "No. Montague County land can be settled, unsettled, or a family matter still being worked through — we meet buyers wherever that stands.",
+      },
+      {
+        q: "Do you deliver throughout Montague County?",
+        a: "Ranch country or in-town Bowie, doesn't matter — send your address and we'll spell out the delivery and setup specifics.",
+      },
+    ],
+    nearby: ['decatur', 'nocona', 'jacksboro', 'bridgeport'],
+    heroImage: '/homes/the-coleman/Coleman-Gallery-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Bowie, TX',
+    secondaryImage: '/the-terra/Terra-Hero.jpg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Bowie, TX',
+    popularHomes: [
+      'marathon-gadwall-3bed-2bath-double-wide',
+      'fleetwood-bobcat-3bed-2bath-single-wide',
+      'fleetwood-raven-3bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  jacksboro: {
+    county: 'Jack',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Jacksboro, TX and Jack County. New manufactured homes and honest financing — get your free quote from us today.",
+    intro:
+      "Jacksboro is the Jack County seat, home to the historic Fort Richardson site, and about as far from the DFW growth ring as this batch of cities gets — Texas Homes Direct still covers it with the same process as anywhere closer in.",
+    buyingHeading: 'Buying a Mobile Home in Jack County',
+    buying: [
+      "Jack County land around Jacksboro is almost entirely rural, and larger parcels are the norm rather than the exception — we scope acreage on its own terms.",
+      "Jack County buyers who run the numbers on both paths typically land on manufactured, since it costs less for the same size home.",
+    ],
+    pricingExplainer: [
+      "A Jacksboro-area price is complete the day it's quoted, everything itemized above already included in that figure.",
+      "The exception is utilities — we won't guess at that cost by phone. A rough estimate opens the conversation; our contractor's visit sets the real number.",
+    ],
+    gettingStarted: [
+      "For a Jacksboro-area buyer, the property conversation is usually the whole first call — rural acreage this far out needs a real look before anything else makes sense to discuss.",
+      "The rest is floor plan and financing at the same time, same pattern as any other Jack County property.",
+    ],
+    localProof:
+      "We've scoped rural Jack County ranch properties around Jacksboro that needed a genuine walkthrough before any quote made sense.",
+    faq: [
+      {
+        q: "Do you deliver as far out as Jacksboro?",
+        a: "Yes — we cover Jack County the same as any closer-in area.",
+      },
+      {
+        q: "Do I need to already own land near Jacksboro?",
+        a: "That's not expected upfront. Jack County buyers arrive with land ready, land pending, or a family-property conversation still open.",
+      },
+      {
+        q: "Do you deliver throughout Jack County?",
+        a: "We cover Jack County entirely. Give us your address and we'll walk through the delivery specifics.",
+      },
+    ],
+    nearby: ['bowie', 'graham', 'decatur', 'bridgeport'],
+    heroImage: '/homes/the-wood-duck/Wood-Duck-Hero.jpg',
+    heroAlt: 'Single wide manufactured home exterior near Jacksboro, TX',
+    secondaryImage: '/the-javelina/hero.jpg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Jacksboro, TX',
+    popularHomes: [
+      'marathon-dove-1bed-1bath-single-wide',
+      'marathon-bell-3bed-2bath-double-wide',
+      'marathon-jackson-1bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  palestine: {
+    county: 'Anderson',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Palestine, TX and Anderson County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Palestine is the Anderson County seat deep in the East Texas Piney Woods, and Texas Homes Direct treats wooded East Texas land as its own category of site work rather than a variation on open prairie.",
+    buyingHeading: 'Buying a Mobile Home in Anderson County',
+    buying: [
+      "Wooded Anderson County land around Palestine often needs clearing before a home can go in — we scope that work specifically rather than assuming a standard site.",
+      "New construction near Anderson costs more site-built than it does manufactured, for a comparable HUD-code home.",
+    ],
+    pricingExplainer: [
+      "There's nothing added to a Palestine-area buyer's price down the line — everything itemized above is already part of it.",
+      "Utility hookups are handled differently: a phone estimate gets things started, but the actual figure comes only after our contractor sees the property in person.",
+    ],
+    gettingStarted: [
+      "A Palestine-area quote usually starts with how much of the lot is timbered — Anderson County clearing needs shift the site-work conversation more than almost anything else.",
+      "After that conversation, we turn to floor plan and financing together, same sequence regardless of location.",
+    ],
+    localProof:
+      "We've scoped wooded Anderson County properties around Palestine where clearing needs varied a lot from one lot to the next.",
+    faq: [
+      {
+        q: "Does tree cover around Palestine affect setup costs?",
+        a: "Anderson County timber varies enough lot to lot that we look at your actual clearing needs before quoting anything.",
+      },
+      {
+        q: "Do I need to already own land near Palestine?",
+        a: "No, it's not required. Some Anderson County buyers already have land, some don't yet, and some are sorting through a family situation.",
+      },
+      {
+        q: "Do you deliver throughout Anderson County?",
+        a: "Anderson County in full — yes. Send your address and we'll confirm what delivery and setup involve.",
+      },
+    ],
+    nearby: ['athens', 'crockett', 'jacksonville', 'fairfield'],
+    heroImage: '/homes/the-widgeon/2-Stonewall.jpg.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Palestine, TX',
+    secondaryImage: '/the-brewster/Brewster-Body-1.jpg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Palestine, TX',
+    popularHomes: [
+      'marathon-brewster-3bed-2bath-double-wide',
+      'marathon-pearland-3bed-2bath-single-wide',
+      'marathon-widgeon-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  jacksonville: {
+    county: 'Cherokee',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Jacksonville, TX and Cherokee County. HUD-certified manufactured homes with turnkey setup and honest financing. Free quote today.",
+    intro:
+      "Jacksonville is the largest town in Cherokee County, though Rusk to its south is the actual county seat — Texas Homes Direct covers both the same way regardless of which one holds the courthouse.",
+    buyingHeading: 'Buying a Mobile Home in Cherokee County',
+    buying: [
+      "As the larger of the two main Cherokee County towns, Jacksonville draws buyers from a wide radius — we quote based on your actual property, not which town is closer.",
+      "The cost advantage manufactured homes have over site-built construction holds up in Cherokee County the same as anywhere else we deliver.",
+    ],
+    pricingExplainer: [
+      "The quote Jacksonville-area buyers get stays exactly as quoted, everything itemized above already factored into that number.",
+      "Utilities are the one line we don't lock in remotely. A phone estimate is the opening number; a site visit from our contractor produces the real one.",
+    ],
+    gettingStarted: [
+      "For a Jacksonville-area buyer, the property is the first real conversation, not the town name on the address — that's what actually determines site work.",
+      "From there, floor plan and financing get handled as a pair, not as two separate conversations.",
+    ],
+    localProof:
+      "We've delivered to properties throughout Cherokee County, from close to Jacksonville itself to land nearer the county seat in Rusk.",
+    faq: [
+      {
+        q: "Is Jacksonville or Rusk the Cherokee County seat?",
+        a: "Rusk is the county seat, though Jacksonville is the larger town — either way, we cover all of Cherokee County the same.",
+      },
+      {
+        q: "Do I need to already own land in Cherokee County?",
+        a: "It's not a precondition. Cherokee County land might already be secured, might still be searched for, or might involve a family property still being worked out.",
+      },
+      {
+        q: "Do you deliver throughout Cherokee County?",
+        a: "We do, the full extent of Cherokee County. Share your address for the exact delivery and setup details.",
+      },
+    ],
+    nearby: ['rusk', 'palestine', 'tyler', 'athens'],
+    heroImage: '/homes/the-moose/hero.jpeg',
+    heroAlt: 'Single wide manufactured home exterior near Jacksonville, TX',
+    secondaryImage: '/the-mesquite/Mesquite-Body-1.jpg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Jacksonville, TX',
+    popularHomes: [
+      'marathon-pintail-4bed-2bath-double-wide',
+      'marathon-chapman-1bed-1bath-park-model',
+      'marathon-redhead-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  rusk: {
+    county: 'Cherokee',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Rusk, TX and Cherokee County. Family-owned manufactured home dealer with honest, no-pressure financing. Free quote today.",
+    intro:
+      "Rusk is the Cherokee County seat, smaller than Jacksonville to its north but home to the courthouse and the county's administrative center — Texas Homes Direct works from Rusk outward across the same county either way.",
+    buyingHeading: 'Buying a Mobile Home in Cherokee County',
+    buying: [
+      "Being the county seat doesn't mean Rusk-area land is more developed than Jacksonville's — Cherokee County's Piney Woods terrain shapes site work throughout, courthouse town or not.",
+      "Cherokee County buyers get a meaningfully lower price going manufactured over site-built, without sacrificing HUD-code construction standards.",
+    ],
+    pricingExplainer: [
+      "For a Rusk-area buyer, price certainty starts on day one — everything itemized above is already included in the figure.",
+      "We treat utility costs on their own terms — an initial phone estimate, then an exact figure once our contractor has walked the property.",
+    ],
+    gettingStarted: [
+      "Rusk-area quotes hinge early on clearing — Cherokee County's tree cover is dense enough that we address it before floor plans come up.",
+      "Once we're clear on that, floor plan and financing move forward together — standard for any Cherokee County buyer.",
+    ],
+    localProof:
+      "We've scoped wooded Cherokee County properties near Rusk with the same attention to clearing needs as anywhere else in the Piney Woods.",
+    faq: [
+      {
+        q: "Is Rusk the county seat instead of Jacksonville?",
+        a: "Yes, Rusk holds the Cherokee County courthouse, though Jacksonville is the larger town — we cover the whole county either way.",
+      },
+      {
+        q: "Do I need to already own land near Rusk?",
+        a: "No — the land question can be open when you first reach out. Cherokee County buyers land here at every stage of that process.",
+      },
+      {
+        q: "Do you deliver throughout Cherokee County?",
+        a: "Yes — all of Cherokee County is covered. Give us your address and we'll confirm the specifics for your property.",
+      },
+    ],
+    nearby: ['jacksonville', 'palestine', 'henderson', 'crockett'],
+    heroImage: '/homes/the-pigeon/Marathon-Archer-7.jpeg',
+    heroAlt: 'Double wide manufactured home exterior near Rusk, TX',
+    secondaryImage: '/the-pronghorn/Image.jpeg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Rusk, TX',
+    popularHomes: [
+      'marathon-jasper-3bed-2bath-double-wide',
+      'fleetwood-rattlesnake-3bed-2bath-single-wide',
+      'fleetwood-armadillo-3bed-2bath',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  henderson: {
+    county: 'Rusk',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Henderson, TX and Rusk County. New manufactured homes and honest financing — get your free quote from us today.",
+    intro:
+      "Henderson is the Rusk County seat in the heart of East Texas oil country, and Texas Homes Direct delivers to Rusk County's wooded and formerly-industrial land with the same firm pricing as anywhere else.",
+    buyingHeading: 'Buying a Mobile Home in Rusk County',
+    buying: [
+      "Some Rusk County land around Henderson was previously used for oil production, which can mean site conditions that need a closer look than typical wooded acreage — we confirm before quoting.",
+      "Manufactured construction keeps its price edge over site-built in Rusk County — the same home costs less built this way.",
+    ],
+    pricingExplainer: [
+      "A Henderson-area buyer's price doesn't have a second chapter — everything itemized above is already in the number they're given.",
+      "Utility hookups don't get the same fixed treatment as the rest of the price. Expect a phone estimate first, then a contractor-verified number after a site visit.",
+    ],
+    gettingStarted: [
+      "For a Henderson-area buyer, it's worth mentioning upfront if your land has any history of oil production or other prior use — it can shape what site work actually looks like.",
+      "The next step is floor plan and financing, discussed together so one doesn't get decided without the other.",
+    ],
+    localProof:
+      "We've scoped Rusk County properties near Henderson with prior oil-production history, confirming site conditions before quoting rather than assuming a standard lot.",
+    faq: [
+      {
+        q: "Does prior oil production on the land affect setup near Henderson?",
+        a: "It can, which is why we confirm site conditions on your specific property rather than assuming a standard setup.",
+      },
+      {
+        q: "Do I need to already own land near Henderson?",
+        a: "That's optional at this point. Rusk County buyers show up with a settled lot, an active search, or a family-land question still unresolved.",
+      },
+      {
+        q: "Do you deliver throughout Rusk County?",
+        a: "Former oil-industry land in Rusk County included — send your address and we'll walk through delivery and setup for your site.",
+      },
+    ],
+    nearby: ['rusk', 'kilgore', 'carthage', 'longview'],
+    heroImage: '/homes/the-mallard/213CCA81-EDC0-4C8C-8804-8B2ACE3E4731.jpg.jpeg',
+    heroAlt: 'Single wide manufactured home exterior near Henderson, TX',
+    secondaryImage: '/the-coleman/Coleman-Gallery-1.jpg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Henderson, TX',
+    popularHomes: [
+      'marathon-beaumont-3bed-2bath-single-wide',
+      'marathon-bailey-3bed-2bath-double-wide',
+      'marathon-darrell-1bed-1bath-park-model',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  kilgore: {
+    county: 'Gregg',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Kilgore, TX and Gregg County. New manufactured homes with honest, no-pressure financing — get your free quote today.",
+    intro:
+      "Kilgore is a Gregg County town still known for its downtown oil derricks, and Texas Homes Direct works with the same mix of wooded and formerly-industrial land here as anywhere else in East Texas oil country.",
+    buyingHeading: 'Buying a Mobile Home in Gregg County',
+    buying: [
+      "Some Kilgore-area land carries the same prior-industrial-use questions as elsewhere in the East Texas oil patch — we confirm site conditions before quoting rather than assuming.",
+      "A comparable site-built home near Gregg costs more than a new HUD-code manufactured home, which is the whole reason this comparison keeps coming up.",
+    ],
+    pricingExplainer: [
+      "What a Kilgore-area buyer is quoted is the whole story on price, everything itemized above already built in.",
+      "The one number we won't nail down over the phone is utilities. That starts as an estimate and becomes exact once our contractor sees the land.",
+    ],
+    gettingStarted: [
+      "For a Kilgore-area buyer, it's worth flagging early if your property has any history connected to oil production — it can shape the site-work conversation.",
+      "After that, it's floor plan and financing in tandem, the same approach we use everywhere we deliver.",
+    ],
+    localProof:
+      "We've scoped Gregg County properties near Kilgore with prior industrial history, confirming actual site conditions rather than assuming a clean slate.",
+    faq: [
+      {
+        q: "Does Kilgore's oil-industry history affect setup on nearby land?",
+        a: "It can for some properties, which is why we confirm site conditions before quoting rather than assuming a standard lot.",
+      },
+      {
+        q: "Do I need to already own land near Kilgore?",
+        a: "No. Land in Gregg County doesn't need to be locked down first — some buyers reach us before that's decided.",
+      },
+      {
+        q: "Do you deliver throughout Gregg County?",
+        a: "Yes, no exceptions within Gregg County. Share your address and we'll confirm what that means for your property.",
+      },
+    ],
+    nearby: ['longview', 'henderson', 'gladewater', 'tyler'],
+    heroImage: '/homes/the-terra/Terra-Hero.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Kilgore, TX',
+    secondaryImage: '/the-wood-duck/Wood-Duck-Hero.jpg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Kilgore, TX',
+    popularHomes: [
+      'marathon-loving-3bed-2bath-double-wide',
+      'marathon-abilene-2bed-1bath-single-wide',
+      'fleetwood-jackrabbit-3bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  longview: {
+    county: 'Gregg',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Longview, TX and Gregg County. HUD-certified manufactured homes with turnkey setup and honest financing. Free quote today.",
+    intro:
+      "Longview is the Gregg County seat and the largest town in this stretch of East Texas, drawing buyers from Kilgore and Gladewater alike — Texas Homes Direct covers the whole county from here outward.",
+    buyingHeading: 'Buying a Mobile Home in Gregg County',
+    buying: [
+      "Kilgore and Gladewater buyers moving toward more in-town options often land in Longview, and the quote follows the property either way, not the relocation story.",
+      "Gregg County buyers pricing a new home find manufactured construction wins on cost against site-built, size for size.",
+    ],
+    pricingExplainer: [
+      "The number stays the number for Longview-area buyers — everything itemized above is already reflected in that price.",
+      "Utility costs are handled with two steps, not one: a phone estimate to start, and a contractor's on-site visit to finalize the actual figure.",
+    ],
+    gettingStarted: [
+      "For a Longview-area buyer, the property is the first real conversation, in-town lot or land further out — that's what shapes site work more than proximity to the county seat.",
+      "From there, floor plan and financing come together in one conversation, same as any other property.",
+    ],
+    localProof:
+      "Gregg County deliveries for us range from Longview city lots out to acreage nearer Kilgore and Gladewater, same process the whole stretch.",
+    faq: [
+      {
+        q: "Do you only serve Longview, or the wider Gregg County area too?",
+        a: "Every part of it — Longview is just where our Gregg County team is centered, not where the coverage stops.",
+      },
+      {
+        q: "Do I need to already own land in Gregg County?",
+        a: "It's not mandatory. Gregg County buyers arrive with land secured, land in progress, or a family property still under discussion.",
+      },
+      {
+        q: "Do you deliver throughout Gregg County?",
+        a: "We do, across all of Gregg County. Give us your address and we'll spell out the delivery and setup details.",
+      },
+    ],
+    nearby: ['kilgore', 'gladewater', 'marshall', 'henderson'],
+    heroImage: '/homes/the-javelina/hero.jpg',
+    heroAlt: 'Single wide manufactured home exterior near Longview, TX',
+    secondaryImage: '/the-widgeon/2-Stonewall.jpg.jpeg',
+    secondaryAlt: 'Double wide mobile home available for delivery near Longview, TX',
+    popularHomes: [
+      'marathon-kendall-3bed-2bath-double-wide',
+      'marathon-longview-3bed-2bath-single-wide',
+      'marathon-grapevine-2bed-2bath-single-wide',
+    ],
+    lastModified: '2026-09-28',
+  },
+
+  gladewater: {
+    county: 'Gregg',
+    tier: 'small-town',
+    metaDescription:
+      "Mobile homes for sale in Gladewater, TX and Gregg County. Family-owned manufactured home dealer with honest, no-pressure financing. Free quote today.",
+    intro:
+      "Gladewater is the quietest of the three Gregg County towns we cover, smaller than Longview and without Kilgore's oil-derrick landmarks — Texas Homes Direct treats it as its own market, not an afterthought to its bigger neighbors.",
+    buyingHeading: 'Buying a Mobile Home in Gregg County',
+    buying: [
+      "Gladewater-area land tends to be quieter and more residential than Kilgore's mix of in-town and formerly-industrial lots — we scope each property on its own terms regardless.",
+      "The math still favors manufactured construction in Gregg County — a HUD-code home costs less than a site-built equivalent.",
+    ],
+    pricingExplainer: [
+      "A Gladewater-area buyer sees one price and pays that price — everything itemized above is already included in it.",
+      "We don't guess at utility costs sight-unseen. A phone estimate is step one; our contractor's property visit produces the number that actually counts.",
+    ],
+    gettingStarted: [
+      "For a Gladewater-area buyer, the property conversation looks about like it would in Longview or Kilgore — we still confirm what's actually on your specific lot before quoting anything.",
+      "Once that's done, floor plan and financing move forward as a pair, same process countywide.",
+    ],
+    localProof:
+      "We've delivered to quiet, residential Gladewater-area properties without treating the town as an afterthought to its larger Gregg County neighbors.",
+    faq: [
+      {
+        q: "Do you cover Gladewater the same as Longview or Kilgore?",
+        a: "Yes — all three are part of Gregg County, and we quote based on your specific property, not which town is largest.",
+      },
+      {
+        q: "Do I need to already own land near Gladewater?",
+        a: "No, not necessarily. Some Gregg County buyers have land ready to go, others are still hunting, and some have a family situation to sort out first.",
+      },
+      {
+        q: "Do you deliver throughout the Gladewater area?",
+        a: "Yes — every address in Gregg County. Send your address and we'll confirm delivery and setup specifics.",
+      },
+    ],
+    nearby: ['kilgore', 'longview', 'gilmer', 'tyler'],
+    heroImage: '/homes/the-brewster/Brewster-Body-1.jpg',
+    heroAlt: 'Double wide manufactured home exterior near Gladewater, TX',
+    secondaryImage: '/the-moose/hero.jpeg',
+    secondaryAlt: 'Single wide mobile home available for delivery near Gladewater, TX',
+    popularHomes: [
+      'fleetwood-roadrunner-3bed-2bath',
+      'marathon-katy-3bed-2bath-single-wide',
+      'marathon-dawson-4bed-2bath-double-wide',
+    ],
+    lastModified: '2026-09-28',
   },
 
 }
