@@ -59,7 +59,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'Austin',
     'Hill Country',
-    false
+    true
   ),
   city(
     'Seguin',
@@ -101,7 +101,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'Waco',
     'Central Texas',
-    false
+    true
   ),
   city('Temple', 'Central Texas', true),
   city('Killeen', 'Central Texas', true),
@@ -139,7 +139,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'Tyler',
     'East Texas',
-    false
+    true
   ),
   city('Longview', 'East Texas'),
   city('Marshall', 'East Texas'),
@@ -163,7 +163,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'El Paso',
     'West Texas',
-    false
+    true
   ),
   city('Midland', 'West Texas'),
   city('Odessa', 'West Texas'),
@@ -185,27 +185,27 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'San Antonio',
     'South Texas',
-    false
+    true
   ),
   city(
     'Laredo',
     'South Texas',
-    false
+    true
   ),
   city(
     'McAllen',
     'South Texas',
-    false
+    true
   ),
   city(
     'Victoria',
     'South Texas',
-    false
+    true
   ),
   city(
     'Alice',
     'South Texas',
-    false
+    true
   ),
   city(
     'Pleasanton',
@@ -245,12 +245,12 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'Amarillo',
     'Panhandle',
-    false
+    true
   ),
   city(
     'Lubbock',
     'Panhandle',
-    false
+    true
   ),
   city('Plainview', 'Panhandle'),
   city('Pampa', 'Panhandle'),
@@ -268,7 +268,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'Corpus Christi',
     'Gulf Coast',
-    false
+    true
   ),
   city('Galveston', 'Gulf Coast'),
   city('Texas City', 'Gulf Coast'),
@@ -290,7 +290,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'Dallas',
     'DFW',
-    false
+    true
   ),
   city('Fort Worth', 'DFW'),
   city('Arlington', 'DFW'),
@@ -317,7 +317,7 @@ export const TEXAS_CITIES: CityEntry[] = [
   city(
     'Houston',
     'Greater Houston',
-    false
+    true
   ),
   city('Pasadena', 'Greater Houston'),
   city('Baytown', 'Greater Houston'),
