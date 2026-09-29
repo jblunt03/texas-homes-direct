@@ -76,6 +76,7 @@ def collect_fields():
         entries.append(("localProof", 0, copy["localProof"]))
         for i, item in enumerate(copy["faq"]):
             entries.append(("faq_a", i, item["a"]))
+            entries.append(("faq_q", i, item["q"]))
         for field_name, idx, text in entries:
             norm = normalize(text, name, county)
             fields.append((slug, field_name, idx, text, shingles(norm)))

@@ -228,7 +228,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-spoonbill/Spoonbill-Hero.png',
+      '/homes/the-spoonbill/Spoonbill-Hero.jpg',
       '/homes/the-spoonbill/IMG_7169-scaled.jpg.jpeg',
       '/homes/the-spoonbill/image-9-scaled.jpg.jpeg',
       '/homes/the-spoonbill/IMG_7170-scaled.jpg.jpeg',
@@ -631,7 +631,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-katy/Katy-Hero.png',
+      '/homes/the-katy/Katy-Hero.jpg',
       '/homes/the-katy/katy-interior-01.jpg',
       '/homes/the-katy/katy-interior-02.jpg',
       '/homes/the-katy/katy-interior-03.jpg',
@@ -1196,7 +1196,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-chapman/Chapman-Hero.png',
+      '/homes/the-chapman/Chapman-Hero.jpg',
       '/homes/the-daniel/Daniel-Body-2.webp',
       '/homes/the-daniel/Daniel-Body-3.webp',
       '/homes/the-daniel/Daniel-Body-4.webp',
