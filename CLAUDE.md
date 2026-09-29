@@ -216,18 +216,31 @@ order:
    claimed positively "upfront" (a negation word like "can't" or "isn't" in
    the same clause clears it — that's the honest, required framing; only a
    clause *without* one is a real violation).
-5. **Type-check** — `npx tsc --noEmit`.
-6. **Dev server up** — starts `next dev` on a scratch port (3099, chosen to
+5. **Image paths resolve** — every local image path (`heroImage`,
+   `secondaryImage` in `lib/cityContent.ts`; `images[]`, `floorplanUrl` in
+   `lib/sampleListings.ts`) is checked against the filesystem under
+   `public/`. Static check, no dev server needed. Added 2026-09-29 after
+   batch 4 shipped 35 city pages with a secondary-image path missing its
+   `/homes/` prefix — a splice-script bug that 404'd on every one of those
+   pages, undetected until Search Console flagged the pages as
+   duplicate/low-value. The regex deliberately does **not** anchor on a
+   literal `/homes/` prefix — an earlier version of this check did, which
+   meant it silently passed on exactly the malformed path it exists to
+   catch (a path missing that prefix can't match a pattern requiring it).
+   Verified by re-injecting the batch-4 bug and confirming this version
+   fails on it before trusting a clean run.
+6. **Type-check** — `npx tsc --noEmit`.
+7. **Dev server up** — starts `next dev` on a scratch port (3099, chosen to
    avoid colliding with a preview already running on the usual port),
-   polls until it responds, tears it down at the end (step 10) no matter
+   polls until it responds, tears it down at the end (step 11) no matter
    what happens in between.
-7. **Word count** — every currently-published city page, against the
+8. **Word count** — every currently-published city page, against the
    850–950 target. A page outside that range is a *warning* (printed, not
    blocking) — the target is aspirational per the note above, and matching
    it exactly isn't a launch requirement. A page under 600 words *is*
    blocking — that's not "a bit short," that's a sign a field is missing
    or empty.
-8–9. **Required schema + no localhost** — for every published city page
+9–10. **Required schema + no localhost** — for every published city page
    and the three explainer pages: fetches the rendered HTML, parses every
    `<script type="application/ld+json">` block, and confirms the required
    `@type`s are present (`FAQPage`, `BreadcrumbList`, `WebPage`, and for
@@ -236,7 +249,7 @@ order:
    JSON-LD `url`/`@id`, canonical `<link>`, or `og:url` on the page points
    at `localhost`/`127.0.0.1` — a real (if easy to miss) way a dev-only
    value could ship as if it were the production URL.
-10. **Dev server down** — always runs, including after a failure in 7–9.
+11. **Dev server down** — always runs, including after a failure in 8–10.
 
 If you add a new required field, JSON-LD type, or hard rule, add the check
 to `validate_batch.py` in the same pass — don't leave it as something only

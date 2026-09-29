@@ -29,17 +29,22 @@ Steps:
   3. Within-page dup — scripts/check_redundancy.py (a field vs. other fields, same city)
   4. Hard-rule sweep — grep for timelines, THD, competitor names, Spanish, false-precision
                         utility claims, land-sale language (see CLAUDE.md's hard rules)
-  5. Type-check      — npx tsc --noEmit
-  6. Dev server up   — starts `next dev` on a scratch port, polls until ready
-  7. Word count      — every published city page, flagged against the 850-950 target
-  8. Required schema — every published city page + the 3 explainer pages: FAQPage,
+  5. Image paths     — every /homes/... path in lib/cityContent.ts and
+                        lib/sampleListings.ts resolves to a real file under public/.
+                        Static check, no dev server needed. Added after batch 4 shipped
+                        35 pages with a broken image path (missing /homes/ prefix) that
+                        nothing caught before publish.
+  6. Type-check      — npx tsc --noEmit
+  7. Dev server up   — starts `next dev` on a scratch port, polls until ready
+  8. Word count      — every published city page, flagged against the 850-950 target
+  9. Required schema — every published city page + the 3 explainer pages: FAQPage,
                         BreadcrumbList, WebPage+speakable, and (city pages only)
                         LocalBusiness + ImageObject all present
-  9. No localhost    — no JSON-LD url/@id, canonical link, or OG url pointing at
+ 10. No localhost    — no JSON-LD url/@id, canonical link, or OG url pointing at
                         localhost/127.0.0.1 on any page (a real, if rare, way for a
                         dev-only value to leak into what looks like production-ready
                         content)
- 10. Dev server down — always torn down, even on failure
+ 11. Dev server down — always torn down, even on failure
 
 Exit code 0 only if every step passes. Anything else means: do not publish
 this batch yet.
@@ -162,11 +167,61 @@ def step_hard_rules():
     return report("4. Hard-rule sweep", ok, detail)
 
 
+# Any local image path found in these two generated/source files must
+# resolve to a real file under public/. Added 2026-09-29 after batch 4
+# shipped 35 city pages with a secondary-image path missing its /homes/
+# prefix (a splice-script bug) -- every one of those images 404'd in
+# production and nothing caught it before publish.
+#
+# Deliberately does NOT anchor on a literal "/homes/" prefix -- an earlier
+# version of this check did, which meant it silently ignored exactly the
+# malformed path it exists to catch (a path missing that prefix doesn't
+# match a pattern requiring that prefix). Verified by re-injecting the
+# batch-4 bug against each regex version before settling on this one: the
+# /homes/-anchored version reported PASS on the known-broken input; this
+# broader one (any leading "/", not specifically "/homes/") correctly
+# fails on it. Matches on a leading "/" alone, so it also catches a path
+# broken in some other way that still isn't "/homes/...". This is a static
+# check (no dev server needed), so it runs early and fails fast.
+IMAGE_PATH_RE = re.compile(r"['\"](/[^'\"]+\.(?:jpe?g|png|webp))['\"]", re.I)
+
+
+def step_image_paths():
+    sources = {
+        "lib/cityContent.ts": REPO_ROOT / "lib" / "cityContent.ts",
+        "lib/sampleListings.ts": REPO_ROOT / "lib" / "sampleListings.ts",
+    }
+    problems = []
+    checked = 0
+    seen = set()
+    for label, path in sources.items():
+        text = path.read_text()
+        for m in IMAGE_PATH_RE.finditer(text):
+            img_path = m.group(1)
+            if img_path in seen:
+                continue
+            seen.add(img_path)
+            checked += 1
+            on_disk = REPO_ROOT / "public" / img_path.lstrip("/")
+            if not on_disk.is_file():
+                line_no = text[: m.start()].count("\n") + 1
+                problems.append(f"  {label}:{line_no}: {img_path} -- no file at public{img_path}")
+
+    ok = not problems
+    detail = [f"Checked {checked} distinct image path(s) across {len(sources)} file(s)."]
+    if problems:
+        detail.append(f"\n{len(problems)} path(s) don't resolve to a real file:")
+        detail.extend(problems)
+    else:
+        detail.append("All image paths resolve to real files.")
+    return report("5. Image paths resolve to real files", ok, detail)
+
+
 def step_tsc():
     p = run(["npx", "tsc", "--noEmit"])
     ok = p.returncode == 0
     detail = [p.stdout.strip()] if ok else [p.stdout.strip(), p.stderr.strip()]
-    return report("5. Type-check (tsc --noEmit)", ok, detail)
+    return report("6. Type-check (tsc --noEmit)", ok, detail)
 
 
 def start_dev_server():
@@ -302,7 +357,7 @@ def step_word_count(city_slugs):
     if below_hard_min:
         detail.append(f"\n{len(below_hard_min)} page(s) below the hard minimum ({WORD_COUNT_HARD_MIN} words) — blocking:")
         detail.extend(below_hard_min)
-    return report("7. Word count", ok, detail)
+    return report("8. Word count", ok, detail)
 
 
 CITY_REQUIRED_TYPES = {"FAQPage", "BreadcrumbList", "WebPage", "LocalBusiness", "ImageObject"}
@@ -379,7 +434,7 @@ def step_schema_and_localhost(city_slugs):
         detail.extend(problems)
     else:
         detail.append("All required schema present; no localhost leaks found.")
-    return report("8-9. Required schema + no localhost", ok, detail)
+    return report("9-10. Required schema + no localhost", ok, detail)
 
 
 def main():
@@ -391,6 +446,7 @@ def main():
         ok &= step_cross_city_duplication()
     ok &= step_within_page_redundancy()  # run regardless — independent signal
     ok &= step_hard_rules()
+    ok &= step_image_paths()
     ok &= step_tsc()
 
     server_ok = False
@@ -402,10 +458,10 @@ def main():
                 ctx.__enter__()
             proc, server_ok, err = start_dev_server()
             if not server_ok:
-                report("6. Dev server up", False, [err])
+                report("7. Dev server up", False, [err])
                 ok = False
             else:
-                report("6. Dev server up", True, [f"Listening on {BASE}"])
+                report("7. Dev server up", True, [f"Listening on {BASE}"])
                 city_slugs = published_city_slugs() if not check_all else _authored_city_slugs()
                 if check_all:
                     print(f"\n--all: checking every authored city ({len(city_slugs)}), not just published ones.")
@@ -417,9 +473,9 @@ def main():
             if ctx:
                 ctx.__exit__(None, None, None)
                 print("lib/cities.ts restored to its original (pre---all) state.")
-        report("10. Dev server down", True, [])
+        report("11. Dev server down", True, [])
     else:
-        print("\nSkipping dev-server-dependent checks (6-9) — earlier step failed.")
+        print("\nSkipping dev-server-dependent checks (7-10) — earlier step failed.")
 
     print(f"\n{'#' * 76}")
     print("BATCH VALIDATION SUMMARY")
