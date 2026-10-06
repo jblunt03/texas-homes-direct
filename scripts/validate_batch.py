@@ -5,7 +5,7 @@ One-command, end-to-end batch validator for the "Cities We Serve" system.
     python3 scripts/validate_batch.py
     python3 scripts/validate_batch.py --all   # also check unpublished, authored cities
 
-By default, steps 7-9 (word count, schema, no-localhost) only check
+By default, steps 9-11 (word count, schema, no-localhost) only check
 currently *published* pages — a new batch isn't published yet, so its
 pages would just 404 and those checks would silently skip them. Pass
 --all to check every city that has a CITY_COPY entry, published or not —
@@ -34,17 +34,20 @@ Steps:
                         Static check, no dev server needed. Added after batch 4 shipped
                         35 pages with a broken image path (missing /homes/ prefix) that
                         nothing caught before publish.
-  6. Type-check      — npx tsc --noEmit
-  7. Dev server up   — starts `next dev` on a scratch port, polls until ready
-  8. Word count      — every published city page, flagged against the 850-950 target
-  9. Required schema — every published city page + the 3 explainer pages: FAQPage,
+  6. Unique images   — no two cities share the same (heroImage, secondaryImage) pair in
+                        lib/cityContent.ts. Identical image pairs across pages are one of
+                        the signals Google can use to cluster near-duplicate pages.
+  7. Type-check      — npx tsc --noEmit
+  8. Dev server up   — starts `next dev` on a scratch port, polls until ready
+  9. Word count      — every published city page, flagged against the 850-950 target
+ 10. Required schema — every published city page + the 3 explainer pages: FAQPage,
                         BreadcrumbList, WebPage+speakable, and (city pages only)
                         LocalBusiness + ImageObject all present
- 10. No localhost    — no JSON-LD url/@id, canonical link, or OG url pointing at
+ 11. No localhost    — no JSON-LD url/@id, canonical link, or OG url pointing at
                         localhost/127.0.0.1 on any page (a real, if rare, way for a
                         dev-only value to leak into what looks like production-ready
                         content)
- 11. Dev server down — always torn down, even on failure
+ 12. Dev server down — always torn down, even on failure
 
 Exit code 0 only if every step passes. Anything else means: do not publish
 this batch yet.
@@ -217,11 +220,46 @@ def step_image_paths():
     return report("5. Image paths resolve to real files", ok, detail)
 
 
+CITY_BLOCK_RE = re.compile(r"\n  (?:'([a-z-]+)'|\"([a-z-]+)\"|([a-z-]+)): \{\n")
+HERO_RE = re.compile(r"heroImage:\s*['\"]([^'\"]+)['\"]")
+SECONDARY_RE = re.compile(r"secondaryImage:\s*['\"]([^'\"]+)['\"]")
+
+
+def step_unique_image_pairs():
+    text = (REPO_ROOT / "lib" / "cityContent.ts").read_text()
+    matches = list(CITY_BLOCK_RE.finditer(text))
+    by_pair = {}
+    parsed = 0
+    for i, m in enumerate(matches):
+        slug = m.group(1) or m.group(2) or m.group(3)
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+        block = text[m.end():end]
+        hero = HERO_RE.search(block)
+        sec = SECONDARY_RE.search(block)
+        if not (hero and sec):
+            continue
+        parsed += 1
+        by_pair.setdefault((hero.group(1), sec.group(1)), []).append(slug)
+    shared = {pair: slugs for pair, slugs in by_pair.items() if len(slugs) > 1}
+    ok = parsed > 0 and not shared
+    detail = [f"Parsed hero+secondary image pairs for {parsed} cities in lib/cityContent.ts."]
+    if parsed == 0:
+        detail.append("Parsed ZERO cities — the block/field regexes no longer match the file's format; fix this check.")
+    elif shared:
+        detail.append(f"\n{len(shared)} image pair(s) used by more than one city:")
+        for (hero, sec), slugs in shared.items():
+            detail.append(f"  hero={hero}  secondary={sec}")
+            detail.append(f"    shared by: {', '.join(slugs)}")
+    else:
+        detail.append("Every city has its own distinct (hero, secondary) pair.")
+    return report("6. Unique hero+secondary image pairs", ok, detail)
+
+
 def step_tsc():
     p = run(["npx", "tsc", "--noEmit"])
     ok = p.returncode == 0
     detail = [p.stdout.strip()] if ok else [p.stdout.strip(), p.stderr.strip()]
-    return report("6. Type-check (tsc --noEmit)", ok, detail)
+    return report("7. Type-check (tsc --noEmit)", ok, detail)
 
 
 def start_dev_server():
@@ -357,7 +395,7 @@ def step_word_count(city_slugs):
     if below_hard_min:
         detail.append(f"\n{len(below_hard_min)} page(s) below the hard minimum ({WORD_COUNT_HARD_MIN} words) — blocking:")
         detail.extend(below_hard_min)
-    return report("8. Word count", ok, detail)
+    return report("9. Word count", ok, detail)
 
 
 CITY_REQUIRED_TYPES = {"FAQPage", "BreadcrumbList", "WebPage", "LocalBusiness", "ImageObject"}
@@ -434,7 +472,7 @@ def step_schema_and_localhost(city_slugs):
         detail.extend(problems)
     else:
         detail.append("All required schema present; no localhost leaks found.")
-    return report("9-10. Required schema + no localhost", ok, detail)
+    return report("10-11. Required schema + no localhost", ok, detail)
 
 
 def main():
@@ -447,6 +485,7 @@ def main():
     ok &= step_within_page_redundancy()  # run regardless — independent signal
     ok &= step_hard_rules()
     ok &= step_image_paths()
+    ok &= step_unique_image_pairs()
     ok &= step_tsc()
 
     server_ok = False
@@ -458,10 +497,10 @@ def main():
                 ctx.__enter__()
             proc, server_ok, err = start_dev_server()
             if not server_ok:
-                report("7. Dev server up", False, [err])
+                report("8. Dev server up", False, [err])
                 ok = False
             else:
-                report("7. Dev server up", True, [f"Listening on {BASE}"])
+                report("8. Dev server up", True, [f"Listening on {BASE}"])
                 city_slugs = published_city_slugs() if not check_all else _authored_city_slugs()
                 if check_all:
                     print(f"\n--all: checking every authored city ({len(city_slugs)}), not just published ones.")
@@ -473,9 +512,9 @@ def main():
             if ctx:
                 ctx.__exit__(None, None, None)
                 print("lib/cities.ts restored to its original (pre---all) state.")
-        report("11. Dev server down", True, [])
+        report("12. Dev server down", True, [])
     else:
-        print("\nSkipping dev-server-dependent checks (7-10) — earlier step failed.")
+        print("\nSkipping dev-server-dependent checks (8-11) — earlier step failed.")
 
     print(f"\n{'#' * 76}")
     print("BATCH VALIDATION SUMMARY")

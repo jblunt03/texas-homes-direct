@@ -7,7 +7,7 @@ Run this after every batch of new/edited city pages, before publishing:
     python3 scripts/check_duplication.py
 
 What it does: for every published city, it extracts the intro, the 2 buying
-paragraphs, the localProof line, and the 5 FAQ answers, masks out that city's
+paragraphs, the localProof line, and the FAQ answers AND FAQ question text, masks out that city's
 own name and county name (replacing them with placeholder tokens), and then
 compares every text field against every OTHER published city's fields of the
 SAME type (intro vs intro, buying-paragraph vs buying-paragraph, etc.) —
@@ -32,9 +32,10 @@ from write_city_content import CITIES, CITY_COPY  # noqa: E402
 
 SHINGLE_SIZE = 8
 # Fraction of overlapping 8-word shingles above which two texts are flagged.
-# Calibrated against this project's real (legitimately distinct) city copy —
-# see the bottom of this file for the calibration run.
-THRESHOLD = 0.25
+# 0.22 is the publish bar. It started at 0.25 but batches 2-4 were each
+# hand-tightened to ~0.19-0.21 before publishing, so 0.22 makes the real
+# practice the enforced rule.
+THRESHOLD = 0.22
 
 
 def normalize(text, name, county):

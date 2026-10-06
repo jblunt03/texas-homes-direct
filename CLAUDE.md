@@ -73,9 +73,9 @@ these is a launch blocker, not a style note.
     costs (pad/underpinning/skirting — the fixed parts) get quoted
     immediately; the variable part is the utility hookup itself.
   - Both paragraphs live in `CityContent.pricingExplainer: [string, string]`
-    (optional field — only the batch-1 15 cities have it as of 2026-09-10;
-    the original 16 still need this pass). The component renders the
-    "Your Price, Explained" section only when this field is present.
+    (declared optional in the type, but every one of the 104 authored
+    cities has it). The component renders the "Your Price, Explained"
+    section only when this field is present, so new cities need it too.
 - **What "setup" actually includes** (the `TURNKEY_ITEMS` checklist in
   `CityPageContentV2.tsx`, rendered under "We Handle It All"): water,
   septic, electric, base pad, block, tie down, underpinning, skirting,
@@ -201,8 +201,27 @@ order:
 
 1. **Generate** — `write_city_content.py`, regenerates `lib/cityContent.ts`.
 2. **Cross-city duplication** — `check_duplication.py`. A field (intro,
-   buying, FAQ answer, etc.) against the *same* field on *every other*
-   published city, word-8-gram Jaccard, threshold 0.25.
+   buying, FAQ answer, FAQ question, etc.) against the *same* field on
+   *every other* published city, word-8-gram Jaccard, **threshold 0.22 —
+   that is the publish bar.** It was 0.25 originally, but batches 2, 3 and
+   4 were each hand-tightened to roughly 0.19–0.21 before publishing (batch
+   2 at 0.206, batch 3 at 0.188), so on 2026-10-06 the script's
+   `THRESHOLD` was lowered to 0.22 to enforce what was already the real
+   practice. A score sitting just under the old 0.25 line is not "passing"
+   — tighten the worst pairs until the max is 0.22 or below. The current
+   corpus's max is 0.217.
+
+   **FAQ question text (`faq_q`) is checked as well as answers (`faq_a`).**
+   Search Console flagged Hondo, Gonzales, Floresville and Pleasanton as
+   "Duplicate without user-selected canonical" even though every prose field
+   scored under threshold. Investigation found 67 of 104 pages shared the
+   literal question "Do I need to already own land in [County]?" and 68
+   shared "Do you deliver throughout [County]?" — Google doesn't know a
+   repeated question is allowed by design, it just sees identical text on
+   the page. The questions were rewritten with real variety (135 of them,
+   across 9 templates) and `faq_q` was added to `collect_fields()` so the
+   same discipline now applies to questions as to answers and it can't
+   recur silently.
 3. **Within-page redundancy** — `check_redundancy.py`. Every prose field on
    a city's page against every *other* field on that *same* city's page
    (does `gettingStarted` just restate `intro`? does an FAQ answer copy
@@ -229,18 +248,23 @@ order:
    catch (a path missing that prefix can't match a pattern requiring it).
    Verified by re-injecting the batch-4 bug and confirming this version
    fails on it before trusting a clean run.
-6. **Type-check** — `npx tsc --noEmit`.
-7. **Dev server up** — starts `next dev` on a scratch port (3099, chosen to
+6. **Unique hero + secondary image pairs** — no two cities may share the
+   same ordered `(heroImage, secondaryImage)` pair in `lib/cityContent.ts`.
+   See "Hero and secondary images" below for why. The check fails loudly if
+   it parses zero cities (i.e. if the file's format changes and its regexes
+   silently stop matching) rather than passing on nothing.
+7. **Type-check** — `npx tsc --noEmit`.
+8. **Dev server up** — starts `next dev` on a scratch port (3099, chosen to
    avoid colliding with a preview already running on the usual port),
-   polls until it responds, tears it down at the end (step 11) no matter
+   polls until it responds, tears it down at the end (step 12) no matter
    what happens in between.
-8. **Word count** — every currently-published city page, against the
+9. **Word count** — every currently-published city page, against the
    850–950 target. A page outside that range is a *warning* (printed, not
    blocking) — the target is aspirational per the note above, and matching
    it exactly isn't a launch requirement. A page under 600 words *is*
    blocking — that's not "a bit short," that's a sign a field is missing
    or empty.
-9–10. **Required schema + no localhost** — for every published city page
+10–11. **Required schema + no localhost** — for every published city page
    and the three explainer pages: fetches the rendered HTML, parses every
    `<script type="application/ld+json">` block, and confirms the required
    `@type`s are present (`FAQPage`, `BreadcrumbList`, `WebPage`, and for
@@ -249,7 +273,7 @@ order:
    JSON-LD `url`/`@id`, canonical `<link>`, or `og:url` on the page points
    at `localhost`/`127.0.0.1` — a real (if easy to miss) way a dev-only
    value could ship as if it were the production URL.
-11. **Dev server down** — always runs, including after a failure in 8–10.
+12. **Dev server down** — always runs, including after a failure in 9–11.
 
 If you add a new required field, JSON-LD type, or hard rule, add the check
 to `validate_batch.py` in the same pass — don't leave it as something only
@@ -318,7 +342,8 @@ python3 scripts/validate_batch.py
 **Why this exists:** before 2026-09-18, `popularHomes` was hand-picked per
 city (or copy-pasted from a similar city) with no rule behind it. The
 result: 1 of 54 listings (`marathon-katy-3bed-2bath-single-wide`) appeared
-on 39 of 44 pages, and 36 of the 54 real listings never appeared on any
+on 39 of 44 pages (44 was the published count at that time — see
+`lib/cities.ts` for the current number), and 36 of the 54 real listings never appeared on any
 city page at all. Both numbers were arbitrary, not evidence of anything —
 there's no per-city sales or inquiry data behind which homes are actually
 popular where, so a literal "popularity" ranking was never real to begin
@@ -342,7 +367,8 @@ selection should actually match.
 smaller budget/tighter lot get single wides, pages leaning more space get
 double wides" — fit-based on what each city's own copy already says. On
 inspection, that signal doesn't actually exist: every city that discusses
-single-wide-vs-double-wide sizing at all (15 of 44) presents it as a
+single-wide-vs-double-wide sizing at all (15 of the 44 cities then published;
+see `lib/cities.ts` for the current count) presents it as a
 *balanced*, household-dependent choice ("depends on your lot and your
 family's needs"), never a lean specific to that city. The few cities that
 looked like they leaned one way on a keyword scan ("smaller number,"
@@ -453,8 +479,9 @@ you're confident.
     for entity disambiguation (AI tools have confused Texas Homes Direct
     with "Homes Direct Texas" and "Mobile Homes Direct 4 Less"). **Only put
     real, verified URLs in `sameAs`** — Google Business Profile, Facebook,
-    directory listings. Never guess a plausible-looking URL. As of
-    2026-09-10 this array is empty pending those URLs from the user.
+    directory listings. Never guess a plausible-looking URL. The array now
+    holds the real Facebook page and Google Business Profile (Google Maps)
+    URLs; add others only once they're verified.
 - **FAQ answers must be server-rendered**, not injected by client JS on
   accordion open. `components/FaqAccordion.tsx` renders all answers into
   the DOM unconditionally; only CSS (`.bmh-faq-a { display: none }` /
@@ -501,6 +528,69 @@ you're confident.
     reference, not just the one you're adding.
   - Target first contentful paint under ~1.1s; pages that clear that get
     roughly 3× more AI-assistant citations than slower ones.
+
+## Hero and secondary images — one unique pair per city page
+
+No two city pages may share the same hero + secondary image pair.
+`validate_batch.py` step 6 enforces it (ordered pair, so `(A, B)` and
+`(B, A)` count as different). The same photo pair repeated across many pages
+is a duplicate-content signal Google can see: when Hondo's pair turned out to
+be identical to Cuero's, Caldwell's and Harker Heights's, it was one more
+reason those pages were being clustered as duplicates.
+
+There are 18 usable images, which gives 18 × 17 = 306 possible ordered pairs
+— comfortably more than the 104 pages (well over 3× headroom), so uniqueness
+is always achievable. If the page count ever approaches ~306, more images are
+needed, not repeats. To assign pairs for new cities, build
+`all_pairs = [(a, b) for a in IMAGES for b in IMAGES if a != b]` and take
+unused pairs from it; uniqueness then holds by construction.
+
+## Analytics
+
+Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in
+`app/layout.tsx`, via `<GoogleAnalytics gaId="..." />` from
+`@next/third-parties/google`. Never add a second GA/gtag tag — not per page,
+not as a raw `<script>` snippet, not through another component — duplicate
+tags double-count pageviews. The official component is used instead of the
+raw snippet specifically because the App Router navigates client-side and a
+plain gtag snippet misses those pageviews; the component fires a `page_view`
+on each route change. It loads via an `afterInteractive` script, so it
+doesn't block rendering. Verified live on 2026-10-06: a `page_view` hit to
+`google-analytics.com/g/collect` on initial load and another on client-side
+navigation to `/browse`, with exactly one `gtag/js` tag on the page.
+
+## Deploys and infrastructure
+
+- **Deploy = push to `main`.** The repo is connected to Vercel, which
+  auto-deploys every push to `main` to production. There is no separate
+  deploy command. Per the batch workflow, still only push on fresh,
+  explicit instruction.
+- **Deploy time varies from about 20 seconds to several minutes** (it has
+  occasionally run longer). Don't conclude a deploy failed because the
+  first check shows the old version — poll the live URL for something that
+  changed (e.g. a loop with a 20s sleep) until it appears.
+- **The apex-to-www redirect is a Vercel dashboard setting, not repo
+  code.** `texashomesdirect.com` → `www.texashomesdirect.com` (and the
+  http→https upgrade) are handled by Vercel's domain configuration, not
+  `next.config.mjs`. Search Console showed homepage impressions split
+  across `http://texashomesdirect.com/` and `https://www.texashomesdirect.com/`
+  because of how that chain behaves. **Don't try to fix this in the
+  repo** — a code-level redirect wouldn't apply to it. Its current status
+  is for the owner to confirm in the Vercel dashboard.
+
+## Shell gotchas (this environment)
+
+- **There is no `timeout` command** (macOS doesn't ship GNU `timeout`). For
+  a bounded wait, use a `for` loop with `sleep`, or the Bash tool's own
+  `timeout` parameter.
+- **The shell is zsh, not bash.** Differences that have bitten real
+  commands here: an unmatched glob (e.g. `grep --include=*.ts`) is a hard
+  error in zsh ("no matches found") instead of passing the literal through
+  — quote globs; `declare -A` associative arrays and some `${...}`
+  expansions behave differently or fail with "bad substitution"; and an
+  array-in-a-loop pattern once caused commands like `curl` to report "command
+  not found". When in doubt, avoid arrays — use plain separate commands, a
+  `while read` loop, or write a small Python script instead.
 
 ## Known repo history worth knowing
 
