@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import { GoogleAnalytics } from '@next/third-parties/google'
 import { Inter, Montserrat } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
@@ -117,6 +118,7 @@ export default function RootLayout({
           strategy="afterInteractive"
         />
       </body>
+      <GoogleAnalytics gaId="G-TEY2WEP5QP" />
     </html>
   )
 }
