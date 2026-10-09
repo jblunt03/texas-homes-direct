@@ -33,6 +33,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-1',
     slug: 'marathon-pigeon-3bed-2bath-double-wide',
+    notionId: '366875ae-20d8-8198-91df-ed233dae812f',
     title: 'The Lockhart',
     manufacturer: 'Texas Homes Direct',
     model: 'Archer',
@@ -75,6 +76,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-14',
     slug: 'marathon-dove-1bed-1bath-single-wide',
+    notionId: '366875ae-20d8-81f5-8b3b-e2ad7d90ae63',
     title: 'The Smithville',
     manufacturer: 'Texas Homes Direct',
     model: 'Dove',
@@ -122,6 +124,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-15',
     slug: 'marathon-gadwall-3bed-2bath-double-wide',
+    notionId: '366875ae-20d8-81fe-bb3c-dac472d2d3d0',
     title: 'The Brownwood',
     manufacturer: 'Texas Homes Direct',
     model: 'Gadwall',
@@ -137,6 +140,7 @@ export const sampleListings: Listing[] = [
     city: '',
     images: [
       '/homes/the-gadwall/Gadwall-Hero.jpg',
+      '/homes/the-gadwall/370875ae-20d8-80db-9113-ea57350b83ef.jpeg',
       '/homes/the-gadwall/IMG_1787-2-scaled.jpg.jpeg',
       '/homes/the-gadwall/IMG_1786-2-scaled.jpg.jpeg',
       '/homes/the-gadwall/IMG_1785-2-scaled.jpg.jpeg',
@@ -170,6 +174,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-16',
     slug: 'marathon-pintail-4bed-2bath-double-wide',
+    notionId: '366875ae-20d8-8165-b36f-d700625f9c66',
     title: 'The Giddings',
     manufacturer: 'Texas Homes Direct',
     model: 'Pintail',
@@ -214,6 +219,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-17',
     slug: 'marathon-spoonbill-3bed-2bath-single-wide',
+    notionId: '366875ae-20d8-8143-8a89-d106341f8408',
     title: 'The Brenham',
     manufacturer: 'Texas Homes Direct',
     model: 'Spoonbill',
@@ -269,6 +275,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-18',
     slug: 'marathon-redhead-3bed-2bath-double-wide',
+    notionId: '366875ae-20d8-8125-ba8d-ea47f7a3b6c7',
     title: 'The Bellville',
     manufacturer: 'Texas Homes Direct',
     model: 'Redhead',
@@ -325,6 +332,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-19',
     slug: 'marathon-woodduck-3bed-2bath-double-wide',
+    notionId: '366875ae-20d8-8183-a4b7-fa3d47ff3a02',
     title: 'The Sealy',
     manufacturer: 'Texas Homes Direct',
     model: 'Wood Duck',
@@ -366,6 +374,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-20',
     slug: 'marathon-widgeon-4bed-2bath-double-wide',
+    notionId: '366875ae-20d8-8145-8753-c1a1a45ba4c1',
     title: 'The Rosenburg',
     manufacturer: 'Texas Homes Direct',
     model: 'Widgeon',
@@ -419,6 +428,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-21',
     slug: 'marathon-mallard-4bed-2bath-double-wide',
+    notionId: '366875ae-20d8-8131-ad8b-ca65fd45bf44',
     title: 'The San Saba',
     manufacturer: 'Texas Homes Direct',
     model: 'Mallard',
@@ -474,6 +484,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-22',
     slug: 'marathon-coleman-3bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-8107-9245-e9ca06de24c7',
     title: 'The Trinity',
     manufacturer: 'Texas Homes Direct',
     model: 'Coleman',
@@ -524,6 +535,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-23',
     slug: 'marathon-amarillo-2bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-8133-a99b-f6737d54dc3f',
     title: 'The Gonzales',
     manufacturer: 'Texas Homes Direct',
     model: 'Amarillo',
@@ -555,6 +567,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-24',
     slug: 'marathon-loving-3bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-8137-82f8-c8c40d58c5a6',
     title: 'The Canton',
     manufacturer: 'Texas Homes Direct',
     model: 'Loving',
@@ -586,6 +599,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-25',
     slug: 'marathon-conroe-2bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-813b-8db6-d39597c70bc5',
     title: 'The Kaufman',
     manufacturer: 'Texas Homes Direct',
     model: 'Conroe',
@@ -617,6 +631,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-26',
     slug: 'marathon-katy-3bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-813c-ae76-c6c8bfe92b17',
     title: 'The Forney',
     manufacturer: 'Texas Homes Direct',
     model: 'Katy',
@@ -658,6 +673,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-27',
     slug: 'marathon-jasper-3bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-8152-9fb1-c4be16f3d92b',
     title: 'The Terrell',
     manufacturer: 'Texas Homes Direct',
     model: 'Jasper',
@@ -689,6 +705,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-28',
     slug: 'marathon-hays-4bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-8159-9dc1-ebb01d12084b',
     title: 'The Quinlan',
     manufacturer: 'Texas Homes Direct',
     model: 'Hays',
@@ -720,6 +737,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-29',
     slug: 'marathon-mesquite-3bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-815e-991c-fb3c7b03e456',
     title: 'The Greenville',
     manufacturer: 'Texas Homes Direct',
     model: 'Mesquite',
@@ -765,6 +783,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-30',
     slug: 'marathon-bell-3bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-8164-b836-ce1b9ad49e3a',
     title: 'The Sulphur Springs',
     manufacturer: 'Texas Homes Direct',
     model: 'Bell',
@@ -796,6 +815,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-31',
     slug: 'marathon-terra-2bed-1bath-park-model',
+    notionId: '3ad875ae-20d8-8168-a68d-c421b20209be',
     title: 'The Mineola',
     manufacturer: 'Texas Homes Direct',
     model: 'Terra',
@@ -815,14 +835,12 @@ export const sampleListings: Listing[] = [
       '/homes/the-terra/terra-2.webp',
       '/homes/the-terra/terra-3.webp',
       '/homes/the-terra/terra-4.webp',
-      '/homes/the-terra/terra-5.webp',
       '/homes/the-terra/terra-6.webp',
-    
       '/homes/the-terra/3ad875ae-20d8-803e-b716-de94fe427f1b.jpg',
       '/homes/the-terra/3ad875ae-20d8-8052-b3be-c163c1b91855.webp',
       '/homes/the-terra/3ad875ae-20d8-807f-9186-dcb945ac7ee8.webp',
       '/homes/the-terra/3ad875ae-20d8-80f7-b12c-ee212c5b1a4b.webp',
-],
+    ],
     features: ['Park Model/Tiny Home', '2 Bed / 1 Bath', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
       'The Terra is a 12x33 park model / tiny home, 396 square feet, 2 beds and 1 bath.',
@@ -838,6 +856,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-32',
     slug: 'marathon-brewster-3bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-816a-a56a-c58c2c255a2c',
     title: 'The Quitman',
     manufacturer: 'Texas Homes Direct',
     model: 'Brewster',
@@ -876,6 +895,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-33',
     slug: 'marathon-caldwell-4bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-8179-8347-d972c1388df7',
     title: 'The Gilmer',
     manufacturer: 'Texas Homes Direct',
     model: 'Caldwell',
@@ -907,6 +927,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-34',
     slug: 'marathon-trinity-4bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-817e-9398-cc6c494c55ea',
     title: 'The Henderson',
     manufacturer: 'Texas Homes Direct',
     model: 'Trinity',
@@ -938,6 +959,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-35',
     slug: 'marathon-bailey-3bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-818a-8ca2-edcd069e7e71',
     title: 'The Carthage',
     manufacturer: 'Texas Homes Direct',
     model: 'Bailey',
@@ -969,6 +991,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-36',
     slug: 'marathon-kendall-3bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-818b-96ff-cb4e597654eb',
     title: 'The Montgomery',
     manufacturer: 'Texas Homes Direct',
     model: 'Kendall',
@@ -1000,6 +1023,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-37',
     slug: 'marathon-grapevine-2bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-8197-916a-f7426a32bf06',
     title: 'The Jasper',
     manufacturer: 'Texas Homes Direct',
     model: 'Grapevine',
@@ -1031,6 +1055,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-38',
     slug: 'marathon-jackson-1bed-1bath-park-model',
+    notionId: '3ad875ae-20d8-81ab-9b2f-e827837ed0b2',
     title: 'The Woodville',
     manufacturer: 'Texas Homes Direct',
     model: 'Jackson',
@@ -1073,6 +1098,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-39',
     slug: 'marathon-abilene-2bed-1bath-single-wide',
+    notionId: '3ad875ae-20d8-81bd-bd12-fdea53170861',
     title: 'The Kountze',
     manufacturer: 'Texas Homes Direct',
     model: 'Abilene',
@@ -1104,6 +1130,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-40',
     slug: 'marathon-ranger-2bed-1bath-single-wide',
+    notionId: '3ad875ae-20d8-81de-a2d5-c96e41a6bc9b',
     title: 'The Silsbee',
     manufacturer: 'Texas Homes Direct',
     model: 'Ranger',
@@ -1135,6 +1162,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-41',
     slug: 'marathon-daniel-1bed-1bath-park-model',
+    notionId: '3ad875ae-20d8-81e2-a3dc-c578881afef6',
     title: 'The Vidor',
     manufacturer: 'Texas Homes Direct',
     model: 'Daniel',
@@ -1182,6 +1210,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-42',
     slug: 'marathon-chapman-1bed-1bath-park-model',
+    notionId: '3ad875ae-20d8-81f8-8b4c-eb65dda94944',
     title: 'The La Vernia',
     manufacturer: 'Texas Homes Direct',
     model: 'Chapman',
@@ -1225,6 +1254,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-43',
     slug: 'marathon-pearland-3bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-81f9-bd86-d0ba23a5fb4a',
     title: 'The Brazoria',
     manufacturer: 'Texas Homes Direct',
     model: 'Pearland',
@@ -1271,6 +1301,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-44',
     slug: 'marathon-breckenridge-3bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-81fb-b616-f44f3e3843d8',
     title: 'The Sweeny',
     manufacturer: 'Texas Homes Direct',
     model: 'Breckenridge',
@@ -1302,6 +1333,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-45',
     slug: 'marathon-longview-3bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-8100-ad74-f019e585be60',
     title: 'The Onalaska',
     manufacturer: 'Texas Homes Direct',
     model: 'Longview',
@@ -1333,6 +1365,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-46',
     slug: 'marathon-dawson-4bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-810a-be18-ea8db13f808f',
     title: 'The Crockett',
     manufacturer: 'Texas Homes Direct',
     model: 'Dawson',
@@ -1364,6 +1397,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-47',
     slug: 'marathon-lanny-1bed-1bath-park-model',
+    notionId: '3ad875ae-20d8-810e-8142-f5bbc405f00e',
     title: 'The Whitehouse',
     manufacturer: 'Texas Homes Direct',
     model: 'Lanny',
@@ -1410,6 +1444,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-48',
     slug: 'marathon-fisher-3bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-8115-a6df-fed5e0398f6c',
     title: 'The Rusk',
     manufacturer: 'Texas Homes Direct',
     model: 'Fisher',
@@ -1441,6 +1476,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-49',
     slug: 'marathon-cisco-2bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-8115-bf49-f57eedc329c1',
     title: 'The Jacksonville',
     manufacturer: 'Texas Homes Direct',
     model: 'Cisco',
@@ -1472,6 +1508,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-50',
     slug: 'marathon-temple-3bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-812c-8a00-c5f3bf46038c',
     title: 'The Bullard',
     manufacturer: 'Texas Homes Direct',
     model: 'Temple',
@@ -1516,6 +1553,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-51',
     slug: 'marathon-grayson-4bed-2bath-double-wide',
+    notionId: '3ad875ae-20d8-812f-9a4b-ec626deaf660',
     title: 'The Chandler',
     manufacturer: 'Texas Homes Direct',
     model: 'Grayson',
@@ -1564,6 +1602,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-52',
     slug: 'marathon-darrell-1bed-1bath-park-model',
+    notionId: '3ad875ae-20d8-8133-a302-d05d377a9bed',
     title: 'The Van',
     manufacturer: 'Texas Homes Direct',
     model: 'Darrell',
@@ -1595,6 +1634,7 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-53',
     slug: 'marathon-beaumont-3bed-2bath-single-wide',
+    notionId: '3ad875ae-20d8-8137-b253-d2ab5007712f',
     title: 'The Wills Point',
     manufacturer: 'Texas Homes Direct',
     model: 'Beaumont',
@@ -1626,8 +1666,10 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-54',
     slug: 'fleetwood-pronghorn-4bed-2bath-double-wide',
-    title: 'The Pronghorn',
+    notionId: '3bd875ae-20d8-8050-bad5-f97e7dec670c',
+    title: 'The Navasota',
     manufacturer: 'Fleetwood',
+    model: 'Trailblazer xl',
     price: 0,
     beds: 4,
     baths: 2,
@@ -1656,20 +1698,22 @@ export const sampleListings: Listing[] = [
     ],
     features: ['4 Bed / 2 Bath', '1,920 Sq Ft', 'Option of 5 Bed / 3 Bath', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Pronghorn is a 1,920 square foot doublewide with 4 beds and 2 baths, with the option to configure as 5 beds and 3 baths.',
+      'The Navasota is a 1,920 square foot doublewide with 4 beds and 2 baths, with the option to configure as 5 beds and 3 baths.',
     monthlyPayment: 1250,
     downPayment: 0,
     available: true,
     hudCertified: true,
     featured: false,
     status: 'Active',
+    matterportUrl: 'https://my.matterport.com/show/?m=o4muWLXkUts',
     floorplanUrl: '/homes/the-pronghorn/Pronghorn-FloorPlan.png',
   },
   // ─── BMH-55 · The Armadillo ─────────────────────────────────────────────
   {
     id: 'BMH-55',
     slug: 'fleetwood-armadillo-3bed-2bath',
-    title: 'The Armadillo',
+    notionId: '3bd875ae-20d8-8091-aea3-c0f6e578744b',
+    title: 'The Livingston',
     manufacturer: 'Fleetwood',
     model: 'Armadillo',
     price: 0,
@@ -1682,7 +1726,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-armadillo/IMG_0843.png',
+      '/homes/the-armadillo/3e4875ae-20d8-8082-b930-f1bb9408be47.jpg',
       '/homes/the-armadillo/IMG_0847.jpg',
       '/homes/the-armadillo/IMG_0848.jpg',
       '/homes/the-armadillo/IMG_0849.jpg',
@@ -1696,20 +1740,22 @@ export const sampleListings: Listing[] = [
     ],
     features: ['3 Bed / 2 Bath', '1,140 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Armadillo is a 1,140 square foot Fleetwood home with 3 beds and 2 baths.',
+      'The Livingston is a 1,140 square foot Fleetwood home with 3 beds and 2 baths.',
     monthlyPayment: 950,
     downPayment: 0,
     available: true,
     hudCertified: true,
     featured: false,
     status: 'Active',
+    matterportUrl: 'https://my.matterport.com/show/?m=BcoqzqXPG4t',
     floorplanUrl: '/homes/the-armadillo/Armadillo-FloorPlan.png',
   },
   // ─── BMH-56 · The Road Runner ─────────────────────────────────────────────
   {
     id: 'BMH-56',
     slug: 'fleetwood-roadrunner-3bed-2bath',
-    title: 'The Road Runner',
+    notionId: '3bd875ae-20d8-80a6-8a9d-e6fbfee069d3',
+    title: 'The Shepard',
     manufacturer: 'Fleetwood',
     model: 'Road Runner',
     price: 0,
@@ -1722,7 +1768,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-road-runner/IMG_0750.jpg',
+      '/homes/the-road-runner/3c6875ae-20d8-80c9-ab1b-cb1831341b2d.jpg',
       '/homes/the-road-runner/IMG_0863.jpg',
       '/homes/the-road-runner/IMG_0865.jpg',
       '/homes/the-road-runner/IMG_0866.jpg',
@@ -1735,7 +1781,7 @@ export const sampleListings: Listing[] = [
     ],
     features: ['3 Bed / 2 Bath', '1,493 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Road Runner is a 1,493 square foot Fleetwood home with 3 beds and 2 baths.',
+      'The Shepard is a 1,493 square foot Fleetwood home with 3 beds and 2 baths.',
     monthlyPayment: 1000,
     downPayment: 0,
     available: true,
@@ -1748,7 +1794,8 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-57',
     slug: 'fleetwood-bobcat-3bed-2bath-single-wide',
-    title: 'The Bobcat',
+    notionId: '3bd875ae-20d8-80c7-a7b5-f08b65f83ecb',
+    title: 'The Conroe',
     manufacturer: 'Fleetwood',
     model: 'Mya',
     price: 0,
@@ -1761,12 +1808,18 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-bobcat/IMG_0779.jpeg',
-      '/homes/the-bobcat/IMG_0891.jpeg',
+      '/homes/the-bobcat/3d5875ae-20d8-80de-be5f-eafaf5eb3933.jpg',
+      '/homes/the-bobcat/3bd875ae-20d8-802e-9b6b-caf5bfad7abd.jpeg',
+      '/homes/the-bobcat/3bd875ae-20d8-8018-b258-f26a2119f74b.jpeg',
+      '/homes/the-bobcat/3bd875ae-20d8-80b9-9904-ef9b1f6e35c3.jpeg',
+      '/homes/the-bobcat/3bd875ae-20d8-80cc-9092-fc92e86f1179.jpeg',
+      '/homes/the-bobcat/3bd875ae-20d8-8007-b9aa-d8812373aeff.jpeg',
+      '/homes/the-bobcat/3bd875ae-20d8-8054-97f0-f0ebb3b5f37a.jpeg',
+      '/homes/the-bobcat/3bd875ae-20d8-80f6-aece-d5a121ab334e.jpeg',
     ],
     features: ['3 Bed / 2 Bath', '924 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Bobcat is a 924 square foot singlewide with 3 beds and 2 baths.',
+      'The Conroe is a 924 square foot singlewide with 3 beds and 2 baths.',
     monthlyPayment: 799,
     downPayment: 0,
     available: true,
@@ -1779,7 +1832,8 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-58',
     slug: 'fleetwood-javelina-1bed-1bath-single-wide',
-    title: 'The Javelina',
+    notionId: '3bd875ae-20d8-80cb-8ff1-d124a4e937d5',
+    title: 'The Coldspring',
     manufacturer: 'Fleetwood',
     model: 'Tia',
     price: 0,
@@ -1796,7 +1850,7 @@ export const sampleListings: Listing[] = [
     ],
     features: ['1 Bed / 1 Bath', '546 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Javelina is a compact 546 square foot Fleetwood singlewide with 1 bed and 1 bath.',
+      'The Coldspring is a compact 546 square foot Fleetwood singlewide with 1 bed and 1 bath.',
     monthlyPayment: 650,
     downPayment: 0,
     available: true,
@@ -1809,9 +1863,10 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-59',
     slug: 'fleetwood-axis-3bed-2bath-double-wide',
-    title: 'The Axis',
+    notionId: '3be875ae-20d8-803f-be71-fde63ee602f5',
+    title: 'The Dayton',
     manufacturer: 'Fleetwood',
-    model: '28683p',
+    model: '28603p',
     price: 0,
     beds: 3,
     baths: 2,
@@ -1835,23 +1890,29 @@ export const sampleListings: Listing[] = [
       '/homes/the-axis-fleetwood/img-11.png',
       '/homes/the-axis-fleetwood/img-12.png',
       '/homes/the-axis-fleetwood/img-13.png',
+      '/homes/the-axis-fleetwood/3be875ae-20d8-8058-bbc0-fb99ba4ae023.jpg',
+      '/homes/the-axis-fleetwood/3be875ae-20d8-808f-933d-cfb7a442cf05.jpg',
+      '/homes/the-axis-fleetwood/3be875ae-20d8-806c-b2aa-e32eb04d4150.jpg',
+      '/homes/the-axis-fleetwood/3be875ae-20d8-80c4-91bc-c896e3e81d51.jpg',
     ],
     features: ['3 Bed / 2 Bath', '1,600 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Axis is a 1,600 square foot Fleetwood doublewide with 3 beds and 2 baths.',
+      'The Dayton is a 1,600 square foot Fleetwood doublewide with 3 beds and 2 baths.',
     monthlyPayment: 1100,
     downPayment: 0,
     available: true,
     hudCertified: true,
     featured: false,
     status: 'Active',
+    matterportUrl: 'https://my.matterport.com/show/?m=GFtJx1Dgw6t',
     floorplanUrl: '/homes/the-axis-fleetwood/Axis-FloorPlan.png',
   },
   // ─── BMH-60 · The Moose ─────────────────────────────────────────────
   {
     id: 'BMH-60',
     slug: 'fleetwood-moose-4bed-2bath-double-wide',
-    title: 'The Moose',
+    notionId: '3be875ae-20d8-8056-8533-f17479882e96',
+    title: 'The Cleveland',
     manufacturer: 'Fleetwood',
     model: '3268u',
     price: 0,
@@ -1864,11 +1925,20 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-moose/hero.jpeg',
+      '/homes/the-moose/3c7875ae-20d8-8046-9349-ddc899a9c3e5.jpg',
+      '/homes/the-moose/3c4875ae-20d8-8061-b794-deaf4fb1b1a0.png',
+      '/homes/the-moose/3c4875ae-20d8-80ef-84cb-d61ef584634c.png',
+      '/homes/the-moose/3c4875ae-20d8-809a-b356-e416f4292e7a.png',
+      '/homes/the-moose/3c4875ae-20d8-80ba-aca7-dfef4da3c8af.png',
+      '/homes/the-moose/3c4875ae-20d8-8046-bbba-d1596095f4f9.png',
+      '/homes/the-moose/3c4875ae-20d8-800f-85ad-c56142d50784.png',
+      '/homes/the-moose/3c4875ae-20d8-808c-9f39-e7d873f12f59.png',
+      '/homes/the-moose/3c4875ae-20d8-8005-8bc8-ec09fcc9a7d3.png',
+      '/homes/the-moose/3c4875ae-20d8-8020-a75b-cbadb2bf0838.png',
     ],
     features: ['4 Bed / 2 Bath', '2,040 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Moose is a 2,040 square foot Fleetwood doublewide with 4 beds and 2 baths.',
+      'The Cleveland is a 2,040 square foot Fleetwood doublewide with 4 beds and 2 baths.',
     monthlyPayment: 1499,
     downPayment: 0,
     available: true,
@@ -1881,7 +1951,8 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-61',
     slug: 'fleetwood-jackrabbit-3bed-2bath-double-wide',
-    title: 'The Jack Rabbit',
+    notionId: '3be875ae-20d8-8059-af79-e1a18b67487d',
+    title: 'The Porter',
     manufacturer: 'Fleetwood',
     model: '28483p',
     price: 0,
@@ -1901,27 +1972,33 @@ export const sampleListings: Listing[] = [
       '/homes/the-jack-rabbit/img-05.png',
       '/homes/the-jack-rabbit/img-06.png',
       '/homes/the-jack-rabbit/img-07.png',
+      '/homes/the-jack-rabbit/3be875ae-20d8-803e-853b-f44a50ca4800.jpg',
+      '/homes/the-jack-rabbit/3be875ae-20d8-8085-b8d2-da38820145f2.jpg',
       '/homes/the-jack-rabbit/img-09.png',
       '/homes/the-jack-rabbit/img-10.png',
       '/homes/the-jack-rabbit/img-11.png',
       '/homes/the-jack-rabbit/img-12.png',
+      '/homes/the-jack-rabbit/3be875ae-20d8-80c8-981a-e9a06bf9889a.png',
+      '/homes/the-jack-rabbit/3be875ae-20d8-805c-a039-d3b4aef93ae1.jpg',
     ],
     features: ['3 Bed / 2 Bath', '1,280 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Jack Rabbit is a 1,280 square foot Fleetwood doublewide with 3 beds and 2 baths.',
+      'The Porter is a 1,280 square foot Fleetwood doublewide with 3 beds and 2 baths.',
     monthlyPayment: 1100,
     downPayment: 0,
     available: true,
     hudCertified: true,
     featured: false,
     status: 'Active',
+    matterportUrl: 'https://app.cloudpano.com/tours/QfT2e3qHg',
     floorplanUrl: '/homes/the-jack-rabbit/JackRabbit-FloorPlan.png',
   },
   // ─── BMH-62 · The PereDavid ─────────────────────────────────────────────
   {
     id: 'BMH-62',
     slug: 'fleetwood-peredavid-3bed-2bath-double-wide',
-    title: 'The PereDavid',
+    notionId: '3be875ae-20d8-8073-bdd1-c3ca6c229f74',
+    title: 'The Willis',
     manufacturer: 'Fleetwood',
     model: 'Vantage',
     price: 0,
@@ -1934,7 +2011,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-peredavid/img-01.png',
+      '/homes/the-peredavid/3c6875ae-20d8-809a-89b2-e06c6ffda770.jpg',
       '/homes/the-peredavid/img-02.png',
       '/homes/the-peredavid/img-03.png',
       '/homes/the-peredavid/img-04.png',
@@ -1946,10 +2023,13 @@ export const sampleListings: Listing[] = [
       '/homes/the-peredavid/img-10.png',
       '/homes/the-peredavid/img-11.png',
       '/homes/the-peredavid/img-12.png',
+      '/homes/the-peredavid/3be875ae-20d8-80b5-a8b3-cf4258459a9b.jpg',
+      '/homes/the-peredavid/3be875ae-20d8-8001-a04c-f01d9359e4f0.jpg',
+      '/homes/the-peredavid/3be875ae-20d8-8000-9795-c887376ea8a6.png',
     ],
     features: ['3 Bed / 2 Bath', '1,680 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The PereDavid is a 1,680 square foot Fleetwood doublewide with 3 beds and 2 baths.',
+      'The Willis is a 1,680 square foot Fleetwood doublewide with 3 beds and 2 baths.',
     monthlyPayment: 1235,
     downPayment: 0,
     available: true,
@@ -1957,12 +2037,14 @@ export const sampleListings: Listing[] = [
     featured: false,
     floorplanUrl: '/homes/the-peredavid/PereDavid-FloorPlan.png',
     status: 'Active',
+    matterportUrl: 'https://my.matterport.com/show/?m=Z2Z8ZcGATa8',
   },
   // ─── BMH-63 · The Badger ─────────────────────────────────────────────
   {
     id: 'BMH-63',
     slug: 'fleetwood-badger-3bed-2bath-double-wide',
-    title: 'The Badger',
+    notionId: '3be875ae-20d8-80c1-afc1-e635731fe6cb',
+    title: 'The Splendora',
     manufacturer: 'Fleetwood',
     model: 'vivid',
     price: 0,
@@ -1975,7 +2057,7 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-badger/img-01.png',
+      '/homes/the-badger/3c6875ae-20d8-805c-b09a-f23c47282ef5.jpeg',
       '/homes/the-badger/img-02.png',
       '/homes/the-badger/img-03.png',
       '/homes/the-badger/img-04.png',
@@ -1987,23 +2069,29 @@ export const sampleListings: Listing[] = [
       '/homes/the-badger/img-10.png',
       '/homes/the-badger/img-11.png',
       '/homes/the-badger/img-12.png',
+      '/homes/the-badger/3be875ae-20d8-8002-a4d4-c4d569c61368.jpg',
+      '/homes/the-badger/3be875ae-20d8-802a-a4d6-fee00bc8db29.png',
+      '/homes/the-badger/3be875ae-20d8-80cd-b228-f8165d7ab67b.jpg',
+      '/homes/the-badger/3be875ae-20d8-8049-8709-c38654e568a6.jpg',
     ],
     features: ['3 Bed / 2 Bath', '1,600 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Badger is a 1,600 square foot Fleetwood doublewide with 3 beds and 2 baths.',
+      'The Splendora is a 1,600 square foot Fleetwood doublewide with 3 beds and 2 baths.',
     monthlyPayment: 1250,
     downPayment: 0,
     available: true,
     hudCertified: true,
     featured: false,
     status: 'Active',
+    matterportUrl: 'https://my.matterport.com/show/?m=4dUDUFd5nAd&title=0&ts=1&nt=1',
     floorplanUrl: '/homes/the-badger/Badger-FloorPlan.png',
   },
   // ─── BMH-64 · The Raven (Fleetwood) ─────────────────────────────────────────────
   {
     id: 'BMH-64',
     slug: 'fleetwood-raven-3bed-2bath-single-wide',
-    title: 'The Raven',
+    notionId: '3be875ae-20d8-807f-8cc4-ecc3a00ae3fc',
+    title: 'The New Caney',
     manufacturer: 'Fleetwood',
     model: 'Nina',
     price: 0,
@@ -2016,28 +2104,33 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/the-raven/img-01.jpeg',
+      '/homes/the-raven/3c6875ae-20d8-807c-a710-fdb6ca49ba34.jpg',
       '/homes/the-raven/img-02.png',
       '/homes/the-raven/img-03.png',
       '/homes/the-raven/img-04.png',
       '/homes/the-raven/img-05.png',
+      '/homes/the-raven/3be875ae-20d8-801d-bbb6-e13f2e213dca.png',
+      '/homes/the-raven/3be875ae-20d8-8039-854c-e5f1583db899.png',
+      '/homes/the-raven/3be875ae-20d8-80b2-975b-c86fb12a45de.png',
     ],
     features: ['3 Bed / 2 Bath', '1,216 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Raven is a 1,216 square foot Fleetwood singlewide with 3 beds and 2 baths.',
+      'The New Caney is a 1,216 square foot Fleetwood singlewide with 3 beds and 2 baths.',
     monthlyPayment: 899,
     downPayment: 0,
     available: true,
     hudCertified: true,
     featured: false,
     status: 'Active',
+    matterportUrl: 'https://my.matterport.com/show/?play=1&m=ZpnUJBKot2w',
     floorplanUrl: '/homes/the-raven/Raven-FloorPlan.png',
   },
   // ─── BMH-65 · The Coyote ─────────────────────────────────────────────
   {
     id: 'BMH-65',
     slug: 'fleetwood-coyote-2bed-2bath-single-wide',
-    title: 'The Coyote',
+    notionId: '3bd875ae-20d8-80aa-b213-e72b2f5aeadd',
+    title: 'The Schulenburg',
     manufacturer: 'Fleetwood',
     model: 'Talia',
     price: 0,
@@ -2054,7 +2147,7 @@ export const sampleListings: Listing[] = [
     ],
     features: ['2 Bed / 2 Bath', '820 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Coyote is an 820 square foot Fleetwood singlewide with 2 beds and 2 baths. Photography still pending.',
+      'The Schulenburg is an 820 square foot Fleetwood singlewide with 2 beds and 2 baths. Photography still pending.',
     monthlyPayment: 750,
     downPayment: 0,
     available: true,
@@ -2067,7 +2160,8 @@ export const sampleListings: Listing[] = [
   {
     id: 'BMH-66',
     slug: 'fleetwood-rattlesnake-3bed-2bath-single-wide',
-    title: 'The Rattlesnake',
+    notionId: '3be875ae-20d8-80df-ab5f-fe15fd33264b',
+    title: 'The Magnolia',
     manufacturer: 'Fleetwood',
     model: '1676u',
     price: 0,
@@ -2088,10 +2182,11 @@ export const sampleListings: Listing[] = [
       '/homes/the-rattlesnake/img-06.png',
       '/homes/the-rattlesnake/img-07.png',
       '/homes/the-rattlesnake/img-08.png',
+      '/homes/the-rattlesnake/3be875ae-20d8-80a9-8fc1-fb6ff93c1d05.jpg',
     ],
     features: ['3 Bed / 2 Bath', '1,178 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
-      'The Rattlesnake is a 1,178 square foot Fleetwood singlewide with 3 beds and 2 baths.',
+      'The Magnolia is a 1,178 square foot Fleetwood singlewide with 3 beds and 2 baths.',
     monthlyPayment: 950,
     downPayment: 0,
     available: true,

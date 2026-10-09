@@ -545,6 +545,61 @@ needed, not repeats. To assign pairs for new cities, build
 `all_pairs = [(a, b) for a in IMAGES for b in IMAGES if a != b]` and take
 unused pairs from it; uniqueness then holds by construction.
 
+## Home listings — syncing from Notion
+
+**Production serves `lib/sampleListings.ts`, not Notion.** Vercel has no
+`NOTION_TOKEN`, so `lib/notion.ts` falls back to the static file. A Notion edit
+(name, photos, 3D tour) only reaches the live site once that file is
+regenerated, committed and deployed. To regenerate it:
+
+```
+npm run sync:listings -- --dry-run   # show what would change, write nothing
+npm run sync:listings                # apply, then run the image-path validator
+```
+
+`scripts/sync-listings.ts` reads `NOTION_TOKEN` from `.env.local` and never
+prints it. Per listing it updates the name (`title`), `beds`/`baths`/`sqft`/
+`wideType`/`model`, `matterportUrl` (from "3D Tour URL"; blank or "NONE"
+removes the tour) and `images`. It also renames the old name where it appears
+in the description. **It never touches `slug`** (the page URL) or price,
+features, status or `floorplanUrl`. A blank Notion field never wipes a code
+value. Run it twice: the second dry run should report no listing changes. If
+it doesn't, something isn't idempotent.
+
+- **Matching is by `notionId`**, stored on each listing. Fleetwood pages have
+  no Slug in Notion and their Notion names differ from the old site names, so
+  slug or title matching can't work for them. The 13 Fleetwood listings were
+  matched once by model + beds/baths/sq ft on 2026-10-09. Notion pages with no
+  site listing (e.g. "28483u", "Pathfinder") are reported, never auto-added. A
+  new listing needs a slug chosen by hand first.
+- **Images:** the Notion page body's image blocks are the source. Photos
+  already on the site keep their existing files and order.
+  `scripts/sync-listings.image-map.json` maps Notion block IDs to those files,
+  so nothing is re-downloaded or renamed. New photos download into the folder
+  the listing already uses as `<blockId>.<ext>`. Anything over 800KB is
+  converted with `sips` to JPEG q82, max 1600px wide. Photos removed from
+  Notion drop out of the gallery, but the file stays on disk. A listing whose
+  Notion page has no photos keeps its images.
+- **`IMAGE_LOCK`** (in the script) skips photo sync for:
+  - **Katy/Forney:** Notion only has floorplans for it.
+  - **Wood Duck, Coleman, Daniel and Chapman:** as of 2026-10-09 Notion and the
+    site disagree on which photo set belongs to which model. Notion has the
+    Wood Duck and Coleman sets swapped relative to the site, and Notion's
+    Daniel page mixes two different homes.
+
+  Remove those four entries once the owner confirms Notion is right.
+  `PINNED_IMAGES` keeps three site-only hero exteriors (Gadwall, Spoonbill,
+  Terra) that aren't in Notion.
+- **Marathon-only vs Fleetwood:** `scripts/sync-notion-images.ts` (the older
+  `npm run sync:images`) still says Texas Homes Direct only sells Marathon and
+  skips Fleetwood, but 13 Fleetwood listings are live. `sync:listings` syncs
+  both. Also note that if `NOTION_TOKEN` were ever added to production,
+  `lib/notion.ts` would drop every Fleetwood page, because it filters out pages
+  with no Slug. Don't add the token to Vercel without fixing that first.
+
+After a sync, re-run `python3 scripts/validate_batch.py` before committing. The
+listing names feed the city pages' "Homes to Get You Started" cards.
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in
