@@ -69,11 +69,10 @@ const IMAGE_LOCK: Record<string, string> = {
   // real photos aren't in Notion.
   'marathon-katy-3bed-2bath-single-wide': 'Notion only has floorplans',
   // As of 2026-10-09 Notion and the site disagree on which photo set belongs
-  // to which model for these four (Wood Duck/Coleman sets are swapped; Notion's
-  // Daniel page mixes two different homes). Held until the owner confirms
-  // which is right — remove these entries once Notion is corrected.
-  'marathon-woodduck-3bed-2bath-double-wide': 'photo sets disputed (Wood Duck/Coleman)',
-  'marathon-coleman-3bed-2bath-double-wide': 'photo sets disputed (Wood Duck/Coleman)',
+  // to which model for these two (Notion's Daniel page mixes two different
+  // homes). Held until the owner confirms which is right — remove these
+  // entries once Notion is corrected. (Wood Duck/Coleman were held too until
+  // the owner confirmed Notion is right for both on 2026-10-09.)
   'marathon-daniel-1bed-1bath-park-model': 'photo sets disputed (Daniel/Chapman)',
   'marathon-chapman-1bed-1bath-park-model': 'photo sets disputed (Daniel/Chapman)',
 }
@@ -384,10 +383,13 @@ async function main() {
         }
         const merged = mergeImages(current, notionPaths, PINNED_IMAGES[slug] ?? [])
         if (JSON.stringify(merged) !== JSON.stringify(current)) {
-          const added = merged.filter((p) => !current.includes(p)).length
-          const removed = current.filter((p) => !merged.includes(p)).length
+          const added = merged.filter((p) => !current.includes(p))
+          const removed = current.filter((p) => !merged.includes(p))
           b = setImages(b, merged)
-          log.push(`images: ${current.length} → ${merged.length} (+${added} new, −${removed} no longer in Notion)`)
+          log.push(`images: ${current.length} → ${merged.length} (+${added.length} added, −${removed.length} no longer in Notion)`)
+          if (merged[0] !== current[0]) log.push(`  main photo: ${current[0] ?? '(none)'} → ${merged[0]}`)
+          for (const p of added) log.push(`  + ${p}`)
+          for (const p of removed) log.push(`  − ${p}`)
         }
       }
     }

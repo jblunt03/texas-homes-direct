@@ -582,14 +582,33 @@ it doesn't, something isn't idempotent.
   Notion page has no photos keeps its images.
 - **`IMAGE_LOCK`** (in the script) skips photo sync for:
   - **Katy/Forney:** Notion only has floorplans for it.
-  - **Wood Duck, Coleman, Daniel and Chapman:** as of 2026-10-09 Notion and the
-    site disagree on which photo set belongs to which model. Notion has the
-    Wood Duck and Coleman sets swapped relative to the site, and Notion's
-    Daniel page mixes two different homes.
+  - **Daniel and Chapman:** as of 2026-10-09 Notion and the site disagree on
+    which photo set belongs to which model, and Notion's Daniel page mixes two
+    different homes. Remove these two entries once the owner confirms which is
+    right. Wood Duck and Coleman were locked for the same reason until the
+    owner confirmed on 2026-10-09 that Notion is right for both (see below).
 
-  Remove those four entries once the owner confirms Notion is right.
   `PINNED_IMAGES` keeps three site-only hero exteriors (Gadwall, Spoonbill,
   Terra) that aren't in Notion.
+- **Folder and file names in `public/homes/` don't reliably say which listing
+  a photo belongs to.** For example, The Sealy's (Wood Duck) real main photo is
+  `the-coleman/Coleman-Gallery-1.jpg`, and The Trinity's (Coleman) old main
+  photo was `the-wood-duck/Wood-Duck-Hero.jpg`. Daniel and Chapman photos are
+  also cross-filed between `the-daniel/` and `the-chapman/`. Never decide that
+  two listings' photos are "swapped" from folder or file names. Before any
+  swap fix, verify against both Notion's page body and the actual images: put
+  them side by side on a contact sheet and check that each listing's main
+  photo and gallery show the same home, then get the owner to confirm.
+  **The incident:** commit `b21924d` (2026-09-25) "fixed a swap" between Wood
+  Duck and Coleman by exchanging their entire image arrays. It actually
+  reversed correct data:
+  - The pre-fix Wood Duck array matched Notion exactly: 20 of 20 photos, same
+    order, same main photo.
+  - The pre-fix Coleman array matched Notion's gallery.
+
+  Both listings showed the wrong home from 2026-09-25 until 2026-10-09, when
+  the owner confirmed Notion and `sync:listings` restored them. The same commit
+  also swapped Daniel and Chapman, and that pair is still unresolved.
 - **Marathon-only vs Fleetwood:** `scripts/sync-notion-images.ts` (the older
   `npm run sync:images`) still says Texas Homes Direct only sells Marathon and
   skips Fleetwood, but 13 Fleetwood listings are live. `sync:listings` syncs
