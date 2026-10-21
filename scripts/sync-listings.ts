@@ -42,7 +42,8 @@
  *     the listing (the file stays on disk).
  *   - A listing whose Notion page has no image blocks keeps its images.
  *   - IMAGE_LOCK listings keep their images untouched; PINNED_IMAGES are kept
- *     even though they aren't in Notion; SKIPPED_IMAGE_BLOCKS are Notion
+ *     even though they aren't in Notion (at the front; KEEP_IMAGES keeps them
+ *     in place instead); SKIPPED_IMAGE_BLOCKS are Notion
  *     photos deliberately left off the site. All explained inline below.
  *
  * Usage:
@@ -96,6 +97,12 @@ const SKIPPED_IMAGE_BLOCKS: Record<string, string> = {
   // The Seguin's two 600x350 bathroom photos — too low-resolution for the gallery.
   '3f9875ae-20d8-80ef-83b7-e8dd89499356': 'The Seguin bathroom, 600x350',
   '3f9875ae-20d8-809a-a0ac-e532ecca575b': 'The Seguin bathroom, 600x350',
+  // The Quitman's five small photos added in Notion in October 2026 (360-482px wide).
+  '3fe875ae-20d8-8098-8f83-fa17c536ab5e': 'The Quitman empty room, 360x466',
+  '3fe875ae-20d8-8006-9410-ccaa77f7e1b2': 'The Quitman empty room, 360x478',
+  '3fe875ae-20d8-8070-a4ff-fcc922e80138': 'The Quitman empty room, 360x480',
+  '3fe875ae-20d8-8044-aef8-e1d5b6092711': 'The Quitman hallway, 360x474',
+  '3fe875ae-20d8-80e9-b861-c82df851ee4f': 'The Quitman living room, 482x360',
 }
 
 /**
@@ -133,6 +140,21 @@ const PINNED_IMAGES: Record<string, string[]> = {
   'marathon-gadwall-3bed-2bath-double-wide': ['/homes/the-gadwall/Gadwall-Hero.jpg'],
   'marathon-spoonbill-3bed-2bath-single-wide': ['/homes/the-spoonbill/Spoonbill-Hero.jpg'],
   'marathon-terra-2bed-1bath-park-model': ['/homes/the-terra/Terra-Hero.jpg'],
+}
+
+/**
+ * Site-only photos kept where they are in the gallery even though Notion no
+ * longer has them (unlike PINNED_IMAGES, they aren't forced to the front).
+ */
+const KEEP_IMAGES: Record<string, string[]> = {
+  // Owner kept these when Notion replaced them in October 2026: the old main
+  // exterior, the bedroom, and the two delivered-exterior shots.
+  'marathon-brewster-3bed-2bath-double-wide': [
+    '/homes/the-brewster/Brewster-Body-1.jpg',
+    '/homes/the-brewster/Brewster-Body-2.png',
+    '/homes/the-brewster/Brewster-Body-3.webp',
+    '/homes/the-brewster/Brewster-Body-6.webp',
+  ],
 }
 
 const WIDE_TYPES = ['Single Wide', 'Double Wide', 'Triple Wide']
@@ -418,9 +440,9 @@ async function addNewListings(src: string, byId: Map<string, PageObjectResponse>
 // ---------------------------------------------------------------------------
 
 /** New gallery: keep existing order, insert new Notion photos after their Notion predecessor. */
-function mergeImages(current: string[], notionPaths: string[], pinned: string[]): string[] {
+function mergeImages(current: string[], notionPaths: string[], pinned: string[], keep: string[] = []): string[] {
   const inNotion = new Set(notionPaths)
-  const merged = current.filter((p) => inNotion.has(p) || pinned.includes(p))
+  const merged = current.filter((p) => inNotion.has(p) || pinned.includes(p) || keep.includes(p))
   notionPaths.forEach((p, i) => {
     if (merged.includes(p)) return
     const prev = notionPaths.slice(0, i).reverse().find((x) => merged.includes(x))
@@ -535,7 +557,7 @@ async function main() {
           if (!DRY_RUN) imageMap[img.blockId] = p
           if (!notionPaths.includes(p)) notionPaths.push(p) // Notion sometimes repeats a block's image
         }
-        const merged = mergeImages(current, notionPaths, PINNED_IMAGES[slug] ?? [])
+        const merged = mergeImages(current, notionPaths, PINNED_IMAGES[slug] ?? [], KEEP_IMAGES[slug] ?? [])
         if (JSON.stringify(merged) !== JSON.stringify(current)) {
           const added = merged.filter((p) => !current.includes(p))
           const removed = current.filter((p) => !merged.includes(p))

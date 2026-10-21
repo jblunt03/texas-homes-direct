@@ -651,8 +651,14 @@ it doesn't, something isn't idempotent.
   the owner confirmed Notion and `sync:listings` restored them. The same commit
   also swapped Daniel and Chapman, and that pair is still unresolved.
 - **`SKIPPED_IMAGE_BLOCKS`** lists Notion photos deliberately kept off the
-  site, by block ID. Currently it holds The Seguin's two 600x350 bathroom
-  photos, which are too low-resolution.
+  site, by block ID, usually because they're too low-resolution. Currently it
+  holds The Seguin's two 600x350 bathroom photos and The Quitman's five
+  360–482px photos (October 2026).
+- **`KEEP_IMAGES`** keeps site-only photos where they are in the gallery even
+  after Notion drops them. `PINNED_IMAGES` does the same but forces them to
+  the front. The Quitman keeps its four older photos (old main exterior,
+  bedroom, two delivered-exterior shots) behind Notion's new main photo, at the
+  owner's request on 2026-10-20.
 - **Manufacturers: Marathon, Fleetwood and Cavco.**
   - **Marathon** (41 listings) and **Cavco** (3 listings since 2026-10-20: The
     Seguin, The Austin, The Lampasas) show "Texas Homes Direct" as the maker on
