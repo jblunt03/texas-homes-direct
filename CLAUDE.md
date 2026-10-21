@@ -555,7 +555,13 @@ regenerated, committed and deployed. To regenerate it:
 ```
 npm run sync:listings -- --dry-run   # show what would change, write nothing
 npm run sync:listings                # apply, then run the image-path validator
+npm run sync:listings -- --only=slug1,slug2   # limit a run to those listings
 ```
+
+Use `--only` when the owner approved specific listings and a full dry run
+shows other Notion edits they haven't reviewed. On 2026-10-20, adding the three
+Cavco homes surfaced new Brewster (The Quitman) photos in Notion, and those
+were left for separate review.
 
 `scripts/sync-listings.ts` reads `NOTION_TOKEN` from `.env.local` and never
 prints it. Per listing it updates the name (`title`), `beds`/`baths`/`sqft`/
@@ -571,7 +577,39 @@ it doesn't, something isn't idempotent.
   slug or title matching can't work for them. The 13 Fleetwood listings were
   matched once by model + beds/baths/sq ft on 2026-10-09. Notion pages with no
   site listing (e.g. "28483u", "Pathfinder") are reported, never auto-added. A
-  new listing needs a slug chosen by hand first.
+  new listing needs a slug chosen by hand first. Then it goes in `NEW_LISTINGS`
+  (below).
+- **Adding a new listing: `NEW_LISTINGS`** in the script maps a Notion page ID
+  to its approved slug. On the next sync, an entry that isn't in
+  `sampleListings.ts` yet is created:
+  - **From Notion:** name, beds/baths/sq ft, model, wide type, year, and
+    status. A blank status becomes `Active`.
+  - **Defaults:** price `0` ("Call for price"), monthly payment `0`, region
+    `South TX`, and manufacturer "Texas Homes Direct".
+  - **Description and features:** generated from the specs only, e.g. "The
+    Seguin is a 924 square foot singlewide with 3 beds and 2 baths."
+  - **Floorplan:** downloaded from Notion's "Floorplan URLs" to
+    `/homes/floorplans/<slug>-FloorPlan.<ext>`. It's named after the slug, not
+    the model, because `Jasper-FloorPlan.webp` already belongs to the Marathon
+    Jasper.
+  - **Photos and tour:** filled by the normal sync. Photos go in
+    `/homes/<slug>/`.
+
+  The sitemap, Product/BreadcrumbList schema, breadcrumbs and the "See every
+  city we deliver to" link all come from the shared listing page, so a new
+  listing gets them automatically. Product schema deliberately has no `offers`.
+  A new listing does **not** appear on any city page's "Homes to Get You
+  Started" cards until `assign_popular_homes.py` is re-run, which changes
+  `lib/cityContent.ts`. Only do that on explicit instruction.
+- **Slug convention for new listings:**
+  `<model>-<beds>bed-<baths>bath-<single-wide|double-wide>`, e.g.
+  `jade-3bed-2bath-single-wide`.
+  - **No manufacturer name.** The older `marathon-…` and `fleetwood-…` slugs
+    predate this rule and stay as they are, because slugs are URLs.
+  - **No city name.** Listing names like "The Seguin" are city names, and
+    city names belong to the `/mobile-homes-<city>-tx` pages.
+  - **Unique** across all listings.
+  - **Never changed once live.**
 - **Images:** the Notion page body's image blocks are the source. Photos
   already on the site keep their existing files and order.
   `scripts/sync-listings.image-map.json` maps Notion block IDs to those files,
@@ -582,6 +620,9 @@ it doesn't, something isn't idempotent.
   Notion page has no photos keeps its images.
 - **`IMAGE_LOCK`** (in the script) skips photo sync for:
   - **Katy/Forney:** Notion only has floorplans for it.
+  - **The Lampasas (`2876-5bed-3bath-double-wide`):** its only Notion image is
+    the floorplan itself. It's shown once, as its single image and
+    `floorplanUrl`, the same pattern as the other floorplan-only listings.
   - **Daniel and Chapman:** as of 2026-10-09 Notion and the site disagree on
     which photo set belongs to which model, and Notion's Daniel page mixes two
     different homes. Remove these two entries once the owner confirms which is
@@ -609,12 +650,20 @@ it doesn't, something isn't idempotent.
   Both listings showed the wrong home from 2026-09-25 until 2026-10-09, when
   the owner confirmed Notion and `sync:listings` restored them. The same commit
   also swapped Daniel and Chapman, and that pair is still unresolved.
-- **Marathon-only vs Fleetwood:** `scripts/sync-notion-images.ts` (the older
-  `npm run sync:images`) still says Texas Homes Direct only sells Marathon and
-  skips Fleetwood, but 13 Fleetwood listings are live. `sync:listings` syncs
-  both. Also note that if `NOTION_TOKEN` were ever added to production,
-  `lib/notion.ts` would drop every Fleetwood page, because it filters out pages
-  with no Slug. Don't add the token to Vercel without fixing that first.
+- **`SKIPPED_IMAGE_BLOCKS`** lists Notion photos deliberately kept off the
+  site, by block ID. Currently it holds The Seguin's two 600x350 bathroom
+  photos, which are too low-resolution.
+- **Manufacturers: Marathon, Fleetwood and Cavco.**
+  - **Marathon** (41 listings) and **Cavco** (3 listings since 2026-10-20: The
+    Seguin, The Austin, The Lampasas) show "Texas Homes Direct" as the maker on
+    cards.
+  - **Fleetwood** (13 listings) shows "Fleetwood".
+  - `scripts/sync-notion-images.ts` (the older `npm run sync:images`) still
+    says Texas Homes Direct only sells Marathon, and it skips everything else.
+    That's out of date. Use `sync:listings`, which syncs all three.
+  - If `NOTION_TOKEN` were ever added to production, `lib/notion.ts` would drop
+    every Fleetwood and Cavco page, because it filters out pages with no Slug.
+    Don't add the token to Vercel without fixing that first.
 
 After a sync, re-run `python3 scripts/validate_batch.py` before committing. The
 listing names feed the city pages' "Homes to Get You Started" cards.

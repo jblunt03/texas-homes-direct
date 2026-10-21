@@ -14,8 +14,15 @@
  *   - description: if the title changed and the description names the old
  *     title, that mention is renamed too
  *
- * What it never touches: slug (the page URL), id, price, features, status,
- * floorplanUrl, or anything else not listed above.
+ * What it never touches on an existing listing: slug (the page URL), id,
+ * price, features, status, floorplanUrl, or anything else not listed above.
+ *
+ * New listings: a Notion page listed in NEW_LISTINGS (with a hand-chosen
+ * slug) that isn't in the file yet is created first, from Notion's name,
+ * specs, model, year and status plus NEW_LISTING_DEFAULTS, with its floorplan
+ * downloaded from Notion's "Floorplan URLs" into /homes/floorplans/
+ * <slug>-FloorPlan.<ext>. Photos for a new listing go in /homes/<slug>/.
+ * Notion pages not in NEW_LISTINGS are only reported, never added.
  *
  * Matching: each listing carries a `notionId` (the Notion page ID). Fleetwood
  * pages have no Slug in Notion, and their Notion names differ from the old
@@ -35,11 +42,13 @@
  *     the listing (the file stays on disk).
  *   - A listing whose Notion page has no image blocks keeps its images.
  *   - IMAGE_LOCK listings keep their images untouched; PINNED_IMAGES are kept
- *     even though they aren't in Notion. Both are explained inline below.
+ *     even though they aren't in Notion; SKIPPED_IMAGE_BLOCKS are Notion
+ *     photos deliberately left off the site. All explained inline below.
  *
  * Usage:
  *   npm run sync:listings            # sync, then run the image-path validator
  *   npm run sync:listings -- --dry-run   # show what would change, write nothing
+ *   npm run sync:listings -- --only=slug1,slug2   # limit the run to those listings
  *
  * Requires NOTION_TOKEN (and optionally NOTION_DATA_SOURCE_ID) in .env.local.
  * The token is only read from the environment and is never printed.
@@ -52,6 +61,8 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const DRY_RUN = process.argv.includes('--dry-run')
+/** --only=slug1,slug2 limits a run to those listings (everything else is left untouched). */
+const ONLY = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length).split(',').filter(Boolean)
 const DATA_SOURCE_ID =
   process.env.NOTION_DATA_SOURCE_ID ?? '34f1b269-5e7f-4cbc-8cee-464089b17143'
 const REPO_ROOT = path.join(import.meta.dirname, '..')
@@ -75,6 +86,43 @@ const IMAGE_LOCK: Record<string, string> = {
   // the owner confirmed Notion is right for both on 2026-10-09.)
   'marathon-daniel-1bed-1bath-park-model': 'photo sets disputed (Daniel/Chapman)',
   'marathon-chapman-1bed-1bath-park-model': 'photo sets disputed (Daniel/Chapman)',
+  // Its only Notion image is the floorplan itself; the listing shows the
+  // floorplan once (as both its single image and floorplanUrl), not twice.
+  '2876-5bed-3bath-double-wide': 'floorplan only',
+}
+
+/** Notion image blocks deliberately left off the site, by block ID. */
+const SKIPPED_IMAGE_BLOCKS: Record<string, string> = {
+  // The Seguin's two 600x350 bathroom photos — too low-resolution for the gallery.
+  '3f9875ae-20d8-80ef-83b7-e8dd89499356': 'The Seguin bathroom, 600x350',
+  '3f9875ae-20d8-809a-a0ac-e532ecca575b': 'The Seguin bathroom, 600x350',
+}
+
+/**
+ * Notion pages to add to the site as new listings, keyed by Notion page ID.
+ * The slug is chosen by hand (it's the page URL and never changes after
+ * this). Convention: <model>-<beds>bed-<baths>bath-<single-wide|double-wide>,
+ * no manufacturer name, no city name (city names belong to the
+ * /mobile-homes-<city>-tx pages). A listing on this list that isn't in
+ * lib/sampleListings.ts yet is created from Notion with NEW_LISTING_DEFAULTS,
+ * its floorplan is downloaded, and then the normal sync fills in its tour and
+ * photos. Entries already in the file are just synced like any other listing.
+ */
+const NEW_LISTINGS: Record<string, { slug: string }> = {
+  '3f9875ae-20d8-805c-98ce-cb9717b4e27b': { slug: 'jade-3bed-2bath-single-wide' }, // The Seguin (Cavco)
+  '3f9875ae-20d8-807c-881a-c7a2dab7084c': { slug: 'jasper-4bed-2bath-double-wide' }, // The Austin (Cavco)
+  '3fa875ae-20d8-8070-ab7f-f578fd97a8dc': { slug: '2876-5bed-3bath-double-wide' }, // The Lampasas (Cavco)
+}
+
+/**
+ * Values a new listing gets regardless of what Notion says: every listing on
+ * the site is "Call for price" with no monthly estimate, and the cards show
+ * "Texas Homes Direct" as the maker (as Marathon listings do).
+ */
+const NEW_LISTING_DEFAULTS = {
+  manufacturer: 'Texas Homes Direct',
+  region: 'South TX',
+  status: 'Active', // used when Notion's Status is blank
 }
 
 /**
@@ -109,6 +157,8 @@ function propText(page: PageObjectResponse, name: string): string {
   if (p.type === 'rich_text') return p.rich_text.map((t: AnyProp) => t.plain_text).join('').trim()
   if (p.type === 'select') return (p.select?.name ?? '').trim()
   if (p.type === 'url') return (p.url ?? '').trim()
+  if (p.type === 'unique_id' && p.unique_id.number != null)
+    return `${p.unique_id.prefix ? p.unique_id.prefix + '-' : ''}${p.unique_id.number}`
   return ''
 }
 
@@ -183,17 +233,17 @@ function findExistingBlockFile(dirAbs: string, blockId: string): string | null {
  * URLs are presigned and expire in minutes, so this runs immediately for
  * each block rather than collecting URLs to download later.
  */
-async function downloadImage(img: NotionImage, dirAbs: string): Promise<string> {
+async function downloadImage(img: NotionImage, dirAbs: string, baseName = img.blockId): Promise<string> {
   const res = await fetch(img.url)
   if (!res.ok) throw new Error(`download failed (${res.status}) for block ${img.blockId}`)
   const buf = Buffer.from(await res.arrayBuffer())
   const ext = (new URL(img.url).pathname.match(/\.(jpe?g|png|webp|gif)$/i)?.[1] ?? 'jpg').toLowerCase()
   fs.mkdirSync(dirAbs, { recursive: true })
-  let fileAbs = path.join(dirAbs, `${img.blockId}.${ext}`)
+  let fileAbs = path.join(dirAbs, `${baseName}.${ext}`)
   fs.writeFileSync(fileAbs, buf)
 
   if (buf.length > MAX_IMAGE_BYTES) {
-    const jpgAbs = path.join(dirAbs, `${img.blockId}.jpg`)
+    const jpgAbs = path.join(dirAbs, `${baseName}.jpg`)
     const width = Number(
       execFileSync('sips', ['-g', 'pixelWidth', fileAbs]).toString().match(/pixelWidth: (\d+)/)?.[1] ?? 0
     )
@@ -265,6 +315,105 @@ function setImages(block: string, images: string[]): string {
 }
 
 // ---------------------------------------------------------------------------
+// Creating new listings (NEW_LISTINGS)
+// ---------------------------------------------------------------------------
+
+/** First file in Notion's "Floorplan URLs" files property, if any. */
+function floorplanFile(page: PageObjectResponse): NotionImage | null {
+  const p: AnyProp = (page.properties as Record<string, AnyProp>)['Floorplan URLs']
+  const f = p?.type === 'files' ? p.files[0] : undefined
+  if (!f) return null
+  return { blockId: `floorplan-${page.id}`, url: f.type === 'file' ? f.file.url : f.external.url }
+}
+
+/**
+ * Builds the source text for a brand-new listing. Only facts Notion states
+ * (name, specs, model, year, status) plus NEW_LISTING_DEFAULTS; the
+ * description and features are generated from the specs alone. Title, specs,
+ * tour and photos are then kept current by the normal sync pass.
+ */
+function newListingSource(page: PageObjectResponse, slug: string, floorplanUrl: string | undefined): string {
+  const title = propText(page, 'Name')
+  const beds = propNum(page, 'Bedrooms') ?? 0
+  const baths = propNum(page, 'Bathrooms') ?? 0
+  const sqft = propNum(page, 'Square Feet') ?? 0
+  const wide = WIDE_TYPES.includes(propText(page, 'Type')) ? propText(page, 'Type') : ''
+  const statuses = ['Active', 'Pending', 'Sold', 'Coming Soon']
+  const status = statuses.includes(propText(page, 'Status')) ? propText(page, 'Status') : NEW_LISTING_DEFAULTS.status
+  const id = propText(page, 'Listing ID') || page.id
+  const model = propText(page, 'Model')
+  const year = propNum(page, 'Year Built') ?? new Date().getFullYear()
+  const sqftText = sqft.toLocaleString('en-US')
+  const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`
+  const wideWord = wide === 'Single Wide' ? 'singlewide' : wide === 'Double Wide' ? 'doublewide' : 'manufactured home'
+  const description = `${title} is a ${sqftText} square foot ${wideWord} with ${plural(beds, 'bed')} and ${plural(baths, 'bath')}.`
+  const features = [`${beds} Bed / ${baths} Bath`, `${sqftText} Sq Ft`, 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title']
+  const images = IMAGE_LOCK[slug] === 'floorplan only' && floorplanUrl ? [floorplanUrl] : []
+
+  const lines = [
+    `  // ─── ${id} · ${title} ─────────────────────────────────────────────`,
+    `  {`,
+    `    id: ${q(id)},`,
+    `    slug: ${q(slug)},`,
+    `    notionId: ${q(page.id)},`,
+    `    title: ${q(title)},`,
+    `    manufacturer: ${q(NEW_LISTING_DEFAULTS.manufacturer)},`,
+    ...(model ? [`    model: ${q(model)},`] : []),
+    `    price: 0,`,
+    `    beds: ${beds},`,
+    `    baths: ${baths},`,
+    `    sqft: ${sqft},`,
+    `    year: ${year},`,
+    `    type: 'new',`,
+    ...(wide ? [`    wideType: ${q(wide)},`] : []),
+    `    region: ${q(NEW_LISTING_DEFAULTS.region)},`,
+    `    city: '',`,
+    `    images: [`,
+    ...images.map((i) => `      ${q(i)},`),
+    `    ],`,
+    `    features: [${features.map(q).join(', ')}],`,
+    `    description:`,
+    `      ${q(description)},`,
+    `    monthlyPayment: 0,`,
+    `    downPayment: 0,`,
+    `    available: true,`,
+    `    hudCertified: true,`,
+    `    featured: false,`,
+    `    status: ${q(status)},`,
+    ...(floorplanUrl ? [`    floorplanUrl: ${q(floorplanUrl)},`] : []),
+    `  },`,
+  ]
+  return lines.join('\n')
+}
+
+/** Appends any NEW_LISTINGS entry that isn't in the file yet. Returns the new source. */
+async function addNewListings(src: string, byId: Map<string, PageObjectResponse>, log: string[]): Promise<string> {
+  for (const [notionId, { slug }] of Object.entries(NEW_LISTINGS)) {
+    if (ONLY && !ONLY.includes(slug)) continue
+    const hasId = src.includes(`    notionId: '${notionId}',`)
+    const hasSlug = src.includes(`    slug: '${slug}',`)
+    if (hasId && hasSlug) continue
+    if (hasId || hasSlug) throw new Error(`NEW_LISTINGS ${slug}: slug or notionId already used by another listing`)
+    const page = byId.get(notionId)
+    if (!page) throw new Error(`NEW_LISTINGS ${slug}: Notion page ${notionId} not found`)
+
+    let floorplanUrl: string | undefined
+    const fp = floorplanFile(page)
+    if (fp) {
+      floorplanUrl = DRY_RUN
+        ? `/homes/floorplans/${slug}-FloorPlan.(new)`
+        : await downloadImage(fp, path.join(PUBLIC_ROOT, 'homes', 'floorplans'), `${slug}-FloorPlan`)
+    }
+    const entry = newListingSource(page, slug, floorplanUrl)
+    const end = src.indexOf('\n]\n\nexport const featuredListings')
+    if (end < 0) throw new Error('could not find the end of the sampleListings array')
+    src = src.slice(0, end) + '\n' + entry + src.slice(end)
+    log.push(`- ${slug}\n    NEW listing: ${propText(page, 'Name')} (${notionId})\n    floorplan: ${floorplanUrl ?? '(none in Notion)'}`)
+  }
+  return src
+}
+
+// ---------------------------------------------------------------------------
 // Main
 // ---------------------------------------------------------------------------
 
@@ -288,6 +437,8 @@ async function main() {
   const pages = await fetchPages()
   const byId = new Map(pages.map((p) => [p.id, p]))
   const bySlug = new Map(pages.filter((p) => propText(p, 'Slug')).map((p) => [propText(p, 'Slug'), p]))
+  const created: string[] = []
+  src = await addNewListings(src, byId, created)
 
   const slugs = Array.from(src.matchAll(/\n {4}slug: '([^']+)',/g), (m) => m[1])
   const matchedPageIds = new Set<string>()
@@ -295,6 +446,7 @@ async function main() {
   const unmatched: string[] = []
   let downloaded = 0
 
+  if (ONLY) console.log(`--only: syncing just ${ONLY.join(', ')}; every other listing is left as-is.`)
   console.log(`${DRY_RUN ? '[dry run] ' : ''}Syncing ${slugs.length} listings from Notion (${pages.length} pages)...\n`)
 
   for (const slug of slugs) {
@@ -307,6 +459,7 @@ async function main() {
       continue
     }
     matchedPageIds.add(page.id)
+    if (ONLY && !ONLY.includes(slug)) continue
     const log: string[] = []
 
     if (notionId !== page.id) {
@@ -366,6 +519,7 @@ async function main() {
         const dirAbs = path.join(PUBLIC_ROOT, photoDir)
         const notionPaths: string[] = []
         for (const img of blocks) {
+          if (SKIPPED_IMAGE_BLOCKS[img.blockId]) continue
           let p = imageMap[img.blockId]
           if (!p) {
             const existing = findExistingBlockFile(dirAbs, img.blockId)
@@ -398,6 +552,7 @@ async function main() {
     if (log.length) changes.push(`- ${slug}\n    ${log.join('\n    ')}`)
   }
 
+  if (created.length) console.log(created.join('\n') + '\n')
   console.log(changes.length ? changes.join('\n') : 'Everything already matches Notion.')
   if (unmatched.length) console.log(`\nListings with no matching Notion page (left as-is):\n  ${unmatched.join('\n  ')}`)
   const orphans = pages.filter((p) => !matchedPageIds.has(p.id))
