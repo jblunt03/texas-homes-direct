@@ -3,6 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useState } from 'react'
 import type { Listing } from '@/lib/sampleListings'
+import PromoBadge from '@/components/PromoBadge'
+import { isPromoListing } from '@/lib/promo'
 
 function fmt(n: number) {
   return n.toLocaleString('en-US', {
@@ -223,10 +225,12 @@ export default function ListingDetail({
   listing,
   related,
   featuredInCities,
+  promoActiveAtRender,
 }: {
   listing: Listing
   related: Listing[]
   featuredInCities: { name: string; slug: string }[]
+  promoActiveAtRender: boolean
 }) {
   const [mainImg, setMainImg] = useState(0)
   const specLabel = `${listing.beds} bed ${listing.baths} bath ${listing.wideType ?? 'manufactured'} home`
@@ -262,6 +266,7 @@ export default function ListingDetail({
         <div className="bmh-container">
           {/* badge row */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
+            {isPromoListing(listing.slug) && <PromoBadge activeAtRender={promoActiveAtRender} />}
             <span className="bmh-badge-caps bmh-badge-coral">New</span>
             {listing.hudCertified && (
               <span className="bmh-badge-caps">HUD Certified</span>

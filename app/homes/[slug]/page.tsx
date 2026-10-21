@@ -4,6 +4,7 @@ import { fetchAllListings, fetchListingBySlug } from '@/lib/notion'
 import { CITY_CONTENT } from '@/lib/cityContent'
 import { publishedCities } from '@/lib/cities'
 import ListingDetail from './ListingDetail'
+import { isPromoActive } from '@/lib/promo'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
 
@@ -109,7 +110,12 @@ export default async function HomeListingPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      <ListingDetail listing={listing} related={related} featuredInCities={featuredInCities} />
+      <ListingDetail
+        listing={listing}
+        related={related}
+        featuredInCities={featuredInCities}
+        promoActiveAtRender={isPromoActive()}
+      />
     </>
   )
 }

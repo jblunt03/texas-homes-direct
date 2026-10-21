@@ -674,6 +674,59 @@ it doesn't, something isn't idempotent.
 After a sync, re-run `python3 scripts/validate_batch.py` before committing. The
 listing names feed the city pages' "Homes to Get You Started" cards.
 
+## Promo badge and /browse pinning (`lib/promo.ts`)
+
+One config file drives both. `PROMO` holds:
+- **`label`:** the badge text, e.g. "15% Off This Month".
+- **`slugs`:** the listings that get the badge.
+- **`endsAt`:** an ISO time with its UTC offset. The first promo, added
+  2026-10-21, ends at `2026-11-01T00:00:00-05:00`, which is end of day Oct 31,
+  Central time. Central is UTC-5 while on daylight time and UTC-6 in winter,
+  so use the right offset for the date.
+- **`pinned`:** slugs shown first on /browse, in that order. They're sorted
+  after filters run, so a pinned home only appears when it matches the
+  type/bedroom/bath/budget filters. Everything else keeps its existing order,
+  with floorplan-only homes last.
+
+Where the badge appears:
+- **/browse cards:** top-left on the image, stacked above the "In stock" or
+  "Featured" tag.
+- **The listing's own page:** first in the badge row above the title.
+- **Not on city pages:** the city pages' "Homes to Get You Started" cards are
+  separate markup in `CityPageContentV2.tsx`. They don't show the badge, and
+  shouldn't unless explicitly asked for.
+- **Not in "More homes like this one":** those cards on listing pages don't
+  show it either.
+
+**How expiry works without a redeploy.** Pages are static, so a check only at
+build time would leave the badge up after the end date. There are two layers:
+1. The server renders the badge only while `isPromoActive()` is true. /browse
+   and listing pages revalidate every 50 minutes, so regenerated HTML drops it
+   within about an hour of `endsAt`.
+2. `components/PromoBadge.tsx` re-checks the visitor's clock on load, every 60
+   seconds and when the tab becomes visible again. It hides the badge at
+   `endsAt`, even on an older cached page.
+
+This was verified on 2026-10-21 by faking the browser clock to 1 a.m. Central
+on Nov 1: all badges disappeared through the minute timer alone.
+
+**Ending early:** set `endsAt` to a past time, or empty `slugs`, then commit and
+deploy. **Renewing:** update `label`, `slugs` and `endsAt`, then commit and
+deploy. Pinning is independent of `endsAt` and keeps applying until `pinned` is
+changed or emptied.
+
+**Rules:**
+- No price or dollar amount in the label or anywhere else.
+- Never add the promo to schema: no `offers`, `price` or `discount` in
+  Product JSON-LD.
+- Don't touch `lib/cityContent.ts` or city pages for a promo.
+
+**Known gap: the budget filter hides "Call for price" homes.** It hides any
+listing whose `monthlyPayment` is 0 as soon as any budget is chosen. Today that
+means The Seguin, The Austin and The Lampasas. Proposed fix, not yet built:
+keep those homes in budget-filtered results, after the matching ones, under a
+"Call for price — ask us what fits your budget" divider.
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in

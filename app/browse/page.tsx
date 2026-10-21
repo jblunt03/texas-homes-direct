@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { fetchAllListings } from '@/lib/notion'
 import BrowseClient from './BrowseClient'
+import { isPromoActive } from '@/lib/promo'
 
 export const revalidate = 3000
 
@@ -27,6 +28,7 @@ export default async function BrowsePage({
       initialBeds={searchParams.beds ?? ''}
       initialBaths={searchParams.baths ?? ''}
       listings={listings}
+      promoActiveAtRender={isPromoActive()}
     />
   )
 }

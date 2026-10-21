@@ -3,6 +3,8 @@ import { useState, type CSSProperties } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import type { Listing } from '@/lib/sampleListings'
+import PromoBadge from '@/components/PromoBadge'
+import { isPromoListing, pinRank } from '@/lib/promo'
 
 type Filter = 'all' | 'single' | 'double'
 
@@ -80,12 +82,14 @@ export default function BrowseClient({
   initialBeds = '',
   initialBaths = '',
   listings,
+  promoActiveAtRender,
 }: {
   initialType: string
   initialBudget?: string
   initialBeds?: string
   initialBaths?: string
   listings: Listing[]
+  promoActiveAtRender: boolean
 }) {
   const validFilters: Filter[] = ['all', 'single', 'double']
   const init = validFilters.includes(initialType as Filter) ? (initialType as Filter) : 'all'
@@ -106,7 +110,13 @@ export default function BrowseClient({
     .filter((l) => matchesBeds(l, beds))
     .filter((l) => matchesBaths(l, baths))
     .slice()
-    .sort((a, b) => Number(isFloorplanOnly(a)) - Number(isFloorplanOnly(b)))
+    // Pinned homes (PROMO.pinned in lib/promo.ts) first, in config order; then
+    // homes with photos before floorplan-only ones; otherwise the existing order.
+    .sort(
+      (a, b) =>
+        pinRank(a.slug) - pinRank(b.slug) ||
+        Number(isFloorplanOnly(a)) - Number(isFloorplanOnly(b))
+    )
 
   const counts = {
     all: listings.length,
@@ -238,6 +248,19 @@ export default function BrowseClient({
               ]
                 .filter(Boolean)
                 .join(' · ')
+              const tag = (
+                <span className={`bmh-badge-caps ${badgeCls} bmh-inv-card-tag`}>
+                  {badgeLabel}
+                </span>
+              )
+              const cardTags = isPromoListing(listing.slug) ? (
+                <div className="bmh-inv-card-tags">
+                  <PromoBadge activeAtRender={promoActiveAtRender} />
+                  {tag}
+                </div>
+              ) : (
+                tag
+              )
 
               return (
                 <Link
@@ -251,9 +274,7 @@ export default function BrowseClient({
                       className="bmh-ratio-3x2 bmh-inv-card-media"
                       style={{ position: 'relative' }}
                     >
-                      <span className={`bmh-badge-caps ${badgeCls} bmh-inv-card-tag`}>
-                        {badgeLabel}
-                      </span>
+                      {cardTags}
                       <Image
                         src={listing.images[0]}
                         alt={`${listing.title} exterior`}
@@ -268,9 +289,7 @@ export default function BrowseClient({
                     </div>
                   ) : (
                     <div className="bmh-ph bmh-ratio-3x2 bmh-inv-card-media">
-                      <span className={`bmh-badge-caps ${badgeCls} bmh-inv-card-tag`}>
-                        {badgeLabel}
-                      </span>
+                      {cardTags}
                       <span className="bmh-ph-label">{listing.title} · exterior</span>
                     </div>
                   )}
