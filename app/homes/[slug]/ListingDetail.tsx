@@ -559,18 +559,22 @@ export default function ListingDetail({
                         <p className="bmh-caption bmh-muted" style={{ marginBottom: 4 }}>
                           List price
                         </p>
-                        <p
-                          style={{
-                            fontFamily: 'var(--font-serif)',
-                            fontSize: 'clamp(32px,4vw,48px)',
-                            letterSpacing: '-1px',
-                            lineHeight: 1,
-                            color: 'var(--color-ink)',
-                            margin: 0,
-                          }}
-                        >
-                          {fmt(listing.price)}
-                        </p>
+                        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px 12px' }}>
+                          <p
+                            style={{
+                              fontFamily: 'var(--font-serif)',
+                              fontSize: 'clamp(32px,4vw,48px)',
+                              letterSpacing: '-1px',
+                              lineHeight: 1,
+                              color: 'var(--color-ink)',
+                              margin: 0,
+                            }}
+                          >
+                            {fmt(listing.price)}
+                          </p>
+                          {/* The promo applies to the list price shown; never compute a sale or "was" price. */}
+                          {isPromoListing(listing.slug) && <PromoBadge activeAtRender={promoActiveAtRender} />}
+                        </div>
                         {listing.monthlyPayment > 0 && (
                           <p className="bmh-caption" style={{ color: 'var(--color-muted)', marginTop: 6 }}>
                             Est. {fmt(listing.monthlyPayment)}/mo

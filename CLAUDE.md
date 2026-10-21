@@ -568,7 +568,10 @@ prints it. Per listing it updates the name (`title`), `beds`/`baths`/`sqft`/
 `wideType`/`model`, `matterportUrl` (from "3D Tour URL"; blank or "NONE"
 removes the tour) and `images`. It also renames the old name where it appears
 in the description. **It never touches `slug`** (the page URL) or price,
-features, status or `floorplanUrl`. A blank Notion field never wipes a code
+features, status or `floorplanUrl`. Price and status are hand-set in
+`lib/sampleListings.ts`. A sync can't revert them, but it also won't pick up a
+price change made in Notion. The Seguin's and The Austin's list prices
+(2026-10-21) were set by hand to match Notion. A blank Notion field never wipes a code
 value. Run it twice: the second dry run should report no listing changes. If
 it doesn't, something isn't idempotent.
 
@@ -716,9 +719,19 @@ deploy. Pinning is independent of `endsAt` and keeps applying until `pinned` is
 changed or emptied.
 
 **Rules:**
-- No price or dollar amount in the label or anywhere else.
-- Never add the promo to schema: no `offers`, `price` or `discount` in
-  Product JSON-LD.
+- No dollar amount in the label.
+- Only The Seguin ($69,000) and The Austin ($99,000) show a list price, as of
+  2026-10-21. Every other listing stays "Call for price" (`price: 0`).
+- The badge applies to the list price as shown. Never compute or display a
+  sale price, a "was" price or a strikethrough.
+- Prices never go in page titles, meta or OG descriptions (the "Priced at"
+  clause was removed from `generateMetadata` for this), or city pages.
+  City-page cards only read `monthlyPayment`, so they show "Call for price"
+  regardless.
+- On a priced listing's page, the badge appears twice: next to the title and
+  next to the "List price" figure.
+- Never add the promo or a price to schema: no `offers`, `price` or
+  `discount` in Product JSON-LD.
 - Don't touch `lib/cityContent.ts` or city pages for a promo.
 
 **Known gap: the budget filter hides "Call for price" homes.** It hides any

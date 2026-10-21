@@ -31,7 +31,7 @@ export async function generateMetadata({
   if (!listing) return { title: 'Home Not Found' }
   const wideType = listing.wideType ?? 'Manufactured'
   const title = `${listing.title} — ${listing.beds} Bed ${wideType} Manufactured Home`
-  const description = `${listing.beds} bed / ${listing.baths} bath ${wideType.toLowerCase()} manufactured home, ${listing.sqft.toLocaleString()} sqft.${listing.price ? ` Priced at $${listing.price.toLocaleString()}.` : ''} Delivered and set up anywhere in Texas. ${listing.description.slice(0, 100)}`
+  const description = `${listing.beds} bed / ${listing.baths} bath ${wideType.toLowerCase()} manufactured home, ${listing.sqft.toLocaleString()} sqft. Delivered and set up anywhere in Texas. ${listing.description.slice(0, 100)}`
   return {
     title,
     description,

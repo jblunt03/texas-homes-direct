@@ -11,8 +11,10 @@
  * and the badge itself re-checks the visitor's clock on load and every
  * minute, so it disappears at `endsAt` even on a page built earlier.
  *
- * Never put a price or dollar amount in `label`, and never add the promo to
- * any schema (no offers/price/discount). Pinning (`pinned`) is independent of
+ * Never put a price or dollar amount in `label`, never compute or show a
+ * sale/"was"/strikethrough price (the badge applies to the list price as
+ * shown), and never add the promo or a price to any schema (no
+ * offers/price/discount). Pinning (`pinned`) is independent of
  * the badge and of `endsAt`: it keeps applying until the list is changed.
  */
 export const PROMO = {
