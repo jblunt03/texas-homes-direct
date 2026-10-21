@@ -230,6 +230,12 @@ export default function ListingDetail({
 }) {
   const [mainImg, setMainImg] = useState(0)
   const specLabel = `${listing.beds} bed ${listing.baths} bath ${listing.wideType ?? 'manufactured'} home`
+  // A listing with no photos yet carries its floorplan as its only image. The
+  // gallery already shows it, so the floor plan panel below is skipped and the
+  // full-size link moves under the gallery — the floorplan appears once.
+  const floorplanOnly =
+    Boolean(listing.floorplanUrl) && listing.images.length === 1 && listing.images[0] === listing.floorplanUrl
+  const showFloorplanPanel = Boolean(listing.floorplanUrl) && !floorplanOnly
 
   return (
     <div style={{ background: 'var(--color-canvas)' }}>
@@ -318,6 +324,19 @@ export default function ListingDetail({
             )}
           </div>
 
+          {floorplanOnly && (
+            <div style={{ marginTop: 16, textAlign: 'center' }}>
+              <a
+                href={listing.floorplanUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bmh-btn bmh-btn-secondary"
+              >
+                View full-size floor plan →
+              </a>
+            </div>
+          )}
+
           {/* Thumbnail strip */}
           {listing.images.length > 1 && (
             <div className="bmh-gallery-thumbs">
@@ -343,7 +362,7 @@ export default function ListingDetail({
       </section>
 
       {/* ── 3D WALK THROUGH ───────────────────────────────── */}
-      {(listing.matterportUrl || listing.floorplanUrl) && (
+      {(listing.matterportUrl || showFloorplanPanel) && (
         <section
           style={{
             background: 'var(--color-surface-card)',
@@ -376,7 +395,7 @@ export default function ListingDetail({
             <div
               style={{
                 display: 'grid',
-                gridTemplateColumns: listing.floorplanUrl
+                gridTemplateColumns: showFloorplanPanel
                   ? 'minmax(0,1.6fr) minmax(0,1fr)'
                   : '1fr',
                 gap: 24,
@@ -452,7 +471,7 @@ export default function ListingDetail({
               </div>
 
               {/* Floor plan image */}
-              {listing.floorplanUrl && (
+              {listing.floorplanUrl && !floorplanOnly && (
                 <div>
                   <p
                     style={{
@@ -494,7 +513,7 @@ export default function ListingDetail({
             </div>
 
             {/* If only floorplan (no Matterport), offer a link to open in new tab */}
-            {!listing.matterportUrl && listing.floorplanUrl && (
+            {!listing.matterportUrl && showFloorplanPanel && (
               <div style={{ marginTop: 16, textAlign: 'center' }}>
                 <a
                   href={listing.floorplanUrl}
