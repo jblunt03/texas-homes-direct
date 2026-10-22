@@ -1788,6 +1788,7 @@ export const sampleListings: Listing[] = [
     hudCertified: true,
     featured: false,
     status: 'Active',
+    matterportUrl: 'https://my.matterport.com/show/?m=Z8fhdf43PZU&title=0&play=1',
     floorplanUrl: '/homes/the-road-runner/RoadRunner-FloorPlan.png',
   },
   // ─── BMH-57 · The Bobcat ─────────────────────────────────────────────
