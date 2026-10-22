@@ -748,6 +748,33 @@ means The Seguin, The Austin and The Lampasas. Proposed fix, not yet built:
 keep those homes in budget-filtered results, after the matching ones, under a
 "Call for price — ask us what fits your budget" divider.
 
+## Permanent listing badges (`lib/badges.ts`)
+
+`LISTING_BADGES` maps a listing slug to a badge label, one line per listing.
+It started on 2026-10-22 with The Willis
+(`fleetwood-peredavid-3bed-2bath-double-wide`) → "Porch Model". Adding or
+removing a badge is a one-line edit to that map, then commit and deploy. No
+other code changes.
+
+- **Where it shows:**
+  - **/browse cards:** top-left on the image, in the same stack as the promo
+    tag (`.bmh-inv-card-tags`). The order is promo tag, then listing badge,
+    then In stock/Featured. They stack vertically, so nothing overlaps and
+    the card's text area doesn't move.
+  - **Listing page:** in the badge row above the title.
+- **Where it doesn't:**
+  - **City pages:** their Popular Homes cards are separate markup in
+    `CityPageContentV2.tsx`, so badges never appear there.
+  - **"More homes like this one" cards.**
+- **Style:** `.bmh-listing-badge` shares size and type with the promo tag
+  (`.bmh-promo-badge`) but uses the brand dark maroon
+  (`--color-surface-dark`, #2b0000) with near-white text, about 17:1
+  contrast. That keeps it from reading as a deal the way the navy promo tag
+  does. A thin light outline keeps it visible on dark photos.
+- **No end date:** badges are permanent and rendered by the server. Anything
+  time-limited belongs in `lib/promo.ts`, which handles expiry. Never put a
+  price or dollar amount in a badge label.
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in

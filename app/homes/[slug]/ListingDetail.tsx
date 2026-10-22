@@ -5,6 +5,7 @@ import { useState } from 'react'
 import type { Listing } from '@/lib/sampleListings'
 import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
+import { listingBadge } from '@/lib/badges'
 
 function fmt(n: number) {
   return n.toLocaleString('en-US', {
@@ -267,6 +268,9 @@ export default function ListingDetail({
           {/* badge row */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
             {isPromoListing(listing.slug) && <PromoBadge activeAtRender={promoActiveAtRender} />}
+            {listingBadge(listing.slug) && (
+              <span className="bmh-listing-badge">{listingBadge(listing.slug)}</span>
+            )}
             <span className="bmh-badge-caps bmh-badge-coral">New</span>
             {listing.hudCertified && (
               <span className="bmh-badge-caps">HUD Certified</span>

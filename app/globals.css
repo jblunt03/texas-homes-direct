@@ -308,13 +308,19 @@
   pointer-events: none;
 }
 .bmh-inv-card-tags .bmh-inv-card-tag { position: static; }
-.bmh-promo-badge {
+.bmh-promo-badge,
+.bmh-listing-badge {
   display: inline-flex; align-items: center;
   padding: 5px 10px; border-radius: var(--radius-xs);
   background: #0f172a; color: #fff;
   font-family: var(--font-sans); font-size: 13px; font-weight: 600; line-height: 1.2;
   letter-spacing: 0.2px; white-space: nowrap;
   box-shadow: 0 1px 2px rgba(15, 23, 42, 0.25);
+}
+/* Permanent badges (lib/badges.ts): brand dark maroon, so they don't read as a deal like the navy promo tag. */
+.bmh-listing-badge {
+  background: var(--color-surface-dark); color: var(--color-on-dark);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.35), 0 1px 2px rgba(15, 23, 42, 0.25);
 }
 .bmh-inv-card-body { padding: 20px 22px 22px; }
 .bmh-inv-card-title { font-family: var(--font-serif); font-size: 24px; letter-spacing: -0.3px; color: var(--color-ink); margin: 0 0 4px; line-height: 1.2; }

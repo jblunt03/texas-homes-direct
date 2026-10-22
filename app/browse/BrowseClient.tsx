@@ -5,6 +5,7 @@ import Image from 'next/image'
 import type { Listing } from '@/lib/sampleListings'
 import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing, pinRank } from '@/lib/promo'
+import { listingBadge } from '@/lib/badges'
 
 type Filter = 'all' | 'single' | 'double'
 
@@ -253,14 +254,18 @@ export default function BrowseClient({
                   {badgeLabel}
                 </span>
               )
-              const cardTags = isPromoListing(listing.slug) ? (
-                <div className="bmh-inv-card-tags">
-                  <PromoBadge activeAtRender={promoActiveAtRender} />
-                  {tag}
-                </div>
-              ) : (
-                tag
-              )
+              const isPromo = isPromoListing(listing.slug)
+              const badge = listingBadge(listing.slug)
+              const cardTags =
+                isPromo || badge ? (
+                  <div className="bmh-inv-card-tags">
+                    {isPromo && <PromoBadge activeAtRender={promoActiveAtRender} />}
+                    {badge && <span className="bmh-listing-badge">{badge}</span>}
+                    {tag}
+                  </div>
+                ) : (
+                  tag
+                )
 
               return (
                 <Link
