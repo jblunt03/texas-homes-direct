@@ -871,7 +871,6 @@ export const sampleListings: Listing[] = [
     city: '',
     images: [
       '/homes/the-brewster/3fe875ae-20d8-8041-9cf8-d269eb93e223.jpeg',
-      '/homes/the-brewster/Brewster-Body-1.jpg',
       '/homes/the-brewster/Brewster-Body-2.png',
       '/homes/the-brewster/Brewster-Body-3.webp',
       '/homes/the-brewster/Brewster-Body-4.webp',

@@ -655,13 +655,21 @@ it doesn't, something isn't idempotent.
   also swapped Daniel and Chapman, and that pair is still unresolved.
 - **`SKIPPED_IMAGE_BLOCKS`** lists Notion photos deliberately kept off the
   site, by block ID, usually because they're too low-resolution. Currently it
-  holds The Seguin's two 600x350 bathroom photos and The Quitman's five
-  360–482px photos (October 2026).
+  holds The Seguin's two 600x350 bathroom photos, The Quitman's five
+  360–482px photos (October 2026), and The Quitman's old main exterior (see
+  below).
 - **`KEEP_IMAGES`** keeps site-only photos where they are in the gallery even
   after Notion drops them. `PINNED_IMAGES` does the same but forces them to
-  the front. The Quitman keeps its four older photos (old main exterior,
-  bedroom, two delivered-exterior shots) behind Notion's new main photo, at the
-  owner's request on 2026-10-20.
+  the front. The Quitman keeps three older photos (the bedroom and two
+  delivered-exterior shots) behind Notion's new main photo, at the owner's
+  request on 2026-10-20.
+  - It kept a fourth, `Brewster-Body-1.jpg` (the old main exterior), until
+    2026-10-22. That photo was then removed from the gallery as a blurrier,
+    tighter near-copy of the new main photo.
+  - Its Notion block (`3ad875ae-20d8-80f2-b212-e2f9c4f076c7`) is in
+    `SKIPPED_IMAGE_BLOCKS` so a sync can't bring it back.
+  - **Never delete the file:** 23 city pages use it as a hero or secondary
+    image.
 - **Manufacturers: Marathon, Fleetwood and Cavco.**
   - **Marathon** (41 listings) and **Cavco** (3 listings since 2026-10-20: The
     Seguin, The Austin, The Lampasas) show "Texas Homes Direct" as the maker on

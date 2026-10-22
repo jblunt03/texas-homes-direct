@@ -103,6 +103,11 @@ const SKIPPED_IMAGE_BLOCKS: Record<string, string> = {
   '3fe875ae-20d8-8070-a4ff-fcc922e80138': 'The Quitman empty room, 360x480',
   '3fe875ae-20d8-8044-aef8-e1d5b6092711': 'The Quitman hallway, 360x474',
   '3fe875ae-20d8-80e9-b861-c82df851ee4f': 'The Quitman living room, 482x360',
+  // The Quitman's old main exterior (Brewster-Body-1.jpg): a tighter, blurrier
+  // crop of the current main photo. No longer on the Notion page; listed here
+  // so it can't come back if it's re-added there. The file stays on disk
+  // because 23 city pages use it as a hero/secondary image.
+  '3ad875ae-20d8-80f2-b212-e2f9c4f076c7': 'The Quitman old main exterior, near-duplicate',
 }
 
 /**
@@ -147,10 +152,11 @@ const PINNED_IMAGES: Record<string, string[]> = {
  * longer has them (unlike PINNED_IMAGES, they aren't forced to the front).
  */
 const KEEP_IMAGES: Record<string, string[]> = {
-  // Owner kept these when Notion replaced them in October 2026: the old main
-  // exterior, the bedroom, and the two delivered-exterior shots.
+  // Owner kept these when Notion replaced them in October 2026: the bedroom
+  // and the two delivered-exterior shots. (The old main exterior,
+  // Brewster-Body-1.jpg, was dropped on 2026-10-22 as a blurrier near-copy of
+  // the new main photo; see SKIPPED_IMAGE_BLOCKS.)
   'marathon-brewster-3bed-2bath-double-wide': [
-    '/homes/the-brewster/Brewster-Body-1.jpg',
     '/homes/the-brewster/Brewster-Body-2.png',
     '/homes/the-brewster/Brewster-Body-3.webp',
     '/homes/the-brewster/Brewster-Body-6.webp',
