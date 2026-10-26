@@ -122,8 +122,9 @@ Follow this every time you add or edit a batch of city pages:
    accurate) neighbor slugs. Don't hand-pick `popularHomes` — leave it as
    an empty list (or any placeholder) and run
    `python3 scripts/assign_popular_homes.py` after step 3 below; it
-   recomputes every authored city's `popularHomes`, including the ones
-   already published, from `lib/sampleListings.ts`. See "Popular Homes
+   fills `popularHomes` only for cities whose list is empty, from
+   `lib/sampleListings.ts`, and leaves every existing city's picks
+   untouched (fill-only since batch 5). See "Popular Homes
    selection" further down for why this is scripted rather than picked by
    hand.
 2. **Add structural entries** to `CITIES` in `lib/cities.ts` (published:
@@ -331,7 +332,7 @@ The "Homes to Get You Started" block (renamed from "Popular Homes to
 Consider" on 2026-09-18 — see below) shows 3 of the 54 real listings in
 `lib/sampleListings.ts` on every city page. Selection is computed by
 `scripts/assign_popular_homes.py`, not picked by hand per city — run it
-after adding a new city or new inventory to `lib/sampleListings.ts`:
+after adding new cities (with an empty `popularHomes` list):
 
 ```
 python3 scripts/assign_popular_homes.py
@@ -348,6 +349,23 @@ city page at all. Both numbers were arbitrary, not evidence of anything —
 there's no per-city sales or inquiry data behind which homes are actually
 popular where, so a literal "popularity" ranking was never real to begin
 with.
+
+**Fill-only (since batch 5, 2026-10-26).** The script only fills cities
+whose `popularHomes` list is empty. Cities that already have picks keep them
+exactly, so adding a batch never changes a live page's cards. Before this,
+the script recomputed every city; a test run for batch 5 would have changed
+the cards on 72 of the 104 live pages. Existing picks still count toward
+usage, so new cities get the least-used listings site-wide. Stored picks may be
+legacy slugs (lib/cityContent.ts is never rewritten for a URL change); the
+script counts each as its current listing via `legacySlugs`. To re-pick a
+city on purpose, empty its list first. New inventory added to
+`lib/sampleListings.ts` therefore reaches new cities only, unless lists are
+emptied deliberately.
+
+**Namesake rule.** A listing titled "The <City>" is never assigned to that
+city's page (The Brownwood, The Gilmer and The Crockett are excluded from
+Brownwood, Gilmer and Crockett), and the copy never mentions it. Pages
+published before batch 5 weren't re-checked against this rule.
 
 **Selection rule:** least-used-listing-first rotation across all 54,
 deterministic (same inputs always produce the same assignment — a

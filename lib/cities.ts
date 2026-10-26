@@ -96,6 +96,8 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Hondo', 'Hill Country', true),
   city('Devine', 'Hill Country', true),
   city('Hamilton', 'Hill Country', true),
+  city('Brownwood', 'Hill Country'),
+  city('Comanche', 'Hill Country'),
 
   // ─── Central Texas ───────────────────────────────────────────────
   city(
@@ -133,6 +135,13 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Sealy', 'Central Texas', true),
   city('Navasota', 'Central Texas', true),
   city('Rockdale', 'Central Texas', true),
+  city('Meridian', 'Central Texas'),
+  city('Hearne', 'Central Texas'),
+  city('Madisonville', 'Central Texas'),
+  city('Fairfield', 'Central Texas'),
+  city('Mexia', 'Central Texas'),
+  city('Groesbeck', 'Central Texas'),
+  city('Marlin', 'Central Texas'),
   city('Harker Heights', 'Central Texas', true),
 
   // ─── East Texas ──────────────────────────────────────────────────
@@ -161,6 +170,9 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Athens', 'East Texas', true),
   city('Canton', 'East Texas', true),
   city('Bonham', 'East Texas', true),
+  city('Crockett', 'East Texas'),
+  city('Gilmer', 'East Texas'),
+  city('Clarksville', 'East Texas'),
   city('Rusk', 'East Texas', true),
   city('Gladewater', 'East Texas', true),
 
@@ -245,6 +257,8 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Yorktown', 'South Texas', true),
   city('Kenedy', 'South Texas', true),
   city('Refugio', 'South Texas', true),
+  city('Cotulla', 'South Texas'),
+  city('Carrizo Springs', 'South Texas'),
 
   // ─── Panhandle ───────────────────────────────────────────────────
   city(
@@ -282,6 +296,8 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Orange', 'Gulf Coast'),
   city('Rockport', 'Gulf Coast'),
   city('Port Lavaca', 'Gulf Coast'),
+  city('Wharton', 'Gulf Coast'),
+  city('El Campo', 'Gulf Coast'),
   city('Freeport', 'Gulf Coast'),
   city('Port Aransas', 'Gulf Coast'),
   city('Alvin', 'Gulf Coast'),
@@ -318,6 +334,9 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Corsicana', 'DFW', true),
   city('Richardson', 'DFW'),
   city('Granbury', 'DFW', true),
+  city('Stephenville', 'DFW'),
+  city('Glen Rose', 'DFW'),
+  city('Mineral Wells', 'DFW'),
   city('Burleson', 'DFW', true),
   city('Midlothian', 'DFW', true),
   city('Kaufman', 'DFW', true),
