@@ -124,9 +124,9 @@ export default function TestimonialsPage() {
         <div className="bmh-container-narrow">
           <span className="bmh-eyebrow">Already a customer?</span>
           <div className="bmh-spacer-sm" />
-          <h2>How to leave a review.</h2>
+          <h2 className="bmh-city-h2">How to Leave a Review</h2>
           <div className="bmh-spacer-md" />
-          <ol className="bmh-lead" style={{ paddingLeft: 22, display: 'grid', gap: 8 }}>
+          <ol className="bmh-lead" style={{ paddingLeft: 22, display: 'grid', gap: 8, listStyle: 'decimal' }}>
             {STEPS.map((s) => (
               <li key={s}>{s}</li>
             ))}
