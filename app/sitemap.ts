@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'manufactured-vs-mobile-home',
     'how-pricing-works',
     'whats-included-in-setup',
+    'tiny-homes',
   ].map((p) => ({
     url: p ? `${base}/${p}` : base,
     lastModified: new Date(),

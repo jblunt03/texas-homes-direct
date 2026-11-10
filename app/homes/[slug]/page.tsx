@@ -5,6 +5,7 @@ import { CITY_CONTENT } from '@/lib/cityContent'
 import { publishedCities } from '@/lib/cities'
 import ListingDetail from './ListingDetail'
 import { isPromoActive } from '@/lib/promo'
+import { isTinyHome } from '@/lib/tinyHomes'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
 
@@ -30,7 +31,9 @@ export async function generateMetadata({
   const listing = await fetchListingBySlug(params.slug)
   if (!listing) return { title: 'Home Not Found' }
   const wideType = listing.wideType ?? 'Manufactured'
-  const title = `${listing.title} — ${listing.beds} Bed ${wideType} Manufactured Home`
+  const title = isTinyHome(listing)
+    ? `${listing.title} — ${listing.beds} Bed ${listing.baths} Bath Tiny Home`
+    : `${listing.title} — ${listing.beds} Bed ${wideType} Manufactured Home`
   const description = `${listing.beds} bed / ${listing.baths} bath ${wideType.toLowerCase()} manufactured home, ${listing.sqft.toLocaleString()} sqft. Delivered and set up anywhere in Texas. ${listing.description.slice(0, 100)}`
   return {
     title,

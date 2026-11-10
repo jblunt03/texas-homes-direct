@@ -6,6 +6,7 @@ import type { Listing } from '@/lib/sampleListings'
 import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
 import { listingBadge } from '@/lib/badges'
+import { isTinyHome } from '@/lib/tinyHomes'
 
 function fmt(n: number) {
   return n.toLocaleString('en-US', {
@@ -271,6 +272,7 @@ export default function ListingDetail({
             {listingBadge(listing.slug) && (
               <span className="bmh-listing-badge">{listingBadge(listing.slug)}</span>
             )}
+            {isTinyHome(listing) && <span className="bmh-badge-caps">Tiny Home</span>}
             <span className="bmh-badge-caps bmh-badge-coral">New</span>
             {listing.hudCertified && (
               <span className="bmh-badge-caps">HUD Certified</span>
@@ -294,6 +296,13 @@ export default function ListingDetail({
           <p style={{ color: 'var(--color-muted)', fontFamily: 'var(--font-sans)', fontSize: 15, margin: 0 }}>
             {listing.beds} Bed &middot; {listing.baths} Bath &middot; {listing.wideType} &middot; Delivered Anywhere in Texas
           </p>
+          {isTinyHome(listing) && (
+            <p style={{ margin: '10px 0 0', fontSize: 15 }}>
+              <Link href="/tiny-homes" style={{ color: 'var(--color-primary)', fontWeight: 500 }}>
+                See all tiny homes →
+              </Link>
+            </p>
+          )}
         </div>
       </section>
 

@@ -813,6 +813,39 @@ related-links row for non-city pages. City pages keep their own copies in
 - `/calculator`'s "4.9 stars across 487 reviews" heading and two named quotes
 - `app/_about` (not routed, because of the underscore) has a "4.9★" stat
 
+## Tiny homes (`/tiny-homes`)
+
+**Rule: a tiny home is any listing with `beds === 1` exactly.** It's computed by
+`isTinyHome()` in `lib/tinyHomes.ts`. Never keep a hand-written list, so a new
+1-bedroom home appears after a sync with no code change. The owner confirmed
+on 2026-11-10 that one-bedroom park models count. As of that date there are
+seven: The Smithville, The Coldspring, and five park models (The Woodville,
+The Vidor, The La Vernia, The Whitehouse, The Van). The Mineola is a park model
+with 2 bedrooms, so it isn't one.
+
+What the rule drives:
+- `/tiny-homes`: the grid (the shared `components/ListingCard.tsx`, also used
+  by /browse), the "range from X to Y square feet" line, and the ItemList
+  schema (name, url and image only; no offers, price or ratings). If no
+  listing has one bedroom, the page shows an empty state.
+- A "Tiny Homes" link next to Singlewide/Doublewide on /browse, and "Tiny
+  homes" in the footer's Shop column.
+- On 1-bedroom listing pages only: a "Tiny Home" label in the badge row, a
+  "See all tiny homes" link, and "Tiny Home" in the meta title
+  ("The Whitehouse — 1 Bed 1 Bath Tiny Home").
+
+Content limits on `/tiny-homes` and the tab:
+- Say "tiny homes" or "homes". Never "manufactured homes" or "HUD-code".
+- No financing, setup, delivery or placement claims. They can't be verified
+  for every listing, park models included. The page links to the free
+  mortgage analysis and a quote request without claiming anything about them.
+- No payment amounts (`showPayment={false}`), because no estimated-payment
+  disclaimer is deployed. Revisit if one is added.
+- No claims about who buys tiny homes or why, and no regulatory definitions.
+
+The page is in the sitemap, in `llms.txt` under Key Offerings, and in
+`validate_batch.py`'s required-schema check.
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in

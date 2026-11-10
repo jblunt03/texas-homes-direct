@@ -74,6 +74,7 @@ EXPLAINER_PAGES = [
     # Not explainers, but they carry the same required schema
     # (BreadcrumbList, FAQPage, WebPage + speakable) and are checked the same way.
     "testimonials",
+    "tiny-homes",
 ]
 
 # Rating markup is never allowed anywhere (the Google reviews widget is a

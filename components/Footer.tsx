@@ -48,6 +48,7 @@ export default function Footer() {
             <h5>Shop</h5>
             <Link href="/browse?type=single">Singlewides</Link>
             <Link href="/browse?type=double">Doublewides</Link>
+            <Link href="/tiny-homes">Tiny homes</Link>
           </div>
 
           {/* Buy */}
