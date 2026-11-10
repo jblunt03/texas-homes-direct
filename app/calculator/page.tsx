@@ -82,8 +82,8 @@ export default function CalculatorPage() {
               }}
             >
               <Image
-                src="/lifestyle-hillcountry.jpg"
-                alt="Texas Homes Direct manufactured home in the Hill Country"
+                src="/lifestyle-kitchen.jpg"
+                alt="Family cooking together at the kitchen island of a manufactured home"
                 fill
                 style={{ objectFit: 'cover' }}
                 sizes="(max-width: 960px) 100vw, 40vw"
