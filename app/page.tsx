@@ -3,6 +3,7 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { fetchAllListings } from '@/lib/notion'
 import SpinToWinPopup from '@/components/SpinToWinPopup'
+import FeaturableReviews from '@/components/FeaturableReviews'
 
 export const revalidate = 3000
 
@@ -401,70 +402,8 @@ export default async function HomePage() {
             </h2>
           </div>
 
-          <div className="bmh-testi-grid">
-            <div className="bmh-testi">
-              <div className="bmh-stars">★★★★★</div>
-              <p className="bmh-testi-quote">
-                &ldquo;We shopped six dealers and Texas Homes Direct beat every
-                single one of them on price — and they were the only ones that
-                didn&rsquo;t try to upsell us into something we
-                couldn&rsquo;t afford.&rdquo;
-              </p>
-              <div className="bmh-testi-foot">
-                <div className="bmh-testi-avatar">RH</div>
-                <div>
-                  <div className="bmh-testi-name">Rachel &amp; Mike H.</div>
-                  <div className="bmh-testi-meta">
-                    Lubbock, TX · 3BR doublewide
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bmh-testi">
-              <div className="bmh-stars">★★★★★</div>
-              <p className="bmh-testi-quote">
-                &ldquo;They walked me through the credit analysis, picked the
-                right floor plan, and had the home set on my land in Abilene six
-                weeks later. Couldn&rsquo;t ask for more.&rdquo;
-              </p>
-              <div className="bmh-testi-foot">
-                <div className="bmh-testi-avatar">JG</div>
-                <div>
-                  <div className="bmh-testi-name">Javier G.</div>
-                  <div className="bmh-testi-meta">
-                    Abilene, TX · 2BR singlewide
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div className="bmh-testi">
-              <div className="bmh-stars">★★★★★</div>
-              <p className="bmh-testi-quote">
-                &ldquo;As first-time buyers we were nervous. They explained
-                every line of the contract, helped us understand the permits,
-                and never once made us feel like we were asking dumb
-                questions.&rdquo;
-              </p>
-              <div className="bmh-testi-foot">
-                <div className="bmh-testi-avatar">EM</div>
-                <div>
-                  <div className="bmh-testi-name">Emily M.</div>
-                  <div className="bmh-testi-meta">
-                    Waco, TX · Singlewide
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="bmh-spacer-lg" />
-          <div style={{ textAlign: 'center' }}>
-            <Link href="/testimonials" className="bmh-btn bmh-btn-secondary">
-              Read more reviews →
-            </Link>
-          </div>
+          {/* Real Google reviews, loaded only as the visitor scrolls near them. */}
+          <FeaturableReviews lazy />
         </div>
       </section>
     </>

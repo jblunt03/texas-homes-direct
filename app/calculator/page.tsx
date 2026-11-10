@@ -6,7 +6,7 @@ import FaqAccordion from '@/components/FaqAccordion'
 export const metadata: Metadata = {
   title: 'Free Mortgage Analysis — Texas Homes Direct',
   description:
-    "A 3-minute pre-qualification tells you exactly what kind of home is in reach. We don't pull your credit. Voted best financing in Texas.",
+    "A 3-minute pre-qualification tells you exactly what kind of home is in reach. We don't pull your credit.",
 }
 
 const CIRRUS_URL =
@@ -43,7 +43,7 @@ export default function CalculatorPage() {
         <div className="bmh-container">
           <div className="bmh-split-6-5">
             <div>
-              <span className="bmh-eyebrow">Voted best financing in Texas · No obligation</span>
+              <span className="bmh-eyebrow">Free mortgage analysis · No obligation</span>
               <h1>
                 Know your budget
                 <br />
@@ -98,7 +98,7 @@ export default function CalculatorPage() {
       <section className="bmh-section" style={{ background: 'var(--color-canvas)' }}>
         <div className="bmh-container">
           <div className="bmh-section-head bmh-section-head-center">
-            <span className="bmh-eyebrow">Voted best financing in Texas</span>
+            <span className="bmh-eyebrow">How it works</span>
             <div className="bmh-spacer-sm" />
             <h2>
               Three steps. Three minutes.
@@ -226,49 +226,22 @@ export default function CalculatorPage() {
         </div>
       </section>
 
-      {/* TRUST BAR */}
+      {/* REVIEWS LINK */}
       <section className="bmh-section bmh-surface-card">
-        <div className="bmh-container">
-          <div className="bmh-section-head bmh-section-head-center">
-            <span className="bmh-eyebrow">Trusted by Texas families</span>
-            <div className="bmh-spacer-sm" />
-            <h2>
-              4.9 stars across
-              <br />
-              487 reviews.
-            </h2>
-          </div>
-
-          <div className="bmh-testi-grid" style={{ gridTemplateColumns: 'repeat(2, 1fr)' }}>
-            {[
-              {
-                init: 'AM',
-                name: 'Andre M.',
-                loc: 'Killeen, TX',
-                quote:
-                  '"They worked with three lenders until one came back with a number I could actually live with. The free analysis was a game-changer for me."',
-              },
-              {
-                init: 'CR',
-                name: 'Carla R.',
-                loc: 'Midland, TX',
-                quote:
-                  '"I had no idea what I could afford until I ran their analysis. Walked into the lot the next week knowing exactly which homes to look at."',
-              },
-            ].map((r) => (
-              <div key={r.init} className="bmh-testi">
-                <div className="bmh-stars">★★★★★</div>
-                <p className="bmh-testi-quote">{r.quote}</p>
-                <div className="bmh-testi-foot">
-                  <div className="bmh-testi-avatar">{r.init}</div>
-                  <div>
-                    <div className="bmh-testi-name">{r.name}</div>
-                    <div className="bmh-testi-meta">{r.loc}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
+        <div className="bmh-container-narrow" style={{ textAlign: 'center' }}>
+          <span className="bmh-eyebrow">Reviews</span>
+          <div className="bmh-spacer-sm" />
+          <h2>
+            Read our <em>Google reviews.</em>
+          </h2>
+          <div className="bmh-spacer-md" />
+          <p className="bmh-lead">
+            See what customers have posted about Texas Homes Direct on our Google Business Profile.
+          </p>
+          <div className="bmh-spacer-lg" />
+          <Link href="/testimonials" className="bmh-btn bmh-btn-secondary bmh-btn-lg">
+            Read our reviews →
+          </Link>
         </div>
       </section>
 

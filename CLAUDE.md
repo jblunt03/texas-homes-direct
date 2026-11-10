@@ -808,10 +808,31 @@ uses `next/script`'s `onReady`, which fires on every mount, and calls
 related-links row for non-city pages. City pages keep their own copies in
 `CityPageContentV2.tsx`.
 
-**Known leftovers elsewhere (as of 2026-11-10, not yet changed):**
-- the homepage's three hard-coded named reviews
-- `/calculator`'s "4.9 stars across 487 reviews" heading and two named quotes
-- `app/_about` (not routed, because of the underscore) has a "4.9★" stat
+**Site-wide, not just `/testimonials`:** on 2026-11-10 the same invented
+review content was removed from the rest of the site:
+- the homepage's three named reviews and its "Read more reviews" link,
+  replaced by `<FeaturableReviews lazy />`
+- `/calculator`'s "4.9 stars across 487 reviews" heading, its two named
+  quotes, and its "Voted best financing in Texas" claim. That section now
+  links to `/testimonials`.
+- `app/_about`'s invented stats and promises. The folder is still unrouted
+  because of the leading underscore.
+
+Don't reintroduce named customers, star averages, review counts or
+"voted best" claims anywhere.
+
+**`lazy` mode (homepage).**
+- **When the script loads:** only once the widget is within 600px of the
+  viewport, so nothing is fetched on page load.
+- **Reserved space:** the container keeps a 460px min-height, the tallest
+  height measured for the widget.
+- **Hidden until settled:** the widget stays `visibility: hidden` until its
+  height has held steady for one second. Featurable re-lays out its cards
+  right after rendering, which measured as a 0.33 layout shift; that now
+  happens while hidden, and the measured CLS is 0.
+- **Testing quirk:** the in-app browser pane doesn't paint frames while it's
+  hidden, so IntersectionObserver won't fire there until a screenshot forces
+  a frame. That's a test artifact, not a site bug.
 
 ## Tiny homes (`/tiny-homes`)
 
