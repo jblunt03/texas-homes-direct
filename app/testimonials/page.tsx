@@ -1,216 +1,140 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import FaqAccordion from '@/components/FaqAccordion'
+import FeaturableReviews from '@/components/FeaturableReviews'
+import { CtaRow, RelatedLinks, TurnkeyChecklist } from '@/components/SiteBlocks'
+
+// Reviews page rules (see CLAUDE.md "Reviews page"): the Google widget is the
+// only source of reviews here. No hard-coded reviews, customer names or
+// quotes, no star averages or review counts, and no Review/AggregateRating
+// schema.
+
+const SITE_URL = 'https://www.texashomesdirect.com'
+const PAGE_URL = `${SITE_URL}/testimonials`
+const GOOGLE_REVIEW_URL = 'https://g.page/r/texashomesdirect/review'
+const TITLE = 'Customer Reviews from Google'
+const DESCRIPTION =
+  'Read Texas Homes Direct reviews from our Google Business Profile, learn how to leave your own, and get a free 3-minute mortgage analysis with no credit pull.'
 
 export const metadata: Metadata = {
-  title: 'Reviews — Texas Homes Direct',
-  description:
-    'See what Texas families are saying about Texas Homes Direct. 4.9 stars across 487 verified reviews.',
+  title: TITLE,
+  description: DESCRIPTION,
+  alternates: { canonical: PAGE_URL },
 }
 
-const REVIEWS = [
-  {
-    init: 'RH',
-    name: 'Rachel & Mike H.',
-    meta: 'Lubbock, TX · 3BR doublewide · Aug 2025',
-    quote:
-      'We shopped six dealers and Texas Homes Direct beat every single one of them on price — and they were the only ones who didn\'t try to upsell us into something we couldn\'t afford.',
-  },
-  {
-    init: 'JG',
-    name: 'Javier G.',
-    meta: 'Abilene, TX · 2BR singlewide · Jul 2025',
-    quote:
-      'They walked me through the credit analysis, picked the right floor plan, and had the home set on my land in Abilene six weeks later. Couldn\'t ask for more.',
-  },
-  {
-    init: 'EM',
-    name: 'Emily M.',
-    meta: 'Waco, TX · Singlewide · Jun 2025',
-    quote:
-      'As first-time buyers we were nervous. They explained every line of the contract, helped us understand the permits, and never made us feel like we were asking dumb questions.',
-  },
-  {
-    init: 'DB',
-    name: 'Daniel B.',
-    meta: 'Amarillo, TX · 4BR doublewide · May 2025',
-    quote:
-      'The price they quoted me on the phone in March was the price I paid in May. After three other dealers ran the number up on us, that meant a lot.',
-  },
-  {
-    init: 'CR',
-    name: 'Carla R.',
-    meta: 'Midland, TX · Doublewide · Apr 2025',
-    quote:
-      'I called five other places about a new doublewide and got run-arounds. Texas Homes Direct had a factory order confirmed and on schedule the next morning. Done deal in two weeks.',
-  },
-  {
-    init: 'PK',
-    name: 'Pete & Karen V.',
-    meta: 'Hondo, TX · Singlewide · Mar 2025',
-    quote:
-      'Bought a new singlewide for our property outside Hondo. Delivery was on schedule, leveling was perfect, and the crew picked up every scrap of trash before they left.',
-  },
-  {
-    init: 'AM',
-    name: 'Andre M.',
-    meta: 'Killeen, TX · Singlewide · Feb 2025',
-    quote:
-      'My credit isn\'t great. They worked with three lenders until one came back with a number I could actually live with. That\'s effort you don\'t see from the big lots.',
-  },
-  {
-    init: 'SO',
-    name: 'Sandra O.',
-    meta: 'San Angelo, TX · 3BR doublewide · Jan 2025',
-    quote:
-      'The owner called me back personally after I left a question on the website. Six months in, I\'m still glad I picked them. No regrets, no surprises.',
-  },
+const STEPS = [
+  'Open our Google review page with the button below.',
+  'Sign in to your Google account and choose a star rating.',
+  'Write a few words about your experience and post it.',
 ]
 
-const RATING_BARS = [
-  { label: '5 ★', pct: '92%', count: 448 },
-  { label: '4 ★', pct: '6%',  count: 31 },
-  { label: '3 ★', pct: '1%',  count: 6 },
-  { label: '2 ★', pct: '0.4%', count: 2 },
-  { label: '1 ★', pct: '0.1%', count: 0 },
+const FAQ = [
+  {
+    q: 'Where do the reviews on this page come from?',
+    a: 'They come from the Texas Homes Direct Google Business Profile. The widget on this page loads them from Google, so they read the way customers posted them there.',
+  },
+  {
+    q: 'How do I leave a review for Texas Homes Direct?',
+    a: 'Use the “Leave a Google review” button on this page. It opens our Google review form, where you sign in to a Google account, pick a star rating and write about your experience.',
+  },
+  {
+    q: 'Where can I see your homes?',
+    a: 'Every home we offer is on our Browse page. Each listing has photos or a floor plan, its exact square footage, and a 3D tour where one is available.',
+  },
+  {
+    q: 'How do I get a quote or the free mortgage analysis?',
+    a: 'Request a delivery quote through our contact form, start the free 3-minute mortgage analysis (no credit pull), or call (830) 381-1309.',
+  },
 ]
 
 export default function TestimonialsPage() {
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Reviews', item: PAGE_URL },
+    ],
+  }
+
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: FAQ.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
+  }
+
+  const webPageJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    '@id': PAGE_URL,
+    url: PAGE_URL,
+    name: TITLE,
+    description: DESCRIPTION,
+    dateModified: '2026-11-10',
+    speakable: {
+      '@type': 'SpeakableSpecification',
+      cssSelector: ['.bmh-faq-speakable', '.bmh-explainer-lead'],
+    },
+  }
+
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
+
+      {/* BREADCRUMBS */}
+      <nav aria-label="Breadcrumb" style={{ background: 'var(--color-canvas)', padding: '16px 0 0' }}>
+        <div className="bmh-container" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--color-muted, #6b7280)' }}>
+          <Link href="/" style={{ color: 'inherit', textDecoration: 'none' }}>Home</Link>
+          <span aria-hidden="true">/</span>
+          <span>Reviews</span>
+        </div>
+      </nav>
+
       {/* PAGE HEADER */}
       <section className="bmh-page-header" style={{ background: 'var(--color-canvas)' }}>
         <div className="bmh-container">
           <span className="bmh-eyebrow">Reviews</span>
           <h1>
-            1,200 Texas families.
+            What Texas families
             <br />
-            <em>4.9 stars on average.</em>
+            <em>are saying.</em>
           </h1>
-          <p className="bmh-lead">
-            Every review on this page comes from a verified buyer. We don&rsquo;t curate, we
-            don&rsquo;t pay for placement, and we don&rsquo;t edit anyone&rsquo;s words.
+          <p className="bmh-lead bmh-explainer-lead">
+            The reviews below come straight from the Texas Homes Direct Google Business Profile, shown
+            the way customers posted them on Google.
           </p>
         </div>
       </section>
 
-      {/* RATING SNAPSHOT */}
+      {/* GOOGLE REVIEWS (Featurable widget) */}
       <div style={{ padding: '32px 0', borderBottom: '1px solid var(--color-hairline)', background: 'var(--color-canvas)' }}>
         <div className="bmh-container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'auto 1fr auto', gap: 32, alignItems: 'center', flexWrap: 'wrap' }}>
-            {/* Big number */}
-            <div>
-              <div style={{ fontFamily: 'var(--font-serif)', fontSize: 'clamp(56px,7vw,80px)', letterSpacing: '-1px', lineHeight: 1, color: 'var(--color-ink)' }}>
-                4.9
-              </div>
-              <div className="bmh-stars" style={{ fontSize: 18, marginTop: 4 }}>★★★★★</div>
-              <div className="bmh-caption bmh-muted" style={{ marginTop: 4 }}>Across 487 reviews</div>
-            </div>
-
-            {/* Rating bars */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 6, maxWidth: 480, minWidth: 280 }}>
-              {RATING_BARS.map(({ label, pct, count }) => (
-                <div key={label} style={{ display: 'grid', gridTemplateColumns: '50px 1fr 40px', gap: 12, alignItems: 'center' }}>
-                  <span className="bmh-caption">{label}</span>
-                  <div style={{ height: 6, background: 'var(--color-surface-card)', borderRadius: 99, overflow: 'hidden' }}>
-                    <div style={{ width: pct, height: '100%', background: 'var(--color-primary)' }} />
-                  </div>
-                  <span className="bmh-caption bmh-muted">{count}</span>
-                </div>
-              ))}
-            </div>
-
-            {/* Verified on pills */}
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, minWidth: 160 }}>
-              <span className="bmh-caption bmh-muted">Verified on</span>
-              <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
-                <span className="bmh-pill bmh-pill-static">Google</span>
-                <span className="bmh-pill bmh-pill-static">BBB</span>
-                <span className="bmh-pill bmh-pill-static">Facebook</span>
-              </div>
-            </div>
-          </div>
+          <FeaturableReviews />
         </div>
       </div>
 
-      {/* FEATURED LARGE QUOTE */}
-      <section className="bmh-section-sm" style={{ background: 'var(--color-canvas)' }}>
-        <div className="bmh-container">
-          <div className="bmh-callout-coral">
-            <div>
-              <span className="bmh-caps" style={{ color: 'rgba(255,255,255,0.8)' }}>
-                Customer story
-              </span>
-              <div className="bmh-spacer-sm" />
-              <h2 style={{ fontSize: 'clamp(28px,3.6vw,44px)', letterSpacing: '-0.5px' }}>
-                &ldquo;They gave us the real out-the-door price up front. No hidden fees, no bait-and-switch — nothing like the other lots.&rdquo;
-              </h2>
-            </div>
-            <div>
-              <p>
-                The Hernandez family bought a 3-bedroom doublewide in Lubbock after shopping six dealers.
-                They moved in 47 days after signing.
-              </p>
-              <div className="bmh-spacer-md" />
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-                <div
-                  className="bmh-testi-avatar"
-                  style={{ background: 'rgba(255,255,255,0.18)', color: '#fff', fontSize: 18 }}
-                >
-                  RH
-                </div>
-                <div>
-                  <div style={{ color: '#fff', fontWeight: 500 }}>Rachel &amp; Mike Hernandez</div>
-                  <div style={{ color: 'rgba(255,255,255,0.78)', fontSize: 13 }}>
-                    Lubbock, TX &middot; The Hill Country
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* REVIEWS GRID */}
-      <section className="bmh-section" style={{ background: 'var(--color-canvas)' }}>
-        <div className="bmh-container">
-          <div className="bmh-testi-grid">
-            {REVIEWS.map((r) => (
-              <div key={r.init} className="bmh-testi">
-                <div className="bmh-stars">★★★★★</div>
-                <p className="bmh-testi-quote">&ldquo;{r.quote}&rdquo;</p>
-                <div className="bmh-testi-foot">
-                  <div className="bmh-testi-avatar">{r.init}</div>
-                  <div>
-                    <div className="bmh-testi-name">{r.name}</div>
-                    <div className="bmh-testi-meta">{r.meta}</div>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="bmh-spacer-lg" />
-          <div style={{ textAlign: 'center' }}>
-            <button className="bmh-btn bmh-btn-secondary">Load more reviews</button>
-          </div>
-        </div>
-      </section>
-
-      {/* LEAVE A REVIEW */}
+      {/* HOW TO LEAVE A REVIEW */}
       <section className="bmh-section bmh-surface-card">
-        <div className="bmh-container-narrow" style={{ textAlign: 'center' }}>
+        <div className="bmh-container-narrow">
           <span className="bmh-eyebrow">Already a customer?</span>
           <div className="bmh-spacer-sm" />
-          <h2>Tell us how we did.</h2>
+          <h2>How to leave a review.</h2>
           <div className="bmh-spacer-md" />
-          <p className="bmh-lead">
-            Honest reviews — good or bad — help us get better and help the next family pick the
-            right dealer. Leave one on Google or send us a note directly.
-          </p>
+          <ol className="bmh-lead" style={{ paddingLeft: 22, display: 'grid', gap: 8 }}>
+            {STEPS.map((s) => (
+              <li key={s}>{s}</li>
+            ))}
+          </ol>
           <div className="bmh-spacer-lg" />
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <a
-              href="https://g.page/r/texashomesdirect/review"
+              href={GOOGLE_REVIEW_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="bmh-btn bmh-btn-primary bmh-btn-lg"
@@ -221,6 +145,42 @@ export default function TestimonialsPage() {
               Send us a note
             </Link>
           </div>
+        </div>
+      </section>
+
+      {/* WE HANDLE IT ALL */}
+      <section style={{ background: 'var(--color-canvas)', padding: '40px 0' }}>
+        <div className="bmh-container">
+          <TurnkeyChecklist />
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bmh-surface-card" style={{ padding: '48px 0' }}>
+        <div className="bmh-container" style={{ textAlign: 'center' }}>
+          <h2 className="bmh-city-h2" style={{ maxWidth: 700, margin: '0 auto' }}>
+            Ready to see what fits your budget?
+          </h2>
+          <div className="bmh-spacer-lg" />
+          <CtaRow center />
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section style={{ background: 'var(--color-canvas)', padding: '40px 0' }}>
+        <div className="bmh-container">
+          <div className="bmh-city-prose bmh-faq-speakable">
+            <h2 className="bmh-city-h2">Frequently Asked Questions</h2>
+            <div className="bmh-spacer-sm" />
+            <FaqAccordion items={FAQ} defaultOpen={0} />
+          </div>
+        </div>
+      </section>
+
+      {/* RELATED LINKS */}
+      <section className="bmh-surface-card" style={{ padding: '32px 0' }}>
+        <div className="bmh-container">
+          <RelatedLinks />
         </div>
       </section>
     </>

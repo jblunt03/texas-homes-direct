@@ -71,7 +71,17 @@ EXPLAINER_PAGES = [
     "manufactured-vs-mobile-home",
     "how-pricing-works",
     "whats-included-in-setup",
+    # Not explainers, but they carry the same required schema
+    # (BreadcrumbList, FAQPage, WebPage + speakable) and are checked the same way.
+    "testimonials",
 ]
+
+# Rating markup is never allowed anywhere (the Google reviews widget is a
+# third-party embed; its stars must not become our structured data), and the
+# reviews page must not carry hard-coded review stats. See CLAUDE.md
+# "Reviews page".
+FORBIDDEN_SCHEMA_TYPES = {"Review", "AggregateRating", "Rating"}
+REVIEWS_PAGE_FORBIDDEN_TEXT = re.compile(r"\b4\.9\b|\b487\b|1,200|verified buyer", re.I)
 
 results = []  # (step_name, ok, detail_lines)
 
@@ -417,6 +427,9 @@ def extract_jsonld_types_and_urls(html):
         t = obj.get("@type")
         if t:
             types.add(t)
+        # Nested rating markup (e.g. aggregateRating inside a Product) counts too.
+        for nested in re.findall(r'"@type":\s*"([A-Za-z]+)"', b):
+            types.add(nested)
         for key in ("url", "@id"):
             if key in obj and isinstance(obj[key], str):
                 urls.append(obj[key])
@@ -449,6 +462,14 @@ def step_schema_and_localhost(city_slugs):
         missing = required - types
         if missing:
             problems.append(f"  {path}: missing schema type(s) {sorted(missing)}")
+        rating = types & FORBIDDEN_SCHEMA_TYPES
+        if rating:
+            problems.append(f"  {path}: rating markup not allowed: {sorted(rating)}")
+        if path == "/testimonials":
+            visible = re.sub(r"<script.*?</script>|<[^>]+>", " ", html, flags=re.S)
+            m = REVIEWS_PAGE_FORBIDDEN_TEXT.search(visible)
+            if m:
+                problems.append(f"  {path}: hard-coded review stat on page: {m.group(0)!r}")
         if not speakable_ok:
             problems.append(f"  {path}: WebPage speakable.cssSelector missing .bmh-faq-speakable")
 

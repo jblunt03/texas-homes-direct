@@ -775,6 +775,44 @@ other code changes.
   time-limited belongs in `lib/promo.ts`, which handles expiry. Never put a
   price or dollar amount in a badge label.
 
+## Reviews page (`/testimonials`) and rating markup
+
+**The Google reviews widget is the only source of reviews on the site's
+reviews page.** `components/FeaturableReviews.tsx` embeds Featurable's widget,
+which loads real reviews from the Texas Homes Direct Google Business Profile.
+The owner confirmed on 2026-11-10 that every review it shows is real.
+
+On `/testimonials`, never add:
+- hard-coded reviews, customer names, initials or quotes (outside the widget)
+- a star average, review count, families-served count or any other review
+  stat. The old "1,200 Texas families", "4.9 stars" and "487 reviews" were
+  removed on 2026-11-10 because they couldn't be backed up. Don't swap in a
+  new number, and don't add "years in business" or "just started" wording.
+- "verified buyer" / "verified on" claims or badges
+- delivery timelines, competitor mentions, or claims about what most
+  customers say or do
+
+**No rating markup anywhere.** Never add `Review`, `AggregateRating`,
+`Rating`, `review` or `aggregateRating` to any JSON-LD on the site,
+including from the widget's stars. `validate_batch.py` step 10 fails on any of
+those types, and on "4.9", "487", "1,200" or "verified buyer" in the visible
+text of `/testimonials`.
+
+**Why `FeaturableReviews.tsx` is a client component.** Next only runs a given
+script once per session. Pasted as a plain `<script>`, the widget rendered on
+a direct visit but stayed empty after navigating away and back. The component
+uses `next/script`'s `onReady`, which fires on every mount, and calls
+`window.initializeFeaturableWidget` only when the div is still empty.
+
+`components/SiteBlocks.tsx` holds the CTA row, "We Handle It All" checklist and
+related-links row for non-city pages. City pages keep their own copies in
+`CityPageContentV2.tsx`.
+
+**Known leftovers elsewhere (as of 2026-11-10, not yet changed):**
+- the homepage's three hard-coded named reviews
+- `/calculator`'s "4.9 stars across 487 reviews" heading and two named quotes
+- `app/_about` (not routed, because of the underscore) has a "4.9★" stat
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in
