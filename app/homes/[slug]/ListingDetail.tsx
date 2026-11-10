@@ -7,6 +7,8 @@ import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
 import { listingBadge } from '@/lib/badges'
 import { isTinyHome } from '@/lib/tinyHomes'
+import PaymentEstimate from '@/components/PaymentEstimate'
+import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
 
 function fmt(n: number) {
   return n.toLocaleString('en-US', {
@@ -175,7 +177,7 @@ function RelatedCard({ listing }: { listing: Listing }) {
     .join(' · ')
 
   return (
-    <Link href={`/homes/${listing.slug}`} className="bmh-inv-card" style={{ textDecoration: 'none' }}>
+    <div className="bmh-inv-card bmh-inv-card-stretch">
       {listing.images[0] ? (
         <div className="bmh-ratio-3x2 bmh-inv-card-media" style={{ position: 'relative' }}>
           <span className={`bmh-badge-caps ${badgeCls} bmh-inv-card-tag`}>{badgeLabel}</span>
@@ -199,7 +201,9 @@ function RelatedCard({ listing }: { listing: Listing }) {
       )}
       <div className="bmh-inv-card-body">
         <h3 className="bmh-inv-card-title" style={{ fontSize: 20 }}>
-          {listing.title}
+          <Link href={`/homes/${listing.slug}`} className="bmh-card-link">
+            {listing.title}
+          </Link>
         </h3>
         <p className="bmh-inv-card-sub">{subText}</p>
         <div className="bmh-inv-card-specs">
@@ -212,13 +216,13 @@ function RelatedCard({ listing }: { listing: Listing }) {
             {listing.price > 0
               ? `$${listing.price.toLocaleString()}`
               : listing.monthlyPayment > 0
-              ? `$${listing.monthlyPayment.toLocaleString()}/mo`
+              ? <PaymentEstimate amount={listing.monthlyPayment} />
               : 'Call for price'}
           </span>
           <span className="bmh-inv-card-link">View →</span>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }
 
@@ -589,9 +593,14 @@ export default function ListingDetail({
                           {isPromoListing(listing.slug) && <PromoBadge activeAtRender={promoActiveAtRender} />}
                         </div>
                         {listing.monthlyPayment > 0 && (
-                          <p className="bmh-caption" style={{ color: 'var(--color-muted)', marginTop: 6 }}>
-                            Est. {fmt(listing.monthlyPayment)}/mo
-                          </p>
+                          <>
+                            <p className="bmh-caption" style={{ color: 'var(--color-muted)', marginTop: 6 }}>
+                              <PaymentEstimate amount={listing.monthlyPayment}>
+                                {fmt(listing.monthlyPayment)}/mo
+                              </PaymentEstimate>
+                            </p>
+                            <PaymentFootnote style={{ marginTop: 8 }} />
+                          </>
                         )}
                       </>
                     ) : (
@@ -611,8 +620,11 @@ export default function ListingDetail({
                                 margin: 0,
                               }}
                             >
-                              {fmt(listing.monthlyPayment)}<span style={{ fontSize: '0.45em', color: 'var(--color-muted)', marginLeft: 4 }}>/mo</span>
+                              <PaymentEstimate amount={listing.monthlyPayment}>
+                                {fmt(listing.monthlyPayment)}<span style={{ fontSize: '0.45em', color: 'var(--color-muted)', marginLeft: 4 }}>/mo</span>
+                              </PaymentEstimate>
                             </p>
+                            <PaymentFootnote style={{ marginTop: 8 }} />
                             <p className="bmh-caption" style={{ color: 'var(--color-muted)', marginTop: 6 }}>
                               Call us for purchase price
                             </p>
@@ -755,6 +767,7 @@ export default function ListingDetail({
                 <RelatedCard key={l.id} listing={l} />
               ))}
             </div>
+            {related.some(showsMonthlyPayment) && <PaymentFootnote />}
             <div className="bmh-spacer-lg" />
             <div style={{ textAlign: 'center' }}>
               <Link href="/browse" className="bmh-btn bmh-btn-secondary bmh-btn-lg">

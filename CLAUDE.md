@@ -734,8 +734,9 @@ changed or emptied.
   sale price, a "was" price or a strikethrough.
 - Prices never go in page titles, meta or OG descriptions (the "Priced at"
   clause was removed from `generateMetadata` for this), or city pages.
-  City-page cards only read `monthlyPayment`, so they show "Call for price"
-  regardless.
+  City-page cards only read `monthlyPayment`: they show the estimated payment
+  (with its disclosure) when there is one, otherwise "Call for price". They
+  never show a list price.
 - On a priced listing's page, the badge appears twice: next to the title and
   next to the "List price" figure.
 - Never add the promo or a price to schema: no `offers`, `price` or
@@ -860,12 +861,65 @@ Content limits on `/tiny-homes` and the tab:
 - No financing, setup, delivery or placement claims. They can't be verified
   for every listing, park models included. The page links to the free
   mortgage analysis and a quote request without claiming anything about them.
-- No payment amounts (`showPayment={false}`), because no estimated-payment
-  disclaimer is deployed. Revisit if one is added.
+- No payment amounts (`showPayment={false}`). The estimated-payment
+  disclosure now exists (see below), but the owner chose to keep payments off
+  this page.
 - No claims about who buys tiny homes or why, and no regulatory definitions.
 
 The page is in the sitemap, in `llms.txt` under Key Offerings, and in
 `validate_batch.py`'s required-schema check.
+
+## Estimated payment disclosure (`lib/disclaimers.ts`)
+
+**Every monthly payment amount on the site shows "est." and an info button,**
+like "$950/mo est. (i)". This applies to monthly payments only, never to list
+prices or "Call for price". It started on 2026-11-10.
+
+- **One source of text.** `PAYMENT_DISCLOSURE` in `lib/disclaimers.ts` holds
+  the label ("est."), the dialog title and the body. Never copy the body into
+  another file: `validate_batch.py` step 4b fails if any of its sentences
+  appear outside `lib/disclaimers.ts`.
+- **One component.** Render every payment with
+  `<PaymentEstimate amount={...} />` (`components/PaymentEstimate.tsx`). Its
+  info button is a real `<button type="button">` with
+  `aria-label="About this estimated payment"`, `aria-expanded` and
+  `aria-controls`. The dialog:
+  - opens on tap or click, never on hover
+  - is portaled to `<body>` at z-index 1100, above the promo and badge tags
+    and the Spin-to-Win popup (1000)
+  - closes on Esc, an outside tap or its Close button, and returns focus to
+    the icon
+  - doesn't lock scroll, so opening it never shifts the layout
+  - has a 44px tap target around an 18px icon
+- **Visible text too.** `<PaymentFootnote />` shows the full body under every
+  card grid that contains a payment, and directly under the payment on a
+  listing page. The disclosure is never only behind a click.
+- **Where payments render:**
+  - `/browse` and other `ListingCard` grids
+  - the homepage's featured cards
+  - listing pages: the price panel and the "More homes like this one" cards
+  - city pages' "Homes to Get You Started" cards
+
+  `/tiny-homes` still hides payments (`showPayment={false}`), by the owner's
+  choice. `/calculator` renders no payment amounts. Payments never appear in
+  titles, meta descriptions, schema or `llms.txt`. The budget-filter options
+  ("$750–$1,000/mo") are search ranges, not a home's payment, so they carry
+  no label.
+- **Cards are not links.** A `<button>` can't legally sit inside `<a>`, so
+  every card with a payment is a `<div class="bmh-inv-card
+  bmh-inv-card-stretch">`. The real link is on the title
+  (`.bmh-card-link`), and its `::after` covers the whole card (z-index 3), so
+  the card stays fully clickable. The info button sits above it (z-index 4)
+  and also stops click propagation. Keep this pattern for any new card type.
+- **Rendered check.** `validate_batch.py` step 11b fetches the homepage,
+  `/browse`, `/tiny-homes`, `/calculator`, every listing page and every
+  checked city page. It fails if any "$N/mo" renders outside a `PaymentEstimate`
+  wrapper with "est." and the button. Budget `<select>` options are skipped.
+- **No financing specifics.** Don't add a rate, term, down payment, lender,
+  or included/not-included claim to the disclosure. On 2026-11-10 Notion's
+  Interest Rate, Loan Term Years and Down Payment Est fields were empty for
+  all 63 pages. If they get filled in, the wording has to be revisited to
+  match before those numbers are shown anywhere.
 
 ## Analytics
 

@@ -6,6 +6,8 @@ import type { CityContent } from '@/lib/cityContent'
 import { sampleListings } from '@/lib/sampleListings'
 import { TURNKEY_ITEMS, OUT_THE_DOOR_ITEMS } from '@/lib/setupItems'
 import FaqAccordion from '@/components/FaqAccordion'
+import PaymentEstimate from '@/components/PaymentEstimate'
+import PaymentFootnote from '@/components/PaymentFootnote'
 
 const CIRRUS_URL =
   'https://creditapp.cirrussolutions.com/GeneratedLink/Index/ae6a6bcb-8358-f111-a334-005056b4717b'
@@ -295,7 +297,7 @@ export default function CityPageContentV2({
             <div className="bmh-spacer-md" />
             <div className="bmh-inv-grid">
               {popular.map((listing) => (
-                <Link key={listing.slug} href={`/homes/${listing.slug}`} className="bmh-inv-card" style={{ textDecoration: 'none' }}>
+                <div key={listing.slug} className="bmh-inv-card bmh-inv-card-stretch">
                   <div className="bmh-ratio-3x2 bmh-inv-card-media" style={{ position: 'relative' }}>
                     {listing.images[0] && (
                       <Image
@@ -309,21 +311,24 @@ export default function CityPageContentV2({
                   </div>
                   <div className="bmh-inv-card-body">
                     <h3 className="bmh-inv-card-title" style={{ fontSize: 22 }}>
-                      {listing.title}
+                      <Link href={`/homes/${listing.slug}`} className="bmh-card-link">
+                        {listing.title}
+                      </Link>
                     </h3>
                     <p className="bmh-inv-card-sub">
                       {listing.wideType ?? 'Singlewide'} · {listing.beds} bd · {listing.baths} ba · {listing.sqft.toLocaleString()} sqft
                     </p>
                     <div className="bmh-inv-card-footer">
                       <span className="bmh-inv-card-price">
-                        {listing.monthlyPayment > 0 ? `$${listing.monthlyPayment.toLocaleString()}/mo` : 'Call for price'}
+                        {listing.monthlyPayment > 0 ? <PaymentEstimate amount={listing.monthlyPayment} /> : 'Call for price'}
                       </span>
                       <span className="bmh-inv-card-link">View →</span>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))}
             </div>
+            {popular.some((l) => l.monthlyPayment > 0) && <PaymentFootnote />}
           </div>
         </section>
       )}

@@ -4,6 +4,8 @@ import type { Metadata } from 'next'
 import { fetchAllListings } from '@/lib/notion'
 import SpinToWinPopup from '@/components/SpinToWinPopup'
 import FeaturableReviews from '@/components/FeaturableReviews'
+import PaymentEstimate from '@/components/PaymentEstimate'
+import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
 
 export const revalidate = 3000
 
@@ -271,11 +273,7 @@ export default async function HomePage() {
                 .join(' · ')
 
               return (
-                <Link
-                  key={listing.id}
-                  href={`/homes/${listing.slug}`}
-                  className="bmh-inv-card"
-                >
+                <div key={listing.id} className="bmh-inv-card bmh-inv-card-stretch">
                   {listing.images[0] ? (
                     <div
                       className="bmh-ratio-3x2 bmh-inv-card-media"
@@ -312,7 +310,11 @@ export default async function HomePage() {
                   )}
 
                   <div className="bmh-inv-card-body">
-                    <h3 className="bmh-inv-card-title">{listing.title}</h3>
+                    <h3 className="bmh-inv-card-title">
+                      <Link href={`/homes/${listing.slug}`} className="bmh-card-link">
+                        {listing.title}
+                      </Link>
+                    </h3>
                     <p className="bmh-inv-card-sub">
                       {listing.beds} bed · {listing.baths} bath ·{' '}
                       {listing.sqft.toLocaleString()} sq ft · {subLabel}
@@ -334,17 +336,18 @@ export default async function HomePage() {
                         {listing.price > 0
                           ? <>${listing.price.toLocaleString()} <small>· starting</small></>
                           : listing.monthlyPayment > 0
-                          ? <>${listing.monthlyPayment.toLocaleString()}<small>/mo</small></>
+                          ? <PaymentEstimate amount={listing.monthlyPayment} />
                           : <>Contact for pricing</>
                         }
                       </span>
                       <span className="bmh-inv-card-link">Details →</span>
                     </div>
                   </div>
-                </Link>
+                </div>
               )
             })}
           </div>
+          {featured.some(showsMonthlyPayment) && <PaymentFootnote />}
         </div>
       </section>
 

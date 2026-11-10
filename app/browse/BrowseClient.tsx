@@ -3,6 +3,7 @@ import { useState, type CSSProperties } from 'react'
 import Link from 'next/link'
 import type { Listing } from '@/lib/sampleListings'
 import ListingCard from '@/components/ListingCard'
+import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
 import { pinRank } from '@/lib/promo'
 
 type Filter = 'all' | 'single' | 'double'
@@ -248,6 +249,7 @@ export default function BrowseClient({
               />
             ))}
           </div>
+          {filtered.some(showsMonthlyPayment) && <PaymentFootnote />}
 
           <div className="bmh-spacer-lg" />
           <div

@@ -4,11 +4,14 @@ import type { Listing } from '@/lib/sampleListings'
 import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
 import { listingBadge } from '@/lib/badges'
+import PaymentEstimate from '@/components/PaymentEstimate'
 
 /**
  * Inventory card used on /browse and /tiny-homes. Moved out of BrowseClient
- * unchanged; `showPayment={false}` hides the estimated monthly payment (pages
- * without a payment disclaimer show "Call for price" instead).
+ * unchanged; `showPayment={false}` hides the estimated monthly payment.
+ *
+ * The card is a <div> with a stretched title link (.bmh-card-link::after
+ * covers the card), so the payment info <button> isn't nested inside <a>.
  */
 export default function ListingCard({
   listing,
@@ -47,11 +50,7 @@ export default function ListingCard({
     )
 
   return (
-    <Link
-      href={`/homes/${listing.slug}`}
-      className="bmh-inv-card"
-      style={{ textDecoration: 'none' }}
-    >
+    <div className="bmh-inv-card bmh-inv-card-stretch">
       {listing.images[0] ? (
         <div
           className="bmh-ratio-3x2 bmh-inv-card-media"
@@ -78,7 +77,9 @@ export default function ListingCard({
       )}
       <div className="bmh-inv-card-body">
         <h3 className="bmh-inv-card-title" style={{ fontSize: 22 }}>
-          {listing.title}
+          <Link href={`/homes/${listing.slug}`} className="bmh-card-link">
+            {listing.title}
+          </Link>
         </h3>
         <p className="bmh-inv-card-sub">{subText}</p>
         <div className="bmh-inv-card-specs">
@@ -97,12 +98,12 @@ export default function ListingCard({
             {listing.price > 0
               ? `$${listing.price.toLocaleString()}`
               : showPayment && listing.monthlyPayment > 0
-              ? `$${listing.monthlyPayment.toLocaleString()}/mo`
+              ? <PaymentEstimate amount={listing.monthlyPayment} />
               : 'Call for price'}
           </span>
           <span className="bmh-inv-card-link">View →</span>
         </div>
       </div>
-    </Link>
+    </div>
   )
 }

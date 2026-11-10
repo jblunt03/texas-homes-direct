@@ -497,6 +497,86 @@ def step_schema_and_localhost(city_slugs):
     return report("10-11. Required schema + no localhost", ok, detail)
 
 
+# ─── Estimated-payment disclosure (see CLAUDE.md "Estimated payment disclosure")
+# Every "$N/mo" a page renders must sit inside components/PaymentEstimate.tsx's
+# wrapper (<span class="bmh-pay" data-pay>), which carries the "est." label and
+# the info <button>. Budget-filter <option>s ("$750–$1,000/mo") are search
+# ranges, not a home's payment, so <select> blocks are stripped first.
+PAY_BLOCK_RE = re.compile(r'<span class="bmh-pay[^"]*" data-pay="">(.*?)</button></span>', re.S)
+PAY_AMOUNT_RE = re.compile(r"\$[\d,]+\s*(?:<[^>]*>\s*)*/mo\b")
+PAY_INFO_LABEL = 'aria-label="About this estimated payment"'
+DISCLOSURE_SOURCE = REPO_ROOT / "lib" / "disclaimers.ts"
+
+
+def disclosure_sentences():
+    """The disclosure body's sentences, read from lib/disclaimers.ts itself
+    (so this script never holds its own copy of the text)."""
+    src = DISCLOSURE_SOURCE.read_text()
+    m = re.search(r"body:\s*'((?:[^'\\]|\\.)*)'", src, re.S)
+    if not m:
+        return []
+    return [x.strip() for x in re.split(r"(?<=\.)\s+", m.group(1)) if len(x.split()) >= 6]
+
+
+def step_payment_disclosure_source():
+    problems = []
+    sentences = disclosure_sentences()
+    if not sentences:
+        problems.append("  Could not read PAYMENT_DISCLOSURE.body from lib/disclaimers.ts")
+    for folder in ("app", "components", "lib", "public", "scripts"):
+        for path in (REPO_ROOT / folder).rglob("*"):
+            if not path.is_file() or path == DISCLOSURE_SOURCE or path.suffix not in {
+                ".ts", ".tsx", ".js", ".mjs", ".py", ".txt", ".md", ".json", ".html"
+            }:
+                continue
+            try:
+                text = path.read_text()
+            except UnicodeDecodeError:
+                continue
+            for sent in sentences:
+                if sent[:60] in text:
+                    problems.append(f"  {path.relative_to(REPO_ROOT)}: contains disclosure text — import it from lib/disclaimers.ts instead")
+                    break
+    ok = not problems
+    detail = problems or [f"Disclosure text ({len(sentences)} sentences) appears only in lib/disclaimers.ts."]
+    return report("4b. Payment disclosure has one source", ok, detail)
+
+
+def listing_slugs():
+    src = (REPO_ROOT / "lib" / "sampleListings.ts").read_text()
+    return re.findall(r"\n    slug: '([^']+)'", src)
+
+
+def step_payment_disclosure_rendered(city_slugs):
+    pages = ["/", "/browse", "/tiny-homes", "/calculator"]
+    pages += [f"/homes/{s}" for s in listing_slugs()]
+    pages += [f"/mobile-homes-{s}-tx" for s in city_slugs]
+    problems = []
+    wrapped_total = 0
+    for path in pages:
+        try:
+            status, html = fetch(path)
+        except Exception as e:
+            problems.append(f"  {path}: request failed ({e})")
+            continue
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        body = re.sub(r"<script.*?</script>|<select.*?</select>|<!-- -->", "", html, flags=re.S)
+        for block in PAY_BLOCK_RE.findall(body):
+            wrapped_total += 1
+            if ">est.<" not in block or PAY_INFO_LABEL not in block or 'type="button"' not in block:
+                problems.append(f"  {path}: payment wrapper missing 'est.' or the info button")
+        bare = PAY_AMOUNT_RE.findall(PAY_BLOCK_RE.sub("", body))
+        for amt in bare:
+            problems.append(f"  {path}: payment {re.sub('<[^>]*>', '', amt)!r} rendered without 'est.' and the info button")
+    if wrapped_total == 0:
+        problems.append("  Found zero wrapped payments on any page — the check's patterns no longer match the markup.")
+    ok = not problems
+    detail = problems[:40] or [f"{wrapped_total} payment figures across {len(pages)} pages, every one with 'est.' and the info button."]
+    return report("11b. Every payment shows 'est.' + info button", ok, detail)
+
+
 def main():
     check_all = "--all" in sys.argv
 
@@ -506,6 +586,7 @@ def main():
         ok &= step_cross_city_duplication()
     ok &= step_within_page_redundancy()  # run regardless — independent signal
     ok &= step_hard_rules()
+    ok &= step_payment_disclosure_source()
     ok &= step_image_paths()
     ok &= step_unique_image_pairs()
     ok &= step_tsc()
@@ -529,6 +610,7 @@ def main():
                     print("lib/cities.ts is temporarily modified for this run only and will be restored exactly, even on failure.\n")
                 ok &= step_word_count(city_slugs)
                 ok &= step_schema_and_localhost(city_slugs)
+                ok &= step_payment_disclosure_rendered(city_slugs)
         finally:
             stop_dev_server(proc)
             if ctx:
