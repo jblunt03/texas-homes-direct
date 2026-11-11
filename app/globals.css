@@ -985,3 +985,32 @@
    disable pointer-events on it while the Spin to Win modal is open so the modal
    underneath is clickable. */
 body.bmh-stw-open chat-widget { pointer-events: none !important; }
+
+/* ── Inventory pages on large screens (/browse and /tiny-homes) ──────────
+   Scoped to .bmh-wide-inventory and to min-width 1024px only: phones and
+   tablets render exactly as before. See CLAUDE.md "/browse sizing".
+     1024-1439px: container up to 1720px, 32px side padding, 3 columns
+     1440px+    : 48px side padding
+     1280px+    : card title/spec/payment text ~10-15% larger
+     1600px+    : 4 columns
+   ListingCard's base title size (22px) lives in .bmh-listing-card-title so
+   it can be raised here instead of being an inline style. */
+.bmh-listing-card-title { font-size: 22px; }
+@media (min-width: 1024px) {
+  .bmh-wide-inventory .bmh-container { max-width: 1720px; }
+}
+@media (min-width: 1280px) {
+  .bmh-wide-inventory .bmh-inv-card-body { padding: 22px 24px 24px; }
+  .bmh-wide-inventory .bmh-listing-card-title { font-size: 25px; }
+  .bmh-wide-inventory .bmh-inv-card-sub { font-size: 15.5px; }
+  .bmh-wide-inventory .bmh-spec { font-size: 14.5px; }
+  .bmh-wide-inventory .bmh-inv-card-price { font-size: 31.5px; }
+  .bmh-wide-inventory .bmh-pay-est { font-size: 14.5px; }
+  .bmh-wide-inventory .bmh-inv-card-link { font-size: 15.5px; }
+}
+@media (min-width: 1440px) {
+  .bmh-wide-inventory .bmh-container { padding: 0 48px; }
+}
+@media (min-width: 1600px) {
+  .bmh-wide-inventory .bmh-inv-grid { grid-template-columns: repeat(4, 1fr); gap: 28px; }
+}

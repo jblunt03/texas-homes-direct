@@ -17,10 +17,13 @@ export default function ListingCard({
   listing,
   promoActiveAtRender,
   showPayment = true,
+  priority = false,
 }: {
   listing: Listing
   promoActiveAtRender: boolean
   showPayment?: boolean
+  /** Load this card's photo eagerly (first row of a grid); the rest stay lazy. */
+  priority?: boolean
 }) {
   const badgeCls = listing.featured ? 'bmh-badge-coral' : 'bmh-badge-caps'
   const badgeLabel = listing.featured ? 'Featured' : 'In stock'
@@ -61,12 +64,13 @@ export default function ListingCard({
             src={listing.images[0]}
             alt={`${listing.title} exterior`}
             fill
+            priority={priority}
             style={
               listing.floorplanUrl && listing.images[0] === listing.floorplanUrl
                 ? { objectFit: 'contain', background: '#fff', padding: 12 }
                 : { objectFit: 'cover' }
             }
-            sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
+            sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, (min-width: 1600px) 25vw, 33vw"
           />
         </div>
       ) : (
@@ -76,7 +80,7 @@ export default function ListingCard({
         </div>
       )}
       <div className="bmh-inv-card-body">
-        <h3 className="bmh-inv-card-title" style={{ fontSize: 22 }}>
+        <h3 className="bmh-inv-card-title bmh-listing-card-title">
           <Link href={`/homes/${listing.slug}`} className="bmh-card-link">
             {listing.title}
           </Link>

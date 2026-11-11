@@ -121,6 +121,7 @@ export default async function TinyHomesPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(itemListJsonLd) }} />
 
+      <div className="bmh-wide-inventory">
       {/* BREADCRUMBS */}
       <nav aria-label="Breadcrumb" style={{ background: 'var(--color-canvas)', padding: '16px 0 0' }}>
         <div className="bmh-container" style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--color-muted, #6b7280)' }}>
@@ -160,12 +161,13 @@ export default async function TinyHomesPage() {
         <div className="bmh-container">
           {homes.length > 0 ? (
             <div className="bmh-inv-grid">
-              {homes.map((listing) => (
+              {homes.map((listing, i) => (
                 <ListingCard
                   key={listing.id}
                   listing={listing}
                   promoActiveAtRender={isPromoActive()}
                   showPayment={false}
+                  priority={i < 4}
                 />
               ))}
             </div>
@@ -224,6 +226,7 @@ export default async function TinyHomesPage() {
           </Link>
         </div>
       </section>
+      </div>
     </>
   )
 }

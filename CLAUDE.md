@@ -993,6 +993,46 @@ No title, meta description, blog post or city-page copy mentions a model year.
   page, or any listing page's Year stat, shows a year different from that
   listing's own.
 
+## /browse sizing on large screens (`.bmh-wide-inventory`)
+
+`/browse` and `/tiny-homes` (both use `components/ListingCard.tsx`) are wrapped
+in `.bmh-wide-inventory`. Its CSS lives at the end of `app/globals.css` and
+applies **only at min-width 1024px**. Phones and tablets are unchanged, and
+375px, 768px and 1024px measured identically before and after on 2026-11-11.
+City pages, the homepage and related-home cards keep the normal
+1200px container and card sizes.
+
+| Width | Container | Side padding | Columns | Card width (before → after) |
+|---|---|---|---|---|
+| 1024px | 1720px max | 32px | 3 | 304 → 304 |
+| 1280px | 1720px max | 32px | 3 | 363 → 389 |
+| 1440px | 1720px max | 48px | 3 | 363 → 432 |
+| 1599px | 1720px max | 48px | 3 | 363 → 485 |
+| 1600px | 1720px max | 48px | 4 (28px gap) | 363 → 355 |
+| 1920px+ | 1720px (capped) | 48px | 4 | 363 → 385 |
+
+At 1280px and up, card text is about 10–15% larger:
+- title 22 → 25px (`.bmh-listing-card-title`, which replaced `ListingCard`'s
+  inline `fontSize: 22`)
+- subtitle 14 → 15.5px
+- specs 13 → 14.5px
+- price/payment 28 → 31.5px
+- "est." 13 → 14.5px
+
+Body padding grows slightly at the same breakpoint.
+
+**Photos:**
+- The first 4 card photos load with `priority` (eager), since the widest row
+  has 4 columns. The rest stay lazy.
+- Cards keep a fixed 3:2 box, so there's no layout shift (measured 0).
+- No photo is upscaled at 1x: the smallest first-photo source is 768px (The
+  Giddings), and the widest card is 485px.
+- On 2x (Retina) screens at 1440–1599px wide, The Giddings (768px source) and
+  The Sealy (954px) are slightly under 2x. Replacing those two first photos
+  with ~1000px+ sources would fix it.
+- `next.config.mjs` serves images unoptimized, so `sizes` doesn't change which
+  file loads.
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in

@@ -8,6 +8,10 @@ import { pinRank } from '@/lib/promo'
 
 type Filter = 'all' | 'single' | 'double'
 
+// The widest grid has 4 columns, so the first 4 card photos load eagerly
+// (the first row at any width); the rest stay lazy.
+const EAGER_CARDS = 4
+
 const BUDGET_OPTIONS = [
   { value: '', label: 'Any budget' },
   { value: '750-1000', label: '$750–$1,000/mo' },
@@ -131,7 +135,7 @@ export default function BrowseClient({
   ]
 
   return (
-    <>
+    <div className="bmh-wide-inventory">
       {/* PAGE HEADER */}
       <section className="bmh-page-header" style={{ background: 'var(--color-canvas)' }}>
         <div className="bmh-container">
@@ -241,11 +245,12 @@ export default function BrowseClient({
       <section className="bmh-section" style={{ background: 'var(--color-canvas)' }}>
         <div className="bmh-container">
           <div className="bmh-inv-grid">
-            {filtered.map((listing) => (
+            {filtered.map((listing, i) => (
               <ListingCard
                 key={listing.id}
                 listing={listing}
                 promoActiveAtRender={promoActiveAtRender}
+                priority={i < EAGER_CARDS}
               />
             ))}
           </div>
@@ -298,6 +303,6 @@ export default function BrowseClient({
           </div>
         </div>
       </section>
-    </>
+    </div>
   )
 }
