@@ -577,6 +577,57 @@ def step_payment_disclosure_rendered(city_slugs):
     return report("11b. Every payment shows 'est.' + info button", ok, detail)
 
 
+# ─── Archived sections (lib/archived.json + lib/archived.ts) ─────────────
+# While a section's flag is true, its route must not appear in the header
+# nav, footer, sitemap or llms.txt, and must answer with a TEMPORARY (307)
+# redirect to "/". See CLAUDE.md "Archived sections".
+def archived_routes():
+    flags = json.loads((REPO_ROOT / "lib" / "archived.json").read_text())
+    routes = dict(re.findall(r"(\w+): '(/[^']+)'", (REPO_ROOT / "lib" / "archived.ts").read_text()))
+    return {key: routes.get(key) for key, on in flags.items() if on}
+
+
+def fetch_no_redirect(path):
+    import http.client
+    conn = http.client.HTTPConnection("localhost", PORT, timeout=60)
+    conn.request("GET", path)
+    resp = conn.getresponse()
+    return resp.status, resp.getheader("Location")
+
+
+def step_archived_routes():
+    problems = []
+    active = archived_routes()
+    if not active:
+        return report("11c. Archived sections hidden", True, ["No section is archived."])
+    status, home = fetch("/")
+    _, sitemap = fetch("/sitemap.xml")
+    llms = (REPO_ROOT / "public" / "llms.txt").read_text()
+    header = "".join(re.findall(r"<header.*?</header>", home, re.S))
+    footer = "".join(re.findall(r"<footer.*?</footer>", home, re.S))
+    # The mobile menu renders outside <header> on some layouts; check it too.
+    mobile = "".join(re.findall(r'<div class="bmh-mobile-menu.*?</div>\s*</div>', home, re.S))
+    if not header or not footer:
+        problems.append("  Couldn't find <header> or <footer> on / — the check's patterns no longer match.")
+    for key, route in active.items():
+        if not route:
+            problems.append(f"  '{key}' is archived in lib/archived.json but has no route in lib/archived.ts")
+            continue
+        for label, html in (("header nav", header), ("mobile menu", mobile), ("footer", footer)):
+            if re.search(rf'href="{re.escape(route)}(?:/[^"]*)?"', html):
+                problems.append(f"  {route} is archived but linked in the {label}")
+        if re.search(rf"<loc>[^<]*{re.escape(route)}(?:/[^<]*)?</loc>", sitemap):
+            problems.append(f"  {route} is archived but listed in /sitemap.xml")
+        if re.search(rf"{re.escape(route)}\b", llms):
+            problems.append(f"  {route} is archived but mentioned in public/llms.txt")
+        rstatus, location = fetch_no_redirect(route)
+        if rstatus != 307 or (location or "").rstrip("/") not in ("", "http://localhost:%d" % PORT):
+            problems.append(f"  {route} should 307-redirect to / while archived, got {rstatus} -> {location!r}")
+    ok = not problems
+    detail = problems or [f"Archived and hidden: {', '.join(r for r in active.values())} (307 to /, absent from nav, footer, sitemap, llms.txt)."]
+    return report("11c. Archived sections hidden", ok, detail)
+
+
 def main():
     check_all = "--all" in sys.argv
 
@@ -610,6 +661,7 @@ def main():
                     print("lib/cities.ts is temporarily modified for this run only and will be restored exactly, even on failure.\n")
                 ok &= step_word_count(city_slugs)
                 ok &= step_schema_and_localhost(city_slugs)
+                ok &= step_archived_routes()
                 ok &= step_payment_disclosure_rendered(city_slugs)
         finally:
             stop_dev_server(proc)

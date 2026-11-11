@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
+import { isArchivedPath } from '@/lib/archived'
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
@@ -11,7 +12,7 @@ const NAV_LINKS = [
   { href: '/calculator', label: 'Free Pre-Approval' },
   { href: '/testimonials', label: 'Reviews' },
   { href: '/commercial', label: 'Commercial' },
-]
+].filter((link) => !isArchivedPath(link.href)) // see lib/archived.ts
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)

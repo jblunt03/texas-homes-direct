@@ -1,3 +1,5 @@
+import { readFileSync } from 'node:fs'
+
 // Old /locations/[city] pages were retired in favor of /mobile-homes-[slug]-tx
 // (same 16 cities). Redirect each one by name rather than a wildcard so a
 // request for a city that never had an old page 404s normally instead of
@@ -21,10 +23,19 @@ const RETIRED_LOCATION_SLUGS = [
   'seguin',
 ]
 
+// Archived sections (lib/archived.json): while a flag is true, its route
+// redirects TEMPORARILY (307) to the homepage. Flip the flag to false to
+// restore the page. See lib/archived.ts and CLAUDE.md "Archived sections".
+const ARCHIVED = JSON.parse(readFileSync(new URL('./lib/archived.json', import.meta.url), 'utf8'))
+const ARCHIVED_ROUTES = { commercial: '/commercial' }
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
     return [
+      ...Object.entries(ARCHIVED_ROUTES)
+        .filter(([key]) => ARCHIVED[key])
+        .map(([, route]) => ({ source: route, destination: '/', permanent: false })),
       { source: '/locations', destination: '/cities', permanent: true },
       ...RETIRED_LOCATION_SLUGS.map((slug) => ({
         source: `/locations/${slug}`,

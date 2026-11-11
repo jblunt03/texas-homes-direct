@@ -2,6 +2,7 @@ import { MetadataRoute } from 'next'
 import { sampleListings } from '@/lib/sampleListings'
 import { blogPosts } from '@/lib/blogPosts'
 import { publishedCities } from '@/lib/cities'
+import { isArchivedPath } from '@/lib/archived'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://www.texashomesdirect.com'
@@ -17,7 +18,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'how-pricing-works',
     'whats-included-in-setup',
     'tiny-homes',
-  ].map((p) => ({
+  ]
+    .filter((p) => !isArchivedPath(`/${p}`)) // see lib/archived.ts
+    .map((p) => ({
     url: p ? `${base}/${p}` : base,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,

@@ -921,6 +921,39 @@ prices or "Call for price". It started on 2026-11-10.
   all 63 pages. If they get filled in, the wording has to be revisited to
   match before those numbers are shown anywhere.
 
+## Archived sections (`lib/archived.json`)
+
+**One switch per section.** `lib/archived.json` holds a boolean for each
+archivable section. As of 2026-11-11 there's one: `"commercial": true`. While
+a flag is true:
+- **Links hidden:** the section's link is filtered out of the header nav
+  (desktop and mobile both render `NAV_LINKS` in `components/Navbar.tsx`) and
+  `app/sitemap.ts`, using `isArchivedPath()` from `lib/archived.ts`. Those
+  were the only two places that linked to `/commercial`; the footer never
+  did. If a link to an archived section is ever added anywhere, filter it the
+  same way.
+- **Temporary redirect:** `next.config.mjs` reads the same JSON file and adds a
+  307 redirect (`permanent: false`) from the route to `/`. Never make it
+  permanent (301/308): browsers and Google cache those, and that would undo
+  the point of archiving.
+- **Nothing deleted:** the page (`app/commercial/page.tsx`), its components and
+  its content stay in the repo, unchanged.
+- **Validator:** `validate_batch.py` step 11c fails if an archived route still
+  appears in the nav, mobile menu, footer, sitemap or `public/llms.txt`, or
+  doesn't answer with a 307 to `/`.
+
+**To restore Commercial:** set `"commercial": false` in `lib/archived.json`,
+then commit and deploy. The nav link, the sitemap entry and the page come
+back, and the redirect goes away.
+- `/commercial` was never in the footer or `llms.txt`, so nothing returns
+  there.
+- `/commercial` wasn't in the validator's required-schema list, so nothing to
+  restore there either.
+
+**To archive another section:** add its key to `lib/archived.json`, add its
+route to `ARCHIVED_ROUTES` in both `lib/archived.ts` and `next.config.mjs`,
+and make sure every place that links to it filters with `isArchivedPath()`.
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in
