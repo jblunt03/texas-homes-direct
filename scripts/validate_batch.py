@@ -628,6 +628,82 @@ def step_archived_routes():
     return report("11c. Archived sections hidden", ok, detail)
 
 
+# ─── Model year (see CLAUDE.md "Model year") ─────────────────────────────
+# Static: no listing in lib/sampleListings.ts may carry an outdated model year
+# (2026). Rendered: every card and listing page must show the listing's own
+# year — the card subtitle/spec on /, /browse, /tiny-homes and related-home
+# cards, and the "Year" stat on each listing page.
+OUTDATED_MODEL_YEARS = {2026}
+
+
+def listing_years():
+    src = (REPO_ROOT / "lib" / "sampleListings.ts").read_text()
+    out = {}
+    for block in re.split(r"\n  \{\n", src)[1:]:
+        slug = re.search(r"\n    slug: '([^']+)'", "\n" + block)
+        year = re.search(r"\n    year: (\d+),", "\n" + block)
+        if slug and year:
+            out[slug.group(1)] = int(year.group(1))
+    return out
+
+
+def step_model_year_static():
+    years = listing_years()
+    bad = sorted(s for s, y in years.items() if y in OUTDATED_MODEL_YEARS)
+    problems = [f"  {s}: year {years[s]} (outdated model year)" for s in bad]
+    if not years:
+        problems.append("  Parsed zero listing years from lib/sampleListings.ts — the pattern no longer matches.")
+    counts = {}
+    for y in years.values():
+        counts[y] = counts.get(y, 0) + 1
+    ok = not problems
+    detail = problems or [f"{len(years)} listings by year: {dict(sorted(counts.items()))}."]
+    return report("4c. Listing model years current", ok, detail)
+
+
+CARD_SPLIT_RE = re.compile(r'(?=<div class="bmh-inv-card)')
+YEAR_IN_CARD_RE = re.compile(r'<(?:p class="bmh-inv-card-sub"|span class="bmh-spec")[^>]*>(.*?)</(?:p|span)>', re.S)
+
+
+def step_model_year_rendered():
+    years = listing_years()
+    pages = ["/", "/browse", "/tiny-homes"] + [f"/homes/{s}" for s in years]
+    problems = []
+    cards_checked = 0
+    for path in pages:
+        try:
+            status, html = fetch(path)
+        except Exception as e:
+            problems.append(f"  {path}: request failed ({e})")
+            continue
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        html = html.replace("<!-- -->", "")
+        for chunk in CARD_SPLIT_RE.split(html)[1:]:
+            m = re.search(r'href="/homes/([^"]+)"', chunk)
+            if not m or m.group(1) not in years:
+                continue
+            chunk = chunk[: chunk.find('class="bmh-inv-card-footer"')] if 'bmh-inv-card-footer' in chunk else chunk[:4000]
+            shown = {int(y) for txt in YEAR_IN_CARD_RE.findall(chunk) for y in re.findall(r"\b(20[2-3]\d)\b", re.sub(r"<[^>]+>", "", txt))}
+            cards_checked += 1
+            want = years[m.group(1)]
+            if shown and shown != {want}:
+                problems.append(f"  {path}: card for {m.group(1)} shows {sorted(shown)}, listing year is {want}")
+        if path.startswith("/homes/"):
+            slug = path.split("/")[-1]
+            stat = re.search(r'bmh-listing-stat-val">(\d{4})</div>\s*<div[^>]*>\s*Year', html, re.I)
+            if not stat:
+                problems.append(f"  {path}: couldn't find the Year stat")
+            elif int(stat.group(1)) != years[slug]:
+                problems.append(f"  {path}: Year stat shows {stat.group(1)}, listing year is {years[slug]}")
+    if cards_checked == 0:
+        problems.append("  Checked zero cards — the card pattern no longer matches the markup.")
+    ok = not problems
+    detail = problems[:40] or [f"{cards_checked} cards and {len(years)} listing pages all show each listing's own year."]
+    return report("11d. Model year shown matches listing", ok, detail)
+
+
 def main():
     check_all = "--all" in sys.argv
 
@@ -638,6 +714,7 @@ def main():
     ok &= step_within_page_redundancy()  # run regardless — independent signal
     ok &= step_hard_rules()
     ok &= step_payment_disclosure_source()
+    ok &= step_model_year_static()
     ok &= step_image_paths()
     ok &= step_unique_image_pairs()
     ok &= step_tsc()
@@ -663,6 +740,7 @@ def main():
                 ok &= step_schema_and_localhost(city_slugs)
                 ok &= step_archived_routes()
                 ok &= step_payment_disclosure_rendered(city_slugs)
+                ok &= step_model_year_rendered()
         finally:
             stop_dev_server(proc)
             if ctx:

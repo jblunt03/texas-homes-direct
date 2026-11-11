@@ -62,6 +62,8 @@ import fs from 'node:fs'
 import path from 'node:path'
 
 const DRY_RUN = process.argv.includes('--dry-run')
+// Keep in step with MODEL_YEAR in lib/modelYear.ts (this script can't import from lib/).
+const DEFAULT_MODEL_YEAR = 2027
 /** --only=slug1,slug2 limits a run to those listings (everything else is left untouched). */
 const ONLY = process.argv.find((a) => a.startsWith('--only='))?.slice('--only='.length).split(',').filter(Boolean)
 const DATA_SOURCE_ID =
@@ -370,7 +372,9 @@ function newListingSource(page: PageObjectResponse, slug: string, floorplanUrl: 
   const status = statuses.includes(propText(page, 'Status')) ? propText(page, 'Status') : NEW_LISTING_DEFAULTS.status
   const id = propText(page, 'Listing ID') || page.id
   const model = propText(page, 'Model')
-  const year = propNum(page, 'Year Built') ?? new Date().getFullYear()
+  // Notion's "Year Built" first; if it's blank, the current model year (mirrors
+  // MODEL_YEAR in lib/modelYear.ts), never the calendar year.
+  const year = propNum(page, 'Year Built') ?? DEFAULT_MODEL_YEAR
   const sqftText = sqft.toLocaleString('en-US')
   const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`
   const wideWord = wide === 'Single Wide' ? 'singlewide' : wide === 'Double Wide' ? 'doublewide' : 'manufactured home'

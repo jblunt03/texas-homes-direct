@@ -18,6 +18,7 @@
  */
 
 import { Client, isFullPage } from '@notionhq/client'
+import { MODEL_YEAR } from '@/lib/modelYear'
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import { sampleListings, type Listing } from './sampleListings'
 import listingImageManifest from './generated/listingImages.json'
@@ -184,7 +185,7 @@ export function mapPage(page: PageObjectResponse): Listing {
   const beds = num(page, 'Bedrooms', 0)
   const baths = num(page, 'Bathrooms', 0)
   const yearRaw = num(page, 'Year Built', 0)
-  const year = yearRaw || new Date().getFullYear()
+  const year = yearRaw || MODEL_YEAR // blank "Year Built" → current model year, not the calendar year
 
   const featuresRaw = rt(page, 'Key Features EN')
   const features = featuresRaw

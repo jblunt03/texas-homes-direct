@@ -954,6 +954,45 @@ back, and the redirect goes away.
 route to `ARCHIVED_ROUTES` in both `lib/archived.ts` and `next.config.mjs`,
 and make sure every place that links to it filters with `isArchivedPath()`.
 
+## Model year (`lib/modelYear.ts`)
+
+**Every home shows model year 2027** (`MODEL_YEAR` in `lib/modelYear.ts`). On
+2026-11-11 the 54 listings at `year: 2026` were changed to 2027 by editing
+only the `year:` lines in `lib/sampleListings.ts`. It was not a find-and-replace:
+- The Kountze's `sqft: 2026` is a square footage and stays.
+- Every date stays as it is: `lastModified`, `dateModified`, the promo's
+  `endsAt`, comments, and the footer's copyright year (computed at render
+  time).
+- No schema field carries the model year. Product schema has no
+  model/production date.
+
+**Where the year displays:**
+- `/browse` and `/tiny-homes` cards (the `ListingCard` subtitle)
+- the homepage's featured cards (spec row)
+- "More homes like this one" cards (subtitle)
+- the listing page's "Year" stat
+
+No title, meta description, blog post or city-page copy mentions a model year.
+
+**Notion and the sync:**
+- The year field in Notion is **Year Built**, and it's blank on every page as
+  of 2026-11-11.
+- `sync:listings` never changes `year` on an existing listing. It only sets
+  `year` when it creates a listing from `NEW_LISTINGS`: Notion's Year Built
+  if filled, otherwise `DEFAULT_MODEL_YEAR` (2027). That was the calendar
+  year until 2026-11-11, which would have stamped new listings 2026.
+- `lib/notion.ts` (dev only, when `NOTION_TOKEN` is set) uses the same
+  fallback via `MODEL_YEAR`.
+- When the model year changes again, update `MODEL_YEAR`, `DEFAULT_MODEL_YEAR`
+  in `scripts/sync-listings.ts`, `OUTDATED_MODEL_YEARS` in
+  `validate_batch.py`, and the listings' `year:` lines.
+
+**Validator:**
+- Step 4c fails if any listing's year is in `OUTDATED_MODEL_YEARS` (2026).
+- Step 11d fails if any card on `/`, `/browse`, `/tiny-homes` or a listing
+  page, or any listing page's Year stat, shows a year different from that
+  listing's own.
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in
