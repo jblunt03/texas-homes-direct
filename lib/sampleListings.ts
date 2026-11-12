@@ -1,6 +1,13 @@
 export interface Listing {
   id: string
+  /**
+   * Permanent URL slug, /homes/<slug>. Format and rules: LISTING_SLUG_RE in
+   * lib/listingSlugs.ts. FROZEN once assigned: never change it, even if the
+   * home is renamed or re-specced.
+   */
   slug: string
+  /** Earlier slugs for this home. Each 308-redirects to `slug` (next.config.mjs). */
+  legacySlugs?: string[]
   title: string
   price: number          // 0 = contact for pricing
   beds: number
@@ -32,7 +39,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-1 · The Pigeon ────────────────────────────────────────────
   {
     id: 'BMH-1',
-    slug: 'marathon-pigeon-3bed-2bath-double-wide',
+    slug: 'lockhart-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-pigeon-3bed-2bath-double-wide'],
     notionId: '366875ae-20d8-8198-91df-ed233dae812f',
     title: 'The Lockhart',
     manufacturer: 'Texas Homes Direct',
@@ -75,7 +83,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-14 · The Dove ─────────────────────────────────────────────
   {
     id: 'BMH-14',
-    slug: 'marathon-dove-1bed-1bath-single-wide',
+    slug: 'smithville-texas-1-bed-1-bath-single-wide',
+    legacySlugs: ['marathon-dove-1bed-1bath-single-wide'],
     notionId: '366875ae-20d8-81f5-8b3b-e2ad7d90ae63',
     title: 'The Smithville',
     manufacturer: 'Texas Homes Direct',
@@ -123,7 +132,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-15 · The Gadwall ──────────────────────────────────────────
   {
     id: 'BMH-15',
-    slug: 'marathon-gadwall-3bed-2bath-double-wide',
+    slug: 'brownwood-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-gadwall-3bed-2bath-double-wide'],
     notionId: '366875ae-20d8-81fe-bb3c-dac472d2d3d0',
     title: 'The Brownwood',
     manufacturer: 'Texas Homes Direct',
@@ -173,7 +183,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-16 · The Pintail ──────────────────────────────────────────
   {
     id: 'BMH-16',
-    slug: 'marathon-pintail-4bed-2bath-double-wide',
+    slug: 'giddings-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-pintail-4bed-2bath-double-wide'],
     notionId: '366875ae-20d8-8165-b36f-d700625f9c66',
     title: 'The Giddings',
     manufacturer: 'Texas Homes Direct',
@@ -218,7 +229,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-17 · The Spoonbill ────────────────────────────────────────
   {
     id: 'BMH-17',
-    slug: 'marathon-spoonbill-3bed-2bath-single-wide',
+    slug: 'brenham-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-spoonbill-3bed-2bath-single-wide'],
     notionId: '366875ae-20d8-8143-8a89-d106341f8408',
     title: 'The Brenham',
     manufacturer: 'Texas Homes Direct',
@@ -274,7 +286,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-18 · The Redhead ──────────────────────────────────────────
   {
     id: 'BMH-18',
-    slug: 'marathon-redhead-3bed-2bath-double-wide',
+    slug: 'bellville-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-redhead-3bed-2bath-double-wide'],
     notionId: '366875ae-20d8-8125-ba8d-ea47f7a3b6c7',
     title: 'The Bellville',
     manufacturer: 'Texas Homes Direct',
@@ -331,7 +344,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-19 · The Wood Duck ────────────────────────────────────────
   {
     id: 'BMH-19',
-    slug: 'marathon-woodduck-3bed-2bath-double-wide',
+    slug: 'sealy-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-woodduck-3bed-2bath-double-wide'],
     notionId: '366875ae-20d8-8183-a4b7-fa3d47ff3a02',
     title: 'The Sealy',
     manufacturer: 'Texas Homes Direct',
@@ -384,9 +398,10 @@ export const sampleListings: Listing[] = [
   // ─── BMH-20 · The Widgeon ──────────────────────────────────────────
   {
     id: 'BMH-20',
-    slug: 'marathon-widgeon-4bed-2bath-double-wide',
+    slug: 'rosenberg-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-widgeon-4bed-2bath-double-wide'],
     notionId: '366875ae-20d8-8145-8753-c1a1a45ba4c1',
-    title: 'The Rosenburg',
+    title: 'The Rosenberg',
     manufacturer: 'Texas Homes Direct',
     model: 'Widgeon',
     dimensions: '32x68',
@@ -438,7 +453,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-21 · The Mallard ──────────────────────────────────────────
   {
     id: 'BMH-21',
-    slug: 'marathon-mallard-4bed-2bath-double-wide',
+    slug: 'san-saba-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-mallard-4bed-2bath-double-wide'],
     notionId: '366875ae-20d8-8131-ad8b-ca65fd45bf44',
     title: 'The San Saba',
     manufacturer: 'Texas Homes Direct',
@@ -494,7 +510,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-22 · The Coleman ─────────────────────────────────────────────
   {
     id: 'BMH-22',
-    slug: 'marathon-coleman-3bed-2bath-double-wide',
+    slug: 'trinity-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-coleman-3bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-8107-9245-e9ca06de24c7',
     title: 'The Trinity',
     manufacturer: 'Texas Homes Direct',
@@ -533,7 +550,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-23 · The Amarillo ─────────────────────────────────────────────
   {
     id: 'BMH-23',
-    slug: 'marathon-amarillo-2bed-2bath-single-wide',
+    slug: 'gonzales-texas-2-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-amarillo-2bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-8133-a99b-f6737d54dc3f',
     title: 'The Gonzales',
     manufacturer: 'Texas Homes Direct',
@@ -565,7 +583,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-24 · The Loving ─────────────────────────────────────────────
   {
     id: 'BMH-24',
-    slug: 'marathon-loving-3bed-2bath-double-wide',
+    slug: 'canton-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-loving-3bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-8137-82f8-c8c40d58c5a6',
     title: 'The Canton',
     manufacturer: 'Texas Homes Direct',
@@ -597,7 +616,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-25 · The Conroe ─────────────────────────────────────────────
   {
     id: 'BMH-25',
-    slug: 'marathon-conroe-2bed-2bath-single-wide',
+    slug: 'kaufman-texas-2-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-conroe-2bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-813b-8db6-d39597c70bc5',
     title: 'The Kaufman',
     manufacturer: 'Texas Homes Direct',
@@ -629,7 +649,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-26 · The Katy ─────────────────────────────────────────────
   {
     id: 'BMH-26',
-    slug: 'marathon-katy-3bed-2bath-single-wide',
+    slug: 'forney-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-katy-3bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-813c-ae76-c6c8bfe92b17',
     title: 'The Forney',
     manufacturer: 'Texas Homes Direct',
@@ -671,7 +692,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-27 · The Jasper ─────────────────────────────────────────────
   {
     id: 'BMH-27',
-    slug: 'marathon-jasper-3bed-2bath-double-wide',
+    slug: 'terrell-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-jasper-3bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-8152-9fb1-c4be16f3d92b',
     title: 'The Terrell',
     manufacturer: 'Texas Homes Direct',
@@ -703,7 +725,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-28 · The Hays ─────────────────────────────────────────────
   {
     id: 'BMH-28',
-    slug: 'marathon-hays-4bed-2bath-double-wide',
+    slug: 'quinlan-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-hays-4bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-8159-9dc1-ebb01d12084b',
     title: 'The Quinlan',
     manufacturer: 'Texas Homes Direct',
@@ -735,7 +758,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-29 · The Mesquite ─────────────────────────────────────────────
   {
     id: 'BMH-29',
-    slug: 'marathon-mesquite-3bed-2bath-single-wide',
+    slug: 'greenville-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-mesquite-3bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-815e-991c-fb3c7b03e456',
     title: 'The Greenville',
     manufacturer: 'Texas Homes Direct',
@@ -781,7 +805,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-30 · The Bell ─────────────────────────────────────────────
   {
     id: 'BMH-30',
-    slug: 'marathon-bell-3bed-2bath-double-wide',
+    slug: 'sulphur-springs-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-bell-3bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-8164-b836-ce1b9ad49e3a',
     title: 'The Sulphur Springs',
     manufacturer: 'Texas Homes Direct',
@@ -813,7 +838,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-31 · The Terra ─────────────────────────────────────────────
   {
     id: 'BMH-31',
-    slug: 'marathon-terra-2bed-1bath-park-model',
+    slug: 'mineola-texas-2-bed-1-bath',
+    legacySlugs: ['marathon-terra-2bed-1bath-park-model'],
     notionId: '3ad875ae-20d8-8168-a68d-c421b20209be',
     title: 'The Mineola',
     manufacturer: 'Texas Homes Direct',
@@ -854,7 +880,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-32 · The Brewster ─────────────────────────────────────────────
   {
     id: 'BMH-32',
-    slug: 'marathon-brewster-3bed-2bath-double-wide',
+    slug: 'quitman-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-brewster-3bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-816a-a56a-c58c2c255a2c',
     title: 'The Quitman',
     manufacturer: 'Texas Homes Direct',
@@ -893,7 +920,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-33 · The Caldwell ─────────────────────────────────────────────
   {
     id: 'BMH-33',
-    slug: 'marathon-caldwell-4bed-2bath-double-wide',
+    slug: 'gilmer-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-caldwell-4bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-8179-8347-d972c1388df7',
     title: 'The Gilmer',
     manufacturer: 'Texas Homes Direct',
@@ -925,7 +953,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-34 · The Trinity ─────────────────────────────────────────────
   {
     id: 'BMH-34',
-    slug: 'marathon-trinity-4bed-2bath-double-wide',
+    slug: 'henderson-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-trinity-4bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-817e-9398-cc6c494c55ea',
     title: 'The Henderson',
     manufacturer: 'Texas Homes Direct',
@@ -957,7 +986,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-35 · The Bailey ─────────────────────────────────────────────
   {
     id: 'BMH-35',
-    slug: 'marathon-bailey-3bed-2bath-double-wide',
+    slug: 'carthage-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-bailey-3bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-818a-8ca2-edcd069e7e71',
     title: 'The Carthage',
     manufacturer: 'Texas Homes Direct',
@@ -989,7 +1019,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-36 · The Kendall ─────────────────────────────────────────────
   {
     id: 'BMH-36',
-    slug: 'marathon-kendall-3bed-2bath-double-wide',
+    slug: 'montgomery-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-kendall-3bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-818b-96ff-cb4e597654eb',
     title: 'The Montgomery',
     manufacturer: 'Texas Homes Direct',
@@ -1021,7 +1052,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-37 · The Grapevine ─────────────────────────────────────────────
   {
     id: 'BMH-37',
-    slug: 'marathon-grapevine-2bed-2bath-single-wide',
+    slug: 'jasper-texas-2-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-grapevine-2bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-8197-916a-f7426a32bf06',
     title: 'The Jasper',
     manufacturer: 'Texas Homes Direct',
@@ -1053,7 +1085,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-38 · The Jackson ─────────────────────────────────────────────
   {
     id: 'BMH-38',
-    slug: 'marathon-jackson-1bed-1bath-park-model',
+    slug: 'woodville-texas-1-bed-1-bath-tiny-home',
+    legacySlugs: ['marathon-jackson-1bed-1bath-park-model'],
     notionId: '3ad875ae-20d8-81ab-9b2f-e827837ed0b2',
     title: 'The Woodville',
     manufacturer: 'Texas Homes Direct',
@@ -1096,7 +1129,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-39 · The Abilene ─────────────────────────────────────────────
   {
     id: 'BMH-39',
-    slug: 'marathon-abilene-2bed-1bath-single-wide',
+    slug: 'kountze-texas-2-bed-1-bath-single-wide',
+    legacySlugs: ['marathon-abilene-2bed-1bath-single-wide'],
     notionId: '3ad875ae-20d8-81bd-bd12-fdea53170861',
     title: 'The Kountze',
     manufacturer: 'Texas Homes Direct',
@@ -1128,7 +1162,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-40 · The Ranger ─────────────────────────────────────────────
   {
     id: 'BMH-40',
-    slug: 'marathon-ranger-2bed-1bath-single-wide',
+    slug: 'silsbee-texas-2-bed-1-bath-single-wide',
+    legacySlugs: ['marathon-ranger-2bed-1bath-single-wide'],
     notionId: '3ad875ae-20d8-81de-a2d5-c96e41a6bc9b',
     title: 'The Silsbee',
     manufacturer: 'Texas Homes Direct',
@@ -1160,7 +1195,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-41 · The Daniel ─────────────────────────────────────────────
   {
     id: 'BMH-41',
-    slug: 'marathon-daniel-1bed-1bath-park-model',
+    slug: 'vidor-texas-1-bed-1-bath-tiny-home',
+    legacySlugs: ['marathon-daniel-1bed-1bath-park-model'],
     notionId: '3ad875ae-20d8-81e2-a3dc-c578881afef6',
     title: 'The Vidor',
     manufacturer: 'Texas Homes Direct',
@@ -1208,7 +1244,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-42 · The Chapman ─────────────────────────────────────────────
   {
     id: 'BMH-42',
-    slug: 'marathon-chapman-1bed-1bath-park-model',
+    slug: 'la-vernia-texas-1-bed-1-bath-tiny-home',
+    legacySlugs: ['marathon-chapman-1bed-1bath-park-model'],
     notionId: '3ad875ae-20d8-81f8-8b4c-eb65dda94944',
     title: 'The La Vernia',
     manufacturer: 'Texas Homes Direct',
@@ -1252,7 +1289,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-43 · The Pearland ─────────────────────────────────────────────
   {
     id: 'BMH-43',
-    slug: 'marathon-pearland-3bed-2bath-single-wide',
+    slug: 'brazoria-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-pearland-3bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-81f9-bd86-d0ba23a5fb4a',
     title: 'The Brazoria',
     manufacturer: 'Texas Homes Direct',
@@ -1299,7 +1337,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-44 · The Breckenridge ─────────────────────────────────────────────
   {
     id: 'BMH-44',
-    slug: 'marathon-breckenridge-3bed-2bath-single-wide',
+    slug: 'sweeny-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-breckenridge-3bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-81fb-b616-f44f3e3843d8',
     title: 'The Sweeny',
     manufacturer: 'Texas Homes Direct',
@@ -1331,7 +1370,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-45 · The Longview ─────────────────────────────────────────────
   {
     id: 'BMH-45',
-    slug: 'marathon-longview-3bed-2bath-single-wide',
+    slug: 'onalaska-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-longview-3bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-8100-ad74-f019e585be60',
     title: 'The Onalaska',
     manufacturer: 'Texas Homes Direct',
@@ -1363,7 +1403,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-46 · The Dawson ─────────────────────────────────────────────
   {
     id: 'BMH-46',
-    slug: 'marathon-dawson-4bed-2bath-double-wide',
+    slug: 'crockett-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-dawson-4bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-810a-be18-ea8db13f808f',
     title: 'The Crockett',
     manufacturer: 'Texas Homes Direct',
@@ -1395,7 +1436,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-47 · The Lanny ─────────────────────────────────────────────
   {
     id: 'BMH-47',
-    slug: 'marathon-lanny-1bed-1bath-park-model',
+    slug: 'whitehouse-texas-1-bed-1-bath-tiny-home',
+    legacySlugs: ['marathon-lanny-1bed-1bath-park-model'],
     notionId: '3ad875ae-20d8-810e-8142-f5bbc405f00e',
     title: 'The Whitehouse',
     manufacturer: 'Texas Homes Direct',
@@ -1442,7 +1484,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-48 · The Fisher ─────────────────────────────────────────────
   {
     id: 'BMH-48',
-    slug: 'marathon-fisher-3bed-2bath-double-wide',
+    slug: 'rusk-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-fisher-3bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-8115-a6df-fed5e0398f6c',
     title: 'The Rusk',
     manufacturer: 'Texas Homes Direct',
@@ -1474,7 +1517,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-49 · The Cisco ─────────────────────────────────────────────
   {
     id: 'BMH-49',
-    slug: 'marathon-cisco-2bed-2bath-single-wide',
+    slug: 'jacksonville-texas-2-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-cisco-2bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-8115-bf49-f57eedc329c1',
     title: 'The Jacksonville',
     manufacturer: 'Texas Homes Direct',
@@ -1506,7 +1550,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-50 · The Temple ─────────────────────────────────────────────
   {
     id: 'BMH-50',
-    slug: 'marathon-temple-3bed-2bath-single-wide',
+    slug: 'bullard-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-temple-3bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-812c-8a00-c5f3bf46038c',
     title: 'The Bullard',
     manufacturer: 'Texas Homes Direct',
@@ -1551,7 +1596,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-51 · The Grayson ─────────────────────────────────────────────
   {
     id: 'BMH-51',
-    slug: 'marathon-grayson-4bed-2bath-double-wide',
+    slug: 'chandler-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['marathon-grayson-4bed-2bath-double-wide'],
     notionId: '3ad875ae-20d8-812f-9a4b-ec626deaf660',
     title: 'The Chandler',
     manufacturer: 'Texas Homes Direct',
@@ -1600,7 +1646,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-52 · The Darrell ─────────────────────────────────────────────
   {
     id: 'BMH-52',
-    slug: 'marathon-darrell-1bed-1bath-park-model',
+    slug: 'van-texas-1-bed-1-bath-tiny-home',
+    legacySlugs: ['marathon-darrell-1bed-1bath-park-model'],
     notionId: '3ad875ae-20d8-8133-a302-d05d377a9bed',
     title: 'The Van',
     manufacturer: 'Texas Homes Direct',
@@ -1632,7 +1679,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-53 · The Beaumont ─────────────────────────────────────────────
   {
     id: 'BMH-53',
-    slug: 'marathon-beaumont-3bed-2bath-single-wide',
+    slug: 'wills-point-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['marathon-beaumont-3bed-2bath-single-wide'],
     notionId: '3ad875ae-20d8-8137-b253-d2ab5007712f',
     title: 'The Wills Point',
     manufacturer: 'Texas Homes Direct',
@@ -1664,7 +1712,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-54 · The Pronghorn ─────────────────────────────────────────────
   {
     id: 'BMH-54',
-    slug: 'fleetwood-pronghorn-4bed-2bath-double-wide',
+    slug: 'navasota-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['fleetwood-pronghorn-4bed-2bath-double-wide'],
     notionId: '3bd875ae-20d8-8050-bad5-f97e7dec670c',
     title: 'The Navasota',
     manufacturer: 'Fleetwood',
@@ -1710,7 +1759,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-55 · The Armadillo ─────────────────────────────────────────────
   {
     id: 'BMH-55',
-    slug: 'fleetwood-armadillo-3bed-2bath',
+    slug: 'livingston-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['fleetwood-armadillo-3bed-2bath'],
     notionId: '3bd875ae-20d8-8091-aea3-c0f6e578744b',
     title: 'The Livingston',
     manufacturer: 'Fleetwood',
@@ -1752,7 +1802,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-56 · The Road Runner ─────────────────────────────────────────────
   {
     id: 'BMH-56',
-    slug: 'fleetwood-roadrunner-3bed-2bath',
+    slug: 'shepard-texas-3-bed-2-bath',
+    legacySlugs: ['fleetwood-roadrunner-3bed-2bath'],
     notionId: '3bd875ae-20d8-80a6-8a9d-e6fbfee069d3',
     title: 'The Shepard',
     manufacturer: 'Fleetwood',
@@ -1793,7 +1844,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-57 · The Bobcat ─────────────────────────────────────────────
   {
     id: 'BMH-57',
-    slug: 'fleetwood-bobcat-3bed-2bath-single-wide',
+    slug: 'conroe-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['fleetwood-bobcat-3bed-2bath-single-wide'],
     notionId: '3bd875ae-20d8-80c7-a7b5-f08b65f83ecb',
     title: 'The Conroe',
     manufacturer: 'Fleetwood',
@@ -1831,7 +1883,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-58 · The Javelina ─────────────────────────────────────────────
   {
     id: 'BMH-58',
-    slug: 'fleetwood-javelina-1bed-1bath-single-wide',
+    slug: 'coldspring-texas-1-bed-1-bath-single-wide',
+    legacySlugs: ['fleetwood-javelina-1bed-1bath-single-wide'],
     notionId: '3bd875ae-20d8-80cb-8ff1-d124a4e937d5',
     title: 'The Coldspring',
     manufacturer: 'Fleetwood',
@@ -1862,7 +1915,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-59 · The Axis ─────────────────────────────────────────────
   {
     id: 'BMH-59',
-    slug: 'fleetwood-axis-3bed-2bath-double-wide',
+    slug: 'dayton-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['fleetwood-axis-3bed-2bath-double-wide'],
     notionId: '3be875ae-20d8-803f-be71-fde63ee602f5',
     title: 'The Dayton',
     manufacturer: 'Fleetwood',
@@ -1910,7 +1964,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-60 · The Moose ─────────────────────────────────────────────
   {
     id: 'BMH-60',
-    slug: 'fleetwood-moose-4bed-2bath-double-wide',
+    slug: 'cleveland-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['fleetwood-moose-4bed-2bath-double-wide'],
     notionId: '3be875ae-20d8-8056-8533-f17479882e96',
     title: 'The Cleveland',
     manufacturer: 'Fleetwood',
@@ -1950,7 +2005,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-61 · The Jack Rabbit ─────────────────────────────────────────────
   {
     id: 'BMH-61',
-    slug: 'fleetwood-jackrabbit-3bed-2bath-double-wide',
+    slug: 'porter-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['fleetwood-jackrabbit-3bed-2bath-double-wide'],
     notionId: '3be875ae-20d8-8059-af79-e1a18b67487d',
     title: 'The Porter',
     manufacturer: 'Fleetwood',
@@ -1996,7 +2052,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-62 · The PereDavid ─────────────────────────────────────────────
   {
     id: 'BMH-62',
-    slug: 'fleetwood-peredavid-3bed-2bath-double-wide',
+    slug: 'willis-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['fleetwood-peredavid-3bed-2bath-double-wide'],
     notionId: '3be875ae-20d8-8073-bdd1-c3ca6c229f74',
     title: 'The Willis',
     manufacturer: 'Fleetwood',
@@ -2042,7 +2099,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-63 · The Badger ─────────────────────────────────────────────
   {
     id: 'BMH-63',
-    slug: 'fleetwood-badger-3bed-2bath-double-wide',
+    slug: 'splendora-texas-3-bed-2-bath-double-wide',
+    legacySlugs: ['fleetwood-badger-3bed-2bath-double-wide'],
     notionId: '3be875ae-20d8-80c1-afc1-e635731fe6cb',
     title: 'The Splendora',
     manufacturer: 'Fleetwood',
@@ -2089,7 +2147,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-64 · The Raven (Fleetwood) ─────────────────────────────────────────────
   {
     id: 'BMH-64',
-    slug: 'fleetwood-raven-3bed-2bath-single-wide',
+    slug: 'new-caney-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['fleetwood-raven-3bed-2bath-single-wide'],
     notionId: '3be875ae-20d8-807f-8cc4-ecc3a00ae3fc',
     title: 'The New Caney',
     manufacturer: 'Fleetwood',
@@ -2128,7 +2187,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-65 · The Coyote ─────────────────────────────────────────────
   {
     id: 'BMH-65',
-    slug: 'fleetwood-coyote-2bed-2bath-single-wide',
+    slug: 'schulenburg-texas-2-bed-2-bath-single-wide',
+    legacySlugs: ['fleetwood-coyote-2bed-2bath-single-wide'],
     notionId: '3bd875ae-20d8-80aa-b213-e72b2f5aeadd',
     title: 'The Schulenburg',
     manufacturer: 'Fleetwood',
@@ -2159,7 +2219,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-66 · The Rattlesnake ─────────────────────────────────────────────
   {
     id: 'BMH-66',
-    slug: 'fleetwood-rattlesnake-3bed-2bath-single-wide',
+    slug: 'magnolia-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['fleetwood-rattlesnake-3bed-2bath-single-wide'],
     notionId: '3be875ae-20d8-80df-ab5f-fe15fd33264b',
     title: 'The Magnolia',
     manufacturer: 'Fleetwood',
@@ -2198,7 +2259,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-92 · The Seguin ─────────────────────────────────────────────
   {
     id: 'BMH-92',
-    slug: 'jade-3bed-2bath-single-wide',
+    slug: 'seguin-texas-3-bed-2-bath-single-wide',
+    legacySlugs: ['jade-3bed-2bath-single-wide'],
     notionId: '3f9875ae-20d8-805c-98ce-cb9717b4e27b',
     title: 'The Seguin',
     manufacturer: 'Texas Homes Direct',
@@ -2237,7 +2299,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-93 · The Austin ─────────────────────────────────────────────
   {
     id: 'BMH-93',
-    slug: 'jasper-4bed-2bath-double-wide',
+    slug: 'austin-texas-4-bed-2-bath-double-wide',
+    legacySlugs: ['jasper-4bed-2bath-double-wide'],
     notionId: '3f9875ae-20d8-807c-881a-c7a2dab7084c',
     title: 'The Austin',
     manufacturer: 'Texas Homes Direct',
@@ -2284,7 +2347,8 @@ export const sampleListings: Listing[] = [
   // ─── BMH-94 · The Lampasas ─────────────────────────────────────────────
   {
     id: 'BMH-94',
-    slug: '2876-5bed-3bath-double-wide',
+    slug: 'lampasas-texas-5-bed-3-bath-double-wide',
+    legacySlugs: ['2876-5bed-3bath-double-wide'],
     notionId: '3fa875ae-20d8-8070-ab7f-f578fd97a8dc',
     title: 'The Lampasas',
     manufacturer: 'Texas Homes Direct',

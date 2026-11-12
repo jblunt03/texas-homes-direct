@@ -579,12 +579,13 @@ it doesn't, something isn't idempotent.
   no Slug in Notion and their Notion names differ from the old site names, so
   slug or title matching can't work for them. The 13 Fleetwood listings were
   matched once by model + beds/baths/sq ft on 2026-10-09. Notion pages with no
-  site listing (e.g. "28483u", "Pathfinder") are reported, never auto-added. A
-  new listing needs a slug chosen by hand first. Then it goes in `NEW_LISTINGS`
-  (below).
-- **Adding a new listing: `NEW_LISTINGS`** in the script maps a Notion page ID
-  to its approved slug. On the next sync, an entry that isn't in
-  `sampleListings.ts` yet is created:
+  site listing (e.g. "28483u", "Pathfinder") are reported, never auto-added.
+  To add one, put its page ID in `NEW_LISTINGS` (below). Notion's own Slug
+  field is never used, by the sync or by `lib/notion.ts`.
+- **Adding a new listing: `NEW_LISTINGS`** in the script lists Notion page IDs
+  (with a note for humans). On the next sync, an entry that isn't in
+  `sampleListings.ts` yet is created under a slug the script builds itself
+  (`newListingSlug()`, see "Listing URLs" below):
   - **From Notion:** name, beds/baths/sq ft, model, wide type, year, and
     status. A blank status becomes `Active`.
   - **Defaults:** price `0` ("Call for price"), monthly payment `0`, region
@@ -604,15 +605,8 @@ it doesn't, something isn't idempotent.
   A new listing does **not** appear on any city page's "Homes to Get You
   Started" cards until `assign_popular_homes.py` is re-run, which changes
   `lib/cityContent.ts`. Only do that on explicit instruction.
-- **Slug convention for new listings:**
-  `<model>-<beds>bed-<baths>bath-<single-wide|double-wide>`, e.g.
-  `jade-3bed-2bath-single-wide`.
-  - **No manufacturer name.** The older `marathon-…` and `fleetwood-…` slugs
-    predate this rule and stay as they are, because slugs are URLs.
-  - **No city name.** Listing names like "The Seguin" are city names, and
-    city names belong to the `/mobile-homes-<city>-tx` pages.
-  - **Unique** across all listings.
-  - **Never changed once live.**
+- **Slugs:** see "Listing URLs" below. The old
+  `<model>-<beds>bed-<baths>bath-<type>` convention was retired on 2026-11-11.
 - **Images:** the Notion page body's image blocks are the source. Photos
   already on the site keep their existing files and order.
   `scripts/sync-listings.image-map.json` maps Notion block IDs to those files,
@@ -1032,6 +1026,80 @@ Body padding grows slightly at the same breakpoint.
   with ~1000px+ sources would fix it.
 - `next.config.mjs` serves images unoptimized, so `sizes` doesn't change which
   file loads.
+
+## Listing URLs (`lib/listingSlugs.ts`)
+
+**Format.** Every home lives at
+`/homes/<name>-texas-<beds>-bed-<baths>-bath[-<type>]`
+(`LISTING_SLUG_RE` in `lib/listingSlugs.ts`), e.g.
+`/homes/sulphur-springs-texas-3-bed-2-bath-double-wide`.
+- **`<name>`:** the home's display name when the slug was assigned:
+  lowercase, "The" dropped, spaces as hyphens. Homes named after towns are
+  intended. A manufacturer name (marathon, fleetwood, cavco…) is never
+  allowed.
+- **`<type>`:** comes from Notion, never inferred from size.
+  - `tiny-home`: 1 bedroom and "Park Model" in **Key Features EN** (The
+    Whitehouse, La Vernia, Vidor, Woodville, Van)
+  - `single-wide` / `double-wide`: from Notion's **Type**
+  - **no type word:** Type is blank (The Shepard), or it's a park model with
+    2+ bedrooms (The Mineola)
+- **Collisions:** if two homes would get the same slug, the sync stops with an
+  error. Never add a suffix or number; ask a human.
+
+**Frozen.** A slug never changes once assigned, not even when the home is
+renamed. On 2026-11-12, The Rosenburg was renamed The Rosenberg before its
+slug went live, so its slug uses the corrected spelling. Notion still said
+"Rosenburg" then, and the sync copies names from Notion, so Notion must be
+fixed too. A slug is deliberately not checked against the current display
+name.
+- `sync:listings` matches homes by `notionId` only and never writes `slug`.
+- It builds a new home's slug itself (`newListingSlug()`) from Notion's Name,
+  Bedrooms, Bathrooms, Type and Key Features EN.
+
+**Redirect policy.**
+- **One legacy slug per home:** each listing's `legacySlugs` holds its
+  original slug (`marathon-…`, `fleetwood-…`, `jade-…`, `jasper-…`, `2876-…`).
+- **One hop:** `next.config.mjs` reads `lib/sampleListings.ts` and adds a 308
+  (`permanent: true`) from each `/homes/<legacy>` straight to `/homes/<slug>`.
+  There are no chains, and the query string is kept.
+- **Exact paths only:** photo folders that share an old slug's name are
+  unaffected.
+- **Never delete a legacy slug.** If a live slug ever has to change, the old
+  one moves into `legacySlugs`.
+- **Size:** 57 redirects. That's small for Vercel; after the first deploy,
+  confirm in the build output that the redirects were accepted.
+
+**What uses slugs:**
+- **Built from `listing.slug`, so they follow automatically:** links, cards,
+  the sitemap, `/tiny-homes` ItemList, breadcrumbs and schema.
+- **Canonical and og:url:** listing pages set both to their own URL. Before
+  this change the site-wide canonical pointed listing pages at the homepage.
+- **Configs keyed by slug, re-keyed to the new slugs:**
+  - `lib/promo.ts`
+  - `lib/badges.ts`
+  - `IMAGE_LOCK`, `PINNED_IMAGES` and `KEEP_IMAGES` in the sync
+- **Popular Homes:** `lib/cityContent.ts` and `write_city_content.py` keep old
+  slugs and are not edited. City pages resolve them with
+  `findListingByAnySlug()` (`lib/listingLookup.ts`). The namesake rule
+  (a home named after a town isn't shown on that town's page) is applied by
+  title when cards are assigned, so it doesn't depend on slugs.
+- **`lib/notion.ts`** (only when `NOTION_TOKEN` is set): takes slugs from the
+  site data by `notionId`, never from Notion's Slug field. With a token, all
+  57 homes appear at their new URLs. But Notion mode still gives 36 homes no
+  photos, so don't add the token to Vercel.
+
+**Validator:**
+- Step 4e fails on:
+  - a slug that doesn't match the format
+  - a manufacturer name in a slug
+  - any reused slug (current or legacy)
+  - a Popular Homes slug that doesn't resolve
+- Step 11e fails if:
+  - a legacy URL isn't exactly one 308 to its new URL with the query string
+    kept
+  - a listing page lacks a self-referencing canonical or og:url
+  - any page links to a legacy slug
+  - the sitemap lists a legacy slug or misses a current one
 
 ## Analytics
 

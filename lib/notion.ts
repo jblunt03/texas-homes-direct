@@ -19,6 +19,7 @@
 
 import { Client, isFullPage } from '@notionhq/client'
 import { MODEL_YEAR } from '@/lib/modelYear'
+import { listingForNotionPage } from '@/lib/listingLookup'
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import { sampleListings, type Listing } from './sampleListings'
 import listingImageManifest from './generated/listingImages.json'
@@ -101,7 +102,9 @@ function urlProp(page: PageObjectResponse, name: string): string | undefined {
 
 /** Image URLs — prefer the `Image URLs` text field (permanent), then Notion S3 attachments */
 function images(page: PageObjectResponse, slug: string): string[] {
-  const synced = IMAGE_MANIFEST[slug]?.images
+  // The manifest is keyed by the slug at sync time, which may be a legacy one.
+  const keys = [slug, ...(listingForNotionPage(page.id)?.legacySlugs ?? [])]
+  const synced = keys.map((k) => IMAGE_MANIFEST[k]?.images).find((imgs) => imgs && imgs.length > 0)
   if (synced && synced.length > 0) return synced
 
   const permanent = rt(page, 'Image URLs')
@@ -159,7 +162,11 @@ function mapRegion(raw: string): Listing['region'] {
 
 export function mapPage(page: PageObjectResponse): Listing {
   const title = rt(page, 'Name') || 'Unnamed Listing'
-  const slug = rt(page, 'Slug')
+  // The site owns slugs (CLAUDE.md "Listing URLs"): match the page to its
+  // listing by notionId. Notion's own Slug field is never used, so pages
+  // without a site listing (not yet added via NEW_LISTINGS) are skipped.
+  const siteListing = listingForNotionPage(page.id)
+  const slug = siteListing?.slug ?? ''
   const listingId = rt(page, 'Listing ID') || page.id
 
   const statusRaw = sel(page, 'Status') as Listing['status'] | ''
@@ -288,16 +295,12 @@ export async function fetchListingBySlug(slug: string): Promise<Listing | null> 
   }
 
   try {
-    // @notionhq/client v5 uses dataSources.query() instead of databases.query()
-    const resp = await client.dataSources.query({
-      data_source_id: DATA_SOURCE_ID,
-      filter: {
-        property: 'Slug',
-        rich_text: { equals: slug },
-      },
-    })
-    const page = resp.results[0]
-    if (!page || !isFullPage(page)) return null
+    // Look the page up by the notionId the site stores for this slug — never by
+    // Notion's Slug field (see mapPage).
+    const notionId = sampleListings.find((l) => l.slug === slug)?.notionId
+    if (!notionId) return null
+    const page = await client.pages.retrieve({ page_id: notionId })
+    if (!isFullPage(page)) return null
     const listing = mapPage(page)
     // Used/pre-owned homes are not offered
     return listing.type !== 'repo' ? listing : null

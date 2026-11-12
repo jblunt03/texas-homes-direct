@@ -11,7 +11,7 @@
  * Never put a price or dollar amount in a badge label.
  */
 export const LISTING_BADGES: Record<string, string> = {
-  'fleetwood-peredavid-3bed-2bath-double-wide': 'Porch Model', // The Willis
+  'willis-texas-3-bed-2-bath-double-wide': 'Porch Model', // The Willis
 }
 
 export function listingBadge(slug: string): string | undefined {

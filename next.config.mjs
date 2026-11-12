@@ -29,6 +29,22 @@ const RETIRED_LOCATION_SLUGS = [
 const ARCHIVED = JSON.parse(readFileSync(new URL('./lib/archived.json', import.meta.url), 'utf8'))
 const ARCHIVED_ROUTES = { commercial: '/commercial' }
 
+// Listing URLs (CLAUDE.md "Listing URLs"): every slug in a listing's
+// legacySlugs 308-redirects straight to its current slug. Read from
+// lib/sampleListings.ts itself so the redirects can't drift from the data.
+// Exact paths only, so photo files under /homes/<old-slug>/ are unaffected.
+// Next keeps the query string on redirects.
+const LISTING_REDIRECTS = (() => {
+  const src = readFileSync(new URL('./lib/sampleListings.ts', import.meta.url), 'utf8')
+  const out = []
+  for (const m of src.matchAll(/\n {4}slug: '([^']+)',\n {4}legacySlugs: \[([^\]]*)\],/g)) {
+    for (const old of m[2].matchAll(/'([^']+)'/g)) {
+      out.push({ source: `/homes/${old[1]}`, destination: `/homes/${m[1]}`, permanent: true })
+    }
+  }
+  return out
+})()
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
@@ -36,6 +52,7 @@ const nextConfig = {
       ...Object.entries(ARCHIVED_ROUTES)
         .filter(([key]) => ARCHIVED[key])
         .map(([, route]) => ({ source: route, destination: '/', permanent: false })),
+      ...LISTING_REDIRECTS,
       { source: '/locations', destination: '/cities', permanent: true },
       ...RETIRED_LOCATION_SLUGS.map((slug) => ({
         source: `/locations/${slug}`,

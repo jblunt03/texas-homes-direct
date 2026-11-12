@@ -17,8 +17,9 @@
  * What it never touches on an existing listing: slug (the page URL), id,
  * price, features, status, floorplanUrl, or anything else not listed above.
  *
- * New listings: a Notion page listed in NEW_LISTINGS (with a hand-chosen
- * slug) that isn't in the file yet is created first, from Notion's name,
+ * New listings: a Notion page listed in NEW_LISTINGS that isn't in the file
+ * yet is created first, under a slug built by newListingSlug() (never typed
+ * by hand), from Notion's name,
  * specs, model, year and status plus NEW_LISTING_DEFAULTS, with its floorplan
  * downloaded from Notion's "Floorplan URLs" into /homes/floorplans/
  * <slug>-FloorPlan.<ext>. Photos for a new listing go in /homes/<slug>/.
@@ -81,17 +82,17 @@ const MAX_IMAGE_BYTES = 800 * 1024
 const IMAGE_LOCK: Record<string, string> = {
   // Notion's page body only has floorplan images for this home; the site's
   // real photos aren't in Notion.
-  'marathon-katy-3bed-2bath-single-wide': 'Notion only has floorplans',
+  'forney-texas-3-bed-2-bath-single-wide': 'Notion only has floorplans', // The Forney
   // As of 2026-10-09 Notion and the site disagree on which photo set belongs
   // to which model for these two (Notion's Daniel page mixes two different
   // homes). Held until the owner confirms which is right — remove these
   // entries once Notion is corrected. (Wood Duck/Coleman were held too until
   // the owner confirmed Notion is right for both on 2026-10-09.)
-  'marathon-daniel-1bed-1bath-park-model': 'photo sets disputed (Daniel/Chapman)',
-  'marathon-chapman-1bed-1bath-park-model': 'photo sets disputed (Daniel/Chapman)',
+  'vidor-texas-1-bed-1-bath-tiny-home': 'photo sets disputed (Daniel/Chapman)', // The Vidor
+  'la-vernia-texas-1-bed-1-bath-tiny-home': 'photo sets disputed (Daniel/Chapman)', // The La Vernia
   // Its only Notion image is the floorplan itself; the listing shows the
   // floorplan once (as both its single image and floorplanUrl), not twice.
-  '2876-5bed-3bath-double-wide': 'floorplan only',
+  'lampasas-texas-5-bed-3-bath-double-wide': 'floorplan only', // The Lampasas
 }
 
 /** Notion image blocks deliberately left off the site, by block ID. */
@@ -122,10 +123,13 @@ const SKIPPED_IMAGE_BLOCKS: Record<string, string> = {
  * its floorplan is downloaded, and then the normal sync fills in its tour and
  * photos. Entries already in the file are just synced like any other listing.
  */
-const NEW_LISTINGS: Record<string, { slug: string }> = {
-  '3f9875ae-20d8-805c-98ce-cb9717b4e27b': { slug: 'jade-3bed-2bath-single-wide' }, // The Seguin (Cavco)
-  '3f9875ae-20d8-807c-881a-c7a2dab7084c': { slug: 'jasper-4bed-2bath-double-wide' }, // The Austin (Cavco)
-  '3fa875ae-20d8-8070-ab7f-f578fd97a8dc': { slug: '2876-5bed-3bath-double-wide' }, // The Lampasas (Cavco)
+// notionId → a note for humans. The slug is BUILT from Notion (Name, beds,
+// baths, Type and "Park Model" in Key Features EN) by newListingSlug()
+// below — never typed by hand. See CLAUDE.md "Listing URLs".
+const NEW_LISTINGS: Record<string, string> = {
+  '3f9875ae-20d8-805c-98ce-cb9717b4e27b': 'The Seguin (Cavco)',
+  '3f9875ae-20d8-807c-881a-c7a2dab7084c': 'The Austin (Cavco)',
+  '3fa875ae-20d8-8070-ab7f-f578fd97a8dc': 'The Lampasas (Cavco)',
 }
 
 /**
@@ -144,9 +148,9 @@ const NEW_LISTING_DEFAULTS = {
  * aren't in Notion (hero exteriors added directly to the site).
  */
 const PINNED_IMAGES: Record<string, string[]> = {
-  'marathon-gadwall-3bed-2bath-double-wide': ['/homes/the-gadwall/Gadwall-Hero.jpg'],
-  'marathon-spoonbill-3bed-2bath-single-wide': ['/homes/the-spoonbill/Spoonbill-Hero.jpg'],
-  'marathon-terra-2bed-1bath-park-model': ['/homes/the-terra/Terra-Hero.jpg'],
+  'brownwood-texas-3-bed-2-bath-double-wide': ['/homes/the-gadwall/Gadwall-Hero.jpg'], // The Brownwood
+  'brenham-texas-3-bed-2-bath-single-wide': ['/homes/the-spoonbill/Spoonbill-Hero.jpg'], // The Brenham
+  'mineola-texas-2-bed-1-bath': ['/homes/the-terra/Terra-Hero.jpg'], // The Mineola
 }
 
 /**
@@ -158,7 +162,7 @@ const KEEP_IMAGES: Record<string, string[]> = {
   // and the two delivered-exterior shots. (The old main exterior,
   // Brewster-Body-1.jpg, was dropped on 2026-10-22 as a blurrier near-copy of
   // the new main photo; see SKIPPED_IMAGE_BLOCKS.)
-  'marathon-brewster-3bed-2bath-double-wide': [
+  'quitman-texas-3-bed-2-bath-double-wide': [ // The Quitman
     '/homes/the-brewster/Brewster-Body-2.png',
     '/homes/the-brewster/Brewster-Body-3.webp',
     '/homes/the-brewster/Brewster-Body-6.webp',
@@ -418,16 +422,48 @@ function newListingSource(page: PageObjectResponse, slug: string, floorplanUrl: 
   return lines.join('\n')
 }
 
+/**
+ * The permanent slug for a new listing, built from Notion. Matches
+ * LISTING_SLUG_RE in lib/listingSlugs.ts (this script can't import lib/):
+ *   <name>-texas-<beds>-bed-<baths>-bath[-<type>]
+ * <name>: Notion's Name, lowercase, "The" dropped, spaces as hyphens.
+ * <type>: tiny-home for 1 bedroom + "Park Model" in Key Features EN;
+ *   single-wide/double-wide from Notion's Type; otherwise left out (Type
+ *   blank, or a park model with 2+ bedrooms). Never guessed from size.
+ */
+function newListingSlug(page: PageObjectResponse): string {
+  const name = propText(page, 'Name')
+    .toLowerCase()
+    .replace(/^the\s+/, '')
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+  const beds = propNum(page, 'Bedrooms')
+  const baths = propNum(page, 'Bathrooms')
+  const wide = propText(page, 'Type')
+  if (!name || beds == null || baths == null) {
+    throw new Error(`NEW_LISTINGS ${page.id}: needs Name, Bedrooms and Bathrooms in Notion to build its slug`)
+  }
+  const park = /park model/i.test(propText(page, 'Key Features EN'))
+  const type =
+    park && beds === 1
+      ? 'tiny-home'
+      : !park && (wide === 'Single Wide' || wide === 'Double Wide')
+        ? wide.toLowerCase().replace(/\s+/g, '-')
+        : ''
+  return `${name}-texas-${beds}-bed-${baths}-bath${type ? `-${type}` : ''}`
+}
+
 /** Appends any NEW_LISTINGS entry that isn't in the file yet. Returns the new source. */
 async function addNewListings(src: string, byId: Map<string, PageObjectResponse>, log: string[]): Promise<string> {
-  for (const [notionId, { slug }] of Object.entries(NEW_LISTINGS)) {
-    if (ONLY && !ONLY.includes(slug)) continue
-    const hasId = src.includes(`    notionId: '${notionId}',`)
-    const hasSlug = src.includes(`    slug: '${slug}',`)
-    if (hasId && hasSlug) continue
-    if (hasId || hasSlug) throw new Error(`NEW_LISTINGS ${slug}: slug or notionId already used by another listing`)
+  for (const notionId of Object.keys(NEW_LISTINGS)) {
+    // Already on the site: its slug is frozen, so never rebuild or touch it.
+    if (src.includes(`    notionId: '${notionId}',`)) continue
     const page = byId.get(notionId)
-    if (!page) throw new Error(`NEW_LISTINGS ${slug}: Notion page ${notionId} not found`)
+    if (!page) throw new Error(`NEW_LISTINGS ${notionId}: Notion page not found`)
+    const slug = newListingSlug(page)
+    if (ONLY && !ONLY.includes(slug)) continue
+    // Two homes would share a URL: stop for a human decision — never add a suffix.
+    if (src.includes(`'${slug}'`)) throw new Error(`NEW_LISTINGS ${notionId}: slug ${slug} is already used — rename the home or ask before adding it`)
 
     let floorplanUrl: string | undefined
     const fp = floorplanFile(page)
@@ -468,7 +504,6 @@ async function main() {
   let src = fs.readFileSync(LISTINGS_PATH, 'utf8')
   const pages = await fetchPages()
   const byId = new Map(pages.map((p) => [p.id, p]))
-  const bySlug = new Map(pages.filter((p) => propText(p, 'Slug')).map((p) => [propText(p, 'Slug'), p]))
   const created: string[] = []
   src = await addNewListings(src, byId, created)
 
@@ -485,7 +520,8 @@ async function main() {
     const blk = findBlock(src, slug)!
     let b = blk.text
     const notionId = getStr(b, 'notionId')
-    const page = (notionId && byId.get(notionId)) || bySlug.get(slug)
+    // Matched by notionId only; Notion's Slug field is never used (slugs are the site's).
+    const page = notionId ? byId.get(notionId) : undefined
     if (!page) {
       unmatched.push(slug)
       continue
@@ -589,7 +625,7 @@ async function main() {
   if (unmatched.length) console.log(`\nListings with no matching Notion page (left as-is):\n  ${unmatched.join('\n  ')}`)
   const orphans = pages.filter((p) => !matchedPageIds.has(p.id))
   if (orphans.length) {
-    console.log(`\nNotion pages not on the site (not added — new listings need a slug chosen by hand):`)
+    console.log(`\nNotion pages not on the site (not added — add the page ID to NEW_LISTINGS to create one):`)
     for (const p of orphans) console.log(`  - ${propText(p, 'Name') || '(untitled)'} [${propText(p, 'Manufacturer') || 'no manufacturer'}] ${p.id}`)
   }
 

@@ -20,11 +20,11 @@
 export const PROMO = {
   label: '15% Off This Month',
   slugs: [
-    'jade-3bed-2bath-single-wide', // The Seguin
-    'jasper-4bed-2bath-double-wide', // The Austin
-    'fleetwood-armadillo-3bed-2bath', // The Livingston
-    'fleetwood-jackrabbit-3bed-2bath-double-wide', // The Porter
-    'fleetwood-axis-3bed-2bath-double-wide', // The Dayton
+    'seguin-texas-3-bed-2-bath-single-wide', // The Seguin
+    'austin-texas-4-bed-2-bath-double-wide', // The Austin
+    'livingston-texas-3-bed-2-bath-single-wide', // The Livingston
+    'porter-texas-3-bed-2-bath-double-wide', // The Porter
+    'dayton-texas-3-bed-2-bath-double-wide', // The Dayton
   ],
   /**
    * End of day 2026-10-31, Central time. Central is still on daylight time
@@ -32,7 +32,7 @@ export const PROMO = {
    */
   endsAt: '2026-11-01T00:00:00-05:00',
   /** Shown first on /browse, in this order (after filters are applied). */
-  pinned: ['jade-3bed-2bath-single-wide', 'jasper-4bed-2bath-double-wide'],
+  pinned: ['seguin-texas-3-bed-2-bath-single-wide', 'austin-texas-4-bed-2-bath-double-wide'],
 }
 
 export function isPromoActive(now: number = Date.now()): boolean {

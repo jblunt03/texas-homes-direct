@@ -704,6 +704,119 @@ def step_model_year_rendered():
     return report("11d. Model year shown matches listing", ok, detail)
 
 
+# ─── Listing URLs (see CLAUDE.md "Listing URLs") ─────────────────────────
+# Static (4e): every slug matches LISTING_SLUG_RE from lib/listingSlugs.ts
+# (<name>-texas-<beds>-bed-<baths>-bath[-single-wide|-double-wide|-tiny-home]),
+# carries no manufacturer name, and no slug (current or legacy) is reused.
+# Popular Homes slugs stored in lib/cityContent.ts must still resolve.
+# City and display names are ALLOWED (homes are named after towns), and a
+# slug is deliberately NOT compared with the current display name: slugs
+# stay frozen after a rename.
+# Rendered (11e): every legacy slug answers one 308 to its current URL, the
+# current URL is 200 with a self-referencing canonical and og:url, and no
+# page link or sitemap entry points at a legacy slug.
+MANUFACTURERS = {"marathon", "fleetwood", "cavco", "clayton", "champion", "palm", "harbor"}
+
+
+def listing_slug_rows():
+    src = (REPO_ROOT / "lib" / "sampleListings.ts").read_text()
+    rows = []
+    for block in re.split(r"\n  \{\n", src)[1:]:
+        slug = re.search(r"\n    slug: '([^']+)'", "\n" + block)
+        if not slug:
+            continue
+        legacy = re.search(r"\n    legacySlugs: \[([^\]]*)\]", "\n" + block)
+        title = re.search(r"\n    title: '((?:[^'\\]|\\.)*)'", "\n" + block)
+        rows.append({
+            "slug": slug.group(1),
+            "legacy": re.findall(r"'([^']+)'", legacy.group(1)) if legacy else [],
+            "title": title.group(1) if title else "",
+        })
+    return rows
+
+
+def listing_slug_regex():
+    src = (REPO_ROOT / "lib" / "listingSlugs.ts").read_text()
+    m = re.search(r"LISTING_SLUG_RE =\s*/(.+)/\s*$", src, re.M)
+    return re.compile(m.group(1)) if m else None
+
+
+def step_listing_slugs_static():
+    problems = []
+    rows = listing_slug_rows()
+    rx = listing_slug_regex()
+    if not rows or rx is None:
+        problems.append("  Couldn't parse listings or LISTING_SLUG_RE — the check's patterns no longer match.")
+        return report("4e. Listing slugs: format, manufacturer, uniqueness", False, problems)
+    seen = {}
+    for r in rows:
+        slug = r["slug"]
+        if not rx.match(slug):
+            problems.append(f"  {slug}: doesn't match <name>-texas-<beds>-bed-<baths>-bath[-single-wide|-double-wide|-tiny-home]")
+        hits = sorted(set(slug.split("-")) & MANUFACTURERS)
+        if hits:
+            problems.append(f"  {slug}: contains a manufacturer name ({', '.join(hits)})")
+        for s_ in [slug] + r["legacy"]:
+            if s_ in seen:
+                problems.append(f"  '{s_}' is used by both {seen[s_]} and {r['title'] or slug}")
+            seen[s_] = r["title"] or slug
+    stored = re.findall(r"popularHomes: \[([^\]]*)\]", (REPO_ROOT / "lib" / "cityContent.ts").read_text())
+    unresolved = sorted({p for block in stored for p in re.findall(r"'([^']+)'", block)} - set(seen))
+    for p_ in unresolved:
+        problems.append(f"  lib/cityContent.ts popularHomes '{p_}' doesn't resolve to any listing (current or legacy)")
+    ok = not problems
+    detail = problems or [f"{len(rows)} slugs match the format with no manufacturer name; "
+                          f"{sum(len(r['legacy']) for r in rows)} legacy slugs; nothing reused; all Popular Homes references resolve."]
+    return report("4e. Listing slugs: format, manufacturer, uniqueness", ok, detail)
+
+
+def step_listing_urls_rendered(city_slugs):
+    problems = []
+    rows = listing_slug_rows()
+    legacy = {old: r["slug"] for r in rows for old in r["legacy"]}
+    for old, new in legacy.items():
+        status, location = fetch_no_redirect(f"/homes/{old}?ref=check")
+        loc_path = re.sub(r"^https?://[^/]+", "", location or "")
+        if status != 308 or loc_path != f"/homes/{new}?ref=check":
+            problems.append(f"  /homes/{old}: expected one 308 to /homes/{new}?ref=check, got {status} -> {location!r}")
+    pages = ["/", "/browse", "/tiny-homes"] + [f"/mobile-homes-{s}-tx" for s in city_slugs]
+    for r in rows:
+        path = f"/homes/{r['slug']}"
+        pages.append(path)
+        status, html = fetch(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        canon = re.search(r'<link rel="canonical" href="([^"]+)"', html)
+        og = re.search(r'<meta property="og:url" content="([^"]+)"', html)
+        for label, m in (("canonical", canon), ("og:url", og)):
+            got = re.sub(r"^https?://[^/]+", "", m.group(1)) if m else None
+            if got != path:
+                problems.append(f"  {path}: {label} is {m.group(1) if m else 'missing'}, should point at {path}")
+    for path in pages:
+        try:
+            status, html = fetch(path)
+        except Exception as e:
+            problems.append(f"  {path}: request failed ({e})")
+            continue
+        # Page links only: /homes/<slug> optionally followed by ?query or #hash.
+        # Photo files like /homes/<old-slug-folder>/x.jpg are files, not links.
+        for old in set(re.findall(r'href="/homes/([^"/?#]+)(?:[?#][^"]*)?"', html)) & set(legacy):
+            problems.append(f"  {path}: links to legacy /homes/{old} (should be /homes/{legacy[old]})")
+    _, sitemap = fetch("/sitemap.xml")
+    listed = set(re.findall(r"<loc>[^<]*/homes/([^<]+)</loc>", sitemap))
+    for old in listed & set(legacy):
+        problems.append(f"  sitemap lists legacy /homes/{old}")
+    for r in rows:
+        if r["slug"] not in listed:
+            problems.append(f"  sitemap is missing /homes/{r['slug']}")
+    ok = not problems
+    detail = problems[:40] or [f"{len(legacy)} legacy URLs each 308 once to the new URL (query kept); "
+                               f"{len(rows)} listing pages 200 with self canonical + og:url; "
+                               f"no legacy links on {len(pages)} pages or in the sitemap."]
+    return report("11e. Listing URLs: redirects, canonicals, links", ok, detail)
+
+
 def main():
     check_all = "--all" in sys.argv
 
@@ -715,6 +828,7 @@ def main():
     ok &= step_hard_rules()
     ok &= step_payment_disclosure_source()
     ok &= step_model_year_static()
+    ok &= step_listing_slugs_static()
     ok &= step_image_paths()
     ok &= step_unique_image_pairs()
     ok &= step_tsc()
@@ -741,6 +855,7 @@ def main():
                 ok &= step_archived_routes()
                 ok &= step_payment_disclosure_rendered(city_slugs)
                 ok &= step_model_year_rendered()
+                ok &= step_listing_urls_rendered(city_slugs)
         finally:
             stop_dev_server(proc)
             if ctx:

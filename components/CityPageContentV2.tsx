@@ -3,7 +3,7 @@ import Image from 'next/image'
 import type { CityEntry } from '@/lib/cities'
 import { TEXAS_CITIES } from '@/lib/cities'
 import type { CityContent } from '@/lib/cityContent'
-import { sampleListings } from '@/lib/sampleListings'
+import { findListingByAnySlug } from '@/lib/listingLookup'
 import { TURNKEY_ITEMS, OUT_THE_DOOR_ITEMS } from '@/lib/setupItems'
 import FaqAccordion from '@/components/FaqAccordion'
 import PaymentEstimate from '@/components/PaymentEstimate'
@@ -65,8 +65,10 @@ export default function CityPageContentV2({
     .filter((c): c is CityEntry => Boolean(c))
 
   const popular = content.popularHomes
-    .map((slug) => sampleListings.find((l) => l.slug === slug))
-    .filter((l): l is (typeof sampleListings)[number] => Boolean(l))
+    // popularHomes in lib/cityContent.ts may hold legacy slugs; resolve each
+    // to its listing so cards always link to the current URL.
+    .map((slug) => findListingByAnySlug(slug))
+    .filter((l): l is NonNullable<typeof l> => Boolean(l))
 
   const localBusinessJsonLd = {
     '@context': 'https://schema.org',

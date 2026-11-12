@@ -6,6 +6,7 @@ import { publishedCities } from '@/lib/cities'
 import ListingDetail from './ListingDetail'
 import { isPromoActive } from '@/lib/promo'
 import { isTinyHome } from '@/lib/tinyHomes'
+import { currentListingSlug } from '@/lib/listingLookup'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
 
@@ -14,7 +15,9 @@ export const revalidate = 3000
 /** Published city pages whose "Homes to Get You Started" block features this listing. */
 function citiesFeaturing(slug: string) {
   return publishedCities()
-    .filter((c) => CITY_CONTENT[c.slug]?.popularHomes.includes(slug))
+    // popularHomes may hold legacy slugs (lib/cityContent.ts isn't edited) —
+    // compare by the current slug they resolve to.
+    .filter((c) => CITY_CONTENT[c.slug]?.popularHomes.some((p) => currentListingSlug(p) === slug))
     .map((c) => ({ name: c.name, slug: c.slug }))
 }
 
@@ -35,12 +38,15 @@ export async function generateMetadata({
     ? `${listing.title} — ${listing.beds} Bed ${listing.baths} Bath Tiny Home`
     : `${listing.title} — ${listing.beds} Bed ${wideType} Manufactured Home`
   const description = `${listing.beds} bed / ${listing.baths} bath ${wideType.toLowerCase()} manufactured home, ${listing.sqft.toLocaleString()} sqft. Delivered and set up anywhere in Texas. ${listing.description.slice(0, 100)}`
+  const url = `${SITE_URL}/homes/${listing.slug}`
   return {
     title,
     description,
+    alternates: { canonical: url },
     openGraph: {
       title,
       description,
+      url,
       ...(listing.images[0] ? { images: [{ url: listing.images[0] }] } : {}),
     },
   }
