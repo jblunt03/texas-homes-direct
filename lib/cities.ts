@@ -197,6 +197,9 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Horizon City', 'West Texas'),
   city('Anthony', 'West Texas'),
   city('Canutillo', 'West Texas'),
+  city('Lamesa', 'West Texas'),
+  city('Seminole', 'West Texas'),
+  city('Monahans', 'West Texas'),
 
   // ─── South Texas ─────────────────────────────────────────────────
   city(
@@ -282,6 +285,17 @@ export const TEXAS_CITIES: CityEntry[] = [
   city('Wolfforth', 'Panhandle'),
   city('Shallowater', 'Panhandle'),
   city('Idalou', 'Panhandle'),
+  city('Littlefield', 'Panhandle'),
+  city('Muleshoe', 'Panhandle'),
+  city('Tulia', 'Panhandle'),
+  city('Perryton', 'Panhandle'),
+  city('Spearman', 'Panhandle'),
+  city('Canadian', 'Panhandle'),
+  city('Shamrock', 'Panhandle'),
+  city('Clarendon', 'Panhandle'),
+  city('Brownfield', 'Panhandle'),
+  city('Slaton', 'Panhandle'),
+  city('Post', 'Panhandle'),
 
   // ─── Gulf Coast ──────────────────────────────────────────────────
   city(
