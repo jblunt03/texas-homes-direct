@@ -8,6 +8,8 @@ export interface Listing {
   slug: string
   /** Earlier slugs for this home. Each 308-redirects to `slug` (next.config.mjs). */
   legacySlugs?: string[]
+  /** YouTube video ID only (11 chars, no URL or tracking params). See CLAUDE.md "Listing videos". */
+  youtubeId?: string
   title: string
   price: number          // 0 = contact for pricing
   beds: number
@@ -41,6 +43,7 @@ export const sampleListings: Listing[] = [
     id: 'BMH-1',
     slug: 'lockhart-texas-3-bed-2-bath-double-wide',
     legacySlugs: ['marathon-pigeon-3bed-2bath-double-wide'],
+    youtubeId: 'DmrE8Mzmazw',
     notionId: '366875ae-20d8-8198-91df-ed233dae812f',
     title: 'The Lockhart',
     manufacturer: 'Texas Homes Direct',
@@ -346,6 +349,7 @@ export const sampleListings: Listing[] = [
     id: 'BMH-19',
     slug: 'sealy-texas-3-bed-2-bath-double-wide',
     legacySlugs: ['marathon-woodduck-3bed-2bath-double-wide'],
+    youtubeId: 'G_yBtL7BCME',
     notionId: '366875ae-20d8-8183-a4b7-fa3d47ff3a02',
     title: 'The Sealy',
     manufacturer: 'Texas Homes Direct',
@@ -400,6 +404,7 @@ export const sampleListings: Listing[] = [
     id: 'BMH-20',
     slug: 'rosenberg-texas-4-bed-2-bath-double-wide',
     legacySlugs: ['marathon-widgeon-4bed-2bath-double-wide'],
+    youtubeId: '5P2ZzqKecr4',
     notionId: '366875ae-20d8-8145-8753-c1a1a45ba4c1',
     title: 'The Rosenberg',
     manufacturer: 'Texas Homes Direct',
@@ -455,6 +460,7 @@ export const sampleListings: Listing[] = [
     id: 'BMH-21',
     slug: 'san-saba-texas-4-bed-2-bath-double-wide',
     legacySlugs: ['marathon-mallard-4bed-2bath-double-wide'],
+    youtubeId: 'TGmZiohzt_8',
     notionId: '366875ae-20d8-8131-ad8b-ca65fd45bf44',
     title: 'The San Saba',
     manufacturer: 'Texas Homes Direct',

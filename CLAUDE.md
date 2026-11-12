@@ -1101,6 +1101,62 @@ name.
   - any page links to a legacy slug
   - the sitemap lists a legacy slug or misses a current one
 
+## Listing videos (`youtubeId`)
+
+**Data.**
+- A listing stores only the 11-character YouTube video ID in `youtubeId`,
+  never a URL or `?si=`/tracking parameters. `lib/youtube.ts` extracts IDs.
+- As of 2026-11-12, four homes have Shorts: The Lockhart (BMH-1), The Sealy
+  (BMH-19), The Rosenberg (BMH-20) and The San Saba (BMH-21). Videos are
+  matched to homes by display name and Notion Listing ID, never by slug.
+- **The sync:** `sync:listings` reads a Notion property named
+  **"YouTube URL"**. It sets `youtubeId` only when that property has a value,
+  and never clears an existing one.
+  - That property didn't exist on 2026-11-12, so the sync does nothing with
+    videos for now.
+  - Notion does have a stray, empty URL column named
+    `https://youtube.com/shorts/TGmZiohzt_8?si=…`. It's ignored.
+
+**Nothing from YouTube loads with the page.**
+- The server sends no iframe, no YouTube script and no YouTube thumbnail.
+- The player (`youtube-nocookie.com` embed, `autoplay=1&playsinline=1&rel=0`,
+  vertical 9:16, max 85vh) is created only after the visitor taps.
+- **Cards** (`components/ListingCard.tsx`, so `/browse` and `/tiny-homes`):
+  - A "Video" chip sits bottom-left on the photo. Badges are top-left, and
+    the name, specs and payment are below the photo, so nothing is covered.
+  - It's a `<button type="button">` with `aria-label="Watch video of <name>"`
+    and a 44px tap target.
+  - Like the payment (i) button, it sits above the stretched title link
+    (z-index 4) and stops the click, so it never opens the listing.
+  - It opens a portaled dialog with the player, which closes on Esc, an
+    outside tap or Close, and returns focus to the chip. The dialog has a
+    "Watch on YouTube" link and a "View this home" link.
+- **Listing pages:** "Watch <name>" below the gallery, with a reserved 9:16
+  box and a play button that swaps in the iframe on tap.
+- **City-page, homepage and related-home cards don't get the chip.**
+
+**Analytics:** each play sends a GA4 `video_play` event with
+`listing_id` (`listing.id`), `video_id` and `placement` (card or listing), via
+`sendGAEvent`. For these four homes, `listing.id` equals the Notion Listing ID.
+For 44 other homes the site id differs from Notion's, so check that before
+relying on `listing_id` for a new video.
+
+**Schema:**
+- VideoObject goes on a listing page only when `lib/videoMeta.ts` has that
+  video's real title, thumbnail and uploadDate, read from the video's own
+  YouTube page. Titles are verbatim, so The Rosenberg's still says
+  "Rosenburg".
+- Never invent these fields, and never put video schema on `/browse`.
+
+**Validator:**
+- Step 4f fails on a `youtubeId` that isn't exactly 11 valid characters.
+- Step 11f fails on:
+  - a YouTube iframe in the server HTML of `/browse`, `/tiny-homes` or any
+    listing page
+  - a video chip without its aria-label
+  - a chip count that doesn't match the number of videos
+  - VideoObject schema on `/browse`
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in

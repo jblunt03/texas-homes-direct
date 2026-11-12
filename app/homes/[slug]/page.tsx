@@ -7,6 +7,7 @@ import ListingDetail from './ListingDetail'
 import { isPromoActive } from '@/lib/promo'
 import { isTinyHome } from '@/lib/tinyHomes'
 import { currentListingSlug } from '@/lib/listingLookup'
+import { VIDEO_META } from '@/lib/videoMeta'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
 
@@ -109,6 +110,19 @@ export default async function HomeListingPage({
 
   const featuredInCities = citiesFeaturing(listing.slug)
 
+  // VideoObject only when the title, thumbnail and uploadDate were read from
+  // the video's own page (lib/videoMeta.ts). Never on /browse.
+  const video = listing.youtubeId ? VIDEO_META[listing.youtubeId] : undefined
+  const videoJsonLd = video && {
+    '@context': 'https://schema.org',
+    '@type': 'VideoObject',
+    name: video.title,
+    thumbnailUrl: video.thumbnailUrl,
+    uploadDate: video.uploadDate,
+    embedUrl: `https://www.youtube.com/embed/${listing.youtubeId}`,
+    url: `https://www.youtube.com/shorts/${listing.youtubeId}`,
+  }
+
   return (
     <>
       <script
@@ -119,6 +133,9 @@ export default async function HomeListingPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
+      {videoJsonLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(videoJsonLd) }} />
+      )}
       <ListingDetail
         listing={listing}
         related={related}

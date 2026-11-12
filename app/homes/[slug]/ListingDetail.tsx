@@ -7,6 +7,7 @@ import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
 import { listingBadge } from '@/lib/badges'
 import { isTinyHome } from '@/lib/tinyHomes'
+import { ListingVideoPanel } from '@/components/ListingVideo'
 import PaymentEstimate from '@/components/PaymentEstimate'
 import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
 
@@ -382,6 +383,11 @@ export default function ListingDetail({
           )}
         </div>
       </section>
+
+      {/* ── VIDEO (click-to-load YouTube Short) ──────────── */}
+      {listing.youtubeId && (
+        <ListingVideoPanel home={{ title: listing.title, slug: listing.slug, id: listing.id, youtubeId: listing.youtubeId }} />
+      )}
 
       {/* ── 3D WALK THROUGH ───────────────────────────────── */}
       {(listing.matterportUrl || showFloorplanPanel) && (

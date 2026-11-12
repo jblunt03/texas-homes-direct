@@ -10,6 +10,7 @@
  *   - beds/baths/sqft/wideType/model ← the matching Notion properties (only
  *     when Notion has a value; a blank Notion field never wipes the code value)
  *   - matterportUrl ← Notion "3D Tour URL" (blank or "NONE" removes the tour)
+ *   - youtubeId ← Notion "YouTube URL" (ID only; set when filled, never cleared)
  *   - images      ← the image blocks in the Notion page body (see below)
  *   - description: if the title changed and the description names the old
  *     title, that mention is renamed too
@@ -431,6 +432,13 @@ function newListingSource(page: PageObjectResponse, slug: string, floorplanUrl: 
  *   single-wide/double-wide from Notion's Type; otherwise left out (Type
  *   blank, or a park model with 2+ bedrooms). Never guessed from size.
  */
+/** Mirrors youtubeIdFromUrl() in lib/youtube.ts: URL → 11-char ID, tracking dropped. */
+function youtubeIdFromUrl(url: string): string | null {
+  const m =
+    /(?:youtube(?:-nocookie)?\.com\/(?:shorts\/|embed\/|watch\?(?:[^#]*&)?v=)|youtu\.be\/)([A-Za-z0-9_-]{11})(?![A-Za-z0-9_-])/.exec(url)
+  return m ? m[1] : null
+}
+
 function newListingSlug(page: PageObjectResponse): string {
   const name = propText(page, 'Name')
     .toLowerCase()
@@ -573,6 +581,15 @@ async function main() {
     if (tour !== oldTour) {
       b = tour ? setLine(b, 'matterportUrl', q(tour), 'status') : removeLine(b, 'matterportUrl')
       log.push(`tour: ${oldTour || '(none)'} → ${tour || '(none)'}`)
+    }
+
+    // YouTube video: only from a Notion property named "YouTube URL", and only
+    // ever SET — a blank or missing Notion value never clears youtubeId.
+    const ytId = youtubeIdFromUrl(propText(page, 'YouTube URL'))
+    const oldYt = getStr(b, 'youtubeId') ?? ''
+    if (ytId && ytId !== oldYt) {
+      b = setLine(b, 'youtubeId', q(ytId), 'slug')
+      log.push(`video: ${oldYt || '(none)'} → ${ytId}`)
     }
 
     // Images

@@ -817,6 +817,64 @@ def step_listing_urls_rendered(city_slugs):
     return report("11e. Listing URLs: redirects, canonicals, links", ok, detail)
 
 
+# ─── Listing videos (see CLAUDE.md "Listing videos") ─────────────────────
+# Static (4f): every youtubeId is exactly 11 valid characters — no URL, no
+# ?si= or other tracking parameter stored.
+# Rendered (11f): /browse, /tiny-homes and every listing page ship NO
+# YouTube iframe in server HTML (the player loads only after a tap); every
+# card video chip has its "Watch video of …" aria-label; /browse carries no
+# VideoObject schema.
+YOUTUBE_ID_RE = re.compile(r"^[A-Za-z0-9_-]{11}$")
+
+
+def listing_youtube_ids():
+    src = (REPO_ROOT / "lib" / "sampleListings.ts").read_text()
+    out = {}
+    for block in re.split(r"\n  \{\n", src)[1:]:
+        slug = re.search(r"\n    slug: '([^']+)'", "\n" + block)
+        yt = re.search(r"\n    youtubeId: '([^']*)'", "\n" + block)
+        if slug and yt:
+            out[slug.group(1)] = yt.group(1)
+    return out
+
+
+def step_youtube_ids_static():
+    ids = listing_youtube_ids()
+    problems = [f"  {s}: youtubeId {v!r} must be exactly the 11-character video ID (no URL or tracking parameters)"
+                for s, v in ids.items() if not YOUTUBE_ID_RE.match(v)]
+    ok = not problems
+    return report("4f. Listing video IDs", ok, problems or [f"{len(ids)} listings have a valid 11-character youtubeId."])
+
+
+YT_IFRAME_RE = re.compile(r"<iframe[^>]+(?:youtube\.com|youtube-nocookie\.com|youtu\.be)", re.I)
+
+
+def step_youtube_rendered():
+    problems = []
+    ids = listing_youtube_ids()
+    pages = ["/browse", "/tiny-homes"] + [f"/homes/{s}" for s in listing_slugs()]
+    chips_on_browse = 0
+    for path in pages:
+        status, html = fetch(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        if YT_IFRAME_RE.search(html):
+            problems.append(f"  {path}: server HTML contains a YouTube iframe before any tap")
+        for chip in re.findall(r"<button[^>]*data-video-chip[^>]*>", html):
+            if not re.search(r'aria-label="Watch video of [^"]+"', chip):
+                problems.append(f"  {path}: video chip without its 'Watch video of …' aria-label")
+            if path == "/browse":
+                chips_on_browse += 1
+        if path == "/browse" and '"VideoObject"' in html:
+            problems.append("  /browse: carries VideoObject schema (only listing pages may)")
+    if chips_on_browse != len(ids):
+        problems.append(f"  /browse: {chips_on_browse} video chips for {len(ids)} listings with a youtubeId")
+    ok = not problems
+    detail = problems or [f"No YouTube iframe in server HTML on {len(pages)} pages; {chips_on_browse} labeled video chips on /browse; no VideoObject on /browse."]
+    return report("11f. Listing videos load only on tap", ok, detail)
+
+
 def main():
     check_all = "--all" in sys.argv
 
@@ -829,6 +887,7 @@ def main():
     ok &= step_payment_disclosure_source()
     ok &= step_model_year_static()
     ok &= step_listing_slugs_static()
+    ok &= step_youtube_ids_static()
     ok &= step_image_paths()
     ok &= step_unique_image_pairs()
     ok &= step_tsc()
@@ -856,6 +915,7 @@ def main():
                 ok &= step_payment_disclosure_rendered(city_slugs)
                 ok &= step_model_year_rendered()
                 ok &= step_listing_urls_rendered(city_slugs)
+                ok &= step_youtube_rendered()
         finally:
             stop_dev_server(proc)
             if ctx:

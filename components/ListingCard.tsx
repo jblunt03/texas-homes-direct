@@ -5,6 +5,7 @@ import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
 import { listingBadge } from '@/lib/badges'
 import PaymentEstimate from '@/components/PaymentEstimate'
+import { VideoChip } from '@/components/ListingVideo'
 
 /**
  * Inventory card used on /browse and /tiny-homes. Moved out of BrowseClient
@@ -60,6 +61,9 @@ export default function ListingCard({
           style={{ position: 'relative' }}
         >
           {cardTags}
+          {listing.youtubeId && (
+            <VideoChip home={{ title: listing.title, slug: listing.slug, id: listing.id, youtubeId: listing.youtubeId }} />
+          )}
           <Image
             src={listing.images[0]}
             alt={`${listing.title} exterior`}
