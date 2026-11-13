@@ -248,6 +248,7 @@ export function mapPage(page: PageObjectResponse): Listing {
     dimensions,
     matterportUrl,
     status: (statusRaw || 'Active') as Listing['status'],
+    youtubeId: siteListing?.youtubeId, // site-owned, like slug (CLAUDE.md "Listing videos")
   }
 }
 
