@@ -9,22 +9,15 @@ import { listingBadge } from '@/lib/badges'
 import { isTinyHome } from '@/lib/tinyHomes'
 import dynamic from 'next/dynamic'
 import { VIDEOS_ARCHIVED } from '@/lib/archived'
+import ListingPrice from '@/components/ListingPrice'
+import PriceModeToggle from '@/components/PriceModeToggle'
+import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
 
 // Loaded only while listing videos aren't archived (lib/archived.json
 // "videos"); with the flag set the panel and its reserved space don't render.
 const ListingVideoPanel = VIDEOS_ARCHIVED
   ? null
   : dynamic(() => import('@/components/ListingVideo').then((m) => m.ListingVideoPanel))
-import PaymentEstimate from '@/components/PaymentEstimate'
-import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
-
-function fmt(n: number) {
-  return n.toLocaleString('en-US', {
-    style: 'currency',
-    currency: 'USD',
-    maximumFractionDigits: 0,
-  })
-}
 
 /* ── Sidebar lead form ───────────────────────────────────── */
 function SidebarForm({ slug }: { slug: string }) {
@@ -221,11 +214,7 @@ function RelatedCard({ listing }: { listing: Listing }) {
         </div>
         <div className="bmh-inv-card-footer">
           <span className="bmh-inv-card-price">
-            {listing.price > 0
-              ? `$${listing.price.toLocaleString()}`
-              : listing.monthlyPayment > 0
-              ? <PaymentEstimate amount={listing.monthlyPayment} />
-              : 'Call for price'}
+            <ListingPrice price={listing.price} monthlyPayment={listing.monthlyPayment} />
           </span>
           <span className="bmh-inv-card-link">View →</span>
         </div>
@@ -574,6 +563,9 @@ export default function ListingDetail({
 
               {/* Price + stats */}
               <div className="bmh-card">
+                {/* Cash price / est. monthly payment (CLAUDE.md "Cash price"). */}
+                <PriceModeToggle placement="listing" />
+                <div style={{ height: 16 }} />
                 <div
                   style={{
                     display: 'flex',
@@ -583,86 +575,10 @@ export default function ListingDetail({
                     gap: 20,
                   }}
                 >
-                  <div>
-                    {listing.price > 0 ? (
-                      <>
-                        <p className="bmh-caption bmh-muted" style={{ marginBottom: 4 }}>
-                          List price
-                        </p>
-                        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: '8px 12px' }}>
-                          <p
-                            style={{
-                              fontFamily: 'var(--font-serif)',
-                              fontSize: 'clamp(32px,4vw,48px)',
-                              letterSpacing: '-1px',
-                              lineHeight: 1,
-                              color: 'var(--color-ink)',
-                              margin: 0,
-                            }}
-                          >
-                            {fmt(listing.price)}
-                          </p>
-                          {/* The promo applies to the list price shown; never compute a sale or "was" price. */}
-                          {isPromoListing(listing.slug) && <PromoBadge activeAtRender={promoActiveAtRender} />}
-                        </div>
-                        {listing.monthlyPayment > 0 && (
-                          <>
-                            <p className="bmh-caption" style={{ color: 'var(--color-muted)', marginTop: 6 }}>
-                              <PaymentEstimate amount={listing.monthlyPayment}>
-                                {fmt(listing.monthlyPayment)}/mo
-                              </PaymentEstimate>
-                            </p>
-                            <PaymentFootnote style={{ marginTop: 8 }} />
-                          </>
-                        )}
-                      </>
-                    ) : (
-                      <>
-                        {listing.monthlyPayment > 0 ? (
-                          <>
-                            <p className="bmh-caption bmh-muted" style={{ marginBottom: 4 }}>
-                              Est. monthly payment
-                            </p>
-                            <p
-                              style={{
-                                fontFamily: 'var(--font-serif)',
-                                fontSize: 'clamp(32px,4vw,48px)',
-                                letterSpacing: '-1px',
-                                lineHeight: 1,
-                                color: 'var(--color-ink)',
-                                margin: 0,
-                              }}
-                            >
-                              <PaymentEstimate amount={listing.monthlyPayment}>
-                                {fmt(listing.monthlyPayment)}<span style={{ fontSize: '0.45em', color: 'var(--color-muted)', marginLeft: 4 }}>/mo</span>
-                              </PaymentEstimate>
-                            </p>
-                            <PaymentFootnote style={{ marginTop: 8 }} />
-                            <p className="bmh-caption" style={{ color: 'var(--color-muted)', marginTop: 6 }}>
-                              Call us for purchase price
-                            </p>
-                          </>
-                        ) : (
-                          <>
-                            <p className="bmh-caption bmh-muted" style={{ marginBottom: 4 }}>
-                              Pricing
-                            </p>
-                            <p
-                              style={{
-                                fontFamily: 'var(--font-serif)',
-                                fontSize: 'clamp(24px,3vw,36px)',
-                                letterSpacing: '-0.5px',
-                                lineHeight: 1.1,
-                                color: 'var(--color-ink)',
-                                margin: 0,
-                              }}
-                            >
-                              Contact for pricing
-                            </p>
-                          </>
-                        )}
-                      </>
-                    )}
+                  <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'flex-end', gap: '8px 12px' }}>
+                    <ListingPrice variant="detail" price={listing.price} monthlyPayment={listing.monthlyPayment} />
+                    {/* The promo applies to the price shown; never compute a sale or "was" price. */}
+                    {isPromoListing(listing.slug) && <PromoBadge activeAtRender={promoActiveAtRender} />}
                   </div>
 
                   <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap' }}>
@@ -684,6 +600,17 @@ export default function ListingDetail({
                     </div>
                   </div>
                 </div>
+
+                {listing.monthlyPayment > 0 && <PaymentFootnote style={{ marginTop: 12 }} />}
+                {/* Wording taken from /how-pricing-works; no new claims. */}
+                <p className="bmh-caption bmh-muted" style={{ marginTop: 12 }}>
+                  Utility hookups (water, septic and electric) depend on the property they&rsquo;re going on. Our own
+                  contractor visits the property and produces an exact bid, and you see that number and approve it
+                  before it becomes part of your total.{' '}
+                  <Link href="/how-pricing-works" style={{ color: 'var(--color-primary)' }}>
+                    How pricing works →
+                  </Link>
+                </p>
 
                 <p
                   style={{

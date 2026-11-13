@@ -3,18 +3,22 @@ import { PAYMENT_DISCLOSURE } from '@/lib/disclaimers'
 
 /**
  * The full estimated-payment disclosure as visible text, so it's never only
- * behind a click. Shown once under every card grid that contains a monthly
- * payment, and directly under the payment on a listing page.
+ * behind a click. Rendered under every card grid that can show a monthly
+ * payment, and under the payment on a listing page.
+ *
+ * It's payment-mode only (CLAUDE.md "Cash price"): always in the HTML, shown
+ * by CSS only while <html data-price-mode="payment">, i.e. only when a
+ * payment is actually on screen.
  */
 export default function PaymentFootnote({ style }: { style?: CSSProperties }) {
   return (
-    <p className="bmh-pay-footnote" style={style}>
+    <p className="bmh-pay-footnote bmh-pm-pay-block" data-pm="pay" style={style}>
       <strong>{PAYMENT_DISCLOSURE.title}:</strong> {PAYMENT_DISCLOSURE.body}
     </p>
   )
 }
 
-/** True when a card shows a monthly payment rather than a list price or "Call for price". */
-export function showsMonthlyPayment(listing: { price: number; monthlyPayment: number }): boolean {
-  return !(listing.price > 0) && listing.monthlyPayment > 0
+/** True when a card can show a monthly payment (in payment mode). */
+export function showsMonthlyPayment(listing: { monthlyPayment: number }): boolean {
+  return listing.monthlyPayment > 0
 }

@@ -1,10 +1,13 @@
 'use client'
-import { useState, type CSSProperties } from 'react'
+import { useEffect, useState, type CSSProperties } from 'react'
 import Link from 'next/link'
 import type { Listing } from '@/lib/sampleListings'
 import ListingCard from '@/components/ListingCard'
 import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
 import { pinRank } from '@/lib/promo'
+import PriceModeToggle from '@/components/PriceModeToggle'
+import { usePriceMode } from '@/lib/priceModeClient'
+import type { PriceMode } from '@/lib/priceMode'
 
 type Filter = 'all' | 'single' | 'double'
 
@@ -12,11 +15,30 @@ type Filter = 'all' | 'single' | 'double'
 // (the first row at any width); the rest stay lazy.
 const EAGER_CARDS = 4
 
-const BUDGET_OPTIONS = [
+// Budget bands follow the price mode (CLAUDE.md "Cash price"). Payment bands
+// are the original ones. Cash bands were chosen from the 57 prices on
+// 2026-11-13 ($49k–$164k): 10 / 19 / 11 / 17 homes per band.
+const PAYMENT_BUDGET_OPTIONS = [
   { value: '', label: 'Any budget' },
   { value: '750-1000', label: '$750–$1,000/mo' },
   { value: '1000-1500', label: '$1,000–$1,500/mo' },
   { value: '1500-plus', label: '$1,500/mo+' },
+]
+const CASH_BUDGET_OPTIONS = [
+  { value: '', label: 'Any budget' },
+  { value: 'under-80k', label: 'Under $80,000' },
+  { value: '80k-100k', label: '$80,000–$99,999' },
+  { value: '100k-130k', label: '$100,000–$129,999' },
+  { value: '130k-plus', label: '$130,000+' },
+]
+const budgetOptions = (mode: PriceMode) => (mode === 'payment' ? PAYMENT_BUDGET_OPTIONS : CASH_BUDGET_OPTIONS)
+
+type Sort = 'featured' | 'price-asc' | 'price-desc' | 'size-desc'
+const SORT_OPTIONS: { value: Sort; label: string }[] = [
+  { value: 'featured', label: 'Featured' },
+  { value: 'price-asc', label: 'Lowest price' },
+  { value: 'price-desc', label: 'Highest price' },
+  { value: 'size-desc', label: 'Size (largest first)' },
 ]
 
 const BEDS_OPTIONS = [
@@ -46,6 +68,11 @@ const selectStyle: CSSProperties = {
 
 function matchesBudget(listing: Listing, budget: string): boolean {
   if (!budget) return true
+  const price = listing.price
+  if (budget === 'under-80k') return price > 0 && price < 80000
+  if (budget === '80k-100k') return price >= 80000 && price < 100000
+  if (budget === '100k-130k') return price >= 100000 && price < 130000
+  if (budget === '130k-plus') return price >= 130000
   const payment = listing.monthlyPayment
   if (!payment) return false
   if (budget === '750-1000') return payment >= 750 && payment <= 1000
@@ -98,9 +125,16 @@ export default function BrowseClient({
   const validFilters: Filter[] = ['all', 'single', 'double']
   const init = validFilters.includes(initialType as Filter) ? (initialType as Filter) : 'all'
   const [activeFilter, setActiveFilter] = useState<Filter>(init)
+  const mode = usePriceMode()
   const [budget, setBudget] = useState(
-    BUDGET_OPTIONS.some((o) => o.value === initialBudget) ? initialBudget : ''
+    // The server renders cash mode, so only cash bands are valid on first render.
+    CASH_BUDGET_OPTIONS.some((o) => o.value === initialBudget) ? initialBudget : ''
   )
+  const [sort, setSort] = useState<Sort>('featured')
+  // Switching modes swaps the budget bands, so drop a band from the other mode.
+  useEffect(() => {
+    setBudget((b) => (budgetOptions(mode).some((o) => o.value === b) ? b : ''))
+  }, [mode])
   const [beds, setBeds] = useState(
     BEDS_OPTIONS.some((o) => o.value === initialBeds) ? initialBeds : ''
   )
@@ -114,13 +148,26 @@ export default function BrowseClient({
     .filter((l) => matchesBeds(l, beds))
     .filter((l) => matchesBaths(l, baths))
     .slice()
-    // Pinned homes (PROMO.pinned in lib/promo.ts) first, in config order; then
-    // homes with photos before floorplan-only ones; otherwise the existing order.
-    .sort(
-      (a, b) =>
-        pinRank(a.slug) - pinRank(b.slug) ||
-        Number(isFloorplanOnly(a)) - Number(isFloorplanOnly(b))
-    )
+    .sort((a, b) => {
+      if (sort === 'featured') {
+        // Default order: pinned homes (PROMO.pinned in lib/promo.ts) first, in
+        // config order; then homes with photos before floorplan-only ones;
+        // otherwise the existing order. The same in both modes, so nothing
+        // reorders when a saved "payment" choice loads.
+        return (
+          pinRank(a.slug) - pinRank(b.slug) ||
+          Number(isFloorplanOnly(a)) - Number(isFloorplanOnly(b))
+        )
+      }
+      if (sort === 'size-desc') return b.sqft - a.sqft
+      // Price sorts use what's on screen: cash price, or the monthly payment.
+      // In payment mode, homes with no payment ("Payment on request") go last
+      // in both directions. Pins don't apply after a sort.
+      const val = (l: Listing) => (mode === 'payment' ? l.monthlyPayment : l.price)
+      const va = val(a), vb = val(b)
+      if (!va || !vb) return Number(!va) - Number(!vb)
+      return sort === 'price-asc' ? va - vb : vb - va
+    })
 
   const counts = {
     all: listings.length,
@@ -148,6 +195,8 @@ export default function BrowseClient({
             Filter by type, walk through the specs, and call us when you find the one —
             we&rsquo;ll handle delivery and setup from there.
           </p>
+          <div className="bmh-spacer-md" />
+          <PriceModeToggle placement="browse" />
         </div>
       </section>
 
@@ -190,12 +239,12 @@ export default function BrowseClient({
             </div>
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', flexWrap: 'wrap' }}>
               <select
-                style={selectStyle}
+                style={{ ...selectStyle, width: 190 }}
                 value={budget}
                 onChange={(e) => setBudget(e.target.value)}
                 aria-label="Budget"
               >
-                {BUDGET_OPTIONS.map((o) => (
+                {budgetOptions(mode).map((o) => (
                   <option key={o.value} value={o.value}>
                     {o.label}
                   </option>
@@ -228,13 +277,15 @@ export default function BrowseClient({
               <span className="bmh-caption bmh-muted">Sort by</span>
               <select
                 style={selectStyle}
-                defaultValue="Featured"
+                value={sort}
+                onChange={(e) => setSort(e.target.value as Sort)}
+                aria-label="Sort by"
               >
-                <option>Featured</option>
-                <option>Price (low to high)</option>
-                <option>Price (high to low)</option>
-                <option>Size (largest first)</option>
-                <option>Newest</option>
+                {SORT_OPTIONS.map((o) => (
+                  <option key={o.value} value={o.value}>
+                    {o.label}
+                  </option>
+                ))}
               </select>
             </div>
           </div>

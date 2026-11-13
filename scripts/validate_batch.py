@@ -563,10 +563,17 @@ def step_payment_disclosure_rendered(city_slugs):
             problems.append(f"  {path}: HTTP {status}")
             continue
         body = re.sub(r"<script.*?</script>|<select.*?</select>|<!-- -->", "", html, flags=re.S)
-        for block in PAY_BLOCK_RE.findall(body):
+        for m in PAY_BLOCK_RE.finditer(body):
+            block = m.group(1)
             wrapped_total += 1
             if ">est.<" not in block or PAY_INFO_LABEL not in block or 'type="button"' not in block:
                 problems.append(f"  {path}: payment wrapper missing 'est.' or the info button")
+            # Cash price is the default view (CLAUDE.md "Cash price"): every
+            # payment must sit inside a payment-only container (data-pm="pay"),
+            # which CSS hides until the visitor picks "Est. monthly payment".
+            before = body[max(0, m.start() - 400):m.start()]
+            if 'data-pm="pay"' not in before:
+                problems.append(f"  {path}: payment shown outside the payment-only container (cash is the default view)")
         bare = PAY_AMOUNT_RE.findall(PAY_BLOCK_RE.sub("", body))
         for amt in bare:
             problems.append(f"  {path}: payment {re.sub('<[^>]*>', '', amt)!r} rendered without 'est.' and the info button")
@@ -575,6 +582,73 @@ def step_payment_disclosure_rendered(city_slugs):
     ok = not problems
     detail = problems[:40] or [f"{wrapped_total} payment figures across {len(pages)} pages, every one with 'est.' and the info button."]
     return report("11b. Every payment shows 'est.' + info button", ok, detail)
+
+
+# ─── Cash price (CLAUDE.md "Cash price") ────────────────────────────────
+# Every listing has a cash price; the default view everywhere is that price.
+# "Call for price"-style text means a card fell back to the old display.
+NO_PRICE_TEXT = ("Call for price", "Contact for pricing", "Call us for purchase price")
+CASH_BLOCK_RE = re.compile(r'<span class="bmh-price-mode bmh-pm-cash(?:-fixed)?" data-pm="cash">(.*?)</span></span>', re.S)
+PRICE_CARD_RE = re.compile(r'<span class="bmh-price bmh-price-(?:card|detail)">')
+
+
+def step_listing_prices_static():
+    src = (REPO_ROOT / "lib" / "sampleListings.ts").read_text()
+    problems = []
+    for blk in re.split(r"\n  \{\n", src)[1:]:
+        title = re.search(r"\n    title: '([^']+)'", "\n" + blk)
+        if not title:
+            continue
+        price = re.search(r"\n    price: (\d+),", "\n" + blk)
+        if not price or int(price.group(1)) <= 0:
+            problems.append(f"  {title.group(1)}: no cash price (price must be > 0)")
+    n = len(re.findall(r"\n    title: '", src))
+    ok = not problems and n > 0
+    return report("4g. Every listing has a cash price", ok, problems or [f"{n} listings, every one with a cash price."])
+
+
+def step_cash_price_rendered(city_slugs):
+    pages = ["/", "/browse", "/tiny-homes"] + [f"/homes/{s}" for s in listing_slugs()]
+    pages += [f"/mobile-homes-{s}-tx" for s in city_slugs]
+    problems, cards = [], 0
+    for path in pages:
+        try:
+            status, html = fetch(path)
+        except Exception as e:
+            problems.append(f"  {path}: request failed ({e})")
+            continue
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        body = re.sub(r"<script.*?</script>|<!-- -->", "", html, flags=re.S)
+        for t in NO_PRICE_TEXT:
+            if t in body:
+                problems.append(f"  {path}: shows {t!r}")
+        n_cards = len(PRICE_CARD_RE.findall(body))
+        cash = CASH_BLOCK_RE.findall(body)
+        cards += n_cards
+        if n_cards != len(cash):
+            problems.append(f"  {path}: {n_cards} price blocks but {len(cash)} default-visible cash prices")
+        for c in cash:
+            if not re.search(r'class="bmh-price-figure">\$\d{1,3}(?:,\d{3})+<', c):
+                problems.append(f"  {path}: a cash price block has no $N,NNN figure")
+        if path == "/tiny-homes" and ('data-pm="pay"' in body or "data-pay=" in body):
+            problems.append("  /tiny-homes: renders payment markup (cash price only there)")
+        head = re.search(r"<head.*?</head>", html, re.S)
+        for tag in re.findall(r'<title>(.*?)</title>|<meta (?:name="description"|property="og:description") content="([^"]*)"', head.group(0) if head else ""):
+            if re.search(r"\$\d", " ".join(tag)):
+                problems.append(f"  {path}: price or payment in the title/meta description")
+        for ld in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
+            if re.search(r'"(offers|price|priceCurrency|discount)"', ld):
+                problems.append(f"  {path}: price/offers/discount in JSON-LD")
+    llms = (REPO_ROOT / "public" / "llms.txt").read_text()
+    if re.search(r"\$\d", llms):
+        problems.append("  public/llms.txt: contains a price or payment")
+    if cards == 0:
+        problems.append("  Found zero price blocks on any page — the check's patterns no longer match the markup.")
+    ok = not problems
+    detail = problems[:40] or [f"{cards} price blocks across {len(pages)} pages all show a cash price by default; no 'Call for price'; no price in titles, meta, schema or llms.txt; /tiny-homes is cash-only."]
+    return report("11g. Cash price shown by default", ok, detail)
 
 
 # ─── Archived sections (lib/archived.json + lib/archived.ts) ─────────────
@@ -931,6 +1005,7 @@ def main():
     ok &= step_model_year_static()
     ok &= step_listing_slugs_static()
     ok &= step_youtube_ids_static()
+    ok &= step_listing_prices_static()
     ok &= step_image_paths()
     ok &= step_unique_image_pairs()
     ok &= step_tsc()
@@ -959,6 +1034,7 @@ def main():
                 ok &= step_model_year_rendered()
                 ok &= step_listing_urls_rendered(city_slugs)
                 ok &= step_youtube_rendered(city_slugs)
+                ok &= step_cash_price_rendered(city_slugs)
         finally:
             stop_dev_server(proc)
             if ctx:

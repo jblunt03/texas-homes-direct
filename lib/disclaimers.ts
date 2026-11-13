@@ -5,7 +5,8 @@
  * appears in any other file, so it can't drift between pages.
  *
  * Don't add a rate, term, down payment, lender, or included/not-included
- * claim here. As of 2026-11-10 Notion's Interest Rate, Loan Term Years and
+ * claim here. The one exception is "The estimate includes insurance.",
+ * added on the owner's instruction on 2026-11-13. As of 2026-11-10 Notion's Interest Rate, Loan Term Years and
  * Down Payment Est fields are empty for every listing; if they're ever
  * filled in, this wording must be revisited to match. See CLAUDE.md
  * "Estimated payment disclosure".
@@ -14,5 +15,5 @@ export const PAYMENT_DISCLOSURE = {
   label: 'est.',
   title: 'Estimated Monthly Payment',
   body:
-    'Estimated monthly payments are for informational purposes only and are not an offer of credit or a commitment to lend. Your actual payment and interest rate may vary depending on factors such as your down payment, credit history, loan term, and lender. Site work your land requires, such as utility connections, is priced from an exact bid by our contractors after they visit your property, and may change your payment.',
+    'Estimated monthly payments are for informational purposes only and are not an offer of credit or a commitment to lend. The estimate includes insurance. Your actual payment and interest rate may vary depending on factors such as your down payment, credit history, loan term, and lender. Site work your land requires, such as utility connections, is priced from an exact bid by our contractors after they visit your property, and may change your payment.',
 } as const

@@ -1073,3 +1073,48 @@ body.bmh-video-open chat-widget {
 }
 .bmh-video-poster-label { font: 600 16px/1.2 var(--font-sans); }
 .bmh-video-poster:focus-visible { outline: 3px solid #fff; outline-offset: -6px; }
+
+/* ── Cash price / est. monthly payment (CLAUDE.md "Cash price") ─────────
+   Every price renders both versions; <html data-price-mode> (set before
+   first paint from the visitor's saved choice) decides which one shows.
+   Default, and what the server sends: cash. Both versions share one box
+   (figure line + label line) so switching never moves a card. */
+.bmh-price { display: inline-block; vertical-align: top; }
+.bmh-price-mode { display: flex; flex-direction: column; }
+.bmh-pm-pay, .bmh-pm-pay-block { display: none; }
+html[data-price-mode="payment"] .bmh-pm-cash { display: none; }
+html[data-price-mode="payment"] .bmh-pm-pay { display: flex; }
+html[data-price-mode="payment"] .bmh-pm-pay-block { display: block; }
+.bmh-price-figure { display: block; height: 1.2em; line-height: 1.2em; white-space: nowrap; }
+.bmh-price .bmh-pay { flex-wrap: nowrap; }
+.bmh-price-request { font-family: var(--font-sans); font-size: 0.55em; font-weight: 600; letter-spacing: 0; color: var(--color-body-strong); vertical-align: middle; }
+.bmh-price-label {
+  display: block; height: 16px; margin-top: 2px;
+  font-family: var(--font-sans); font-size: 12.5px; line-height: 16px; letter-spacing: 0;
+  color: var(--color-muted); white-space: nowrap;
+}
+.bmh-price-detail .bmh-price-figure {
+  font-family: var(--font-serif); font-size: clamp(32px, 4vw, 48px); letter-spacing: -1px;
+  color: var(--color-ink); height: 1.15em; line-height: 1.15em;
+}
+.bmh-price-detail .bmh-price-label-top { height: auto; margin: 0 0 4px; font-size: 14px; line-height: 20px; }
+.bmh-price-detail .bmh-price-request { font-size: 0.5em; }
+
+/* Segmented control: a native radio group; selected state from <html>, so it's right before hydration. */
+.bmh-pm-toggle {
+  display: inline-flex; max-width: 100%; padding: 3px; gap: 2px;
+  border: 1px solid var(--color-hairline); border-radius: 999px; background: var(--color-canvas);
+}
+.bmh-pm-opt { position: relative; display: inline-flex; }
+.bmh-pm-opt input { position: absolute; inset: 0; width: 100%; height: 100%; margin: 0; opacity: 0; cursor: pointer; }
+.bmh-pm-opt span {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px;
+  font-family: var(--font-sans); font-size: 14px; font-weight: 600; white-space: nowrap;
+  color: var(--color-body-strong);
+}
+html:not([data-price-mode="payment"]) .bmh-pm-opt[data-pm-opt="cash"] span,
+html[data-price-mode="payment"] .bmh-pm-opt[data-pm-opt="payment"] span {
+  background: var(--color-surface-dark); color: #fff;
+}
+.bmh-pm-opt input:focus-visible + span { outline: 2px solid var(--color-primary); outline-offset: 2px; }
+@media (max-width: 380px) { .bmh-pm-opt span { padding: 0 12px; font-size: 13.5px; } }

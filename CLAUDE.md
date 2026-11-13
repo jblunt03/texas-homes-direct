@@ -588,8 +588,8 @@ removes the tour) and `images`. It also renames the old name where it appears
 in the description. **It never touches `slug`** (the page URL) or price,
 features, status or `floorplanUrl`. Price and status are hand-set in
 `lib/sampleListings.ts`. A sync can't revert them, but it also won't pick up a
-price change made in Notion. The Seguin's and The Austin's list prices
-(2026-10-21) were set by hand to match Notion. A blank Notion field never wipes a code
+price change made in Notion. Every cash price was set by hand on 2026-11-13
+from the owner's price sheet (see "Cash price"). A blank Notion field never wipes a code
 value. Run it twice: the second dry run should report no listing changes. If
 it doesn't, something isn't idempotent.
 
@@ -606,8 +606,9 @@ it doesn't, something isn't idempotent.
   (`newListingSlug()`, see "Listing URLs" below):
   - **From Notion:** name, beds/baths/sq ft, model, wide type, year, and
     status. A blank status becomes `Active`.
-  - **Defaults:** price `0` ("Call for price"), monthly payment `0`, region
-    `South TX`, and manufacturer "Texas Homes Direct".
+  - **Defaults:** price `0`, monthly payment `0`, region `South TX`, and
+    manufacturer "Texas Homes Direct". A new listing then fails
+    `validate_batch.py` step 4g until a cash price is set by hand.
   - **Description and features:** generated from the specs only, e.g. "The
     Seguin is a 924 square foot singlewide with 3 beds and 2 baths."
   - **Floorplan:** downloaded from Notion's "Floorplan URLs" to
@@ -740,26 +741,20 @@ changed or emptied.
 
 **Rules:**
 - No dollar amount in the label.
-- Only The Seguin ($69,000) and The Austin ($99,000) show a list price, as of
-  2026-10-21. Every other listing stays "Call for price" (`price: 0`).
-- The badge applies to the list price as shown. Never compute or display a
+- Every listing shows its cash price (since 2026-11-13; see "Cash price").
+- The badge applies to the price as shown. Never compute or display a
   sale price, a "was" price or a strikethrough.
 - Prices never go in page titles, meta or OG descriptions (the "Priced at"
-  clause was removed from `generateMetadata` for this), or city pages.
-  City-page cards only read `monthlyPayment`: they show the estimated payment
-  (with its disclosure) when there is one, otherwise "Call for price". They
-  never show a list price.
-- On a priced listing's page, the badge appears twice: next to the title and
-  next to the "List price" figure.
+  clause was removed from `generateMetadata` for this). City-page cards show
+  the price at render time only; `lib/cityContent.ts` copy never mentions one.
+- On a promo listing's page, the badge appears twice: next to the title and
+  next to the price.
 - Never add the promo or a price to schema: no `offers`, `price` or
   `discount` in Product JSON-LD.
 - Don't touch `lib/cityContent.ts` or city pages for a promo.
 
-**Known gap: the budget filter hides "Call for price" homes.** It hides any
-listing whose `monthlyPayment` is 0 as soon as any budget is chosen. Today that
-means The Seguin, The Austin and The Lampasas. Proposed fix, not yet built:
-keep those homes in budget-filtered results, after the matching ones, under a
-"Call for price — ask us what fits your budget" divider.
+**Pinning applies to the default ("Featured") order only.** After a price or
+size sort, pinned homes sort like any other.
 
 ## Permanent listing badges (`lib/badges.ts`)
 
@@ -873,9 +868,9 @@ Content limits on `/tiny-homes` and the tab:
 - No financing, setup, delivery or placement claims. They can't be verified
   for every listing, park models included. The page links to the free
   mortgage analysis and a quote request without claiming anything about them.
-- No payment amounts (`showPayment={false}`). The estimated-payment
-  disclosure now exists (see below), but the owner chose to keep payments off
-  this page.
+- Cash price only (`showPayment={false}`): no payment mode, no toggle, no
+  payment markup in the HTML, whatever the visitor chose elsewhere. The owner
+  hasn't confirmed financing claims for park models.
 - No claims about who buys tiny homes or why, and no regulatory definitions.
 
 The page is in the sitemap, in `llms.txt` under Key Offerings, and in
@@ -884,8 +879,10 @@ The page is in the sitemap, in `llms.txt` under Key Offerings, and in
 ## Estimated payment disclosure (`lib/disclaimers.ts`)
 
 **Every monthly payment amount on the site shows "est." and an info button,**
-like "$950/mo est. (i)". This applies to monthly payments only, never to list
-prices or "Call for price". It started on 2026-11-10.
+like "$950/mo est. (i)". This applies to monthly payments only, never to the
+cash price. It started on 2026-11-10. Since 2026-11-13 payments only show in
+payment mode (see "Cash price" below), with the line "Average estimate, with
+insurance" under each one.
 
 - **One source of text.** `PAYMENT_DISCLOSURE` in `lib/disclaimers.ts` holds
   the label ("est."), the dialog title and the body. Never copy the body into
@@ -904,15 +901,16 @@ prices or "Call for price". It started on 2026-11-10.
   - doesn't lock scroll, so opening it never shifts the layout
   - has a 44px tap target around an 18px icon
 - **Visible text too.** `<PaymentFootnote />` shows the full body under every
-  card grid that contains a payment, and directly under the payment on a
-  listing page. The disclosure is never only behind a click.
+  card grid that can show a payment, and directly under the payment on a
+  listing page, whenever payment mode is on. The disclosure is never only
+  behind a click.
 - **Where payments render:**
   - `/browse` and other `ListingCard` grids
   - the homepage's featured cards
   - listing pages: the price panel and the "More homes like this one" cards
   - city pages' "Homes to Get You Started" cards
 
-  `/tiny-homes` still hides payments (`showPayment={false}`), by the owner's
+  `/tiny-homes` never shows payments (`showPayment={false}`), by the owner's
   choice. `/calculator` renders no payment amounts. Payments never appear in
   titles, meta descriptions, schema or `llms.txt`. The budget-filter options
   ("$750–$1,000/mo") are search ranges, not a home's payment, so they carry
@@ -926,12 +924,71 @@ prices or "Call for price". It started on 2026-11-10.
 - **Rendered check.** `validate_batch.py` step 11b fetches the homepage,
   `/browse`, `/tiny-homes`, `/calculator`, every listing page and every
   checked city page. It fails if any "$N/mo" renders outside a `PaymentEstimate`
-  wrapper with "est." and the button. Budget `<select>` options are skipped.
+  wrapper with "est." and the button, or if a payment sits outside the
+  payment-only container (`data-pm="pay"`), since cash is the default view.
+  Budget `<select>` options are skipped.
 - **No financing specifics.** Don't add a rate, term, down payment, lender,
-  or included/not-included claim to the disclosure. On 2026-11-10 Notion's
+  or included/not-included claim to the disclosure. The one exception is
+  "The estimate includes insurance.", added on the owner's instruction on
+  2026-11-13. On 2026-11-10 Notion's
   Interest Rate, Loan Term Years and Down Payment Est fields were empty for
   all 63 pages. If they get filled in, the wording has to be revisited to
   match before those numbers are shown anywhere.
+
+## Cash price (`price`, `lib/priceMode.ts`)
+
+**Every home shows its cash price by default, with a toggle to switch to the
+estimated monthly payment.** Built 2026-11-13.
+
+- **Data.** `price` in `lib/sampleListings.ts` is the cash price in dollars,
+  hand-set from the owner's price sheet on 2026-11-13 (matched by display name
+  and Notion Listing ID, never by slug). `sync:listings` never writes it, and
+  `lib/notion.ts` (dev only) takes price and payment from the site file, so a
+  sync or a local token can't revert it. Nothing is written to Notion.
+  `monthlyPayment` values were not changed.
+- **One component.** `components/ListingPrice.tsx` renders both versions of a
+  price. CSS shows one, keyed on `<html data-price-mode>`:
+  - cash (default): "$129,000" with the label "Cash price"
+  - payment: `<PaymentEstimate>` ("$950/mo est. (i)") plus "Average estimate,
+    with insurance"; homes with no payment show "Payment on request"
+  - `cashOnly` (/tiny-homes): the cash price and nothing else
+
+  Both versions use the same two-line box, so switching never moves a card.
+  Used by `/browse` and `/tiny-homes` cards, homepage featured cards, related
+  homes, city pages' Popular Homes cards (render time only;
+  `lib/cityContent.ts` is untouched) and the listing page.
+- **The choice.** `components/PriceModeToggle.tsx`, a native radio group styled
+  as a segmented control (44px targets, arrow keys, focus ring, fits 375px),
+  appears only on `/browse` and listing pages. It saves to localStorage
+  (`thd-price-mode`, in try/catch) and is shared across pages and tabs. Never
+  put it in the URL: that would create duplicate URLs.
+- **No flash, no layout shift.** The server always renders cash. A tiny inline
+  script in `app/layout.tsx` (`PRICE_MODE_BOOT_SCRIPT`) copies the saved choice
+  onto `<html>` before first paint; `<html>` has `suppressHydrationWarning` for
+  it. The toggle's selected segment is also styled from that attribute.
+  Measured 2026-11-13: CLS 0 loading with "payment" saved, and 0 shifts when
+  toggling on /browse at 375px and 1280px.
+- **Footnote.** `<PaymentFootnote />` is payment-mode only
+  (`.bmh-pm-pay-block`).
+- **Sort and filter (/browse).** Sort options: Featured, Lowest price, Highest
+  price, Size (largest first). Price sorts use what's shown: the cash price,
+  or the payment, with "Payment on request" homes last in payment mode. The
+  Seguin/Austin pin holds in Featured only. Budget bands follow the mode:
+  cash bands (Under $80,000 / $80,000–$99,999 / $100,000–$129,999 /
+  $130,000+, chosen from the data: 10/19/11/17 homes) or the original payment
+  bands. Switching modes clears a band from the other mode.
+- **Analytics.** Each toggle change sends GA4 `price_view_mode` with `mode`
+  and `placement` (browse or listing).
+- **Never:** offers, price or discount in schema; prices or payments in titles,
+  meta descriptions or `llms.txt`; a ZIP or delivery estimate; an account
+  gate; land wording. The detail page's pricing note reuses
+  `/how-pricing-works` wording only.
+- **Validator.** Step 4g fails if any listing has no cash price. Step 11g fails
+  on "Call for price" (or "Contact for pricing"), on a price block without a
+  default-visible cash price, on payment markup on `/tiny-homes`, and on
+  prices in titles, meta descriptions, JSON-LD or `llms.txt`. Step 11b fails
+  on a payment without "est." and the (i) button, or outside the payment-only
+  container.
 
 ## Archived sections (`lib/archived.json`)
 

@@ -6,7 +6,7 @@ import type { CityContent } from '@/lib/cityContent'
 import { findListingByAnySlug } from '@/lib/listingLookup'
 import { TURNKEY_ITEMS, OUT_THE_DOOR_ITEMS } from '@/lib/setupItems'
 import FaqAccordion from '@/components/FaqAccordion'
-import PaymentEstimate from '@/components/PaymentEstimate'
+import ListingPrice from '@/components/ListingPrice'
 import PaymentFootnote from '@/components/PaymentFootnote'
 
 const CIRRUS_URL =
@@ -322,7 +322,7 @@ export default function CityPageContentV2({
                     </p>
                     <div className="bmh-inv-card-footer">
                       <span className="bmh-inv-card-price">
-                        {listing.monthlyPayment > 0 ? <PaymentEstimate amount={listing.monthlyPayment} /> : 'Call for price'}
+                        <ListingPrice price={listing.price} monthlyPayment={listing.monthlyPayment} />
                       </span>
                       <span className="bmh-inv-card-link">View →</span>
                     </div>

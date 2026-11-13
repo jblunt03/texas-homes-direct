@@ -186,8 +186,10 @@ export function mapPage(page: PageObjectResponse): Listing {
   const regionRaw = sel(page, 'Region') || rt(page, 'Region')
   const region = mapRegion(regionRaw)
 
-  const price = num(page, 'Price', 0)
-  const monthlyPayment = num(page, 'Monthly Payment', Math.round(price * 0.012))
+  // Price and payment are site-owned (CLAUDE.md "Cash price"), like slug:
+  // take them from lib/sampleListings.ts so dev with a token matches production.
+  const price = siteListing?.price ?? num(page, 'Price', 0)
+  const monthlyPayment = siteListing?.monthlyPayment ?? num(page, 'Monthly Payment', Math.round(price * 0.012))
   const downPayment = Math.round(price * 0.1)
   const sqft = num(page, 'Square Feet', 0)
   const beds = num(page, 'Bedrooms', 0)

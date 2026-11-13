@@ -6,6 +6,7 @@ import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { LanguageProvider } from '@/components/LanguageContext'
+import { PRICE_MODE_BOOT_SCRIPT } from '@/lib/priceMode'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -98,7 +99,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${montserrat.variable}`}>
+    // suppressHydrationWarning: the boot script below may add data-price-mode
+    // to <html> before React hydrates (CLAUDE.md "Cash price").
+    <html lang="en" className={`${inter.variable} ${montserrat.variable}`} suppressHydrationWarning>
+      <head>
+        {/* Applies the visitor's saved price mode before first paint, so cards never flip after load. */}
+        <script dangerouslySetInnerHTML={{ __html: PRICE_MODE_BOOT_SCRIPT }} />
+      </head>
       <body className="font-sans antialiased">
         <script
           type="application/ld+json"

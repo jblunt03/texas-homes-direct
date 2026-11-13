@@ -4,7 +4,7 @@ import type { Metadata } from 'next'
 import { fetchAllListings } from '@/lib/notion'
 import SpinToWinPopup from '@/components/SpinToWinPopup'
 import FeaturableReviews from '@/components/FeaturableReviews'
-import PaymentEstimate from '@/components/PaymentEstimate'
+import ListingPrice from '@/components/ListingPrice'
 import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
 
 export const revalidate = 3000
@@ -333,12 +333,7 @@ export default async function HomePage() {
                     </div>
                     <div className="bmh-inv-card-footer">
                       <span className="bmh-inv-card-price">
-                        {listing.price > 0
-                          ? <>${listing.price.toLocaleString()} <small>· starting</small></>
-                          : listing.monthlyPayment > 0
-                          ? <PaymentEstimate amount={listing.monthlyPayment} />
-                          : <>Contact for pricing</>
-                        }
+                        <ListingPrice price={listing.price} monthlyPayment={listing.monthlyPayment} />
                       </span>
                       <span className="bmh-inv-card-link">Details →</span>
                     </div>

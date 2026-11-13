@@ -4,7 +4,7 @@ import type { Listing } from '@/lib/sampleListings'
 import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
 import { listingBadge } from '@/lib/badges'
-import PaymentEstimate from '@/components/PaymentEstimate'
+import ListingPrice from '@/components/ListingPrice'
 import dynamic from 'next/dynamic'
 import { VIDEOS_ARCHIVED } from '@/lib/archived'
 
@@ -16,8 +16,9 @@ const VideoChip = VIDEOS_ARCHIVED
   : dynamic(() => import('@/components/ListingVideo').then((m) => m.VideoChip))
 
 /**
- * Inventory card used on /browse and /tiny-homes. Moved out of BrowseClient
- * unchanged; `showPayment={false}` hides the estimated monthly payment.
+ * Inventory card used on /browse and /tiny-homes. The price follows the
+ * visitor's cash/payment choice (CLAUDE.md "Cash price");
+ * `showPayment={false}` shows the cash price only (/tiny-homes).
  *
  * The card is a <div> with a stretched title link (.bmh-card-link::after
  * covers the card), so the payment info <button> isn't nested inside <a>.
@@ -111,11 +112,7 @@ export default function ListingCard({
         </div>
         <div className="bmh-inv-card-footer">
           <span className="bmh-inv-card-price">
-            {listing.price > 0
-              ? `$${listing.price.toLocaleString()}`
-              : showPayment && listing.monthlyPayment > 0
-              ? <PaymentEstimate amount={listing.monthlyPayment} />
-              : 'Call for price'}
+            <ListingPrice price={listing.price} monthlyPayment={listing.monthlyPayment} cashOnly={!showPayment} />
           </span>
           <span className="bmh-inv-card-link">View →</span>
         </div>
