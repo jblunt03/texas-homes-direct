@@ -5233,11 +5233,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Uvalde, TX and Uvalde County. New manufactured homes placed on land you already own, with honest financing. Free quote.",
     intro:
-      "A lot of Uvalde County buyers already have the hard part solved: a few acres off US 83 or a corner of a family ranch that has been waiting for a house. Texas Homes Direct builds the whole conversation around that existing ground, matching a new manufactured home to the land you have instead of the other way around.",
+      "Uvalde County land you already own is where Texas Homes Direct starts. Whether it's a few acres or a corner of family property waiting for a house, we build the whole conversation around that existing ground, matching a new manufactured home to the land you have instead of the other way around.",
     buyingHeading: 'Buying a Mobile Home in Uvalde County',
     buying: [
       "Owning the land changes what matters. Instead of shopping for a lot, an Uvalde buyer is mostly deciding where on the property the home should face, how far it sits from the road, and which floor plan suits the people moving in.",
-      "Inherited or shared family acreage sometimes comes with title questions between relatives. Those don't stop a quote, but sorting them out early keeps the financing side of a purchase moving without surprises.",
+      "Inherited or shared family acreage can come with title questions between relatives. Those don't stop a quote, but sorting them out early keeps the financing side of a purchase moving without surprises.",
     ],
     pricingExplainer: [
       "Your Uvalde quote is the amount you pay for the home itself. The checklist above is all inside that figure, and there is no second bill for the house waiting at the end.",
@@ -5248,11 +5248,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "If the land is still in a parent's or grandparent's name, mention it on that first call. It shapes the paperwork order, not whether the purchase can happen.",
     ],
     localProof:
-      "Ranch parcels north toward the Frio and Nueces river country and lots closer to town along US 90 are quoted the same way across Uvalde County.",
+      "Parcels anywhere in Uvalde County, from acreage well outside town to lots close in, are quoted the same way.",
     faq: [
       {
-        q: "Can a new home go on Uvalde County ranch land my family already owns?",
-        a: "Yes, family-owned ranch land is one of the most common starting points we see. We look at access, where the home would sit, and what utility work the spot needs, then quote around that.",
+        q: "Can a new home go on Uvalde County land my family already owns?",
+        a: "Yes. Land you or your family already own is a fine place to start. We look at access, where the home would sit, and what utility work the spot needs, then quote around that.",
       },
       {
         q: "Is there a minimum acreage for placing a manufactured home near Uvalde?",
@@ -5260,7 +5260,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Do you serve Uvalde County outside the town of Uvalde?",
-        a: "We do. Rural addresses off US 83 and US 90 are part of our coverage, and the only thing that changes from one to the next is the site work your land calls for.",
+        a: "We do. Rural Uvalde County addresses are part of our coverage, and the only thing that changes from one to the next is the site work your land calls for.",
       },
       {
         q: "What should I know if my Uvalde land is shared with relatives?",
@@ -5286,38 +5286,38 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Shopping mobile homes in Pearsall, TX? Texas Homes Direct delivers new manufactured homes across Frio County with no-pressure financing. Free quote.",
     intro:
-      "Pearsall sits right on I-35 between San Antonio and Laredo, so getting a manufactured home into Frio County is a straight run down the interstate. Texas Homes Direct delivers to addresses in town and out on the farm-to-market roads that branch off that corridor.",
+      "Texas Homes Direct plans every Frio County delivery around the route a truck will actually take to your gate, whether the home is headed to an address in Pearsall or to land out on a rural county road.",
     buyingHeading: 'Buying a Mobile Home in Frio County',
     buying: [
-      "The interstate gets a home to the county, but the last few miles decide how setup goes. A gravel ranch road, a low-water crossing or a tight gate all get looked at before your quote is final, so nothing about delivery is left to guesswork.",
-      "Frio County buyers comparing a manufactured home with site-built construction usually find the factory-built option leaves more room in the budget for land improvements, fencing or a barn.",
+      "The highway gets a home to the county, but the last few miles decide how setup goes. If your route includes a gravel road, a low-water crossing or a tight gate, it gets looked at before your quote is final, so nothing about delivery is left to guesswork.",
+      "Pricing a manufactured home against site-built construction is worth doing before you commit. We lay out the full home price so you can see how much of your Frio County budget remains for land improvements, fencing or a barn.",
     ],
     pricingExplainer: [
       "The figure on a Pearsall quote is the full house price, delivery included, with every item in the list above built in rather than added later.",
       "Hooking up water, septic and power is the part we price in two steps: a phone estimate after we hear about your property, then a firm number once our contractor has been out to see it and you have signed off.",
     ],
     gettingStarted: [
-      "Tell us which road your Frio County property sits on and how a truck would reach it from I-35. That single detail answers a lot of questions about delivery and setup.",
+      "Tell us which road your Frio County property sits on and how a truck would reach it from the nearest highway. That single detail answers several questions about delivery and setup.",
       "Next comes the financing conversation and a short list of floor plans that fit your lot, and we can look at both on the same call.",
     ],
     localProof:
-      "Our Frio County coverage runs from homesites near the Pearsall peanut statue out to brush country parcels well off the interstate.",
+      "Our Frio County coverage runs from homesites in Pearsall out to parcels well off the main highway.",
     faq: [
       {
-        q: "Will you deliver to Frio County land on a gravel road outside Pearsall?",
-        a: "Yes. Gravel and caliche roads are normal out here, and we look at the route, gates and turning room before your quote is finalized.",
+        q: "Will you deliver to Frio County land on an unpaved road outside Pearsall?",
+        a: "Yes. An unpaved road doesn't rule a property out; we look at the route, gates and turning room before your quote is finalized.",
       },
       {
-        q: "Does being near I-35 change the price of a Pearsall delivery?",
-        a: "No, the home price is the same either way. Proximity to the highway mainly affects how simple the final stretch of the delivery route is.",
+        q: "Does the distance from the highway change the price of a Pearsall delivery?",
+        a: "No, the home price is the same either way. Distance from the highway mainly affects how simple the final stretch of the delivery route is.",
       },
       {
         q: "Can I start in Pearsall before I've picked a floor plan?",
-        a: "Absolutely. Plenty of Frio County buyers call with land and a budget but no floor plan in mind, and we narrow the options together from there.",
+        a: "Absolutely. You can call with land and a budget but no floor plan in mind, and we narrow the options together from there.",
       },
       {
         q: "Are there permits involved for a home outside Pearsall city limits?",
-        a: "Often there are, but what applies depends on the county and the exact parcel. We help you find out which requirements cover your property before anything is ordered.",
+        a: "There can be, and what applies depends on the county and the exact parcel. We help you find out which requirements cover your property before anything is ordered.",
       },
     ],
     nearby: ['devine', 'pleasanton', 'hondo', 'uvalde'],
@@ -5339,11 +5339,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Cotulla, TX and La Salle County. New manufactured homes and financing built around real credit situations. Get a quote.",
     intro:
-      "Not every La Salle County buyer walks in with a perfect credit file, and Texas Homes Direct doesn't treat that as the end of the conversation. In Cotulla we start with where your credit actually stands, then look for the financing route that fits it.",
+      "Texas Homes Direct doesn't treat an imperfect credit file as the end of the conversation in La Salle County. In Cotulla we start with where your credit actually stands, then look for the financing route that fits it.",
     buyingHeading: 'Buying a Mobile Home in La Salle County',
     buying: [
       "We can finance a home ourselves and also work with outside public and private lenders, which gives a Cotulla buyer more than one door to try. A no from one source doesn't settle the question for every source.",
-      "Variable paychecks, recent job changes and thin credit histories all come up in La Salle County. We'd rather hear the real picture early and match it to a lender than chase an approval that falls apart later.",
+      "If your income is variable, your job is new or your credit history is thin, tell us at the start. We'd rather match the real picture to a lender than chase an approval that falls apart later.",
     ],
     pricingExplainer: [
       "Once you approve a quote in Cotulla, the home price stays put. Everything in the list above sits inside it, so financing is based on the real total and not a number that grows.",
@@ -5354,14 +5354,14 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "With that in hand, we can line up a payment range and floor plans that fit inside it, before you've committed to anything.",
     ],
     localProof:
-      "We work with buyers across La Salle County, from Cotulla neighborhoods near the Nueces River to rural tracts off I-35, on credit profiles of every kind.",
+      "We work with buyers across La Salle County, in Cotulla and on rural tracts outside it, on credit profiles of every kind.",
     faq: [
       {
         q: "Can I buy a manufactured home in Cotulla with past credit problems?",
-        a: "Often, yes. Between our own financing and outside lenders, buyers with credit challenges frequently still have options, and we'll be straight with you about which ones fit.",
+        a: "Possibly. Between our own financing and outside lenders, a past credit problem doesn't automatically rule you out, and we'll be straight with you about which options fit.",
       },
       {
-        q: "Does a variable oilfield or contract paycheck hurt my chances in La Salle County?",
+        q: "Does variable or contract income hurt my chances in La Salle County?",
         a: "It doesn't rule you out. Lenders look at income history differently, so we gather what shows your earnings over time and match it to the program that reads it fairly.",
       },
       {
@@ -5392,18 +5392,18 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Carrizo Springs, TX and Dimmit County. Straight answers by phone on new manufactured homes and financing. Free quote today.",
     intro:
-      "Carrizo Springs is a long drive from any metro, and buyers in Dimmit County deserve the same straight answers by phone that anyone closer in would get. Texas Homes Direct handles the whole purchase by call, text and email, with no pressure to decide on anyone's schedule but yours.",
+      "Texas Homes Direct gives Carrizo Springs buyers the same straight answers by phone that anyone closer to a city would get. We handle a Dimmit County purchase by call, text and email, with no pressure to decide on anyone's schedule but yours.",
     buyingHeading: 'Buying a Mobile Home in Dimmit County',
     buying: [
-      "Distance tends to make people worry they'll be an afterthought. We give Dimmit County buyers the full floor plan list, the real price, and a clear explanation of every step, the same as a buyer next door to a big city.",
-      "Because there's no showroom pitch involved, you can take a quote home, share it with family, and come back with questions whenever you're ready. Nobody calls to push a deadline.",
+      "Being far from a city doesn't change what you get from us. We give Dimmit County buyers the full floor plan list, the real price, and a clear explanation of every step.",
+      "Because there's no sales pitch involved, you can take a quote home, share it with family, and come back with questions whenever you're ready. Nobody calls to push a deadline.",
     ],
     pricingExplainer: [
       "A Carrizo Springs quote covers the house and everything on the checklist above in one figure. What you approve is what the home costs when it's set.",
       "For water, septic and electric, a phone estimate comes first. After that our contractor visits the property in person and puts an exact bid in front of you to approve.",
     ],
     gettingStarted: [
-      "A first call usually covers three things: where the land is along US 83 or US 277, what size household the home needs to fit, and roughly what monthly payment feels comfortable.",
+      "A first call covers three things: where your Dimmit County land is, what size household the home needs to fit, and roughly what monthly payment feels comfortable.",
       "After that we send floor plans and numbers in writing, so you can compare them on your own time instead of on the phone with us.",
     ],
     localProof:
@@ -5445,22 +5445,22 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Kerrville, TX and Kerr County. New manufactured homes with site work handled start to finish and honest financing.",
     intro:
-      "Kerrville buyers often say the site work worried them more than the house. Texas Homes Direct takes that off your plate in Kerr County, coordinating the pad, utilities, blocking, tie downs and skirting along with the home, so one company answers for the whole job.",
+      "In Kerrville, Texas Homes Direct handles the site work along with the house. We coordinate the pad, utilities, blocking, tie downs and skirting for your Kerr County property, so the setup isn't a second project you have to manage.",
     buyingHeading: 'Buying a Mobile Home in Kerr County',
     buying: [
-      "Land around the Guadalupe River valley ranges from flat lots in town to sloped, rocky parcels further out. Whatever your property looks like, the site is assessed in person so the setup plan fits the actual ground.",
-      "Having a single point of contact means you aren't the one scheduling a dirt crew, a plumber and an electrician around each other. Our team sequences the work and keeps you informed at each stage.",
+      "A flat lot and a sloped, rocky parcel need different site preparation. Whatever your Kerr County land looks like, the site is assessed in person so the setup plan fits the actual ground.",
+      "With us handling the schedule, you aren't the one lining up a dirt crew, a plumber and an electrician around each other. Our team sequences the work and keeps you informed at each stage.",
     ],
     pricingExplainer: [
       "The Kerrville quote for your home already contains everything on the list above. That part of the price doesn't move after you accept it.",
       "Well, septic and electric are estimated on the phone, then priced exactly by our contractor once they've walked the land, and you approve that bid before work begins.",
     ],
     gettingStarted: [
-      "Photos of the spot where you want the home are surprisingly useful in Kerr County. They help us see slope, trees and access before the in-person site visit.",
+      "Photos of the spot where you want the home are useful before the in-person visit. They help us see slope, trees and access on your Kerr County property ahead of time.",
       "Then we'll match a floor plan to the space, discuss financing, and schedule the property assessment that sets up the rest.",
     ],
     localProof:
-      "Kerr County properties along the Guadalupe and out on the ranch roads toward Ingram and Center Point all get the same in-person site assessment before setup.",
+      "Kerr County properties, in Kerrville and out on rural roads, all get the same in-person site assessment before setup.",
     faq: [
       {
         q: "Who coordinates site work for a new home in Kerrville?",
@@ -5468,7 +5468,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Can you set a home on a sloped Kerr County lot?",
-        a: "Many sloped lots work fine, but it depends on the specific grade. Our site visit determines what pad preparation your property needs before the home is placed.",
+        a: "It can, depending on the specific grade. Our site visit determines what pad preparation your property needs before the home is placed.",
       },
       {
         q: "Do you cover Kerr County beyond Kerrville itself?",
@@ -5498,22 +5498,22 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Fredericksburg, TX and Gillespie County. New HUD-code manufactured homes, firm pricing, honest financing. Free quote.",
     intro:
-      "In Gillespie County, people care about how a house is built, and that's a fair question to ask of a manufactured home. Every home Texas Homes Direct sells near Fredericksburg is built to the federal HUD code, inspected during construction, and labeled before it ever leaves the plant.",
+      "Texas Homes Direct sets manufactured homes across Gillespie County, and each one is built to the federal HUD code, inspected at the plant while it's assembled, and labeled before it leaves. Around Fredericksburg, we put the construction details in front of you before you choose a model.",
     buyingHeading: 'Buying a Mobile Home in Gillespie County',
     buying: [
-      "Factory building means framing, wiring and plumbing go together indoors, out of the weather, under a consistent inspection process. That controlled setting is a big part of why today's homes look nothing like the trailers people picture.",
+      "Our homes are built in a plant, where framing, wiring and plumbing are assembled indoors and inspected as each section moves down the line. Ask, and we'll explain what that process covers for the model you like.",
       "Fredericksburg buyers can look closely at wall construction, insulation, windows and roofing on each model before choosing. We'll walk through the spec sheet line by line if that's how you like to compare.",
     ],
     pricingExplainer: [
       "Your Fredericksburg price covers the home plus every inclusion shown above, and it stays the same once you've accepted the quote.",
-      "Utility connections are the exception, since land varies so much. We estimate them by phone, then our contractor inspects your site and provides an exact bid for you to approve.",
+      "Utility connections are the exception, since every property is different. We estimate them by phone, then our contractor inspects your site and provides an exact bid for you to approve.",
     ],
     gettingStarted: [
-      "If construction quality is your main question, ask us for the spec details on two or three models you like. Comparing them side by side tends to settle the decision.",
+      "Start by naming two or three models you like. We'll send the spec sheet for each, then go over any line you want explained on the call.",
       "From there we'll confirm your Gillespie County property details, talk through financing, and plan the site visit.",
     ],
     localProof:
-      "Gillespie County buyers from the edge of Fredericksburg out along US 290 and US 87 get the same spec-sheet walkthrough and site visit.",
+      "Gillespie County buyers, in Fredericksburg and on rural land outside it, get the same spec-sheet walkthrough and site visit.",
     faq: [
       {
         q: "How is a manufactured home near Fredericksburg inspected?",
@@ -5528,8 +5528,8 @@ export const CITY_CONTENT: Record<string, CityContent> = {
         a: "That depends on the parcel and the county. We help you find out what applies to your land before a home is ordered.",
       },
       {
-        q: "Does your delivery area reach the Gillespie County back roads past Fredericksburg?",
-        a: "It does. Ranch roads off US 290 and US 87 are part of our coverage, and the route to your gate gets checked before a quote is final.",
+        q: "Does your delivery area reach rural Gillespie County land past Fredericksburg?",
+        a: "It does. Rural Gillespie County addresses are part of our coverage, and the route to your gate gets checked before a quote is final.",
       },
     ],
     nearby: ['kerrville', 'comfort', 'johnson-city', 'mason'],
@@ -5551,7 +5551,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Brownwood, TX and Brown County. New manufactured homes priced around a monthly payment you can plan on. Free quote today.",
     intro:
-      "For most Brown County families, the question isn't the sticker price, it's the monthly payment. Texas Homes Direct helps Brownwood buyers start from a payment they can live with and work backward to the homes and financing that fit it.",
+      "In Brownwood, the conversation with Texas Homes Direct can begin with a monthly payment you can live with. From that number we work backward to the Brown County homes and financing that fit it.",
     buyingHeading: 'Buying a Mobile Home in Brown County',
     buying: [
       "Working from a monthly figure keeps the shopping honest. Instead of falling for a floor plan and stretching to afford it, you see which homes land comfortably inside your budget before you get attached to one.",
@@ -5566,7 +5566,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "We'll then check that range against the financing options open to you and confirm the details of your Brown County property.",
     ],
     localProof:
-      "We work with Brown County buyers from Brownwood out toward Lake Brownwood and Early, starting every conversation from a payment range.",
+      "We work with Brown County buyers in Brownwood and across the county, starting every conversation from a payment range.",
     faq: [
       {
         q: "Can you tell me which Brownwood homes fit my monthly budget?",
@@ -5578,11 +5578,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Do I need land before talking payments in Brownwood?",
-        a: "No. Many buyers settle the payment question first and then line up land, and we can work in either order.",
+        a: "No. You can settle the payment question first and then line up land; we can work in either order.",
       },
       {
-        q: "Do you cover lake-area property around Lake Brownwood?",
-        a: "We do, along with the rest of Brown County. Access and site work are reviewed for each address before a quote is finalized.",
+        q: "Is Brown County land outside Brownwood part of your coverage?",
+        a: "Yes, along with the rest of Brown County. Access and site work are reviewed for each address before a quote is finalized.",
       },
     ],
     nearby: ['brady', 'goldthwaite', 'comanche', 'coleman'],
@@ -5604,7 +5604,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Comanche, TX and Comanche County. Compare single wide and double wide manufactured homes with honest financing.",
     intro:
-      "The first real decision for many Comanche County buyers is single wide or double wide. Texas Homes Direct lays both out honestly, comparing footprint, room layout and price, so you pick the size that fits your household and your lot.",
+      "Single wide or double wide is a decision Texas Homes Direct helps Comanche County buyers make early. We lay both out honestly, comparing footprint, room layout and price, so you pick the size that fits your household and your lot.",
     buyingHeading: 'Buying a Mobile Home in Comanche County',
     buying: [
       "A single wide fits narrower lots and smaller budgets and works well for one or two people, a starter home, or a place on family land. A double wide opens up wider living rooms, bigger kitchens and more bedroom separation.",
@@ -5619,7 +5619,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "Then we compare a few single wide and double wide options at your budget and talk through financing for each.",
     ],
     localProof:
-      "Comanche County buyers from Comanche itself to properties near Proctor Lake and De Leon get the same side-by-side size comparison.",
+      "Comanche County buyers, in Comanche and across the rest of the county, get the same side-by-side size comparison.",
     faq: [
       {
         q: "Should I choose a single wide or double wide in Comanche County?",
@@ -5627,7 +5627,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Will a double wide fit on my lot near Comanche?",
-        a: "Often it will, but setbacks and access matter. Send us measurements or photos and we'll check the footprint against your site.",
+        a: "It can, but setbacks and access matter. Send us measurements or photos and we'll check the footprint against your site.",
       },
       {
         q: "Is financing different for single and double wide homes in Comanche?",
@@ -5657,7 +5657,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Stephenville, TX and Erath County. Browse new manufactured home floor plans online, then get a firm quote. No pressure.",
     intro:
-      "Stephenville buyers tend to do their homework, so Texas Homes Direct puts the floor plans, photos and 3D tours online where Erath County shoppers can study them before calling anyone. When you do call, it's to get a firm quote on homes you've already shortlisted.",
+      "Texas Homes Direct puts floor plans, photos and 3D tours online so Erath County buyers can study homes before calling anyone. When you do call from Stephenville, it's to get a firm quote on homes you've already shortlisted.",
     buyingHeading: 'Buying a Mobile Home in Erath County',
     buying: [
       "Browsing first means the first conversation is about specifics: this kitchen layout, that bedroom count, whether a given model fits your lot. It saves Erath County buyers from sitting through a generic sales pitch.",
@@ -5710,7 +5710,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Meridian, TX and Bosque County. New manufactured homes, help sorting out county requirements, and honest financing.",
     intro:
-      "Meridian is a small county seat, and Bosque County land comes with its own mix of deed restrictions, road frontage and local requirements. Texas Homes Direct helps buyers figure out what applies to their parcel before a home is ever ordered.",
+      "Meridian is the Bosque County seat, and Texas Homes Direct helps you sort out deed restrictions, road frontage and local requirements for your parcel before a home is ever ordered.",
     buyingHeading: 'Buying a Mobile Home in Bosque County',
     buying: [
       "Requirements for placing a manufactured home vary by county, by whether you're inside a town's limits, and by what's written in your deed. We don't assume; we help you check what governs your specific Bosque County land.",
@@ -5721,11 +5721,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "Utility hookups are the piece we price with care: a phone estimate first, then an exact bid from our contractor after visiting the property, approved by you before work starts.",
     ],
     gettingStarted: [
-      "If you have a copy of your deed or a survey, keep it handy. Those documents often answer placement questions before anyone has to call the county.",
+      "If you have a copy of your deed or a survey, keep it handy. Those papers may settle placement questions without a call to the county.",
       "Once your parcel's requirements are clear, we move into floor plans and financing that fit both the rules and your budget.",
     ],
     localProof:
-      "Bosque County parcels from Meridian out past Meridian State Park and toward Clifton and Valley Mills are each checked for their own placement requirements.",
+      "Every Bosque County parcel, in Meridian or out in the county, gets its own check for placement requirements.",
     faq: [
       {
         q: "What permits does a manufactured home near Meridian need?",
@@ -5733,7 +5733,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Can deed restrictions stop a manufactured home in Bosque County?",
-        a: "Sometimes they limit home type, size or age. Reviewing your deed early tells us whether your land has any restrictions to plan around.",
+        a: "They can limit home type, size or age. Reviewing your deed early tells us whether your land has any restrictions to plan around.",
       },
       {
         q: "Do you place homes outside Meridian in rural Bosque County?",
@@ -5763,11 +5763,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Glen Rose, TX and Somervell County from a family-owned manufactured home dealer. Honest financing, free quote.",
     intro:
-      "Texas Homes Direct is family-owned, and Glen Rose buyers deal with real people who answer their own phones. In Somervell County that means honest pricing, no commission games, and a team that's still around after your home is set.",
+      "Texas Homes Direct is a family-owned business, and in Glen Rose that means honest pricing, straight answers and help that continues after your Somervell County home is set.",
     buyingHeading: 'Buying a Mobile Home in Somervell County',
     buying: [
-      "Being family-owned shows up in small things: you talk to the same few people throughout, nobody's quota depends on upselling you, and your questions get straight answers even when the answer is no.",
-      "Somervell County is compact, but properties here still range from in-town lots to acreage along the Paluxy River. Every one gets the same attention to the details of the site.",
+      "Being family-owned shows up in how we work: your questions get straight answers even when the answer is no, and nobody pushes you toward a bigger home than you asked about.",
+      "Whether your Somervell County property is an in-town lot or open acreage, it gets the same attention to the details of the site.",
     ],
     pricingExplainer: [
       "Your Glen Rose quote lists one home price, covering everything on the checklist above, and we stand behind that number once you accept it.",
@@ -5778,11 +5778,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "We'll take you through homes that fit, explain financing options, and set up a property visit when you're ready.",
     ],
     localProof:
-      "Somervell County buyers from Glen Rose out toward Dinosaur Valley State Park and Nemo work with the same family-run team from first call through setup.",
+      "Somervell County buyers in Glen Rose and across the county deal with Texas Homes Direct directly, from the first call through setup.",
     faq: [
       {
         q: "Who will I actually talk to about a Glen Rose home?",
-        a: "A small, family-run team at Texas Homes Direct. You'll deal with the same people from your first question through setup.",
+        a: "Our own family-owned business. You can reach us by phone or text at any stage, and questions after setup are welcome too.",
       },
       {
         q: "Do you deliver throughout Somervell County?",
@@ -5793,8 +5793,8 @@ export const CITY_CONTENT: Record<string, CityContent> = {
         a: "Yes. If something comes up after setup, contact us and we'll help you work through it with the right party.",
       },
       {
-        q: "Is land along the Paluxy River area something you can place a home on?",
-        a: "Many properties there work, but each site is different. Our site visit looks at access and placement for your specific parcel before anything is final.",
+        q: "Can you place a home on Somervell County acreage outside Glen Rose?",
+        a: "It depends on the parcel. Our site visit looks at access and placement for your specific property before anything is final.",
       },
     ],
     nearby: ['granbury', 'cleburne', 'stephenville'],
@@ -5816,11 +5816,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Mineral Wells, TX and Palo Pinto County. New manufactured homes on either side of the county line, honest financing.",
     intro:
-      "Mineral Wells sits on the line between Palo Pinto and Parker counties, so which county your land falls in matters more here than in most towns. Texas Homes Direct checks that detail first, because it decides whose requirements apply to your home.",
+      "Mineral Wells sits on the line between Palo Pinto and Parker counties. Texas Homes Direct confirms which side your parcel is on before anything else, because that answer sets whose requirements your home has to meet.",
     buyingHeading: 'Buying a Mobile Home in Palo Pinto County',
     buying: [
       "Two properties a few miles apart can fall under different county offices, and a parcel inside city limits adds another layer. We help you confirm which jurisdiction governs your land before any paperwork starts.",
-      "Beyond the county question, Palo Pinto County land varies from city lots near the historic Baker Hotel to rolling acreage west of town, and the site work is planned for the property you actually have.",
+      "Beyond the county question, the site work is planned for the property you actually have, whether that's a city lot or open acreage outside town.",
     ],
     pricingExplainer: [
       "The Mineral Wells home price doesn't depend on which side of the county line you're on, and it includes everything on the list above.",
@@ -5869,7 +5869,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Wharton, TX and Wharton County. New manufactured homes and a clear, step-by-step buying process. Get a free quote.",
     intro:
-      "Wharton buyers often ask what actually happens between saying yes and moving in. Texas Homes Direct walks Wharton County families through each step in order, so you always know what's done, what's next, and who is handling it.",
+      "Texas Homes Direct walks Wharton County buyers through what happens between saying yes and moving in, one step at a time, so you always know what's done and what's next.",
     buyingHeading: 'Buying a Mobile Home in Wharton County',
     buying: [
       "The sequence runs roughly like this: confirm the property, choose a floor plan, settle financing, complete the site visit and utility bid, then delivery and setup. Each step has a clear owner, and you get updates as each one finishes.",
@@ -5880,22 +5880,22 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "The one figure set later is utilities. You get a phone estimate early, then a precise bid after our contractor sees the land, and you approve it before work starts.",
     ],
     gettingStarted: [
-      "Ask us for the step list in writing on the first call. Wharton buyers find it easier to track progress when they can check items off.",
+      "Request a written copy of the step list when we first talk, and check items off as each one finishes.",
       "The first item is always confirming your property and its access; floor plan and financing come right behind it.",
     ],
     localProof:
-      "Wharton County buyers near the Colorado River in Wharton and out on farm roads toward Boling and Louise follow the same written step list.",
+      "Wharton County buyers, in Wharton and on rural land across the county, follow the same written step list.",
     faq: [
       {
         q: "What are the steps to buying a manufactured home in Wharton?",
         a: "Property confirmation, floor plan, financing, site visit and utility bid, then delivery and setup. We give you the list in writing and update you as each step finishes.",
       },
       {
-        q: "Will I know who is handling each step of my Wharton County purchase?",
-        a: "Yes. Each stage has a clear owner at Texas Homes Direct, and you'll know who to contact at every point.",
+        q: "Will I hear how each step of my Wharton County purchase is going?",
+        a: "Yes. You'll get an update when each stage wraps up, along with what comes next.",
       },
       {
-        q: "Do you deliver to farm properties outside Wharton?",
+        q: "Do you deliver to rural property outside Wharton?",
         a: "Yes. Rural Wharton County land is within our coverage, and access is checked for each address before a quote is finalized.",
       },
       {
@@ -5922,11 +5922,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in El Campo, TX. Replace an older home on your Wharton County lot with a new manufactured home. Honest financing, free quote.",
     intro:
-      "Plenty of El Campo homeowners aren't buying land at all; they're replacing an older mobile home that has served its time on a lot they already own. Texas Homes Direct helps plan that swap, from the old home's removal to the new one's setup on the same spot.",
+      "If you're replacing an older mobile home on a Wharton County lot you already own near El Campo, Texas Homes Direct helps plan that swap, from the old home's removal to the new one's setup on the same spot.",
     buyingHeading: 'Buying a Mobile Home in Wharton County',
     buying: [
       "Replacing a home on an existing lot raises its own questions: can the current utility connections be reused, does the new footprint fit, and what has to happen to the old unit first. We look at all of it before quoting.",
-      "A newer manufactured home also brings modern insulation, windows and layouts compared with a decades-old unit, which El Campo families often notice right away in comfort and upkeep.",
+      "A newer manufactured home also brings modern insulation, windows and layouts compared with a decades-old unit, which can make a difference in comfort and upkeep.",
     ],
     pricingExplainer: [
       "The El Campo price for the new home is complete, with everything listed above, and it doesn't change once accepted.",
@@ -5941,11 +5941,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     faq: [
       {
         q: "Can I replace my old mobile home in El Campo with a new one on the same lot?",
-        a: "In many cases, yes. We review the lot, the existing connections, and any local requirements to plan the replacement before quoting.",
+        a: "It can be. We review the lot, the existing connections, and any local requirements to plan the replacement before quoting.",
       },
       {
         q: "Can existing utility hookups on my El Campo lot be reused?",
-        a: "Sometimes. Our contractor inspects what's there and tells you what can stay and what needs updating as part of the utility bid.",
+        a: "It depends on their condition. Our contractor inspects what's there and tells you what can stay and what needs updating as part of the utility bid.",
       },
       {
         q: "What happens to the old home when I replace it near El Campo?",
@@ -5975,10 +5975,10 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Edna, TX and Jackson County. Compact manufactured homes and full-size floor plans with honest financing. Free quote.",
     intro:
-      "Not every Jackson County buyer needs a big house. Around Edna, some want a compact home for one or two people, a place for an aging parent on family land, or a weekend spot near Lake Texana, and Texas Homes Direct carries smaller floor plans for exactly that.",
+      "Texas Homes Direct carries smaller floor plans for Jackson County buyers who don't need a big house, whether it's a compact home for one or two people or a place for an aging parent on family land near Edna.",
     buyingHeading: 'Buying a Mobile Home in Jackson County',
     buying: [
-      "Our smaller single wides and park models keep the footprint and the price down while still including a full kitchen, bath and bedroom. For a household of one or two, that's often all the room anyone wants to maintain.",
+      "Our smaller single wides and park models still include a full kitchen, bath and bedroom, at a lower price and on a smaller footprint. For one or two people in Jackson County, that can be plenty of home.",
       "If you're adding a second home to land that already has one, local rules about multiple dwellings can apply. We help you check what's allowed on your Jackson County parcel first.",
     ],
     pricingExplainer: [
@@ -5990,7 +5990,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "If the home is going beside an existing house, mention it, because placement and utility planning change when two homes share a property.",
     ],
     localProof:
-      "Jackson County buyers in Edna, Ganado and on rural land near Lake Texana come to us for both compact homes and full-size floor plans.",
+      "Jackson County buyers in Edna and across the county can choose compact homes or full-size floor plans.",
     faq: [
       {
         q: "Do you sell smaller manufactured homes for Edna buyers?",
@@ -6005,8 +6005,8 @@ export const CITY_CONTENT: Record<string, CityContent> = {
         a: "Financing options can differ by home type. We'll go over which programs fit the specific home you're considering.",
       },
       {
-        q: "Do you deliver near Lake Texana?",
-        a: "Yes, along with the rest of Jackson County. We confirm access to the specific property before quoting.",
+        q: "Is a homesite anywhere in Jackson County within your reach?",
+        a: "Yes. We confirm access to the specific property before quoting.",
       },
     ],
     nearby: ['yoakum', 'el-campo', 'victoria', 'hallettsville'],
@@ -6028,11 +6028,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Port Lavaca, TX and Calhoun County. New manufactured homes with one complete out-the-door price. Get your free quote.",
     intro:
-      "Port Lavaca buyers want to know the total before they commit, and Texas Homes Direct gives Calhoun County one complete out-the-door price for the home. The list of what that price covers is right on this page, so nothing hides in the fine print.",
+      "Texas Homes Direct gives Port Lavaca and Calhoun County buyers one complete out-the-door price for the home, so you know the total before you commit. The list of what that price covers is right on this page, so nothing hides in the fine print.",
     buyingHeading: 'Buying a Mobile Home in Calhoun County',
     buying: [
       "An all-in home price makes comparing easy. Instead of adding delivery, setup, AC and taxes on top of a base figure, a Port Lavaca buyer reads one number and knows what the house costs.",
-      "Calhoun County properties range from in-town lots near Lavaca Bay to rural land inland, and the home price stays the same across all of them; only the site-specific utility work varies.",
+      "Whether your Calhoun County property is an in-town lot or rural land, the home price stays the same; only the site-specific utility work varies.",
     ],
     pricingExplainer: [
       "The Port Lavaca home price we quote is the entire price for the home, every item on the list above included, with no add-ons later.",
@@ -6058,8 +6058,8 @@ export const CITY_CONTENT: Record<string, CityContent> = {
         a: "Yes. Rural properties are covered, and we verify access to your address before the quote is final.",
       },
       {
-        q: "Do coastal properties near Port Lavaca have extra requirements?",
-        a: "Some locations do, and they vary by parcel and county. We help you check what applies to your land before choosing a home.",
+        q: "Could my Calhoun County parcel have extra placement requirements?",
+        a: "It can, and requirements vary by parcel and county. We help you check what applies to your land before choosing a home.",
       },
     ],
     nearby: ['victoria', 'goliad', 'refugio', 'edna'],
@@ -6081,18 +6081,18 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Hearne, TX and Robertson County. First-time manufactured home buyers get plain answers and honest financing. Free quote.",
     intro:
-      "Many Hearne buyers have never purchased a manufactured home before, and Texas Homes Direct explains each piece in plain language for first-time buyers in Robertson County. No jargon, and no question is too basic to ask.",
+      "Texas Homes Direct walks first-time buyers in Hearne through a manufactured home purchase one piece at a time, in plain language. Ask anything about a Robertson County home, however basic it seems.",
     buyingHeading: 'Buying a Mobile Home in Robertson County',
     buying: [
-      "First-time buyers usually want to understand the difference between the home price and utility costs, how financing works, and what setup involves. We cover each topic before asking you to decide anything.",
-      "Hearne grew up as a railroad town, and today Robertson County land ranges from older in-town lots to farm acreage along the Brazos. We look at whatever property you have, or help you think through what to look for if you don't have any yet.",
+      "Before you decide anything, we go over the home price versus utility costs, how financing works, and what setup involves.",
+      "Whether your Robertson County land is an older in-town lot or rural acreage, we look at the property you have, or help you think through what to look for if you don't have any yet.",
     ],
     pricingExplainer: [
       "For a first purchase in Hearne, the simplest thing to know is that the home price you accept covers everything shown above and won't change.",
       "Utilities are explained step by step: a phone estimate first, then our contractor visits your land and gives an exact bid that you approve before anything moves forward.",
     ],
     gettingStarted: [
-      "Write down your questions before the first call. First-time Robertson County buyers often find that a list keeps the conversation focused on what matters to them.",
+      "Write down your questions before the first call. A list keeps the conversation focused on what matters to you.",
       "We'll answer them, then look at your budget, land situation and floor plans at whatever pace feels comfortable.",
     ],
     localProof:
@@ -6104,7 +6104,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Can a first-time buyer in Robertson County get financing?",
-        a: "Often, yes. Between our own financing and outside lenders, first-time buyers usually have options, and we'll be honest about which fit you.",
+        a: "It's possible. Between our own financing and outside lenders, a first-time buyer can have more than one option, and we'll be honest about which fit you.",
       },
       {
         q: "Do I need land before calling about a Hearne home?",
@@ -6134,7 +6134,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Madisonville, TX and Madison County. Moving out to rural land? New manufactured homes, honest financing. Free quote.",
     intro:
-      "Madisonville sits along I-45 roughly halfway between two of the state's biggest metros, and many Madison County buyers are moving out from city life onto rural land for the first time. Texas Homes Direct helps them think through what changes when the home goes on acreage instead of a subdivision lot.",
+      "If you're moving from city life onto rural Madison County land for the first time, Texas Homes Direct helps you think through what changes when the home goes on acreage near Madisonville instead of a subdivision lot.",
     buyingHeading: 'Buying a Mobile Home in Madison County',
     buying: [
       "In a city, water, sewer and power are already at the curb. On rural Madison County land, a well, a septic system and an electric run may all be part of the project, so understanding those pieces early avoids surprises.",
@@ -6149,7 +6149,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "We'll also ask what's on the property now, such as an existing well, power pole or cleared pad, since that shapes the site work.",
     ],
     localProof:
-      "Madison County buyers moving onto acreage around Madisonville, Midway and North Zulch get help planning the utility work that city lots never needed.",
+      "Madison County buyers moving onto acreage around Madisonville get help planning the utility work that a city lot wouldn't need.",
     faq: [
       {
         q: "What changes when I put a home on rural land near Madisonville?",
@@ -6160,7 +6160,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
         a: "We can tell you what to look at, such as access, power proximity and space for a septic system, so you ask the right questions before closing.",
       },
       {
-        q: "Do you deliver to acreage off I-45 around Madisonville?",
+        q: "Can you deliver to rural Madison County land outside Madisonville?",
         a: "Yes. Rural Madison County properties are covered, and we review the route to your land before finalizing a quote.",
       },
       {
@@ -6187,22 +6187,22 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Crockett, TX and Houston County. New manufactured homes delivered to wooded rural land, with honest financing.",
     intro:
-      "Crockett is the Houston County seat, surrounded by pine and hardwood country near the Davy Crockett National Forest. Texas Homes Direct delivers manufactured homes to that wooded rural land, planning access and clearing around the trees and roads buyers actually have.",
+      "Crockett is the Houston County seat, and if your land has trees, a long driveway or soft ground, Texas Homes Direct plans access and clearing around what's actually there before your home is delivered.",
     buyingHeading: 'Buying a Mobile Home in Houston County',
     buying: [
-      "Wooded Houston County property can be beautiful and tricky at once. A driveway through timber, overhanging limbs and soft shoulders all affect delivery, so we look at access and the cleared area before your quote is final.",
+      "Wooded property can be beautiful and tricky at once. A driveway through trees, overhanging limbs and soft shoulders all affect delivery, so on Houston County land we look at access and the cleared area before your quote is final.",
       "Some buyers have already cleared a homesite; others still have standing trees where the home will go. Either is fine, as long as we plan the clearing and pad together before the home is ordered.",
     ],
     pricingExplainer: [
       "Your Crockett quote is the home's full price, with the list above inside it, and that number holds once you've accepted it.",
-      "Utility work on wooded Houston County land is estimated by phone, then bid exactly after our contractor walks the property, and you approve the bid before work begins.",
+      "Utility work on your Houston County land is estimated by phone, then bid exactly after our contractor walks the property, and you approve the bid before work begins.",
     ],
     gettingStarted: [
-      "Send photos of the driveway entrance and the area where the home would sit. In Houston County's timber, those two views tell us the most about delivery.",
+      "Send photos of the driveway entrance and the area where the home would sit. On a Houston County property, those two views tell us the most about delivery.",
       "Next we discuss clearing, floor plans and financing together, so the site plan and the home fit each other.",
     ],
     localProof:
-      "Houston County properties around Crockett, Grapeland and Lovelady, many of them wooded, get a delivery access review before every quote.",
+      "Houston County properties around Crockett, wooded or open, get a delivery access review before every quote.",
     faq: [
       {
         q: "Can you deliver a home to wooded land near Crockett?",
@@ -6214,7 +6214,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Is all of Houston County within your delivery area?",
-        a: "Every part of Houston County is covered, Grapeland and Lovelady included. Logging roads and long timber drives just mean a closer look at the route.",
+        a: "Every part of Houston County is covered. A long drive through trees just means a closer look at the route.",
       },
       {
         q: "Can I finance a home for land near the Davy Crockett National Forest?",
@@ -6240,10 +6240,10 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Fairfield, TX and Freestone County. Start with the financing conversation, even before you have land. Free quote.",
     intro:
-      "In Fairfield, it often makes sense to talk about financing before talking about land. Texas Homes Direct helps Freestone County buyers learn what they can afford first, so the land search and the home search both start from a real number.",
+      "In Fairfield, Texas Homes Direct can start with financing before land. We help Freestone County buyers learn what they can afford first, so the land search and the home search both start from a real number.",
     buyingHeading: 'Buying a Mobile Home in Freestone County',
     buying: [
-      "Knowing your financing range early keeps you from buying land that leaves too little room for the home, or falling for a floor plan the budget can't carry. It's the order that saves the most second-guessing.",
+      "Knowing your financing range early keeps you from buying land that leaves too little room for the home, or falling for a floor plan the budget can't carry. Settling the budget first avoids that second-guessing.",
       "We can finance homes ourselves and also work with outside lenders, so a Fairfield buyer gets a realistic picture of options rather than a single yes or no.",
     ],
     pricingExplainer: [
@@ -6259,11 +6259,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     faq: [
       {
         q: "Should I get financing figured out before buying land in Fairfield?",
-        a: "It often helps. Knowing your range first means the land and home you choose fit the same budget.",
+        a: "It helps. Knowing your range first means the land and home you choose fit the same budget.",
       },
       {
         q: "Can I talk to you about financing without land in Freestone County?",
-        a: "Yes. Many buyers start there, and we can revisit the site details once you've found a property.",
+        a: "Yes. You can start with financing, and we can revisit the site details once you've found a property.",
       },
       {
         q: "Do you deliver to rural Freestone County properties?",
@@ -6293,10 +6293,10 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Mexia, TX and Limestone County. New manufactured homes for in-town lots and acreage alike, with honest financing.",
     intro:
-      "Mexia is the larger of Limestone County's two main towns, and a lot of buyers here are weighing an in-town lot against a few acres outside it. Texas Homes Direct covers both, explaining how a home on a city lot differs from one on rural land.",
+      "Whether you're weighing an in-town Mexia lot or a few acres outside it, Texas Homes Direct covers both, explaining how a home on a city lot differs from one on rural Limestone County land.",
     buyingHeading: 'Buying a Mobile Home in Limestone County',
     buying: [
-      "Inside Mexia city limits, utilities are often available nearby, but local requirements and lot dimensions can narrow which homes fit. Out in the county, there's more room but more site work. We help you weigh the trade-off honestly.",
+      "Inside Mexia city limits, utilities may be close by, but local requirements and lot dimensions can narrow which homes fit. Out in the county, you'd have more room but more site work. We help you weigh the trade-off honestly.",
       "Whichever direction you lean, we look at the specific property, including setbacks, access and existing connections, before recommending floor plans for it.",
     ],
     pricingExplainer: [
@@ -6308,7 +6308,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "Then we match floor plans to the lot size and go over financing for the homes that fit.",
     ],
     localProof:
-      "We work with Limestone County buyers on in-town Mexia lots and on acreage toward Fort Parker State Park and Lake Mexia.",
+      "We work with Limestone County buyers on in-town Mexia lots and on rural acreage across the county.",
     faq: [
       {
         q: "Can I put a manufactured home on a lot inside Mexia city limits?",
@@ -6316,10 +6316,10 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Is a city lot or county acreage better for a Mexia-area home?",
-        a: "Neither is better for everyone. City lots tend to have closer utilities, while county land offers more room but more site work. We'll compare both for your situation.",
+        a: "Neither is better for everyone. A city lot can put utilities closer, while county land offers more room but more site work. We'll compare both for your situation.",
       },
       {
-        q: "Do you deliver to acreage around Lake Mexia?",
+        q: "Is acreage outside Mexia city limits part of your delivery area?",
         a: "Yes. Rural Limestone County land is covered, and we check access to your address before finalizing a quote.",
       },
       {
@@ -6346,30 +6346,30 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Groesbeck, TX and Limestone County. New manufactured homes delivered down rural roads and lake-area acreage.",
     intro:
-      "Groesbeck is the Limestone County seat, a quieter town ringed by farm roads, ranchland and the shoreline around Lake Limestone. Texas Homes Direct delivers to those rural properties, where the route to the homesite matters as much as the home itself.",
+      "Groesbeck is the Limestone County seat, and Texas Homes Direct delivers to rural properties around it, where the route to the homesite matters as much as the home itself.",
     buyingHeading: 'Buying a Mobile Home in Limestone County',
     buying: [
-      "County roads, cattle guards, creek crossings and long private drives are common around Groesbeck. We review the path from the highway to your pad so the delivery plan fits the land.",
-      "Lake-area parcels and ranch tracts each bring their own setup questions about placement and utilities, and we answer them for the property you actually have instead of a generic lot.",
+      "If the way in includes a county road, a gate, a creek crossing or a long private drive, we map that path from the highway to your pad before quoting, so the delivery plan fits your land.",
+      "Every parcel brings its own setup questions about placement and utilities, and we answer them for the property you actually have instead of a generic lot.",
     ],
     pricingExplainer: [
       "A Groesbeck quote gives you the home's complete price, everything on the list above included, and it doesn't shift after acceptance.",
       "On rural land, utilities need a closer look: a phone estimate first, then an exact bid after our contractor visits, which you approve before work.",
     ],
     gettingStarted: [
-      "Describe the route from the nearest highway to your property, including any gates, cattle guards or low spots. That helps us plan delivery early.",
+      "Describe the route from the nearest highway to your property, including any gates, crossings or low spots. That helps us plan delivery early.",
       "Next we talk floor plans and financing, then schedule the site visit that sets the utility bid.",
     ],
     localProof:
-      "We deliver to Limestone County acreage around Groesbeck, from ranch tracts off SH 14 to lake-area land near Lake Limestone and Old Fort Parker.",
+      "We deliver to Limestone County acreage around Groesbeck and review each route before quoting.",
     faq: [
       {
-        q: "Can you deliver to ranch land with a long private drive near Groesbeck?",
-        a: "Usually, yes. We review the drive, gates and any crossings so the delivery route works for your property.",
+        q: "Can a home reach my Groesbeck land if the drive in is long and private?",
+        a: "It can, once the drive, gates and any crossings are reviewed so the delivery route works for your property.",
       },
       {
-        q: "Do you place homes on lake-area land around Lake Limestone?",
-        a: "Yes. We review access and placement for each parcel, and any lake-area requirements, before quoting.",
+        q: "Do you place homes on rural Limestone County parcels near Groesbeck?",
+        a: "Yes. We review access, placement and any parcel requirements before quoting.",
       },
       {
         q: "Do I need my Groesbeck property surveyed before calling?",
@@ -6399,11 +6399,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Marlin, TX and Falls County. Smaller, budget-minded manufactured homes and honest financing. Get your free quote today.",
     intro:
-      "Marlin buyers watching their budget closely can still get a new home. Texas Homes Direct carries smaller, lower-cost manufactured homes for Falls County households that want something modern and reliable without paying for space they won't use.",
+      "If you're watching your budget closely in Marlin, you can still get a new home. Texas Homes Direct carries smaller, lower-cost manufactured homes for Falls County buyers who want something modern and reliable without paying for space they won't use.",
     buyingHeading: 'Buying a Mobile Home in Falls County',
     buying: [
-      "Our more affordable single wides still come with full kitchens, modern insulation and new appliances. For many Marlin buyers, the right home is the one that fits the budget comfortably, not the largest one available.",
-      "Marlin's history as a mineral-water town is part of its character, and Falls County land today ranges from older town lots to farm acreage along the Brazos. Smaller footprints fit more of those lots easily.",
+      "Our more affordable single wides still come with full kitchens, modern insulation and new appliances. The right home is the one that fits your budget comfortably, not the largest one available.",
+      "Whether your Falls County land is an older town lot or rural acreage, a smaller footprint fits more lots easily.",
     ],
     pricingExplainer: [
       "For a budget-minded Marlin buyer, the accepted home price covers the whole list above, so the number you plan around is the number you pay.",
@@ -6422,15 +6422,15 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Can a small single wide fit on an older Marlin town lot?",
-        a: "Often it can. We check the lot dimensions and local requirements to confirm which footprints fit.",
+        a: "It can. We check the lot dimensions and local requirements to confirm which footprints fit.",
       },
       {
         q: "Is financing available for lower-priced homes in Falls County?",
         a: "Yes. Financing options exist across price ranges, and we'll go over what fits your situation.",
       },
       {
-        q: "Do you deliver to farm land around Marlin?",
-        a: "We do. Farm roads around Marlin, Rosebud and Lott are all in reach, and the path to your homesite is looked at before pricing is set.",
+        q: "Do you deliver to rural Falls County land around Marlin?",
+        a: "We do. Rural addresses across Falls County are in reach, and the path to your homesite is looked at before pricing is set.",
       },
     ],
     nearby: ['groesbeck', 'cameron', 'mexia', 'waco'],
@@ -6456,7 +6456,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     buyingHeading: 'Buying a Mobile Home in Upshur County',
     buying: [
       "A 3D tour shows how rooms connect, how the kitchen opens to the living area, and how much space the bedrooms really have. It answers questions a flat floor plan can't.",
-      "Upshur County land is mostly pine and hardwood country with rolling terrain, so once you've found a home you like, we look at how that footprint fits your specific site and its access.",
+      "Once you've found a home you like, we look at how that footprint fits your specific Upshur County site and its access, whether the land is open, wooded or rolling.",
     ],
     pricingExplainer: [
       "When you request a Gilmer quote on a home you've toured, that price includes everything listed above and stays fixed after you accept it.",
@@ -6505,18 +6505,18 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Clarksville, TX and Red River County. New manufactured homes at the same firm pricing, wherever your land sits.",
     intro:
-      "Clarksville sits in the far northeastern reach of the state, with the Red River marking the county's northern edge, and Texas Homes Direct prices homes for Red River County the same as anywhere closer to a city. Being remote doesn't add a premium to the home itself.",
+      "Texas Homes Direct prices homes for Clarksville and the rest of Red River County the same as homes headed closer to a city. Distance doesn't add a premium to the house itself.",
     buyingHeading: 'Buying a Mobile Home in Red River County',
     buying: [
-      "Buyers out here sometimes expect a distance surcharge built into the price. With us, the home price is the home price; any differences come from the specific site work your land needs, not your zip code.",
-      "Red River County land ranges from town lots in Clarksville to farm and timber acreage near the river, and each property gets reviewed for access before a quote is finalized.",
+      "You won't find a distance surcharge built into our price. With us, the home price is the home price; any differences come from the specific site work your land needs, not your zip code.",
+      "Whether your Red River County land is a town lot in Clarksville or rural acreage, each property gets reviewed for access before a quote is finalized.",
     ],
     pricingExplainer: [
       "The Clarksville home price includes everything on the list above and doesn't increase because of where the county sits on the map.",
       "Utilities depend on your specific land. We start with a phone estimate, then our contractor inspects the property and provides an exact bid you approve.",
     ],
     gettingStarted: [
-      "Send the property location and a description of the road in. Remote acreage often has a long final stretch, and knowing it early helps planning.",
+      "Send the property location and a description of the road in. If the last stretch to your land is long, knowing it early helps planning.",
       "From there, choosing a home and lining up financing go hand in hand, with the same options any buyer gets.",
     ],
     localProof:
@@ -6531,8 +6531,8 @@ export const CITY_CONTENT: Record<string, CityContent> = {
         a: "Yes. Red River County is within our delivery area, and we check access to your property before finalizing a quote.",
       },
       {
-        q: "Can I place a home on timber acreage near the Red River?",
-        a: "Many properties there work. We review access, clearing and placement for your specific parcel before anything is final.",
+        q: "Can I place a home on wooded acreage in Red River County?",
+        a: "It depends on the parcel. We review access, clearing and placement for your specific property before anything is final.",
       },
       {
         q: "Is financing available to Clarksville buyers on the same terms?",
@@ -6611,7 +6611,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Littlefield, TX and Lamb County. Compare single wide and double wide manufactured homes against your lot. Free quote.",
     intro:
-      "Choosing between a single wide and a double wide is usually the first real fork for a Lamb County purchase, and Texas Homes Direct lays the two side by side for Littlefield properties: footprint, room layout and price, so the size fits both the lot and the household.",
+      "Texas Homes Direct lays a single wide and a double wide side by side for Littlefield properties: footprint, room layout and price, so the size fits both the Lamb County lot and the household.",
     buyingHeading: 'Buying a Mobile Home in Lamb County',
     buying: [
       "A single wide suits a narrower lot or a tighter budget and can hold two or three bedrooms comfortably. A double wide spreads out into a wider living room, a larger kitchen and more separation between bedrooms.",
@@ -6638,7 +6638,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Can you deliver a double wide to rural Lamb County land?",
-        a: "Usually, yes. We check the route and turning room for your property before the quote is final.",
+        a: "It can. We check the route and turning room for your property before the quote is final.",
       },
       {
         q: "Is a survey needed before I compare home sizes for my Littlefield land?",
@@ -6667,7 +6667,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "You can buy a home from Muleshoe without driving anywhere. Texas Homes Direct handles a Bailey County purchase by phone, text and email, from the first floor plan you look at to the paperwork that closes it.",
     buyingHeading: 'Buying a Mobile Home in Bailey County',
     buying: [
-      "Floor plans, photos and quotes arrive in writing, so you can compare them at the kitchen table and share them with family before deciding. Questions get answered by the same small team each time.",
+      "Floor plans, photos and quotes arrive in writing, so you can compare them at the kitchen table and share them with family before deciding. Questions can come by call, text or email, whichever suits you.",
       "Distance doesn't trim the service. A Bailey County buyer sees the same homes, the same prices and the same explanation of each step as someone next door to a metro.",
     ],
     pricingExplainer: [
@@ -6929,10 +6929,10 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Dumas, TX and Moore County. New manufactured homes with a clear, written step-by-step buying process.",
     intro:
-      "Dumas is the Moore County seat, and Texas Homes Direct lays out a Moore County purchase as a written sequence of steps, so at any point you know what's finished, what comes next and who is handling it.",
+      "Dumas is the Moore County seat, and Texas Homes Direct lays out a Moore County purchase as a written sequence of steps, so at any point you know what's finished and what comes next, with updates at each stage.",
     buyingHeading: 'Buying a Mobile Home in Moore County',
     buying: [
-      "Each stage has a named person on our side, so a question about financing or the site visit goes straight to whoever is handling it rather than starting over.",
+      "You get updates at each stage, so you know where the financing, the site visit and the delivery plan stand without having to chase anyone for news.",
       "Seeing the sequence early makes it easier to plan everything around it, such as a lease ending, a current house to sell, or family lining up to help with the move.",
     ],
     pricingExplainer: [
@@ -6951,8 +6951,8 @@ export const CITY_CONTENT: Record<string, CityContent> = {
         a: "Confirm the property, choose a floor plan, settle financing, complete the site visit and utility bid, then delivery and setup, with updates at each stage.",
       },
       {
-        q: "Who do I contact at each stage of a Moore County purchase?",
-        a: "Each stage is assigned to someone specific on our team, and we tell you who before that stage begins.",
+        q: "How will I hear about progress on a Moore County purchase?",
+        a: "We send updates at each stage, so you know when one step is finished and what the next one involves.",
       },
       {
         q: "Can I start in Dumas before my land is settled?",
@@ -6997,11 +6997,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "With that known, we line up floor plans sized for the same footprint or a little larger and work out how the replacement will be financed.",
     ],
     localProof:
-      "Hutchinson County lots around Borger, and those toward Pampa and Spearman, can be planned as a remove-and-replace project with one team.",
+      "Hutchinson County lots around Borger, and those toward Pampa and Spearman, can be planned as one remove-and-replace project.",
     faq: [
       {
         q: "Can I replace an old mobile home on my Borger lot with a new one?",
-        a: "Often, yes. Before quoting, we look at the lot's size, the condition of what's hooked up now, and whatever rules govern the parcel.",
+        a: "Yes, if the lot allows it. Before quoting, we look at the lot's size, the condition of what's hooked up now, and whatever rules govern the parcel.",
       },
       {
         q: "Can the existing hookups on my Hutchinson County lot be reused?",
@@ -7152,7 +7152,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "Utility work is quoted in two stages: an estimate during a phone call, then an exact contractor bid after a visit to your Hansford County parcel, which you approve.",
     ],
     gettingStarted: [
-      "Keep a copy of your deed or a survey handy if you have one. Those documents often answer placement questions before anyone calls the county.",
+      "Keep a copy of your deed or a survey handy if you have one. Those documents can show placement limits before anyone calls the county.",
       "Once your parcel's requirements are clear, we move on to floor plans and financing that fit them.",
     ],
     localProof:
@@ -7164,7 +7164,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Can a deed restriction limit a home on Hansford County land?",
-        a: "Sometimes, by home type, size or age. Reviewing your deed early shows whether there's anything to plan around.",
+        a: "It can, depending on what the deed says about home type, size or age. We read it with you early so there's nothing to plan around later.",
       },
       {
         q: "Can I start in Spearman before I've bought land?",
@@ -7247,7 +7247,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Canadian, TX and Hemphill County. Tiny homes, compact single wides and full-size manufactured homes.",
     intro:
-      "Not every Hemphill County household needs a large home. Around Canadian, Texas Homes Direct carries compact floor plans, including one-bedroom tiny homes and smaller single wides, alongside full-size double wides.",
+      "Texas Homes Direct carries compact floor plans for Hemphill County, including one-bedroom tiny homes and smaller single wides, alongside full-size double wides for Canadian buyers who want more room.",
     buyingHeading: 'Buying a Mobile Home in Hemphill County',
     buying: [
       "A smaller home keeps the footprint and the price down while still including a full kitchen, bath and bedroom. For one or two people, that can be all the space worth maintaining.",
@@ -7319,7 +7319,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     faq: [
       {
         q: "Can I buy a Shamrock home with less-than-perfect credit?",
-        a: "Frequently. Credit problems narrow the field but don't automatically close it; we can finance some homes ourselves and also go to outside lenders.",
+        a: "It may be. Credit problems narrow the field but don't automatically close it; we can finance some homes ourselves and also go to outside lenders.",
       },
       {
         q: "Does a recent job change hurt my chances in Wheeler County?",
@@ -7353,7 +7353,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Clarendon, TX and Donley County from a family-owned manufactured home dealer. Honest financing.",
     intro:
-      "Clarendon is the Donley County seat, and Texas Homes Direct is family-owned. That means a buyer there deals with the same few real people from the first question through setup.",
+      "Clarendon is the Donley County seat, and Texas Homes Direct is family-owned. Buyers there can reach us by call, text or email at every step, from the first question through setup.",
     buyingHeading: 'Buying a Mobile Home in Donley County',
     buying: [
       "Being family-owned shows up in small ways: the person who answered your first call knows your file, and answers come straight even when they're no.",
@@ -7368,11 +7368,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "From there we suggest homes within the budget, explain the financing choices in plain terms, and book a property visit whenever you're ready.",
     ],
     localProof:
-      "Donley County homesites around Clarendon, and toward Shamrock and Amarillo, work with the same small, family-run team from start to finish.",
+      "Donley County homesites around Clarendon, and toward Shamrock and Amarillo, work with our family-owned business from start to finish.",
     faq: [
       {
         q: "Who will I talk to about a Clarendon home?",
-        a: "The same handful of people at Texas Homes Direct, from the first question to the day the home is set.",
+        a: "Texas Homes Direct itself, by call, text or email, from your first question to the day the home is set.",
       },
       {
         q: "Is all of Donley County within reach for delivery?",
@@ -7478,7 +7478,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     faq: [
       {
         q: "Should I sort out financing before buying land near Seminole?",
-        a: "Usually it pays to. A financing range set first keeps the land purchase and the home inside one budget.",
+        a: "Yes, it's worth doing. A financing range set first keeps the land purchase and the home inside one budget.",
       },
       {
         q: "Can I talk financing with you without land in Gaines County?",
@@ -7568,7 +7568,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "Slaton shares Lubbock County with Lubbock, and whether your property sits inside Slaton's city limits or out in the county changes what applies to a new home. Texas Homes Direct sorts that out with you before a floor plan is chosen.",
     buyingHeading: 'Buying a Mobile Home in Lubbock County',
     buying: [
-      "On an in-town lot, utilities are often close by, but lot dimensions and local requirements can narrow which homes fit. Out in the county there's usually more room but more site work.",
+      "On an in-town Slaton lot, services may already be close, though lot dimensions and local requirements can limit which homes fit. Land in the county gives you more room and calls for more site work.",
       "Whichever it is, setbacks, access and any existing service lines on that exact property guide which floor plans we suggest.",
     ],
     pricingExplainer: [
@@ -7584,15 +7584,15 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     faq: [
       {
         q: "Can a manufactured home go on a lot inside Slaton city limits?",
-        a: "Often, but the lot and the city's rules decide it. We confirm both before you choose a home.",
+        a: "It can, but the lot and the city's rules decide it. We confirm both before you choose a home.",
       },
       {
         q: "Is an in-town lot or county land better for a Slaton-area home?",
-        a: "Neither is better for everyone. Town lots tend to have closer utilities; county land offers room but more site work.",
+        a: "It depends on what you need. Town lots can mean shorter utility runs, and county land trades that for extra space.",
       },
       {
         q: "Will my Slaton lot size limit which homes fit?",
-        a: "Sometimes. Give us the lot's width and depth, and we'll show which homes leave room for the required setbacks.",
+        a: "It can. Give us the lot's width and depth, and we'll show which homes leave room for the required setbacks.",
       },
       {
         q: "Do you cover rural Lubbock County around Slaton?",
@@ -7679,10 +7679,10 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     ],
     pricingExplainer: [
       "Big Spring buyers see a single home price that already folds in the checklist above; accepting the quote locks it.",
-      "Utility connections are the exception, since land varies so much: estimated by phone, then bid exactly after our contractor inspects your Howard County site, which you approve.",
+      "Utility connections are the one exception, because every property is different: estimated by phone, then bid exactly after our contractor inspects your Howard County site, which you approve.",
     ],
     gettingStarted: [
-      "If construction quality is your main question, ask for the specs on two or three models. Comparing them side by side tends to settle it.",
+      "Pick two or three models and ask for their specs; we'll lay them side by side so you can compare construction details directly.",
       "From there we confirm your Howard County property, talk through financing and plan the site visit.",
     ],
     localProof:
@@ -7743,7 +7743,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     faq: [
       {
         q: "Can you deliver down a long private drive near Andrews?",
-        a: "Usually, yes. We review the drive and any gates so the delivery route works for your property.",
+        a: "We check first: the drive, any gates and the turning room, so the delivery route works for your property.",
       },
       {
         q: "Do you place homes on rural Andrews County land?",
@@ -7777,7 +7777,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Monahans, TX and Ward County. New manufactured homes with site work handled start to finish.",
     intro:
-      "Monahans is the Ward County seat. Buy a home there through Texas Homes Direct and you get one phone number for the entire install, from leveling the pad to the last piece of skirting, rather than a list of contractors to manage.",
+      "Monahans is the Ward County seat. Buy a home there through Texas Homes Direct and we coordinate the entire install, from leveling the pad to the last piece of skirting, rather than handing you a list of contractors to manage.",
     buyingHeading: 'Buying a Mobile Home in Ward County',
     buying: [
       "The order matters on an install: dirt work before blocking, blocking before tie-downs, utilities before skirting closes everything in. We set that order for your Ward County site and tell you as each piece is done.",
@@ -7792,7 +7792,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "After that, a floor plan is matched to the homesite, financing is lined up, and the assessment visit goes on the calendar.",
     ],
     localProof:
-      "Ward County properties in Monahans and out toward Pecos get one team coordinating every part of setup.",
+      "Ward County properties in Monahans and out toward Pecos have every part of setup coordinated by Texas Homes Direct.",
     faq: [
       {
         q: "Do I have to hire my own crews for site work in Monahans?",
@@ -7808,7 +7808,7 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       },
       {
         q: "Is there paperwork for a home on Monahans-area land?",
-        a: "Often, and it varies by county and parcel. We help you work through what applies to yours.",
+        a: "There can be, and it varies by county and parcel. We help you work through what applies to yours.",
       },
     ],
     nearby: ['odessa', 'pecos'],
@@ -7833,12 +7833,12 @@ export const CITY_CONTENT: Record<string, CityContent> = {
       "Pecos is the Reeves County seat, and Texas Homes Direct spells out what a home includes before you sign: the out-the-door checklist and the setup checklist on this page are the whole list, item by item.",
     buyingHeading: 'Buying a Mobile Home in Reeves County',
     buying: [
-      "Knowing what's included matters most when comparing quotes. A low base price can hide delivery, setup or AC; ours lists every item so the comparison is fair.",
-      "If something you need isn't on the list, such as a porch upgrade or a specific appliance, ask and we'll tell you plainly whether it can be added and what it costs.",
+      "Knowing what's included matters most when comparing quotes. Ours lists every item, from delivery and setup to AC, so the comparison is fair.",
+      "The setup checklist also shows the work our crew handles on site, from the base pad to the skirting, so you can see what happens between delivery and move-in.",
     ],
     pricingExplainer: [
       "The Pecos price covers the home plus every item listed above, and it stays the same once accepted.",
-      "Utilities are the part not on a fixed list, because Reeves County land varies so much: we estimate them by phone, then our contractor bids them exactly after a visit, for your approval.",
+      "Utilities are the part not on a fixed list, because every property is different: we estimate them by phone, then our contractor bids them exactly after a visit, for your approval.",
     ],
     gettingStarted: [
       "Read through both checklists on this page and note anything you want explained. We'll go through them with you on the first call.",
@@ -7849,11 +7849,11 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     faq: [
       {
         q: "What exactly is included in a Pecos home quote?",
-        a: "Everything on the out-the-door and setup checklists on this page. If you want something beyond them, we'll tell you plainly whether it can be added.",
+        a: "Everything on the out-the-door and setup checklists on this page. Those items are part of the home price; only the utility work is bid separately, after the site visit.",
       },
       {
-        q: "Can I add an upgrade to a Reeves County home?",
-        a: "Ask about the specific item. We'll say whether it's available for that model and what it would cost.",
+        q: "Do the Pecos checklists change if my Reeves County land is far from town?",
+        a: "No. The same items come with the home wherever it's placed; distance and site conditions show up in the utility bid, not the checklist.",
       },
       {
         q: "Is rural Reeves County inside your delivery range?",
