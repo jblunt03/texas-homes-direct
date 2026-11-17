@@ -40,6 +40,10 @@ export default function PaymentEstimate({
   useEffect(() => {
     if (!open) return
     closeRef.current?.focus()
+    // The third-party chat widget stacks above everything, and at 375px its
+    // greeting can cover the bottom of this dialog; hide it while open (same
+    // as the video dialog).
+    document.body.classList.add('bmh-pay-open')
     const onKey = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         e.preventDefault()
@@ -47,7 +51,10 @@ export default function PaymentEstimate({
       }
     }
     document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.classList.remove('bmh-pay-open')
+    }
   }, [open, close])
 
   return (

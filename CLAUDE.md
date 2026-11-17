@@ -900,6 +900,9 @@ insurance" under each one.
     the icon
   - doesn't lock scroll, so opening it never shifts the layout
   - has a 44px tap target around an 18px icon
+  - hides the third-party chat widget while open (`body.bmh-pay-open`), the
+    same as the video dialog: at 375px the chat greeting can otherwise cover
+    the dialog's bottom and its Close button
 - **Visible text too.** `<PaymentFootnote />` shows the full body under every
   card grid that can show a payment, and directly under the payment on a
   listing page, whenever payment mode is on. The disclosure is never only
