@@ -2293,7 +2293,7 @@ export const sampleListings: Listing[] = [
     features: ['3 Bed / 2 Bath', '924 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
       'The Seguin is a 924 square foot singlewide with 3 beds and 2 baths.',
-    monthlyPayment: 0,
+    monthlyPayment: 720,
     downPayment: 0,
     available: true,
     hudCertified: true,
@@ -2341,7 +2341,7 @@ export const sampleListings: Listing[] = [
     features: ['4 Bed / 2 Bath', '1,493 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
       'The Austin is a 1,493 square foot doublewide with 4 beds and 2 baths.',
-    monthlyPayment: 0,
+    monthlyPayment: 1015,
     downPayment: 0,
     available: true,
     hudCertified: true,
