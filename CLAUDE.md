@@ -631,14 +631,18 @@ it doesn't, something isn't idempotent.
   `scripts/sync-listings.image-map.json` maps Notion block IDs to those files,
   so nothing is re-downloaded or renamed. New photos download into the folder
   the listing already uses as `<blockId>.<ext>`. Anything over 800KB is
-  converted with `sips` to JPEG q82, max 1600px wide. Photos removed from
+  converted with `sips` to JPEG q82, max 1600px wide. HEIC/HEIF (iPhone
+  photos) is always converted, whatever its size, because browsers can't show
+  it. The JPEG keeps the photo's EXIF orientation tag (6 for portrait iPhone
+  shots), so `sips -g pixelWidth` reports landscape dimensions for a portrait
+  photo; browsers apply the tag and show it upright. Photos removed from
   Notion drop out of the gallery, but the file stays on disk. A listing whose
   Notion page has no photos keeps its images.
 - **`IMAGE_LOCK`** (in the script) skips photo sync for:
   - **Katy/Forney:** Notion only has floorplans for it.
-  - **The Lampasas (`2876-5bed-3bath-double-wide`):** its only Notion image is
-    the floorplan itself. It's shown once, as its single image and
-    `floorplanUrl`, the same pattern as the other floorplan-only listings.
+  - **The Lampasas** was locked as floorplan-only until 2026-11-17, when its
+    Notion page got an exterior and ten interior photos. It's unlocked now and
+    synced like any other listing; the floor plan stays in `floorplanUrl`.
   - **Daniel and Chapman:** as of 2026-10-09 Notion and the site disagree on
     which photo set belongs to which model, and Notion's Daniel page mixes two
     different homes. Remove these two entries once the owner confirms which is

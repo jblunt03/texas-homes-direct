@@ -2369,7 +2369,17 @@ export const sampleListings: Listing[] = [
     region: 'South TX',
     city: '',
     images: [
-      '/homes/floorplans/2876-5bed-3bath-double-wide-FloorPlan.jpeg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-805d-8a11-e594858eb85a.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-80d2-a550-c7cecfb80eb2.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-80f9-8f6a-ddb5d2a71190.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-80f1-aea9-f2800640f608.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-80a2-81d2-e6c6abf0ded7.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-8072-92f1-e2a377021648.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-80bc-b3b8-f2ae60469d5c.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-80ee-8567-cb8d06aca440.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-80fd-a4f6-e670559d7a4e.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-8080-8c72-f78ce34cbaf9.jpg',
+      '/homes/lampasas-texas-5-bed-3-bath-double-wide/414875ae-20d8-809b-9960-d31cca2afa45.jpg',
     ],
     features: ['5 Bed / 3 Bath', '2,026 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:

@@ -91,9 +91,8 @@ const IMAGE_LOCK: Record<string, string> = {
   // the owner confirmed Notion is right for both on 2026-10-09.)
   'vidor-texas-1-bed-1-bath-tiny-home': 'photo sets disputed (Daniel/Chapman)', // The Vidor
   'la-vernia-texas-1-bed-1-bath-tiny-home': 'photo sets disputed (Daniel/Chapman)', // The La Vernia
-  // Its only Notion image is the floorplan itself; the listing shows the
-  // floorplan once (as both its single image and floorplanUrl), not twice.
-  'lampasas-texas-5-bed-3-bath-double-wide': 'floorplan only', // The Lampasas
+  // The Lampasas was locked here as 'floorplan only' until 2026-11-17, when
+  // its Notion page got an exterior and ten interior photos.
 }
 
 /** Notion image blocks deliberately left off the site, by block ID. */
@@ -272,12 +271,17 @@ async function downloadImage(img: NotionImage, dirAbs: string, baseName = img.bl
   const res = await fetch(img.url)
   if (!res.ok) throw new Error(`download failed (${res.status}) for block ${img.blockId}`)
   const buf = Buffer.from(await res.arrayBuffer())
-  const ext = (new URL(img.url).pathname.match(/\.(jpe?g|png|webp|gif)$/i)?.[1] ?? 'jpg').toLowerCase()
+  // Browsers can't show HEIC/HEIF (iPhone photos), so those are always
+  // converted to JPEG below, whatever their size. Saved under their own
+  // extension first so the converted .jpg is a separate file.
+  const urlExt = decodeURIComponent(new URL(img.url).pathname).match(/\.([a-z0-9]+)$/i)?.[1]?.toLowerCase() ?? ''
+  const isHeic = urlExt === 'heic' || urlExt === 'heif'
+  const ext = isHeic ? urlExt : (urlExt.match(/^(jpe?g|png|webp|gif)$/)?.[1] ?? 'jpg')
   fs.mkdirSync(dirAbs, { recursive: true })
   let fileAbs = path.join(dirAbs, `${baseName}.${ext}`)
   fs.writeFileSync(fileAbs, buf)
 
-  if (buf.length > MAX_IMAGE_BYTES) {
+  if (isHeic || buf.length > MAX_IMAGE_BYTES) {
     const jpgAbs = path.join(dirAbs, `${baseName}.jpg`)
     const width = Number(
       execFileSync('sips', ['-g', 'pixelWidth', fileAbs]).toString().match(/pixelWidth: (\d+)/)?.[1] ?? 0
