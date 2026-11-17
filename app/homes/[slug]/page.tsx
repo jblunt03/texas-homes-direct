@@ -8,6 +8,7 @@ import { isPromoActive } from '@/lib/promo'
 import { isTinyHome } from '@/lib/tinyHomes'
 import { currentListingSlug } from '@/lib/listingLookup'
 import { VIDEO_META } from '@/lib/videoMeta'
+import { VIDEOS_ARCHIVED } from '@/lib/archived'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
 
@@ -112,7 +113,8 @@ export default async function HomeListingPage({
 
   // VideoObject only when the title, thumbnail and uploadDate were read from
   // the video's own page (lib/videoMeta.ts). Never on /browse.
-  const video = listing.youtubeId ? VIDEO_META[listing.youtubeId] : undefined
+  // Never while listing videos are archived (lib/archived.json "videos").
+  const video = !VIDEOS_ARCHIVED && listing.youtubeId ? VIDEO_META[listing.youtubeId] : undefined
   const videoJsonLd = video && {
     '@context': 'https://schema.org',
     '@type': 'VideoObject',

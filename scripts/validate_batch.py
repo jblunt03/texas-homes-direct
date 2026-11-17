@@ -581,10 +581,19 @@ def step_payment_disclosure_rendered(city_slugs):
 # While a section's flag is true, its route must not appear in the header
 # nav, footer, sitemap or llms.txt, and must answer with a TEMPORARY (307)
 # redirect to "/". See CLAUDE.md "Archived sections".
+# Flags in lib/archived.json that switch off a feature rather than a page
+# route: they have no route, no redirect and no nav entry to check here.
+ARCHIVED_FEATURES = {"videos"}
+
+
+def archived_flags():
+    return json.loads((REPO_ROOT / "lib" / "archived.json").read_text())
+
+
 def archived_routes():
-    flags = json.loads((REPO_ROOT / "lib" / "archived.json").read_text())
+    flags = archived_flags()
     routes = dict(re.findall(r"(\w+): '(/[^']+)'", (REPO_ROOT / "lib" / "archived.ts").read_text()))
-    return {key: routes.get(key) for key, on in flags.items() if on}
+    return {key: routes.get(key) for key, on in flags.items() if on and key not in ARCHIVED_FEATURES}
 
 
 def fetch_no_redirect(path):
@@ -849,7 +858,21 @@ def step_youtube_ids_static():
 YT_IFRAME_RE = re.compile(r"<iframe[^>]+(?:youtube\.com|youtube-nocookie\.com|youtu\.be)", re.I)
 
 
-def step_youtube_rendered():
+# While lib/archived.json has "videos": true, no rendered page may carry any
+# trace of a listing video (CLAUDE.md "Listing videos").
+VIDEO_TRACE_RES = [
+    ("a Video chip", re.compile(r"data-video-chip")),
+    ("a 'Watch video' label", re.compile(r"Watch video")),
+    ("a YouTube iframe", YT_IFRAME_RE),
+    ("VideoObject schema", re.compile(r"VideoObject")),
+    ("an embedUrl", re.compile(r"embedUrl")),
+    ("a YouTube URL or ID field", re.compile(r"youtube|youtu\.be", re.I)),
+]
+
+
+def step_youtube_rendered(city_slugs=()):
+    if archived_flags().get("videos"):
+        return step_youtube_archived(city_slugs)
     problems = []
     ids = listing_youtube_ids()
     pages = ["/browse", "/tiny-homes"] + [f"/homes/{s}" for s in listing_slugs()]
@@ -873,6 +896,26 @@ def step_youtube_rendered():
     ok = not problems
     detail = problems or [f"No YouTube iframe in server HTML on {len(pages)} pages; {chips_on_browse} labeled video chips on /browse; no VideoObject on /browse."]
     return report("11f. Listing videos load only on tap", ok, detail)
+
+
+def step_youtube_archived(city_slugs):
+    pages = ["/", "/browse", "/tiny-homes", "/sitemap.xml"] + [f"/homes/{s}" for s in listing_slugs()]
+    pages += [f"/mobile-homes-{s}-tx" for s in city_slugs]
+    problems = []
+    for path in pages:
+        status, html = fetch(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        for label, rx in VIDEO_TRACE_RES:
+            if rx.search(html):
+                problems.append(f"  {path}: contains {label} while videos are archived")
+    llms = (REPO_ROOT / "public" / "llms.txt").read_text()
+    if re.search(r"youtube|youtu\.be", llms, re.I):
+        problems.append("  public/llms.txt: mentions YouTube while videos are archived")
+    ok = not problems
+    detail = problems[:40] or [f"Videos archived: no Video chip, YouTube iframe, VideoObject, embedUrl or YouTube URL on {len(pages)} pages or in llms.txt."]
+    return report("11f. Listing videos archived (lib/archived.json)", ok, detail)
 
 
 def main():
@@ -915,7 +958,7 @@ def main():
                 ok &= step_payment_disclosure_rendered(city_slugs)
                 ok &= step_model_year_rendered()
                 ok &= step_listing_urls_rendered(city_slugs)
-                ok &= step_youtube_rendered()
+                ok &= step_youtube_rendered(city_slugs)
         finally:
             stop_dev_server(proc)
             if ctx:

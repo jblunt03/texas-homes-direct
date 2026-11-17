@@ -936,7 +936,9 @@ prices or "Call for price". It started on 2026-11-10.
 ## Archived sections (`lib/archived.json`)
 
 **One switch per section.** `lib/archived.json` holds a boolean for each
-archivable section. As of 2026-11-11 there's one: `"commercial": true`. While
+archivable section. As of 2026-11-17 there are two: `"commercial": true` (a
+page route, described here) and `"videos": true`, a feature flag with no
+route (see "Listing videos"). While
 a flag is true:
 - **Links hidden:** the section's link is filtered out of the header nav
   (desktop and mobile both render `NAV_LINKS` in `components/Navbar.tsx`) and
@@ -1120,6 +1122,36 @@ name.
   - the sitemap lists a legacy slug or misses a current one
 
 ## Listing videos (`youtubeId`)
+
+**Archived since 2026-11-17: `"videos": true` in `lib/archived.json`.** Nothing
+below shows on the site while that flag is on. Restoring the videos is one
+edit: set it to `false`, validate, commit and deploy.
+- **What the flag does:**
+  - `components/ListingCard.tsx` and `app/homes/[slug]/ListingDetail.tsx`
+    load the chip and the player only through `next/dynamic`, and only when
+    `VIDEOS_ARCHIVED` (`lib/archived.ts`) is false. With it on, no chip, no
+    dialog, no player and no reserved space render, and that code is never
+    fetched, so no `video_play` event can fire and the dialog's chat-widget
+    hiding is inert.
+  - `app/homes/[slug]/page.tsx` adds no VideoObject schema.
+  - `fetchAllListings()` and `fetchListingBySlug()` in `lib/notion.ts` return
+    listings without `youtubeId`, so no video ID, YouTube URL or even the
+    word "youtube" reaches the HTML or client props.
+- **What stays:** all the video code, the `youtubeId` data in
+  `lib/sampleListings.ts`, `lib/youtube.ts`, `lib/videoMeta.ts`, the CSS, and
+  the sync's reading of a Notion "YouTube URL" property. Notion is unchanged.
+- **Not routes:** "videos" is a feature flag, so it has no entry in
+  `ARCHIVED_ROUTES`, no redirect, and step 11c skips it
+  (`ARCHIVED_FEATURES` in `validate_batch.py`).
+- **Matterport 3D tours are separate** and unaffected.
+- **Validator:** with the flag on, step 11f becomes "Listing videos archived":
+  it fails if `/`, `/browse`, `/tiny-homes`, the sitemap, any listing page or
+  any checked city page contains a Video chip, "Watch video", a YouTube
+  iframe, VideoObject, an `embedUrl` or the string "youtube", or if
+  `llms.txt` mentions YouTube. With the flag off it runs the original checks
+  below. Step 4f (valid IDs) runs either way, since the data stays.
+
+The rest of this section describes the feature as it works with the flag off.
 
 **Data.**
 - A listing stores only the 11-character YouTube video ID in `youtubeId`,

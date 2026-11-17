@@ -23,6 +23,7 @@ import { listingForNotionPage } from '@/lib/listingLookup'
 import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints'
 import { sampleListings, type Listing } from './sampleListings'
 import listingImageManifest from './generated/listingImages.json'
+import { VIDEOS_ARCHIVED } from '@/lib/archived'
 
 const DATA_SOURCE_ID =
   process.env.NOTION_DATA_SOURCE_ID ?? '34f1b269-5e7f-4cbc-8cee-464089b17143'
@@ -256,8 +257,32 @@ export function mapPage(page: PageObjectResponse): Listing {
 // Public API
 // ---------------------------------------------------------------------------
 
-/** Fetch all listings from Notion, paginating automatically. Falls back to sample data. */
+/**
+ * While listing videos are archived (lib/archived.json "videos": true), pages
+ * get listings without `youtubeId`, so no video ID or "youtube" string reaches
+ * the rendered HTML or client props. The data itself stays in
+ * lib/sampleListings.ts; set "videos": false to bring it back.
+ */
+function forDisplay(listing: Listing): Listing {
+  if (!VIDEOS_ARCHIVED || !listing.youtubeId) return listing
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const { youtubeId, ...rest } = listing
+  return rest
+}
+
+/** Fetch all listings (see fetchAllListingsRaw), ready for display. */
 export async function fetchAllListings(): Promise<Listing[]> {
+  return (await fetchAllListingsRaw()).map(forDisplay)
+}
+
+/** Fetch a single listing by slug (see fetchListingBySlugRaw), ready for display. */
+export async function fetchListingBySlug(slug: string): Promise<Listing | null> {
+  const listing = await fetchListingBySlugRaw(slug)
+  return listing ? forDisplay(listing) : null
+}
+
+/** Fetch all listings from Notion, paginating automatically. Falls back to sample data. */
+async function fetchAllListingsRaw(): Promise<Listing[]> {
   const client = getClient()
   if (!client) return sampleListings.filter(l => l.type !== 'repo')
 
@@ -288,7 +313,7 @@ export async function fetchAllSlugs(): Promise<string[]> {
 }
 
 /** Fetch a single listing by slug. Falls back to sample data match. */
-export async function fetchListingBySlug(slug: string): Promise<Listing | null> {
+async function fetchListingBySlugRaw(slug: string): Promise<Listing | null> {
   const client = getClient()
   if (!client) {
     const listing = sampleListings.find(l => l.slug === slug) ?? null

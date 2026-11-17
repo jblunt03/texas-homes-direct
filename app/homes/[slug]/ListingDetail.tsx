@@ -7,7 +7,14 @@ import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
 import { listingBadge } from '@/lib/badges'
 import { isTinyHome } from '@/lib/tinyHomes'
-import { ListingVideoPanel } from '@/components/ListingVideo'
+import dynamic from 'next/dynamic'
+import { VIDEOS_ARCHIVED } from '@/lib/archived'
+
+// Loaded only while listing videos aren't archived (lib/archived.json
+// "videos"); with the flag set the panel and its reserved space don't render.
+const ListingVideoPanel = VIDEOS_ARCHIVED
+  ? null
+  : dynamic(() => import('@/components/ListingVideo').then((m) => m.ListingVideoPanel))
 import PaymentEstimate from '@/components/PaymentEstimate'
 import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
 
@@ -385,7 +392,7 @@ export default function ListingDetail({
       </section>
 
       {/* ── VIDEO (click-to-load YouTube Short) ──────────── */}
-      {listing.youtubeId && (
+      {ListingVideoPanel && listing.youtubeId && (
         <ListingVideoPanel home={{ title: listing.title, slug: listing.slug, id: listing.id, youtubeId: listing.youtubeId }} />
       )}
 

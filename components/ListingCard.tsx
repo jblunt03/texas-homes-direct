@@ -5,7 +5,15 @@ import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
 import { listingBadge } from '@/lib/badges'
 import PaymentEstimate from '@/components/PaymentEstimate'
-import { VideoChip } from '@/components/ListingVideo'
+import dynamic from 'next/dynamic'
+import { VIDEOS_ARCHIVED } from '@/lib/archived'
+
+// Listing videos can be archived (lib/archived.json "videos"). The chip is
+// loaded through next/dynamic only while they're on, so with the flag set no
+// chip, dialog or player code is rendered or fetched.
+const VideoChip = VIDEOS_ARCHIVED
+  ? null
+  : dynamic(() => import('@/components/ListingVideo').then((m) => m.VideoChip))
 
 /**
  * Inventory card used on /browse and /tiny-homes. Moved out of BrowseClient
@@ -61,7 +69,7 @@ export default function ListingCard({
           style={{ position: 'relative' }}
         >
           {cardTags}
-          {listing.youtubeId && (
+          {VideoChip && listing.youtubeId && (
             <VideoChip home={{ title: listing.title, slug: listing.slug, id: listing.id, youtubeId: listing.youtubeId }} />
           )}
           <Image
