@@ -2093,7 +2093,7 @@ export const sampleListings: Listing[] = [
     features: ['3 Bed / 2 Bath', '1,680 Sq Ft', 'Delivery', 'Setup', 'AC', 'Trim Out', 'Wood Steps', 'Tax', 'Title'],
     description:
       'The Willis is a 1,680 square foot Fleetwood doublewide with 3 beds and 2 baths.',
-    monthlyPayment: 1235,
+    monthlyPayment: 1425,
     downPayment: 0,
     available: true,
     hudCertified: true,
