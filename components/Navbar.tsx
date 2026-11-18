@@ -8,7 +8,7 @@ import { isArchivedPath } from '@/lib/archived'
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/browse', label: 'Inventory' },
-  { href: '/cities', label: 'Cities' },
+  { href: '/cities', label: 'Cities We Serve' },
   { href: '/calculator', label: 'Free Pre-Approval' },
   { href: '/testimonials', label: 'Reviews' },
   { href: '/commercial', label: 'Commercial' },

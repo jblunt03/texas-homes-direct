@@ -130,6 +130,7 @@
 .bmh-nav-links { display: flex; gap: 28px; align-items: center; }
 .bmh-nav-links a {
   font: var(--type-nav-link);
+  white-space: nowrap; /* "Cities We Serve" must never wrap (checked from 961px up) */
   color: var(--color-body-strong);
   text-decoration: none;
   transition: color 120ms ease;
