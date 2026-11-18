@@ -17,7 +17,8 @@ const EAGER_CARDS = 4
 
 // Budget bands follow the price mode (CLAUDE.md "Cash price"). Payment bands
 // are the original ones. Cash bands were chosen from the 57 prices on
-// 2026-11-13 ($49k–$164k): 10 / 19 / 11 / 17 homes per band.
+// 2026-11-13 ($49k–$164k): 10 / 19 / 11 / 17 homes per band (11 / 18 / 11 / 17
+// since The Mineola went to $77,000 on 2026-11-18).
 const PAYMENT_BUDGET_OPTIONS = [
   { value: '', label: 'Any budget' },
   { value: '750-1000', label: '$750–$1,000/mo' },

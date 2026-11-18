@@ -982,7 +982,7 @@ estimated monthly payment.** Built 2026-11-13.
   or the payment, with "Payment on request" homes last in payment mode. The
   Seguin/Austin pin holds in Featured only. Budget bands follow the mode:
   cash bands (Under $80,000 / $80,000–$99,999 / $100,000–$129,999 /
-  $130,000+, chosen from the data: 10/19/11/17 homes) or the original payment
+  $130,000+, chosen from the data: 10/19/11/17 homes on 2026-11-13; 11/18/11/17 since The Mineola went to $77,000 on 2026-11-18) or the original payment
   bands. Switching modes clears a band from the other mode.
 - **Analytics.** Each toggle change sends GA4 `price_view_mode` with `mode`
   and `placement` (browse or listing).

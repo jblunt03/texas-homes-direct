@@ -851,7 +851,7 @@ export const sampleListings: Listing[] = [
     manufacturer: 'Texas Homes Direct',
     model: 'Terra',
     dimensions: '12x33',
-    price: 80000,
+    price: 77000,
     beds: 2,
     baths: 1,
     sqft: 396,
