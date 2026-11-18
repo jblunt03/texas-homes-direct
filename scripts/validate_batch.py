@@ -651,6 +651,58 @@ def step_cash_price_rendered(city_slugs):
     return report("11g. Cash price shown by default", ok, detail)
 
 
+# ─── What's included by price mode (CLAUDE.md) ────────────────────────────
+# Cash mode (the server-rendered default) lists everything except delivery and
+# setup; payment mode keeps the full list. Same wording rule as
+# CASH_EXCLUDED_RE in lib/includedItems.ts.
+CASH_EXCLUDED_RE_PY = re.compile(r"\bdeliver(y|ed|ies)?\b|\bset[\s-]?up\b|\bturnkey\b", re.I)
+INCLUDED_LIST_RE = re.compile(r'<ul data-included-list=""[^>]*>(.*?)</ul>', re.S)
+
+
+def listing_features():
+    src = (REPO_ROOT / "lib" / "sampleListings.ts").read_text()
+    out = {}
+    for blk in re.split(r"\n  \{\n", src)[1:]:
+        slug = re.search(r"\n    slug: '([^']+)'", "\n" + blk)
+        feats = re.search(r"\n    features: \[(.*?)\]", "\n" + blk, re.S)
+        if slug and feats:
+            out[slug.group(1)] = [a or b for a, b in re.findall(r"'((?:[^'\\]|\\.)*)'|\"((?:[^\"\\]|\\.)*)\"", feats.group(1))]
+    return out
+
+
+def step_included_by_mode():
+    problems = []
+    feats = listing_features()
+    for slug, items in feats.items():
+        status, html = fetch(f"/homes/{slug}")
+        if status != 200:
+            problems.append(f"  /homes/{slug}: HTTP {status}")
+            continue
+        m = INCLUDED_LIST_RE.search(html)
+        if not m:
+            problems.append(f"  /homes/{slug}: no included list (data-included-list) found")
+            continue
+        cash, pay = [], []
+        for open_tag, inner in re.findall(r"(<li[^>]*>)(.*?)</li>", m.group(1), re.S):
+            text = re.sub(r"<[^>]+>|<!-- -->", "", inner).strip()
+            pay.append(text)
+            if 'data-pm="pay"' not in open_tag:
+                cash.append(text)
+        bad = [t for t in cash if CASH_EXCLUDED_RE_PY.search(t)]
+        if bad:
+            problems.append(f"  /homes/{slug}: cash-mode list (server default) shows {bad}")
+        lost = [t for t in items if CASH_EXCLUDED_RE_PY.search(t) and t not in pay]
+        if lost:
+            problems.append(f"  /homes/{slug}: payment-mode list is missing {lost}")
+        if not re.search(r'class="bmh-pm-cash-inline" data-pm="cash">Included in the cash price<', html):
+            problems.append(f"  /homes/{slug}: cash heading 'Included in the cash price' missing")
+        if not re.search(r'class="bmh-pm-pay-inline" data-pm="pay">Included in the estimated monthly payment<', html):
+            problems.append(f"  /homes/{slug}: payment heading 'Included in the estimated monthly payment' missing")
+    ok = not problems and bool(feats)
+    detail = problems[:40] or [f"{len(feats)} listing pages: cash list (default) has no delivery/setup; payment list keeps every delivery/setup item; both headings present."]
+    return report("11h. What's included follows the price mode", ok, detail)
+
+
 # ─── Archived sections (lib/archived.json + lib/archived.ts) ─────────────
 # While a section's flag is true, its route must not appear in the header
 # nav, footer, sitemap or llms.txt, and must answer with a TEMPORARY (307)
@@ -1035,6 +1087,7 @@ def main():
                 ok &= step_listing_urls_rendered(city_slugs)
                 ok &= step_youtube_rendered(city_slugs)
                 ok &= step_cash_price_rendered(city_slugs)
+                ok &= step_included_by_mode()
         finally:
             stop_dev_server(proc)
             if ctx:

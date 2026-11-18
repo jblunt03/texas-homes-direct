@@ -11,6 +11,7 @@ import dynamic from 'next/dynamic'
 import { VIDEOS_ARCHIVED } from '@/lib/archived'
 import ListingPrice from '@/components/ListingPrice'
 import PriceModeToggle from '@/components/PriceModeToggle'
+import { CASH_DELIVERY_NOTE, INCLUDED_HEADING, isDeliveryOrSetup } from '@/lib/includedItems'
 import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
 
 // Loaded only while listing videos aren't archived (lib/archived.json
@@ -635,9 +636,13 @@ export default function ListingDetail({
                     margin: '0 0 20px',
                   }}
                 >
-                  What&rsquo;s included
+                  {/* What's included depends on the price mode (CLAUDE.md "What's included by
+                      price mode"): cash leaves out delivery and setup. CSS picks the heading. */}
+                  <span className="bmh-pm-cash-inline" data-pm="cash">{INCLUDED_HEADING.cash}</span>
+                  <span className="bmh-pm-pay-inline" data-pm="pay">{INCLUDED_HEADING.payment}</span>
                 </h2>
                 <ul
+                  data-included-list=""
                   style={{
                     listStyle: 'none',
                     padding: 0,
@@ -650,8 +655,10 @@ export default function ListingDetail({
                   {listing.features.map((f, i) => (
                     <li
                       key={i}
+                      data-included-item=""
+                      {...(isDeliveryOrSetup(f) ? { 'data-pm': 'pay' } : {})}
+                      className={isDeliveryOrSetup(f) ? 'bmh-included-item bmh-pm-pay-li' : 'bmh-included-item'}
                       style={{
-                        display: 'flex',
                         alignItems: 'flex-start',
                         gap: 8,
                         fontSize: 14,
@@ -680,6 +687,11 @@ export default function ListingDetail({
                     </li>
                   ))}
                 </ul>
+                {listing.features.some(isDeliveryOrSetup) && (
+                  <p className="bmh-caption bmh-muted bmh-pm-cash-block" data-pm="cash" data-included-note="" style={{ marginTop: 16 }}>
+                    {CASH_DELIVERY_NOTE}
+                  </p>
+                )}
               </div>
             </div>
 

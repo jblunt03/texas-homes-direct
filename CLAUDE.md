@@ -997,6 +997,44 @@ estimated monthly payment.** Built 2026-11-13.
   on a payment without "est." and the (i) button, or outside the payment-only
   container.
 
+## What's included by price mode (`lib/includedItems.ts`)
+
+**Rule (owner, 2026-11-18):** what a home's price includes depends on the
+price mode.
+- **Payment mode:** unchanged. Everything in the listing's `features` list,
+  including Delivery and Setup, under the heading "Included in the estimated
+  monthly payment".
+- **Cash mode (the default):** the same list minus Delivery and Setup (and any
+  item worded "delivered", "set up" or "turnkey"), under the heading "Included
+  in the cash price", with one line under it: "Delivery and setup are quoted
+  separately." That line is the owner's addition and can be struck by
+  deleting `CASH_DELIVERY_NOTE`'s render in `ListingDetail.tsx`.
+- Applies to all 57 homes, Cavco included. The stored `features` data is never
+  changed; payment mode still reads it whole.
+
+**How:** the listing page's "What's included" block
+(`app/homes/[slug]/ListingDetail.tsx`) is the only per-home included list.
+It uses the same switch as the prices: every item is in the server HTML;
+Delivery/Setup items carry `data-pm="pay"` and `.bmh-pm-pay-li`, hidden by
+CSS until `<html data-price-mode="payment">`. Cash is what the server renders
+and what crawlers see; the saved mode applies before first paint, so nothing
+shifts on load. `isDeliveryOrSetup()` / `CASH_EXCLUDED_RE` decide which items
+are payment-only.
+
+**Not covered by this rule yet (reported 2026-11-18, unchanged):** the city
+pages' "Out-The-Door Pricing" checklist (`OUT_THE_DOOR_ITEMS` in
+`lib/setupItems.ts`, which lists Setup and Delivery), stored city copy in
+`lib/cityContent.ts` (pricingExplainer and FAQ answers), `/how-pricing-works`,
+`/whats-included-in-setup`, the homepage, `llms.txt`, the listing pages' meta
+description ("Delivered and set up anywhere in Texas") and the site-wide
+footer ("delivered, set up, and ready for keys"). Change those only on the
+owner's instruction.
+
+**Validator:** step 11h fails if a listing page's included list shows any
+delivery/setup wording in cash mode (the server default), if payment mode is
+missing any Delivery/Setup item from the listing's data, or if either
+heading is missing.
+
 ## Archived sections (`lib/archived.json`)
 
 **One switch per section.** `lib/archived.json` holds a boolean for each

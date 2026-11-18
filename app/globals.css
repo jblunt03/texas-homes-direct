@@ -1120,3 +1120,14 @@ html[data-price-mode="payment"] .bmh-pm-opt[data-pm-opt="payment"] span {
 }
 .bmh-pm-opt input:focus-visible + span { outline: 2px solid var(--color-primary); outline-offset: 2px; }
 @media (max-width: 380px) { .bmh-pm-opt span { padding: 0 12px; font-size: 13.5px; } }
+
+/* ── What's included by price mode (CLAUDE.md "What's included by price mode") ──
+   Same switch as the prices: cash (default) hides the delivery/setup items and
+   shows its heading and note; payment mode shows the full list. */
+.bmh-included-item { display: flex; }
+.bmh-pm-pay-inline, .bmh-pm-pay-li { display: none; }
+.bmh-pm-cash-block { display: block; }
+html[data-price-mode="payment"] .bmh-pm-cash-inline,
+html[data-price-mode="payment"] .bmh-pm-cash-block { display: none; }
+html[data-price-mode="payment"] .bmh-pm-pay-inline { display: inline; }
+html[data-price-mode="payment"] .bmh-pm-pay-li { display: flex; }
