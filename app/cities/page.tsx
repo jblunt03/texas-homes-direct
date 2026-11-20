@@ -2,10 +2,22 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { REGION_ORDER, citiesByRegion } from '@/lib/cities'
 
+const TITLE = 'Cities We Serve | Mobile Homes for Sale in Texas'
+const DESCRIPTION =
+  'See every Texas city Texas Homes Direct serves. Find yours for new manufactured and mobile homes, with a free, no-pressure quote.'
+
 export const metadata: Metadata = {
-  title: 'Mobile Homes for Sale Across Texas | Cities We Serve',
-  description:
-    'Texas Homes Direct delivers new, HUD-certified manufactured and mobile homes to families all across Texas. Find your city and get a free, no-pressure quote.',
+  title: TITLE,
+  description: DESCRIPTION,
+  // Own openGraph (Next replaces the layout's object, so the shared fields are repeated).
+  openGraph: {
+    title: `${TITLE} | Texas Homes Direct`,
+    description: DESCRIPTION,
+    url: 'https://www.texashomesdirect.com/cities',
+    siteName: 'Texas Homes Direct',
+    locale: 'en_US',
+    type: 'website',
+  },
   alternates: {
     canonical: 'https://www.texashomesdirect.com/cities',
   },
@@ -54,9 +66,8 @@ export default function CitiesPage() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
-    name: 'Mobile Homes for Sale Across Texas | Cities We Serve',
-    description:
-      'Texas Homes Direct delivers new, HUD-certified manufactured and mobile homes to families all across Texas.',
+    name: TITLE,
+    description: DESCRIPTION,
     url: 'https://www.texashomesdirect.com/cities',
     mainEntity: {
       '@type': 'ItemList',
@@ -80,7 +91,7 @@ export default function CitiesPage() {
       <section className="bmh-page-header" style={{ background: 'var(--color-canvas)' }}>
         <div className="bmh-container">
           <span className="bmh-eyebrow">Cities we serve</span>
-          <h1>Mobile Homes for Sale Across Texas</h1>
+          <h1>Cities We Serve: Mobile Homes for Sale Across Texas</h1>
           <p className="bmh-lead">
             Texas is a big state, and we don&rsquo;t think that should stand between you and a
             home you can actually afford. Texas Homes Direct delivers new, HUD-certified
