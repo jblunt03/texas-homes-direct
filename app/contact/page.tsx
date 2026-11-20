@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 const FAQ_ITEMS = [
   {
     q: 'Do you really deliver to all of Texas?',
-    a: 'Yes — every corner of the state. Our crews coordinate transport, blocking, leveling, tie-down, and skirting. You\'ll get a single delivered-and-set price with no surprise fees.',
+    a: 'Yes — every corner of the state. Our crews coordinate transport, blocking, leveling, tie-down, and skirting. The cash price covers the home and delivery and setup are quoted separately — or included in your estimated monthly payment if you finance.',
   },
   {
     q: 'How long does it take from signing to move-in?',

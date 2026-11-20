@@ -35,7 +35,7 @@ const FAQ = [
   },
   {
     q: 'Where can I see exactly what’s included in the price of a manufactured home?',
-    a: 'See our full breakdown of out-the-door pricing and how utility costs are estimated, and a separate page covering everything included in on-site setup.',
+    a: 'See how the cash price and monthly payment work and how utility costs are estimated, and a separate page covering everything included in on-site setup.',
   },
 ]
 

@@ -19,14 +19,26 @@ export const TURNKEY_ITEMS = [
   { title: 'AC', desc: 'Central air conditioning installed on-site' },
 ]
 
-// Fixed list — same 9 items in every home's out-the-door price, regardless
-// of city. Do not add "utility costs" here: those are estimated by phone
-// and then bid exactly by a contractor on the actual property, since land
-// conditions vary too much to quote sight unseen. See CLAUDE.md.
-export const OUT_THE_DOOR_ITEMS = [
+// The pricing rule (CLAUDE.md "Cash price covers the home"): the cash price
+// covers the home; delivery and setup are quoted separately; if you finance,
+// delivery and setup are included in the estimated monthly payment. Render
+// this statement from here — never copy it into stored city copy.
+export const PRICE_RULE_STATEMENT =
+  'The cash price covers the home. Delivery and setup are quoted separately. If you finance, delivery and setup are included in your estimated monthly payment.'
+
+export const CASH_PRICE_HEADING = 'Included in the Cash Price'
+
+// Caption under the "We Handle It All" setup checklist.
+export const SETUP_FINANCE_CAPTION =
+  'If you finance, full setup is rolled into your loan instead of paid out of pocket.'
+
+// Fixed list — the same 7 items in every home's cash price, regardless of
+// city. Delivery and Setup are NOT on it (quoted separately for cash buyers,
+// included in the estimated monthly payment when financing). Do not add
+// "utility costs" here either: those are estimated by phone and then bid
+// exactly by a contractor on the actual property. See CLAUDE.md.
+export const CASH_PRICE_ITEMS = [
   { title: 'AC', desc: 'Central air conditioning included' },
-  { title: 'Setup', desc: 'Full site setup, detailed above' },
-  { title: 'Delivery', desc: 'Transport from the factory to your site' },
   { title: 'Appliances', desc: 'Standard appliance package' },
   { title: 'Trim Out', desc: 'Interior and exterior finish work' },
   { title: 'Wood Steps', desc: 'Entry steps built and installed' },

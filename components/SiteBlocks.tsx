@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { TURNKEY_ITEMS } from '@/lib/setupItems'
+import { TURNKEY_ITEMS, SETUP_FINANCE_CAPTION } from '@/lib/setupItems'
 
 /**
  * Shared page blocks for non-city pages (reviews, tiny homes, ...). The markup
@@ -51,7 +51,7 @@ export function TurnkeyChecklist() {
     <div className="bmh-city-checklist">
       <h3 className="bmh-city-h3">We Handle It All</h3>
       <p className="bmh-caption" style={{ marginBottom: 16 }}>
-        Full turnkey setup, rolled into your loan instead of paid out of pocket.
+        {SETUP_FINANCE_CAPTION}
       </p>
       <div className="bmh-city-checklist-grid">
         {TURNKEY_ITEMS.map((item) => (

@@ -31,8 +31,7 @@ export default function Footer() {
             </Link>
             <p>
               A small, family-owned, faith-based business. Quality manufactured
-              homes at the best prices in Texas —
-              delivered, set up, and ready for keys.
+              homes across Texas.
             </p>
             <div className="bmh-spacer-md" />
             <a

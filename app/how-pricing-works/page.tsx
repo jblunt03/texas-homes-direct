@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import FaqAccordion from '@/components/FaqAccordion'
-import { OUT_THE_DOOR_ITEMS } from '@/lib/setupItems'
+import { CASH_PRICE_ITEMS, CASH_PRICE_HEADING, PRICE_RULE_STATEMENT } from '@/lib/setupItems'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
 const PAGE_URL = `${SITE_URL}/how-pricing-works`
@@ -9,9 +9,9 @@ const CIRRUS_URL =
   'https://creditapp.cirrussolutions.com/GeneratedLink/Index/ae6a6bcb-8358-f111-a334-005056b4717b'
 
 export const metadata: Metadata = {
-  title: 'How Pricing Works: Out-The-Door Home Pricing & Utility Costs',
+  title: 'How Pricing Works: Cash Price, Monthly Payment & Utility Costs',
   description:
-    'Two numbers make up what you pay for a manufactured home: a firm, all-in home price, and a utility hookup cost that depends on your land. Here’s exactly how each one works.',
+    'How the cash price and the estimated monthly payment work, what each covers, and how utility hookup costs are bid after a site visit.',
   alternates: {
     canonical: PAGE_URL,
   },
@@ -25,8 +25,8 @@ const CheckIcon = () => (
 
 const FAQ = [
   {
-    q: 'Does the out-the-door home price ever change after I’ve committed to a home?',
-    a: 'No. Once you have a quote on a specific home, that price is locked — AC, setup, delivery, appliances, trim out, wood steps, tax, title, and license are all already included. Nothing gets added between quote and closing.',
+    q: 'Does the cash price ever change after I’ve committed to a home?',
+    a: 'No. The cash price is locked — AC, appliances, trim out, wood steps, tax, title, and license are included. Delivery and setup are quoted separately, or included in your estimated monthly payment if you finance.',
   },
   {
     q: 'Why can’t you just give me one number that includes utilities?',
@@ -46,7 +46,7 @@ const FAQ = [
   },
   {
     q: 'Is setup part of the home price, or a separate cost?',
-    a: 'Setup is already included in your out-the-door home price. See our full breakdown of everything setup covers.',
+    a: 'It depends on how you buy: with the cash price it’s quoted separately; if you finance, it’s included in your estimated monthly payment. See our full breakdown of everything setup covers.',
   },
 ]
 
@@ -75,8 +75,8 @@ export default function HowPricingWorksPage() {
     '@type': 'WebPage',
     '@id': PAGE_URL,
     url: PAGE_URL,
-    name: 'How Pricing Works: Out-The-Door Home Pricing & Utility Costs',
-    dateModified: '2026-09-18',
+    name: 'How Pricing Works: Cash Price, Monthly Payment & Utility Costs',
+    dateModified: '2026-11-20',
     speakable: {
       '@type': 'SpeakableSpecification',
       cssSelector: ['.bmh-faq-speakable', '.bmh-explainer-lead'],
@@ -106,36 +106,35 @@ export default function HowPricingWorksPage() {
             How Pricing <em>Works</em>
           </h1>
           <p className="bmh-lead bmh-explainer-lead">
-            Two different numbers make up what you&rsquo;ll actually pay for a manufactured home: the price of
-            the home itself, which we quote firm and complete, and utility hookup costs, which depend on your
-            specific property and can&rsquo;t be known until someone&rsquo;s actually seen it. Here&rsquo;s
-            exactly how each one works, and why we won&rsquo;t pretend to know your utility number over the
-            phone.
+            The cash price covers the home. Delivery and setup are quoted separately. If you finance,
+            they&rsquo;re included in your estimated monthly payment. Utility hookup costs depend on your
+            property and can&rsquo;t be known until someone&rsquo;s seen it. Here&rsquo;s exactly how each
+            one works, and why we won&rsquo;t pretend to know your utility number over the phone.
           </p>
         </div>
       </section>
 
-      {/* ── OUT-THE-DOOR PRICING ─────────────────────────────────── */}
+      {/* ── CASH PRICE ───────────────────────────────────────────── */}
       <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
         <div className="bmh-container">
           <div className="bmh-city-prose">
-            <h2 className="bmh-city-h2">Out-The-Door Home Pricing</h2>
+            <h2 className="bmh-city-h2">What the Cash Price Covers</h2>
             <p className="bmh-lead" style={{ marginTop: 12 }}>
-              When we quote a home, that number is firm and complete — not a starting point that grows once
-              you&rsquo;re a few steps into the process. Every quote already includes the items below, so the
-              number you budget around is the number you actually pay.
+              The cash price is firm and includes every item below — not a starting point that grows once
+              you&rsquo;re a few steps into the process. Delivery and setup are quoted separately, or included
+              in your estimated monthly payment if you finance.
             </p>
           </div>
 
           <div className="bmh-spacer-md" />
 
           <div className="bmh-city-checklist">
-            <h3 className="bmh-city-h3">What&rsquo;s Included</h3>
+            <h3 className="bmh-city-h3">{CASH_PRICE_HEADING}</h3>
             <p className="bmh-caption" style={{ marginBottom: 16 }}>
-              Firm and complete — nothing gets added later.
+              {PRICE_RULE_STATEMENT}
             </p>
             <div className="bmh-city-checklist-grid">
-              {OUT_THE_DOOR_ITEMS.map((item) => (
+              {CASH_PRICE_ITEMS.map((item) => (
                 <div key={item.title} className="bmh-city-checklist-item">
                   <span className="bmh-city-check">
                     <CheckIcon />
@@ -153,7 +152,7 @@ export default function HowPricingWorksPage() {
 
           <div className="bmh-city-prose">
             <p className="bmh-lead">
-              &ldquo;Setup&rdquo; above covers the physical site work — base pad, blocking, tie-down,
+              Setup covers the physical site work — base pad, blocking, tie-down,
               underpinning, skirting, and more. See the full setup checklist for what each part actually
               involves.
             </p>
@@ -196,9 +195,10 @@ export default function HowPricingWorksPage() {
           <div className="bmh-city-prose">
             <h3 className="bmh-city-h3">Putting It Together</h3>
             <p className="bmh-lead" style={{ marginTop: 12 }}>
-              Your full total is the fixed, out-the-door home price plus the exact utility bid once it&rsquo;s
-              been approved — both numbers you&rsquo;ve seen before you sign anything. Nothing shows up
-              afterward that isn&rsquo;t already accounted for in one of those two figures.
+              Your full total is the cash price, plus delivery and setup (quoted separately, or in your
+              estimated monthly payment if you finance), plus the exact utility bid once it&rsquo;s been
+              approved — numbers you&rsquo;ve seen before you sign anything. Nothing shows up afterward that
+              isn&rsquo;t already accounted for in one of them.
             </p>
           </div>
         </div>

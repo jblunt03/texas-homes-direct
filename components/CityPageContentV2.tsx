@@ -4,7 +4,13 @@ import type { CityEntry } from '@/lib/cities'
 import { TEXAS_CITIES } from '@/lib/cities'
 import type { CityContent } from '@/lib/cityContent'
 import { findListingByAnySlug } from '@/lib/listingLookup'
-import { TURNKEY_ITEMS, OUT_THE_DOOR_ITEMS } from '@/lib/setupItems'
+import {
+  TURNKEY_ITEMS,
+  CASH_PRICE_ITEMS,
+  CASH_PRICE_HEADING,
+  PRICE_RULE_STATEMENT,
+  SETUP_FINANCE_CAPTION,
+} from '@/lib/setupItems'
 import FaqAccordion from '@/components/FaqAccordion'
 import ListingPrice from '@/components/ListingPrice'
 import PaymentFootnote from '@/components/PaymentFootnote'
@@ -199,7 +205,7 @@ export default function CityPageContentV2({
           <div className="bmh-city-checklist">
             <h3 className="bmh-city-h3">We Handle It All</h3>
             <p className="bmh-caption" style={{ marginBottom: 16 }}>
-              Full turnkey setup, rolled into your loan instead of paid out of pocket.
+              {SETUP_FINANCE_CAPTION}
             </p>
             <div className="bmh-city-checklist-grid">
               {TURNKEY_ITEMS.map((item) => (
@@ -218,7 +224,7 @@ export default function CityPageContentV2({
         </div>
       </section>
 
-      {/* ── OUT-THE-DOOR PRICING + UTILITIES ─────────────────────── */}
+      {/* ── CASH PRICE + UTILITIES ───────────────────────────────── */}
       {content.pricingExplainer && (
         <section className="bmh-surface-card" style={{ padding: '40px 0' }}>
           <div className="bmh-container">
@@ -230,12 +236,12 @@ export default function CityPageContentV2({
             <div className="bmh-spacer-md" />
 
             <div className="bmh-city-checklist">
-              <h3 className="bmh-city-h3">Out-The-Door Pricing</h3>
+              <h3 className="bmh-city-h3">{CASH_PRICE_HEADING}</h3>
               <p className="bmh-caption" style={{ marginBottom: 16 }}>
-                Firm and complete — nothing gets added later.
+                {PRICE_RULE_STATEMENT}
               </p>
               <div className="bmh-city-checklist-grid">
-                {OUT_THE_DOOR_ITEMS.map((item) => (
+                {CASH_PRICE_ITEMS.map((item) => (
                   <div key={item.title} className="bmh-city-checklist-item">
                     <span className="bmh-city-check">
                       <CheckIcon />

@@ -39,7 +39,7 @@ export async function generateMetadata({
   const title = isTinyHome(listing)
     ? `${listing.title} — ${listing.beds} Bed ${listing.baths} Bath Tiny Home`
     : `${listing.title} — ${listing.beds} Bed ${wideType} Manufactured Home`
-  const description = `${listing.beds} bed / ${listing.baths} bath ${wideType.toLowerCase()} manufactured home, ${listing.sqft.toLocaleString()} sqft. Delivered and set up anywhere in Texas. ${listing.description.slice(0, 100)}`
+  const description = `${listing.beds} bed / ${listing.baths} bath ${wideType.toLowerCase()} manufactured home, ${listing.sqft.toLocaleString()} sqft. We deliver anywhere in Texas. ${listing.description.slice(0, 100)}`
   const url = `${SITE_URL}/homes/${listing.slug}`
   return {
     title,

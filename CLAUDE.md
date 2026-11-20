@@ -55,11 +55,21 @@ these is a launch blocker, not a style note.
   (well, septic, electric) can't be priced sight-unseen — land conditions
   (soil, depth to water, distance to power) vary too much. The accurate,
   required framing, used everywhere pricing comes up:
-  - **Out-the-door home pricing is firm and complete.** AC, setup, delivery,
-    appliances, trim out, wood steps, tax, title, and license are all
-    included in the quoted price. Nothing gets added later. This list is
-    rendered by the shared `OUT_THE_DOOR_ITEMS` checklist in
-    `CityPageContentV2.tsx` — don't re-list it verbatim in prose per city
+  - **The cash price covers the home; delivery and setup are not in it.**
+    (Owner rule, 2026-11-20.) The only approved statement of the two cases,
+    rendered from `PRICE_RULE_STATEMENT` in `lib/setupItems.ts`: "The cash
+    price covers the home. Delivery and setup are quoted separately. If you
+    finance, delivery and setup are included in your estimated monthly
+    payment." Never say or imply a price is "out-the-door", "all-in",
+    "delivered-and-set" or "delivery included" without saying which case,
+    and never write that delivery or setup is part of the home price. Never
+    copy the statement into stored city copy — the shared checklist renders
+    it once per page. What *is* in the cash price — AC, appliances, trim out,
+    wood steps, tax, title, and license — is the shared `CASH_PRICE_ITEMS`
+    checklist ("Included in the Cash Price") in `CityPageContentV2.tsx` and
+    `/how-pricing-works`. It's still true and fine to say we deliver and set
+    up anywhere in Texas (a service claim, not a price claim). Don't
+    re-list the checklist verbatim in prose per city
     (doing that once caused 27 duplicate-checker failures across the batch,
     since the 13-word item list alone exceeds the shingle threshold every
     time it repeats). In prose, refer to it generally ("everything listed
@@ -81,9 +91,9 @@ these is a launch blocker, not a style note.
   septic, electric, base pad, block, tie down, underpinning, skirting,
   trim out, and AC. As of 2026-09-18 this is the full, correct list — block
   and tie down were missing entirely until then, and trim out/AC were only
-  listed in `OUT_THE_DOOR_ITEMS` (the price checklist), not here. AC and
+  listed in the price checklist (now `CASH_PRICE_ITEMS`), not here. AC and
   trim out intentionally appear in *both* checklists — `TURNKEY_ITEMS`
-  describes the physical on-site work, `OUT_THE_DOOR_ITEMS` describes price
+  describes the physical on-site work, `CASH_PRICE_ITEMS` describes price
   inclusions — and that's fine, they read as two different sections on the
   page, not a duplicate. When writing per-city prose that references "what's
   included in setup" (e.g. FAQ answers), draw from this full 10-item list
@@ -132,8 +142,8 @@ Follow this every time you add or edit a batch of city pages:
    `scripts/write_city_content.py`.
 3. **Write fresh copy** for each new city in `CITY_COPY` in
    `scripts/write_city_content.py`: 1 intro paragraph, exactly 2 buying
-   paragraphs, exactly 2 `pricingExplainer` paragraphs (firm out-the-door
-   price, then how utility costs are actually estimated — see the hard rule
+   paragraphs, exactly 2 `pricingExplainer` paragraphs (what the firm cash
+   price covers — never that it includes delivery or setup — then how utility costs are actually estimated — see the hard rule
    above), exactly 2 `gettingStarted` paragraphs (see below), 1 local-proof
    line, and 3–5 FAQ items covering only genuinely city-specific topics
    (permitting-varies, delivery coverage, land ownership, sizing, financing
@@ -419,8 +429,8 @@ picture?" link row, not a Q&A item):
 - **`/manufactured-vs-mobile-home`** — the mobile-home-vs-manufactured-home
   legal definition (the June 1976 HUD Code cutoff). Never write this as a
   per-city FAQ again.
-- **`/how-pricing-works`** — out-the-door home pricing (what's included,
-  why the quoted price doesn't change) *and* the utility
+- **`/how-pricing-works`** — the cash price and the estimated monthly payment
+  (what each covers, why the cash price doesn't change) *and* the utility
   estimate-then-contractor-bid process. Never write a per-city FAQ asking
   whether the quoted price is final, what's included in the price, or how
   utility costs are determined — link here instead.
@@ -1050,14 +1060,14 @@ and what crawlers see; the saved mode applies before first paint, so nothing
 shifts on load. `isDeliveryOrSetup()` / `CASH_EXCLUDED_RE` decide which items
 are payment-only.
 
-**Not covered by this rule yet (reported 2026-11-18, unchanged):** the city
-pages' "Out-The-Door Pricing" checklist (`OUT_THE_DOOR_ITEMS` in
-`lib/setupItems.ts`, which lists Setup and Delivery), stored city copy in
-`lib/cityContent.ts` (pricingExplainer and FAQ answers), `/how-pricing-works`,
-`/whats-included-in-setup`, the homepage, `llms.txt`, the listing pages' meta
-description ("Delivered and set up anywhere in Texas") and the site-wide
-footer ("delivered, set up, and ready for keys"). Change those only on the
-owner's instruction.
+**Site-wide (2026-11-20):** the rest of the site now follows the same rule —
+see the hard rule "The cash price covers the home" above. The city pages'
+checklist is "Included in the Cash Price" (`CASH_PRICE_ITEMS`, no Delivery or
+Setup) with `PRICE_RULE_STATEMENT` under it; the explainers, `/contact`,
+footer ("Quality manufactured homes across Texas."), listing meta and
+subtitle ("We Deliver Anywhere in Texas") and `llms.txt` were rewritten to
+match. The homepage's service lines ("delivered and set up anywhere we
+serve", "truly turnkey") were kept on purpose.
 
 **Validator:** step 11h fails if a listing page's included list shows any
 delivery/setup wording in cash mode (the server default), if payment mode is

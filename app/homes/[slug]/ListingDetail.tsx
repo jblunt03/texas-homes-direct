@@ -298,7 +298,7 @@ export default function ListingDetail({
             {listing.title}
           </h1>
           <p style={{ color: 'var(--color-muted)', fontFamily: 'var(--font-sans)', fontSize: 15, margin: 0 }}>
-            {listing.beds} Bed &middot; {listing.baths} Bath &middot; {listing.wideType} &middot; Delivered Anywhere in Texas
+            {listing.beds} Bed &middot; {listing.baths} Bath &middot; {listing.wideType} &middot; We Deliver Anywhere in Texas
           </p>
           {isTinyHome(listing) && (
             <p style={{ margin: '10px 0 0', fontSize: 15 }}>

@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import FaqAccordion from '@/components/FaqAccordion'
-import { TURNKEY_ITEMS } from '@/lib/setupItems'
+import { TURNKEY_ITEMS, SETUP_FINANCE_CAPTION } from '@/lib/setupItems'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
 const PAGE_URL = `${SITE_URL}/whats-included-in-setup`
@@ -47,7 +47,7 @@ const FAQ = [
   },
   {
     q: 'Is setup included in the home price, or is it extra?',
-    a: 'The setup work itself — base pad, block, tie-down, underpinning, skirting, trim out, and AC — is already included in your out-the-door home price. The one variable piece is the utility hookup cost, which depends on your property and is estimated by phone, then bid exactly once a contractor has seen the site. See our full pricing breakdown for how that works.',
+    a: 'Not in the cash price — setup is quoted separately. If you finance, it’s included in your estimated monthly payment. The one variable piece is the utility hookup cost, which depends on your property and is estimated by phone, then bid exactly once a contractor has seen the site. See our full pricing breakdown for how that works.',
   },
   {
     q: 'What’s the difference between underpinning and skirting?',
@@ -116,8 +116,8 @@ export default function WhatsIncludedInSetupPage() {
           </h1>
           <p className="bmh-lead bmh-explainer-lead">
             &ldquo;Setup&rdquo; covers everything that happens on your property between delivery and move-in
-            day. It&rsquo;s rolled into your out-the-door home price, not billed separately, and it&rsquo;s more
-            involved than just placing the home on the lot. Here&rsquo;s exactly what it includes.
+            day. It&rsquo;s quoted separately from the cash price, or included in your estimated monthly
+            payment if you finance, and it&rsquo;s more involved than just placing the home on the lot. Here&rsquo;s exactly what it includes.
           </p>
         </div>
       </section>
@@ -128,7 +128,7 @@ export default function WhatsIncludedInSetupPage() {
           <div className="bmh-city-checklist">
             <h2 className="bmh-city-h2">The Full Setup Checklist</h2>
             <p className="bmh-caption" style={{ margin: '8px 0 16px' }}>
-              Full turnkey setup, rolled into your loan instead of paid out of pocket.
+              {SETUP_FINANCE_CAPTION}
             </p>
             <div className="bmh-city-checklist-grid">
               {TURNKEY_ITEMS.map((item) => (
@@ -169,8 +169,8 @@ export default function WhatsIncludedInSetupPage() {
           <div className="bmh-city-prose">
             <h2 className="bmh-city-h2">Is Setup Included in the Price?</h2>
             <p className="bmh-lead" style={{ marginTop: 12 }}>
-              Yes — the setup work itself is already rolled into your fixed, out-the-door home price. The
-              one piece that isn&rsquo;t fixed upfront is the utility hookup cost, because that depends on your
+              Not in the cash price — setup is quoted separately. If you finance, it&rsquo;s included in
+              your estimated monthly payment. The one piece that isn&rsquo;t fixed upfront is the utility hookup cost, because that depends on your
               specific property (soil, distance to power, depth to water) in a way the rest of setup
               doesn&rsquo;t. We give a phone estimate first, then send a contractor to your property for an
               exact bid you approve before it&rsquo;s final. See the full breakdown of how pricing works for
