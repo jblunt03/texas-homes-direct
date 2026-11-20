@@ -1131,3 +1131,15 @@ html[data-price-mode="payment"] .bmh-pm-cash-inline,
 html[data-price-mode="payment"] .bmh-pm-cash-block { display: none; }
 html[data-price-mode="payment"] .bmh-pm-pay-inline { display: inline; }
 html[data-price-mode="payment"] .bmh-pm-pay-li { display: flex; }
+
+/* Clearance label (lib/badges.ts CLEARANCE): black on yellow, ~14:1 contrast,
+   distinct from the maroon permanent badge, the navy promo tag and the red
+   Featured/New tags. Same size and slot as the other card tags. */
+.bmh-clearance-badge {
+  display: inline-flex; align-items: center;
+  padding: 5px 10px; border-radius: var(--radius-xs);
+  background: #fde047; color: #1c1917;
+  font-family: var(--font-sans); font-size: 13px; font-weight: 700; line-height: 1.2;
+  letter-spacing: 0.4px; text-transform: uppercase; white-space: nowrap;
+  box-shadow: 0 0 0 1px rgba(28, 25, 23, 0.55), 0 1px 2px rgba(15, 23, 42, 0.25);
+}

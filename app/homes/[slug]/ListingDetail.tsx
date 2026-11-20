@@ -5,7 +5,8 @@ import { useState } from 'react'
 import type { Listing } from '@/lib/sampleListings'
 import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
-import { listingBadge } from '@/lib/badges'
+import { CLEARANCE_LABEL, isClearance, listingBadge } from '@/lib/badges'
+import CardTag from '@/components/CardTag'
 import { isTinyHome } from '@/lib/tinyHomes'
 import dynamic from 'next/dynamic'
 import { VIDEOS_ARCHIVED } from '@/lib/archived'
@@ -168,8 +169,6 @@ function SidebarForm({ slug }: { slug: string }) {
 /* ── Related listing card (matches browse page) ──────────── */
 function RelatedCard({ listing }: { listing: Listing }) {
   const isDouble = listing.wideType === 'Double Wide'
-  const badgeCls = listing.featured ? 'bmh-badge-coral' : 'bmh-badge-caps'
-  const badgeLabel = listing.featured ? 'Featured' : 'In stock'
   const subText = [
     listing.wideType ?? 'Singlewide',
     listing.year.toString(),
@@ -182,7 +181,7 @@ function RelatedCard({ listing }: { listing: Listing }) {
     <div className="bmh-inv-card bmh-inv-card-stretch">
       {listing.images[0] ? (
         <div className="bmh-ratio-3x2 bmh-inv-card-media" style={{ position: 'relative' }}>
-          <span className={`bmh-badge-caps ${badgeCls} bmh-inv-card-tag`}>{badgeLabel}</span>
+          <CardTag slug={listing.slug} featured={listing.featured} />
           <Image
             src={listing.images[0]}
             alt={`${listing.title} exterior`}
@@ -197,7 +196,7 @@ function RelatedCard({ listing }: { listing: Listing }) {
         </div>
       ) : (
         <div className="bmh-ph bmh-ratio-3x2 bmh-inv-card-media">
-          <span className={`bmh-badge-caps ${badgeCls} bmh-inv-card-tag`}>{badgeLabel}</span>
+          <CardTag slug={listing.slug} featured={listing.featured} />
           <span className="bmh-ph-label">{listing.title} · exterior</span>
         </div>
       )}
@@ -271,6 +270,9 @@ export default function ListingDetail({
           {/* badge row */}
           <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 16 }}>
             {isPromoListing(listing.slug) && <PromoBadge activeAtRender={promoActiveAtRender} />}
+            {isClearance(listing.slug) && (
+              <span className="bmh-clearance-badge" data-clearance="">{CLEARANCE_LABEL}</span>
+            )}
             {listingBadge(listing.slug) && (
               <span className="bmh-listing-badge">{listingBadge(listing.slug)}</span>
             )}

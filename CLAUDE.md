@@ -787,6 +787,35 @@ other code changes.
   time-limited belongs in `lib/promo.ts`, which handles expiry. Never put a
   price or dollar amount in a badge label.
 
+## Clearance label (`CLEARANCE` in `lib/badges.ts`)
+
+**Since 2026-11-20, "In stock" is gone and nine homes carry "Clearance":** The
+Seguin (BMH-92), The Austin (BMH-93), The Lampasas (BMH-94), The Porter
+(BMH-77), The Willis (BMH-80), The Sealy (BMH-19), The Lockhart (BMH-1), The
+Woodville (BMH-42) and The New Caney (BMH-76). Homes are chosen by display
+name and Notion Listing ID (The Willis is not The Wills Point); the config is
+keyed by slug with the name and ID beside each line.
+
+- **One line per home.** Add or delete a line in `CLEARANCE` to change the
+  list; no component names a home.
+- **Where it shows:** the card tag slot that said "In stock" (top-left on the
+  photo) on `/browse`, `/tiny-homes` and related-home cards, rendered by
+  `components/CardTag.tsx`, stacked under the promo/permanent badge when a
+  home has one (The Willis: Porch Model, then Clearance); and in the badge
+  row above the listing page's title.
+- **Everyone else gets no label in that slot.** The three featured homes (The
+  Smithville, The Giddings, The San Saba) still show "Featured" there; the
+  homepage's featured cards show "New" as before. City pages' Popular Homes
+  cards are separate markup with no tag, so no Clearance there.
+- **Style:** `.bmh-clearance-badge`, black on yellow (about 14:1), distinct
+  from the maroon permanent badge, the navy promo tag and the red
+  Featured/New tags. Server-rendered, so nothing shifts.
+- **Never:** "Clearance" in titles, meta descriptions, schema, `llms.txt` or
+  copy; offers, price, discount, a sale price or a "was" price anywhere.
+- **Validator:** step 11i fails if a home outside `CLEARANCE` renders the
+  label, if a listed home is missing it on a card or its listing page, or if
+  "In stock" appears on `/browse`, `/tiny-homes` or any listing page.
+
 ## Reviews page (`/testimonials`) and rating markup
 
 **The Google reviews widget is the only source of reviews on the site's

@@ -4,6 +4,7 @@ import type { Listing } from '@/lib/sampleListings'
 import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
 import { listingBadge } from '@/lib/badges'
+import CardTag from '@/components/CardTag'
 import ListingPrice from '@/components/ListingPrice'
 import dynamic from 'next/dynamic'
 import { VIDEOS_ARCHIVED } from '@/lib/archived'
@@ -35,8 +36,6 @@ export default function ListingCard({
   /** Load this card's photo eagerly (first row of a grid); the rest stay lazy. */
   priority?: boolean
 }) {
-  const badgeCls = listing.featured ? 'bmh-badge-coral' : 'bmh-badge-caps'
-  const badgeLabel = listing.featured ? 'Featured' : 'In stock'
   const subText = [
     listing.wideType ?? 'Singlewide',
     listing.year.toString(),
@@ -44,11 +43,8 @@ export default function ListingCard({
   ]
     .filter(Boolean)
     .join(' · ')
-  const tag = (
-    <span className={`bmh-badge-caps ${badgeCls} bmh-inv-card-tag`}>
-      {badgeLabel}
-    </span>
-  )
+  // Clearance / Featured / nothing (lib/badges.ts) — "In stock" was retired 2026-11-20.
+  const tag = <CardTag slug={listing.slug} featured={listing.featured} />
   const isPromo = isPromoListing(listing.slug)
   const badge = listingBadge(listing.slug)
   const cardTags =

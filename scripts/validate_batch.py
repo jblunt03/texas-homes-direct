@@ -703,6 +703,58 @@ def step_included_by_mode():
     return report("11h. What's included follows the price mode", ok, detail)
 
 
+# ─── Clearance label (lib/badges.ts CLEARANCE) ────────────────────────────
+# Exactly the configured homes carry "Clearance" on their cards and listing
+# pages; "In stock" is retired everywhere.
+CARD_SPLIT = '<div class="bmh-inv-card bmh-inv-card-stretch">'
+
+
+def clearance_slugs():
+    src = (REPO_ROOT / "lib" / "badges.ts").read_text()
+    block = re.search(r"export const CLEARANCE: Record<string, string> = \{(.*?)\n\}", src, re.S)
+    return set(re.findall(r"'([a-z0-9-]+)':", block.group(1))) if block else set()
+
+
+def step_clearance_labels():
+    problems = []
+    expected = clearance_slugs()
+    if not expected:
+        problems.append("  Couldn't read CLEARANCE from lib/badges.ts")
+    seen_cards = 0
+    for path in ["/browse", "/tiny-homes"] + [f"/homes/{s}" for s in listing_slugs()]:
+        status, html = fetch(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        body = re.sub(r"<script.*?</script>", "", html, flags=re.S)
+        if re.search(r"in stock", body, re.I):
+            problems.append(f"  {path}: shows 'In stock'")
+        for card in body.split(CARD_SPLIT)[1:]:
+            m = re.search(r'href="/homes/([a-z0-9-]+)"', card)
+            if not m:
+                continue
+            seen_cards += 1
+            # The tag sits at the very start of a card (in its photo); look only
+            # there, so the last card's segment can't run into later markup.
+            slug, has = m.group(1), "data-clearance" in card[:1500]
+            if has and slug not in expected:
+                problems.append(f"  {path}: card for {slug} shows Clearance but isn't in CLEARANCE")
+            if slug in expected and not has:
+                problems.append(f"  {path}: card for {slug} is missing its Clearance label")
+        if path.startswith("/homes/"):
+            slug = path.split("/")[-1]
+            h1 = body.find("<h1")
+            row = body[max(0, h1 - 2500):h1]
+            has = "data-clearance" in row
+            if has and slug not in expected:
+                problems.append(f"  {path}: title badge row shows Clearance but the home isn't in CLEARANCE")
+            if slug in expected and not has:
+                problems.append(f"  {path}: title badge row is missing Clearance")
+    ok = not problems and seen_cards > 0
+    detail = problems[:40] or [f"Clearance on exactly the {len(expected)} configured homes across {seen_cards} cards and every listing page; no 'In stock' anywhere."]
+    return report("11i. Clearance labels match lib/badges.ts", ok, detail)
+
+
 # ─── Archived sections (lib/archived.json + lib/archived.ts) ─────────────
 # While a section's flag is true, its route must not appear in the header
 # nav, footer, sitemap or llms.txt, and must answer with a TEMPORARY (307)
@@ -1088,6 +1140,7 @@ def main():
                 ok &= step_youtube_rendered(city_slugs)
                 ok &= step_cash_price_rendered(city_slugs)
                 ok &= step_included_by_mode()
+                ok &= step_clearance_labels()
         finally:
             stop_dev_server(proc)
             if ctx:
