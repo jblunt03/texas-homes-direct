@@ -1096,6 +1096,140 @@ def step_youtube_archived(city_slugs):
     return report("11f. Listing videos archived (lib/archived.json)", ok, detail)
 
 
+
+# ─── Cash-price claims (CLAUDE.md "The cash price covers the home") ───────
+# The cash price covers the home; delivery and setup are quoted separately;
+# if you finance, they're in the estimated monthly payment. Fail on any
+# "out-the-door" / "all-in" / "delivered-and-set" wording, or any sentence
+# saying delivery or setup is included in the (home/cash) price — except in
+# payment-mode text: elements marked data-pm="pay", and sentences about the
+# monthly payment / financing / loan. A sentence that says it's quoted
+# separately or not included is fine, and so is a question asking whether
+# it's included (the banned terms still fail in a question).
+BANNED_PRICE_TERMS_RE = re.compile(
+    r"\bout[- ]the[- ]door\b|\ball-in\b|\bdelivered[- ]and[- ]set\b(?![- ]up anywhere)|\bdelivery included\b", re.I
+)
+DS = r"(?:delivery|setup|set-up|set up)"
+INCLUDED_IN_PRICE_RE = re.compile(
+    rf"\b{DS}\b[^.;:]{{0,60}}\b(?:included|includes?|part of|rolled into|built into|built in|covered)\b[^.;:]{{0,40}}\bprice\b"
+    rf"|\bprice\b[^.;:]{{0,60}}\b(?:includes?|including|covers?|built in|rolled into)\b[^.;:]{{0,60}}\b{DS}\b",
+    re.I,
+)
+PAYMENT_CONTEXT_RE = re.compile(r"monthly payment|\bif you finance|\bfinanc|\bloan\b", re.I)
+NEGATED_RE = re.compile(r"quoted separately|\bnot\b|n't\b|\bnever\b|\bseparate\b", re.I)
+
+
+def price_claim_problems(text):
+    """Sentences in `text` that break the cash-price rule (see above)."""
+    found = []
+    for sentence in re.split(r"(?<=[.!?])\s+", re.sub(r"\s+", " ", text)):
+        if PAYMENT_CONTEXT_RE.search(sentence):
+            continue
+        m = BANNED_PRICE_TERMS_RE.search(sentence)
+        if not m:
+            m = INCLUDED_IN_PRICE_RE.search(sentence)
+            # A question ("Is setup included in the price?") asks, it doesn't
+            # claim; the answer sentence is checked on its own.
+            if m and (NEGATED_RE.search(sentence) or sentence.rstrip().endswith("?")):
+                m = None
+        if m:
+            found.append((m.group(0), sentence.strip()[:200]))
+    return found
+
+
+def _city_copy_strings(value, path):
+    if isinstance(value, str):
+        yield path, value
+    elif isinstance(value, dict):
+        for k, v in value.items():
+            yield from _city_copy_strings(v, f"{path}.{k}")
+    elif isinstance(value, (list, tuple)):
+        for i, v in enumerate(value):
+            yield from _city_copy_strings(v, f"{path}[{i}]")
+
+
+def step_price_claims_static():
+    sys.path.insert(0, str(REPO_ROOT / "scripts"))
+    import write_city_content  # noqa: E402
+
+    problems = []
+    count = 0
+    sources = list(write_city_content.CITY_COPY.items())
+    sources += [(f"CITIES[{entry[0]}]", entry) for entry in write_city_content.CITIES]
+    for slug, copy in sources:
+        for path, text in _city_copy_strings(copy, slug):
+            count += 1
+            for term, sentence in price_claim_problems(text):
+                problems.append(f"  {path}: {term!r} in {sentence!r}")
+    ok = not problems
+    detail = problems[:60] + ([f"  ... {len(problems) - 60} more"] if len(problems) > 60 else [])
+    if ok:
+        detail = [f"{len(write_city_content.CITY_COPY)} cities (CITY_COPY + CITIES metadata), {count} stored strings: no out-the-door / all-in / delivered-and-set wording and no 'delivery or setup included in the price'."]
+    return report("4h. Cash-price claims (stored city copy)", ok, detail)
+
+
+PAY_ELEMENT_RE = re.compile(r'<(\w+)\b[^>]*\bdata-pm="pay"[^>]*>.*?</\1>', re.S)
+
+
+def rendered_text(html):
+    """Visible text + meta/title/JSON-LD, without payment-mode elements."""
+    html = PAY_ELEMENT_RE.sub(" ", html)
+    metas = re.findall(r'<meta[^>]+content="([^"]*)"', html)
+    ld = re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S)
+    body = re.sub(r"<script\b.*?</script>|<style\b.*?</style>", " ", html, flags=re.S)
+    body = re.sub(r"<!-- -->", "", body)
+    body = re.sub(r"<[^>]+>", " . ", body)  # element boundaries end a sentence
+    parts = [body] + metas
+    for block in ld:
+        try:
+            parts += [s for _, s in _json_strings(json.loads(block))]
+        except ValueError:
+            parts.append(block)
+    import html as _html
+
+    return _html.unescape("\n. ".join(parts))
+
+
+def _json_strings(value, path=""):
+    if isinstance(value, str):
+        yield path, value
+    elif isinstance(value, dict):
+        for k, v in value.items():
+            yield from _json_strings(v, f"{path}.{k}")
+    elif isinstance(value, list):
+        for i, v in enumerate(value):
+            yield from _json_strings(v, f"{path}[{i}]")
+
+
+def sitemap_paths():
+    status, xml = fetch("/sitemap.xml")
+    return [re.sub(r"^https?://[^/]+", "", u) or "/" for u in re.findall(r"<loc>([^<]+)</loc>", xml)]
+
+
+def step_price_claims_rendered():
+    paths = sitemap_paths()
+    problems = []
+    for path in paths:
+        try:
+            status, html = fetch(path)
+        except urllib.error.HTTPError as e:
+            problems.append(f"  {path}: HTTP {e.code}")
+            continue
+        seen = set()
+        for term, sentence in price_claim_problems(rendered_text(html)):
+            if sentence not in seen:
+                seen.add(sentence)
+                problems.append(f"  {path}: {term!r} in {sentence!r}")
+    llms = (REPO_ROOT / "public" / "llms.txt").read_text()
+    for term, sentence in price_claim_problems(llms):
+        problems.append(f"  public/llms.txt: {term!r} in {sentence!r}")
+    ok = not problems and bool(paths)
+    detail = problems[:60] + ([f"  ... {len(problems) - 60} more"] if len(problems) > 60 else [])
+    if ok:
+        detail = [f"{len(paths)} sitemap pages + llms.txt: no out-the-door / all-in / delivered-and-set wording and no 'delivery or setup included in the price' outside payment-mode text."]
+    return report("11j. Cash-price claims (rendered pages)", ok, detail)
+
+
 def main():
     check_all = "--all" in sys.argv
 
@@ -1105,6 +1239,7 @@ def main():
         ok &= step_cross_city_duplication()
     ok &= step_within_page_redundancy()  # run regardless — independent signal
     ok &= step_hard_rules()
+    ok &= step_price_claims_static()
     ok &= step_payment_disclosure_source()
     ok &= step_model_year_static()
     ok &= step_listing_slugs_static()
@@ -1141,6 +1276,7 @@ def main():
                 ok &= step_cash_price_rendered(city_slugs)
                 ok &= step_included_by_mode()
                 ok &= step_clearance_labels()
+                ok &= step_price_claims_rendered()
         finally:
             stop_dev_server(proc)
             if ctx:

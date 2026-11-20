@@ -68,8 +68,14 @@ these is a launch blocker, not a style note.
     wood steps, tax, title, and license — is the shared `CASH_PRICE_ITEMS`
     checklist ("Included in the Cash Price") in `CityPageContentV2.tsx` and
     `/how-pricing-works`. It's still true and fine to say we deliver and set
-    up anywhere in Texas (a service claim, not a price claim). Don't
-    re-list the checklist verbatim in prose per city
+    up anywhere in Texas (a service claim, not a price claim). Validator
+    steps 4h (stored city copy: `CITY_COPY` and `CITIES` metadata) and 11j
+    (every sitemap page, rendered, plus `llms.txt`) fail on "out-the-door",
+    "all-in", "delivered-and-set", "delivery included", or a sentence saying
+    delivery/setup is included in the price — except payment-mode text
+    (`data-pm="pay"` elements and sentences about the monthly payment,
+    financing or the loan). Don't re-list the checklist verbatim in prose per
+    city
     (doing that once caused 27 duplicate-checker failures across the batch,
     since the 13-word item list alone exceeds the shingle threshold every
     time it repeats). In prose, refer to it generally ("everything listed

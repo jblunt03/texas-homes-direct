@@ -763,7 +763,7 @@ CITIES = [
      ['yoakum', 'el-campo', 'victoria', 'hallettsville'],
      ["jade-3bed-2bath-single-wide", "marathon-fisher-3bed-2bath-double-wide", "marathon-gadwall-3bed-2bath-double-wide"]),
     ("port-lavaca", "Port Lavaca", "Calhoun", "small-town",
-     'Mobile homes for sale in Port Lavaca, TX and Calhoun County. New manufactured homes with one complete out-the-door price. Get your free quote.',
+     'Mobile homes for sale in Port Lavaca, TX and Calhoun County. New manufactured homes with an itemized home price. Get your free quote.',
      '/homes/the-terra/Terra-Hero.jpg', 'White single wide mobile home with a wood deck and black trim near Port Lavaca, TX',
      '/homes/the-moose/hero.jpeg', 'Double wide manufactured home with a lit porch and desert landscaping, available for Calhoun County buyers',
      ['victoria', 'goliad', 'refugio', 'edna'],
@@ -842,7 +842,7 @@ CITIES = [
      ['littlefield', 'plainview', 'levelland'],
      ["terrell-texas-3-bed-2-bath-double-wide", "greenville-texas-3-bed-2-bath-single-wide", "porter-texas-3-bed-2-bath-double-wide"]),
     ("plainview", "Plainview", "Hale", "small-town",
-     'Mobile homes for sale in Plainview, TX and Hale County. New manufactured homes with one complete out-the-door price. Get your free quote.',
+     'Mobile homes for sale in Plainview, TX and Hale County. New manufactured homes with an itemized home price. Get your free quote.',
      '/homes/the-pearland/918F558B-6E95-44EF-9CD5-E240C3BBDDBE.jpg', 'Black mobile home with a cedar front porch and wooded hills behind it near Plainview, TX',
      '/homes/the-moose/hero.jpeg', 'Double wide manufactured home with a lit porch and desert landscaping, available for Hale County buyers',
      ['tulia', 'littlefield', 'muleshoe', 'lubbock'],
@@ -1052,7 +1052,7 @@ CITY_COPY = {
             "Rural acreage or a smaller in-town lot, the cost gap between a HUD-code manufactured home and a comparable site-built house near Brenham stays about the same.",
         ],
         "pricingExplainer": [
-            "Whatever your Washington County property looks like, the out-the-door home price is fixed the moment you see your quote — everything itemized above is already included.",
+            'Whatever your Washington County property looks like, the cash price for the home is fixed the moment you see your quote — everything itemized above is already included.',
             "Utility costs are the exception, simply because rural acreage varies too much to price sight-unseen. A phone estimate starts the conversation, and a contractor's on-site visit finishes it.",
         ],
         "gettingStarted": [
@@ -1114,7 +1114,7 @@ CITY_COPY = {
             "A manufactured home built to current HUD code still costs meaningfully less than site-built construction, whether the land under it has been in the family for one year or fifty.",
         ],
         "pricingExplainer": [
-            "Whatever the history of your Burleson County property, the out-the-door price is the same fixed number once you see your quote — everything itemized above is included.",
+            'Whatever the history of your Burleson County property, the cash price is the same fixed number once you see your quote — everything itemized above is included.',
             "Utility costs are the one variable, since older family land can have older infrastructure that needs a real look. A phone estimate starts it, and a contractor's visit finishes it.",
         ],
         "gettingStarted": [
@@ -1207,7 +1207,7 @@ CITY_COPY = {
             "Site-built construction in Williamson County costs noticeably more than a comparable HUD-code manufactured home, without any step down in quality.",
         ],
         "pricingExplainer": [
-            "Once you've got real numbers from the mortgage tool, the actual quote confirms them — everything itemized above is already built into the out-the-door price.",
+            "Once you've got real numbers from the mortgage tool, the actual quote confirms them — everything itemized above is already built into the cash price.",
             "Utility costs are the one number the tool can't predict, since Williamson County land varies too much. A phone estimate comes first, then an exact bid once a contractor has seen the property.",
         ],
         "gettingStarted": [
@@ -1269,7 +1269,7 @@ CITY_COPY = {
             "A manufactured home built to current HUD code still runs meaningfully less than comparable site-built construction, working ranch or not.",
         ],
         "pricingExplainer": [
-            "Whatever your Yoakum-area property looks like — barns, corrals, or open pasture — the out-the-door home price is the same fixed number once quoted.",
+            'Whatever your Yoakum-area property looks like — barns, corrals, or open pasture — the cash price for the home is the same fixed number once quoted.',
             "Utility hookups don't come with a flat number, since ranch and farm properties near Yoakum vary too much for that. We open with a phone estimate, then a contractor walks the land for the real figure.",
         ],
         "gettingStarted": [
@@ -1300,7 +1300,7 @@ CITY_COPY = {
             "Whichever quote you're comparing, a HUD-code manufactured home consistently comes in well under site-built construction costs near Hallettsville.",
         ],
         "pricingExplainer": [
-            "An itemized quote is exactly what you'll get from us — everything listed above is already built into the out-the-door price for a Hallettsville-area buyer.",
+            "An itemized quote is exactly what you'll get from us — everything listed above is already built into the cash price for a Hallettsville-area buyer.",
             "Utility costs are the one line that can't be itemized upfront, since Lavaca County land varies too much. A phone estimate starts it, and a contractor's exact bid finishes it.",
         ],
         "gettingStarted": [
@@ -1331,7 +1331,7 @@ CITY_COPY = {
             "A DeWitt County family ends up paying noticeably less for a HUD-code manufactured home than for site-built construction, whatever the financing search has looked like so far.",
         ],
         "pricingExplainer": [
-            "Whatever your financing path ends up being, the out-the-door price for a Yorktown-area buyer works the same way — everything itemized above is already included.",
+            'Whatever your financing path ends up being, the home price for a Yorktown-area buyer works the same way — everything itemized above is already included.',
             "Utility costs are the one variable, since DeWitt County land varies too much to quote sight unseen. A phone estimate starts it, an exact contractor bid finishes it.",
         ],
         "gettingStarted": [
@@ -1393,7 +1393,7 @@ CITY_COPY = {
             "New to the area or not, a HUD-code manufactured home still gets a Karnes County family into a new home for meaningfully less than building from scratch.",
         ],
         "pricingExplainer": [
-            "Whether you've lived in Karnes County for years or just arrived, the out-the-door price works the same way — everything itemized above is already built in.",
+            "Whether you've lived in Karnes County for years or just arrived, the cash price works the same way — everything itemized above is already built in.",
             "Utility costs are the one number that depends on the specific property, not how long you've been in the area. A phone estimate starts it, a contractor's exact bid finishes it.",
         ],
         "gettingStarted": [
@@ -1424,7 +1424,7 @@ CITY_COPY = {
             "A HUD-code manufactured home puts a Karnes County family into a new home for noticeably less than site-built construction, whether your land deal has closed yet or not.",
         ],
         "pricingExplainer": [
-            "Once a Kenedy-area buyer locks in a floor plan, the out-the-door price holds — everything itemized above stays fixed regardless of how long the land purchase takes.",
+            'Once a Kenedy-area buyer locks in a floor plan, the cash price holds — everything itemized above stays fixed regardless of how long the land purchase takes.',
             "Utility costs are the exception, since they depend on the specific property once it's yours. A phone estimate can start early, but the exact bid waits until a contractor can walk the land.",
         ],
         "gettingStarted": [
@@ -1486,7 +1486,7 @@ CITY_COPY = {
             "Mid-transition or fully settled, a HUD-code manufactured home still puts a Refugio County family into a new home for noticeably less than building new.",
         ],
         "pricingExplainer": [
-            "A Refugio-area buyer's out-the-door number doesn't shift based on how long the current home sale takes — everything itemized above is locked in the moment you're quoted.",
+            "A Refugio-area buyer's cash price doesn't shift based on how long the current home sale takes — everything itemized above is locked in the moment you're quoted.",
             "Utility costs are the exception, tied to the new property itself. A phone estimate can start early, with the exact bid following once a contractor has walked the land.",
         ],
         "gettingStarted": [
@@ -1517,7 +1517,7 @@ CITY_COPY = {
             "No matter where in San Patricio County it's headed, a HUD-code manufactured home runs meaningfully under the cost of comparable site-built construction.",
         ],
         "pricingExplainer": [
-            "The out-the-door price for a Sinton-area buyer holds regardless of exactly where in the county the property sits — everything itemized above is already included.",
+            'The cash price for a Sinton-area buyer holds regardless of exactly where in the county the property sits — everything itemized above is already included.',
             "Utility costs are the one variable tied to the specific site. A phone estimate starts it, and a contractor's exact bid follows once they've actually seen the property.",
         ],
         "gettingStarted": [
@@ -1542,13 +1542,13 @@ CITY_COPY = {
         "lastModified": "2026-09-23",
     },
     "gatesville": {
-        "intro": "Before a Gatesville-area buyer ever picks up the phone with us, they can see the full setup checklist and out-the-door pricing breakdown — nothing held back for the first call, nothing that only comes out once you're already talking to someone.",
+        "intro": "Before a Gatesville-area buyer ever picks up the phone with us, they can see the full setup checklist and cash-price breakdown — nothing held back for the first call, nothing that only comes out once you're already talking to someone.",
         "buying": [
             "That upfront transparency matters to a Coryell County buyer who'd rather research on their own terms before a conversation starts, not be walked through it live for the first time.",
             "Whether you call first or read everything first, the bottom line stays the same: a HUD-code manufactured home costs a Coryell County family noticeably less than site-built construction.",
         ],
         "pricingExplainer": [
-            "The full setup checklist and out-the-door pricing are laid out above before you ever have to ask — everything itemized is already built into your Gatesville-area quote.",
+            'The full setup checklist and the cash-price breakdown are laid out above before you ever have to ask — everything in the cash-price list is already built into your Gatesville-area quote.',
             "Utility costs are the one piece that can't be published in advance, since Coryell County land varies too much. A phone estimate starts it, a contractor's exact bid finishes it.",
         ],
         "gettingStarted": [
@@ -1559,7 +1559,7 @@ CITY_COPY = {
         "faq": [
             {
                 "q": "Do I need to call before I can see pricing details for Gatesville?",
-                "a": "No — the setup checklist and out-the-door pricing breakdown are available to review before you ever reach out.",
+                "a": 'No — the setup checklist and the cash-price breakdown are available to review before you ever reach out.',
             },
             {
                 "q": "Is land ownership in Coryell County something you require first?",
@@ -1579,7 +1579,7 @@ CITY_COPY = {
             "A Coryell County family still comes out ahead on cost with a HUD-code manufactured home versus building from scratch, no matter which financing path ends up fitting.",
         ],
         "pricingExplainer": [
-            "The out-the-door price for a Copperas Cove-area buyer holds regardless of which financing path you choose — everything itemized above is already built in.",
+            'The cash price for a Copperas Cove-area buyer holds regardless of which financing path you choose — everything itemized above is already built in.',
             "Utility costs are the one number financing can't predict, since they depend on the property itself. A phone estimate starts it, a contractor's exact bid finishes it.",
         ],
         "gettingStarted": [
@@ -1672,7 +1672,7 @@ CITY_COPY = {
             "Waterfront acreage or an in-town lot, a HUD-code manufactured home still runs meaningfully under the cost of comparable site-built construction near Belton.",
         ],
         "pricingExplainer": [
-            "Lake-adjacent property or an in-town lot, the out-the-door price for a Belton-area buyer holds either way — everything itemized above is already built into your quote.",
+            'Lake-adjacent property or an in-town lot, the cash price for a Belton-area buyer holds either way — everything itemized above is already built into your quote.',
             "Utility costs are the one variable, since lake-adjacent land can have its own access and terrain conditions. A phone estimate starts it, an exact contractor bid finishes it.",
         ],
         "gettingStarted": [
@@ -1703,7 +1703,7 @@ CITY_COPY = {
             "Relocating for work doesn't have to mean rushing the decision — a Temple-area buyer gets the same unhurried comparison whether they're moving in a month or deciding a year out.",
         ],
         "pricingExplainer": [
-            "Relocating for the medical center or not, the out-the-door price for a Temple-area buyer is locked in the moment you see your quote — everything itemized above is already included.",
+            'Relocating for the medical center or not, the cash price for a Temple-area buyer is locked in the moment you see your quote — everything itemized above is already included.',
             "The exception is utilities, tied entirely to your specific Bell County property — a phone estimate is the starting point, and the contractor's on-site bid is the number that actually counts.",
         ],
         "gettingStarted": [
@@ -1734,7 +1734,7 @@ CITY_COPY = {
             "Small county or not, a HUD-code manufactured home still costs a Hamilton County family noticeably less than comparable site-built construction.",
         ],
         "pricingExplainer": [
-            "The out-the-door price for a Hamilton-area buyer works exactly the same way as anywhere else we serve — everything itemized above is already built in.",
+            'The cash price for a Hamilton-area buyer works exactly the same way as anywhere else we serve — everything itemized above is already built in.',
             "The one thing we won't lock in over the phone is the utility number, since Hamilton County land is too inconsistent for that to be honest — a contractor's visit sets the real figure.",
         ],
         "gettingStarted": [
@@ -1798,7 +1798,7 @@ CITY_COPY = {
             "Guadalupe County land shows up in every condition — utilities ready, or nothing run yet — and whichever describes yours, the same person stays on your purchase through delivery and setup, not a different department at each stage.",
         ],
         "pricingExplainer": [
-            "One quote, one number, no revisions — a Seguin-area buyer sees the complete out-the-door price before deciding anything, itemized above.",
+            'One quote, one number, no revisions — a Seguin-area buyer sees the complete cash price for the home before deciding anything, itemized above.',
             "Utility hookup costs are the exception, simply because no two Guadalupe County properties sit the same way. We give a phone estimate to start and follow it with a contractor's exact bid once they've walked the land.",
         ],
         "localProof": "Guadalupe County families we've worked with have stayed in touch with the same point of contact from their first call through the day their home was set.",
@@ -1961,16 +1961,16 @@ CITY_COPY = {
     "mcallen": {
         "intro": "Manufactured homes give a lot of Rio Grande Valley families a realistic path to ownership that a traditional build often can't match on price. Texas Homes Direct works with Hidalgo County buyers directly, with financing explained in plain terms from the start.",
         "buying": [
-            "We quote setup as part of your home's price, not as a separate bill after delivery. Utility connections, the pad, underpinning, and skirting are all included and financed together for McAllen-area buyers.",
+            'We quote setup up front, not as a surprise bill after delivery. If you finance, utility connections, the pad, underpinning, and skirting can be rolled into the same loan for McAllen-area buyers.',
             "Whether you're working with land you already own in Hidalgo County, a lot you're buying separately, or family property, Texas Homes Direct can walk you through what your specific site will need.",
         ],
         "pricingExplainer": [
-            "Beyond setup, the rest of a McAllen-area quote is just as fixed — tax, title, license, delivery, and appliances are all itemized above and locked in with the number you're given.",
+            "Beyond the home itself, the rest of a McAllen-area quote is just as fixed — tax, title, license, and appliances are all itemized above and locked in with the number you're given.",
             "Utility hookups are the one line item that can't be priced from a phone call alone, since Hidalgo County land varies too much. A contractor's visit is what turns the estimate into a real bid.",
         ],
         "gettingStarted": [
             "The first thing we walk through with a McAllen-area buyer is where the home is actually headed — owned land in Hidalgo County, family property, or a lot still being purchased all move forward the same way.",
-            "From there it's a straightforward next step: setup is already part of the price you're quoted, not a bill that shows up after delivery, so there's nothing extra to plan around once your site is scoped.",
+            "From there it's a straightforward next step: setup is quoted up front, not a bill that shows up after delivery, so there's nothing unexpected to plan around once your site is scoped.",
         ],
         "localProof": "We've worked with Hidalgo County families on single wide and double wide homes alike, sizing each one to the buyer's lot and budget.",
         "faq": [
@@ -2183,7 +2183,7 @@ CITY_COPY = {
              "a": "Contact us and we can send over photos and floor plan details for whatever catches your eye — no need to decide on the spot."},
             {
                 "q": "Does it matter which DFW suburb my property is actually in?",
-                "a": "Not for pricing — the same process and the same out-the-door number apply across Dallas County and the surrounding DFW area.",
+                "a": 'Not for pricing — the same process and the same cash price apply across Dallas County and the surrounding DFW area.',
             },
 ],
     },
@@ -2382,7 +2382,7 @@ CITY_COPY = {
             "Once that's settled, financing and setup are laid out together, itemized rather than estimated, so there's a real number to plan around before you commit to a floor plan.",
         ],
         "pricingExplainer": [
-            "There's a reason \"out-the-door\" matters to a Kimble County buyer: the price above is the complete price, not a partial number that grows as you go.",
+            "There's a reason a fixed price matters to a Kimble County buyer: the cash price above covers the home in full, not a partial number that grows as you go.",
             "Utility pricing has to wait for an actual look at the land, since no two Junction-area properties are the same. We start with a phone estimate, then send a contractor out to produce an exact figure you review before anything is finalized.",
         ],
         "localProof": "Kimble County buyers we've worked with span a wide range of budgets and lot sizes, from modest single-section homes to larger family layouts.",
@@ -2443,8 +2443,8 @@ CITY_COPY = {
              "a": "Those vary by county, so it's worth confirming with Blanco County directly before you buy. We can steer you to the right office to ask."},
 {"q": "What's the process after I've decided on a floor plan?",
              "a": "From that point, our team manages the build schedule, coordinates delivery, and oversees the on-site setup, keeping you in the loop the entire time."},
-{"q": "What does the out-the-door price for a Blanco-area home actually cover?",
-             "a": "That's the whole price. Everything above is already folded into the number you're given."},
+{"q": 'What does the cash price for a Blanco-area home actually cover?',
+             "a": "The home and everything in the cash-price list above, folded into the number you're given. Delivery and setup are quoted on their own."},
 ],
         "lastModified": "2026-09-10",
     },
@@ -2507,7 +2507,7 @@ CITY_COPY = {
             "The next real question is the property itself. Some Bandera County land already has utilities run, some is starting from scratch, and we scope exactly what applies before anything moves forward.",
         ],
         "pricingExplainer": [
-            "The whole point of an out-the-door price is that it doesn't move. For a Bandera County buyer, everything listed above is already factored into the quote, not added as a follow-up.",
+            "The whole point of a fixed price is that it doesn't move. For a Bandera County buyer, everything listed above is already factored into the cash price, not added as a follow-up.",
             "We're upfront that utility costs can't be nailed down over the phone alone. Every lot near Bandera has its own conditions, so an estimate comes first, followed by an exact bid from a contractor who's actually been to the property.",
         ],
         "localProof": "Bandera County buyers have come to us with land already in the family, land they'd just bought, and lots they were still deciding on.",
@@ -2651,13 +2651,13 @@ CITY_COPY = {
         "lastModified": "2026-09-18",
     },
     "luling": {
-        "intro": "If you're comparing quotes from more than one manufactured home dealer near Luling, ask each one the same question: does this number include setup, or just the home? Texas Homes Direct's answer is always both.",
+        "intro": "If you're comparing quotes from more than one manufactured home dealer near Luling, ask each one the same question: what does this number cover, and what's quoted separately? Texas Homes Direct's answer is on this page, item by item.",
         "buying": [
             "A quote that leaves out setup, delivery, or utilities isn't actually cheaper — it's incomplete. We'd rather a Luling-area buyer see the full number upfront than get surprised comparing it to someone else's partial one.",
             "Permitting requirements aren't identical from one Texas county to the next, and Caldwell County is no exception. Texas Homes Direct manages that coordination directly.",
         ],
         "gettingStarted": [
-            "A Luling-area buyer's first step is usually a numbers comparison — get quotes from more than one dealer, and check whether each one includes setup or just the home itself.",
+            "A Luling-area buyer's first step is usually a numbers comparison — get quotes from more than one dealer, and check what each one covers and what it quotes separately.",
             "Once you've got a real number to compare, the property comes next — Caldwell County permitting is ours to manage regardless, so that part doesn't change what you bring to the first call.",
         ],
         "pricingExplainer": [
@@ -2667,7 +2667,7 @@ CITY_COPY = {
         "localProof": "Luling-area families we've worked with have told us they appreciated seeing a complete number instead of piecing one together from several quotes.",
         "faq": [
 {"q": "What should I ask other dealers to make sure I'm comparing quotes fairly?",
-             "a": "Whether setup, delivery, and permitting are included in the number — a lot of quotes leave those out and add them back in later."},
+             "a": "What the number covers and which items, such as setup, delivery and permitting, are quoted separately, so you're comparing the same things."},
 {"q": "How much does a manufactured home cost near Luling?",
              "a": "It varies by floor plan and features, but the free mortgage analysis tool gives you a number specific to your budget and situation."},
 {"q": "Do I have to have land lined up first?",
@@ -2718,7 +2718,7 @@ CITY_COPY = {
             "Factory-direct doesn't mean bare-bones — it means the price you see already includes everything itemized above, without a markup layer inflating it first.",
             "Wilson County properties vary enough in soil and access that we won't guess at utility costs sight unseen. A phone estimate comes first, then an exact bid from our contractor.",
         ],
-        "localProof": "Wilson County buyers we've worked with have asked directly about markup, and the honest answer is the price reflects the factory number plus setup, not an added margin on top.",
+        "localProof": "Wilson County buyers we've worked with have asked directly about markup, and the honest answer is the home price reflects the factory number, not an added margin on top.",
         "faq": [
 {"q": "What does 'factory-direct' actually mean for pricing?",
              "a": "It means Texas Homes Direct works directly with the manufacturer rather than through a separate dealership markup layer, which keeps the quoted price lower."},
@@ -2863,7 +2863,7 @@ CITY_COPY = {
             "One thing that won't come up: Texas Homes Direct doesn't sell land or bundle land-and-home packages near Schulenburg, so whichever situation applies, you're getting a straightforward home purchase, priced and financed on its own.",
         ],
         "pricingExplainer": [
-            "Since we're not bundling land into the deal, a Schulenburg-area quote stays simple — everything itemized above covers the home and setup, nothing else mixed in.",
+            "Since we're not bundling land into the deal, a Schulenburg-area quote stays simple — everything itemized above covers the home itself, nothing else mixed in.",
             "A Fayette County lot's soil and access aren't things we can judge over the phone, so we hold off on a firm utility number until a contractor has actually stood on the property.",
         ],
         "localProof": "We've worked with Schulenburg-area buyers at every stage of the land question \u2014 some already owned it, some had just closed on a lot, some were still weighing options. Either way, our part is the home, never the land.",
@@ -3839,7 +3839,7 @@ CITY_COPY = {
             'Pricing a manufactured home against site-built construction is worth doing before you commit. We lay out the full home price so you can see how much of your Frio County budget remains for land improvements, fencing or a barn.',
         ],
         "pricingExplainer": [
-            'The figure on a Pearsall quote is the full house price, delivery included, with every item in the list above built in rather than added later.',
+            'The figure on a Pearsall quote is the full house price, with every item in the list above built in rather than added later.',
             'Hooking up water, septic and power is the part we price in two steps: a phone estimate after we hear about your property, then a firm number once our contractor has been out to see it and you have signed off.',
         ],
         "gettingStarted": [
@@ -4211,9 +4211,9 @@ CITY_COPY = {
         "lastModified": '2026-10-26',
     },
     "port-lavaca": {
-        "intro": 'Texas Homes Direct gives Port Lavaca and Calhoun County buyers one complete out-the-door price for the home, so you know the total before you commit. The list of what that price covers is right on this page, so nothing hides in the fine print.',
+        "intro": 'Texas Homes Direct gives Port Lavaca and Calhoun County buyers an itemized home price, so you know what the cash price covers before you commit. The list of what it covers is right on this page, so nothing hides in the fine print.',
         "buying": [
-            'An all-in home price makes comparing easy. Instead of adding delivery, setup, AC and taxes on top of a base figure, a Port Lavaca buyer reads one number and knows what the house costs.',
+            "An itemized home price makes comparing easy. Instead of guessing what a base figure leaves out, a Port Lavaca buyer reads what the cash price covers, item by item, and what's quoted on its own.",
             'Whether your Calhoun County property is an in-town lot or rural land, the home price stays the same; only the site-specific utility work varies.',
         ],
         "pricingExplainer": [
@@ -4221,15 +4221,15 @@ CITY_COPY = {
             "Utilities are the only part we won't guess at. We give a phone estimate, then our contractor visits the property and writes an exact bid that you approve.",
         ],
         "gettingStarted": [
-            'Pick two or three homes you like and ask us for their out-the-door prices together. Seeing complete numbers side by side makes the decision much clearer.',
+            'Pick two or three homes you like and ask us for their cash prices together. Seeing itemized numbers side by side makes the decision much clearer.',
             'Then we confirm your Calhoun County property and walk through financing on the home you choose.',
         ],
-        "localProof": 'Calhoun County buyers from Port Lavaca to Seadrift and Point Comfort receive the same complete, all-in home quotes.',
+        "localProof": 'Calhoun County buyers from Port Lavaca to Seadrift and Point Comfort receive the same itemized home quotes.',
         "faq": [
             {"q": 'Is the price you quote in Port Lavaca the full price of the home?',
              "a": "Yes. The home price includes every item listed on this page, so you're comparing complete numbers, not a base price."},
-            {"q": 'Can I compare out-the-door prices on several homes for Calhoun County?',
-             "a": "Absolutely. Ask for quotes on a few models and we'll send complete prices for each so you can compare them side by side."},
+            {"q": 'Can I compare cash prices on several homes for Calhoun County?',
+             "a": "Absolutely. Ask for quotes on a few models and we'll send itemized prices for each so you can compare them side by side."},
             {"q": 'Do you serve rural Calhoun County outside Port Lavaca?',
              "a": 'Yes. Rural properties are covered, and we verify access to your address before the quote is final.'},
             {"q": 'Could my Calhoun County parcel have extra placement requirements?',
@@ -4563,9 +4563,9 @@ CITY_COPY = {
         "lastModified": '2026-11-12',
     },
     "plainview": {
-        "intro": "Plainview is the Hale County seat, and Texas Homes Direct gives every buyer there one out-the-door number for the home. The checklist on this page shows what that number covers, so the total isn't hidden in fine print.",
+        "intro": 'Plainview is the Hale County seat, and Texas Homes Direct gives every buyer there an itemized number for the home. The checklist on this page shows what the cash price covers, so nothing is hidden in fine print.',
         "buying": [
-            "A single all-in figure makes comparing homes simple. Delivery, setup, AC, taxes and the rest aren't stacked on top of a base price; the number on the quote is what the house costs.",
+            "An itemized figure makes comparing homes simple. You see what the cash price covers and what's quoted on its own, so the number on the quote means the same thing from home to home.",
             'Hale County properties vary from in-town lots to open acreage, but the home price stays the same across them. Only the site-specific utility work changes from one address to the next.',
         ],
         "pricingExplainer": [
@@ -4573,15 +4573,15 @@ CITY_COPY = {
             "Utilities stay open until the land is seen. Over the phone you get an estimate; after our contractor's visit to your Hale County property you get the exact figure, and it waits on your approval.",
         ],
         "gettingStarted": [
-            'Pick two or three homes you like and ask for their out-the-door prices together. Complete numbers side by side make the choice clearer.',
+            'Pick two or three homes you like and ask for their cash prices together. Itemized numbers side by side make the choice clearer.',
             'Next we confirm your Hale County property details and go over financing on the home you choose.',
         ],
-        "localProof": 'Hale County addresses around Plainview, and those toward Tulia and Lubbock, receive the same complete, all-in home quotes.',
+        "localProof": 'Hale County addresses around Plainview, and those toward Tulia and Lubbock, receive the same itemized home quotes.',
         "faq": [
             {"q": 'Is the Plainview price you quote the whole cost of the home?',
              "a": "Yes, for the home itself. Every item on this page's checklist is inside that figure, so it's a finished number."},
-            {"q": 'Can I get out-the-door quotes on several homes for Hale County?',
-             "a": "Sure. Name a few models and we'll send each one's complete price for a direct comparison."},
+            {"q": 'Can I get cash-price quotes on several homes for Hale County?',
+             "a": "Sure. Name a few models and we'll send each one's itemized price for a direct comparison."},
             {"q": 'Do you deliver to rural Hale County outside Plainview?',
              "a": 'We do. Before the quote is locked, we look at how a truck would reach your land.'},
             {"q": 'Does placing a home inside Plainview city limits involve extra steps?',
@@ -5130,9 +5130,9 @@ CITY_COPY = {
         "lastModified": '2026-11-12',
     },
     "pecos": {
-        "intro": 'Pecos is the Reeves County seat, and Texas Homes Direct spells out what a home includes before you sign: the out-the-door checklist and the setup checklist on this page are the whole list, item by item.',
+        "intro": 'Pecos is the Reeves County seat, and Texas Homes Direct spells out what a home includes before you sign: the cash-price checklist and the setup checklist on this page show it item by item.',
         "buying": [
-            "Knowing what's included matters most when comparing quotes. Ours lists every item, from delivery and setup to AC, so the comparison is fair.",
+            "Knowing what's included matters most when comparing quotes. Ours lists every item in the cash price, from AC to title, so the comparison is fair.",
             'The setup checklist also shows the work our crew handles on site, from the base pad to the skirting, so you can see what happens between delivery and move-in.',
         ],
         "pricingExplainer": [
@@ -5146,7 +5146,7 @@ CITY_COPY = {
         "localProof": 'Reeves County homesites around Pecos, and toward Monahans, get the same itemized checklists with every quote.',
         "faq": [
             {"q": 'What exactly is included in a Pecos home quote?',
-             "a": 'Everything on the out-the-door and setup checklists on this page. Those items are part of the home price; only the utility work is bid separately, after the site visit.'},
+             "a": 'Everything on the cash-price checklist on this page. Delivery and setup are quoted separately, and the utility work is bid after the site visit.'},
             {"q": 'Do the Pecos checklists change if my Reeves County land is far from town?',
              "a": "No. The same items come with the home wherever it's placed; distance and site conditions show up in the utility bid, not the checklist."},
             {"q": 'Is rural Reeves County inside your delivery range?',
@@ -5224,7 +5224,7 @@ export interface CityContent {
   intro: string
   buyingHeading: string
   buying: string[]
-  // 2 paragraphs: [0] out-the-door pricing is firm/complete, [1] how utility
+  // 2 paragraphs: [0] what the firm cash price covers, [1] how utility
   // costs are estimated then bid exactly on-site. Optional so older city
   // entries render without this section until they're given a pass.
   pricingExplainer?: string[]
