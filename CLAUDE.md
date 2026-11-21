@@ -1367,8 +1367,10 @@ no land" rule **for this section only** — every other page stays homes-only.
 **Flag:** `lib/features.json` `"landHomePackages"` (read via
 `lib/features.ts`). While false: no "Land-Home Packages" tab in the header
 (desktop + mobile menu) or the footer's Shop column, every route below 404s
-(`notFound()`), and nothing is in the sitemap or `/llms.txt`. Keep it false
-in commits until the owner says "ship it"; turn it on only locally for review.
+(`notFound()`), and nothing is in the sitemap or `/llms.txt`. Shipped ON
+2026-11-21 (owner: "ship it"); set it to false to hide the whole section again.
+The `/api/chat` advisor's step 3 also offers land-home packages (across Texas,
+three currently in Floresville) — keep it in step with this section.
 
 **Routes:** `/land-home-packages` (Texas pillar/hub),
 `/land-home-packages-floresville-tx` (the three packages as cards), and
