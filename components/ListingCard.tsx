@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import Image from 'next/image'
+import InventoryCard from '@/components/InventoryCard'
 import type { Listing } from '@/lib/sampleListings'
 import PromoBadge from '@/components/PromoBadge'
 import { isPromoListing } from '@/lib/promo'
@@ -21,8 +20,9 @@ const VideoChip = VIDEOS_ARCHIVED
  * visitor's cash/payment choice (CLAUDE.md "Cash price");
  * `showPayment={false}` shows the cash price only (/tiny-homes).
  *
- * The card is a <div> with a stretched title link (.bmh-card-link::after
- * covers the card), so the payment info <button> isn't nested inside <a>.
+ * Markup lives in components/InventoryCard.tsx (shared with the Land-Home
+ * Packages' PackageCard): a <div> with a stretched title link, so the
+ * payment info <button> isn't nested inside <a>.
  */
 export default function ListingCard({
   listing,
@@ -59,60 +59,33 @@ export default function ListingCard({
     )
 
   return (
-    <div className="bmh-inv-card bmh-inv-card-stretch">
-      {listing.images[0] ? (
-        <div
-          className="bmh-ratio-3x2 bmh-inv-card-media"
-          style={{ position: 'relative' }}
-        >
-          {cardTags}
-          {VideoChip && listing.youtubeId && (
-            <VideoChip home={{ title: listing.title, slug: listing.slug, id: listing.id, youtubeId: listing.youtubeId }} />
-          )}
-          <Image
-            src={listing.images[0]}
-            alt={`${listing.title} exterior`}
-            fill
-            priority={priority}
-            style={
-              listing.floorplanUrl && listing.images[0] === listing.floorplanUrl
-                ? { objectFit: 'contain', background: '#fff', padding: 12 }
-                : { objectFit: 'cover' }
+    <InventoryCard
+      href={`/homes/${listing.slug}`}
+      title={listing.title}
+      image={
+        listing.images[0]
+          ? {
+              src: listing.images[0],
+              alt: `${listing.title} exterior`,
+              contain: Boolean(listing.floorplanUrl && listing.images[0] === listing.floorplanUrl),
             }
-            sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, (min-width: 1600px) 25vw, 33vw"
-          />
-        </div>
-      ) : (
-        <div className="bmh-ph bmh-ratio-3x2 bmh-inv-card-media">
-          {cardTags}
-          <span className="bmh-ph-label">{listing.title} · exterior</span>
-        </div>
-      )}
-      <div className="bmh-inv-card-body">
-        <h3 className="bmh-inv-card-title bmh-listing-card-title">
-          <Link href={`/homes/${listing.slug}`} className="bmh-card-link">
-            {listing.title}
-          </Link>
-        </h3>
-        <p className="bmh-inv-card-sub">{subText}</p>
-        <div className="bmh-inv-card-specs">
-          <span className="bmh-spec">
-            <strong>{listing.beds}</strong> bd
-          </span>
-          <span className="bmh-spec">
-            <strong>{listing.baths}</strong> ba
-          </span>
-          <span className="bmh-spec">
-            <strong>{listing.sqft.toLocaleString()}</strong> sqft
-          </span>
-        </div>
-        <div className="bmh-inv-card-footer">
-          <span className="bmh-inv-card-price">
-            <ListingPrice price={listing.price} monthlyPayment={listing.monthlyPayment} cashOnly={!showPayment} />
-          </span>
-          <span className="bmh-inv-card-link">View →</span>
-        </div>
-      </div>
-    </div>
+          : null
+      }
+      placeholderLabel={<>{listing.title} · exterior</>}
+      priority={priority}
+      tags={cardTags}
+      mediaExtra={
+        VideoChip && listing.youtubeId ? (
+          <VideoChip home={{ title: listing.title, slug: listing.slug, id: listing.id, youtubeId: listing.youtubeId }} />
+        ) : null
+      }
+      sub={subText}
+      specs={[
+        { value: listing.beds, label: 'bd' },
+        { value: listing.baths, label: 'ba' },
+        { value: listing.sqft.toLocaleString(), label: 'sqft' },
+      ]}
+      price={<ListingPrice price={listing.price} monthlyPayment={listing.monthlyPayment} cashOnly={!showPayment} />}
+    />
   )
 }

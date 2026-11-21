@@ -2,10 +2,11 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import FaqAccordion from '@/components/FaqAccordion'
+import PriceModeToggle from '@/components/PriceModeToggle'
 import PackageCtas from '@/components/landHome/PackageCtas'
+import PackageGrid from '@/components/landHome/PackageGrid'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
 import {
-  FLORESVILLE_PACKAGES_PATH,
   LAND_HOME_DATE_MODIFIED,
   LAND_HOME_HUB_PATH,
   LAND_HOME_KEYWORDS,
@@ -13,15 +14,18 @@ import {
   SITE_URL,
   packageName,
   packagePath,
-  packageSpecLine,
 } from '@/lib/packages'
 
-// Land-Home Packages pillar page (CLAUDE.md "Land-Home Packages"). Facts only:
-// no prices or payments in the FAQ, title, description or schema.
+// Land-Home Packages pillar page (CLAUDE.md "Land-Home Packages"). Statewide:
+// Floresville appears only as current inventory (cards, location labels), in
+// the comparison's example column, and in one FAQ about the current packages.
+// Order: H1 → strip → Current Inventory → definition → how it works → FAQ →
+// CTAs → comparison (last). No prices or payments in the FAQ, title,
+// description or schema.
 const PAGE_URL = `${SITE_URL}${LAND_HOME_HUB_PATH}`
 const TITLE = 'Land and Home Packages in Texas | Texas Homes Direct'
 const DESCRIPTION =
-  'Texas Homes Direct sells land-home packages across Texas: a home and its lot sold together, turnkey. See our three Floresville packages and how to get started.'
+  'Texas Homes Direct sells land-home packages across Texas: a home and its lot sold together, turnkey. See the current inventory and how to get started.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -43,7 +47,7 @@ export const metadata: Metadata = {
 const FAQ = [
   {
     q: 'What is a land-home package?',
-    a: 'A land-home package is a home and its lot sold together as one turnkey purchase, so you aren’t shopping for land and a home separately. Texas Homes Direct sells land-home packages across Texas, and each package in our current Floresville inventory includes all utilities.',
+    a: 'A land-home package is a home and its lot sold together as one turnkey purchase, so you aren’t shopping for land and a home separately. Texas Homes Direct sells land-home packages across Texas, and each package in our current inventory includes all utilities.',
   },
   {
     q: 'What comes with each Floresville land-home package?',
@@ -51,7 +55,7 @@ const FAQ = [
   },
   {
     q: 'Where in Texas does Texas Homes Direct offer land-home packages?',
-    a: 'Across Texas. Texas Homes Direct sells land-home packages statewide, and our current inventory is three packages on three lots in Floresville, Texas. If you’re looking in another part of the state, call (830) 381-1309 or request a free quote and tell us where you’d like to be.',
+    a: 'Across Texas. Texas Homes Direct sells land-home packages statewide, and every package available right now is listed in the current inventory on this page. If you’re looking in another part of the state, call (830) 381-1309 or request a free quote and tell us where you’d like to be.',
   },
   {
     q: 'Can I pick my own home instead of the one shown?',
@@ -59,16 +63,25 @@ const FAQ = [
   },
   {
     q: 'How do I get started on a land-home package?',
-    a: 'Pick whichever is easiest: request a free quote with our short form, start a finance application online, or call Texas Homes Direct at (830) 381-1309. Let us know which Floresville package caught your eye, or where in Texas you’d like a land-home package, and we’ll take it from there.',
+    a: 'Pick whichever is easiest: request a free quote with our short form, start a finance application online, or call Texas Homes Direct at (830) 381-1309. Let us know which package in our current inventory caught your eye, or where in Texas you’d like a land-home package, and we’ll take it from there.',
   },
   {
     q: 'How is a land-home package different from buying a home for my own land?',
-    a: 'When you buy a home alone, you provide the land, and utilities are estimated by phone, then bid exactly after our contractor visits your property. With a Floresville land-home package, the lot comes with the home, turnkey, with all utilities. Texas Homes Direct sells both ways of buying.',
+    a: 'When you buy a home alone, you provide the land, and utilities are estimated by phone, then bid exactly after our contractor visits your property. With a package from our current inventory, the lot comes with the home, turnkey, with all utilities. Texas Homes Direct sells both ways of buying.',
   },
 ]
 
+const Icon = ({ children }: { children: React.ReactNode }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
+    {children}
+  </svg>
+)
+
 export default function LandHomePackagesPage() {
   if (!LAND_HOME_PACKAGES) notFound()
+
+  // Unique locations in the current inventory, for the "browse by location" links.
+  const locations = Array.from(new Map(PACKAGES.map((p) => [p.locationPath, p.locationLabel])).entries())
 
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
@@ -100,6 +113,7 @@ export default function LandHomePackagesPage() {
       cssSelector: ['.bmh-faq-speakable', '.bmh-explainer-lead'],
     },
   }
+  // Name + url only: no image, even though cards show a stand-in photo.
   const itemListJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
@@ -113,7 +127,7 @@ export default function LandHomePackagesPage() {
   }
 
   return (
-    <>
+    <div className="bmh-wide-inventory">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
@@ -127,22 +141,115 @@ export default function LandHomePackagesPage() {
         </div>
       </nav>
 
-      <section style={{ background: 'var(--color-canvas)', padding: '24px 0 32px' }}>
+      {/* 1. H1 + subline */}
+      <section style={{ background: 'var(--color-canvas)', padding: '24px 0 8px' }} data-section="intro">
         <div className="bmh-container">
           <span className="bmh-eyebrow">Land-Home Packages</span>
           <h1 className="bmh-city-h1">
             Land and Home Packages in <em>Texas</em>
           </h1>
-          <p className="bmh-lead bmh-explainer-lead">
-            A land-home package is a home and its lot sold together as one turnkey purchase. Texas Homes
-            Direct sells land-home packages across Texas. Our current inventory is three packages in
-            Floresville, Texas, each on its own lot with all utilities and a 4-bedroom, 2-bathroom home
-            shown. You can choose your own home instead.
+          <p className="bmh-lead" style={{ maxWidth: '70ch' }}>
+            Texas Homes Direct sells land-home packages across Texas. Our current inventory is in Floresville,
+            Texas.
           </p>
+
+          {/* 2. Strip */}
+          <ul className="bmh-lh-strip" data-section="strip">
+            <li>
+              <Icon>
+                <circle cx="8" cy="15" r="4" />
+                <path d="M10.8 12.2 20 3" />
+                <path d="m16 7 3 3" />
+              </Icon>
+              Turnkey
+            </li>
+            <li>
+              <Icon>
+                <path d="M13 2 4 14h7l-1 8 9-12h-7l1-8z" />
+              </Icon>
+              All utilities
+            </li>
+            <li>
+              <Icon>
+                <path d="M3 10.5 12 3l9 7.5" />
+                <path d="M5 9.5V21h14V9.5" />
+                <path d="M10 21v-6h4v6" />
+              </Icon>
+              Choose your own home
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      {/* 3. Current Inventory */}
+      <section style={{ background: 'var(--color-canvas)', padding: '32px 0 40px' }} data-section="inventory">
+        <div className="bmh-container">
+          <div className="bmh-lh-toolbar">
+            <h2 className="bmh-city-h2" style={{ margin: 0 }}>Current Inventory</h2>
+            <PriceModeToggle placement="land-home" />
+          </div>
+          <div className="bmh-spacer-md" />
+          <PackageGrid packages={PACKAGES} />
+          <div className="bmh-spacer-md" />
+          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', gap: 10 }}>
+            <span className="bmh-caption">Browse by location:</span>
+            {locations.map(([path, label]) => (
+              <Link key={path} href={path} className="bmh-pill bmh-pill-static">
+                {label} →
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* 4. Definition, how it works, FAQ, CTAs */}
+      <section className="bmh-surface-card" style={{ padding: '40px 0' }} data-section="definition">
+        <div className="bmh-container">
+          <div className="bmh-city-prose">
+            <h2 className="bmh-city-h2">What Is a Land-Home Package?</h2>
+            <p className="bmh-lead bmh-explainer-lead" style={{ marginTop: 12 }}>
+              A land-home package is a home and its lot sold together as one turnkey purchase. Texas Homes Direct
+              sells land-home packages across Texas. Every package in our current inventory includes all utilities
+              and shows a 4-bedroom, 2-bathroom home, and you can choose your own home instead.
+            </p>
+            <div className="bmh-spacer-md" />
+            <h3 className="bmh-city-h3">How It Works</h3>
+            <ol className="bmh-lh-steps bmh-lead">
+              <li>Look through the current inventory above, or tell us where in Texas you&rsquo;d like a land-home package.</li>
+              <li>Keep the home shown, or choose your own home instead.</li>
+              <li>Request a free quote, apply for financing, or call (830) 381-1309.</li>
+            </ol>
+          </div>
         </div>
       </section>
 
       <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+        <div className="bmh-container">
+          <div className="bmh-city-prose bmh-faq-speakable">
+            <h2 className="bmh-city-h2">Land-Home Package Questions</h2>
+            <div className="bmh-spacer-sm" />
+            <FaqAccordion items={FAQ} defaultOpen={0} />
+          </div>
+        </div>
+      </section>
+
+      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '48px 0' }}>
+        <div className="bmh-container" style={{ textAlign: 'center' }}>
+          <h2 className="bmh-city-h2" style={{ maxWidth: 700, margin: '0 auto' }}>
+            Ready to talk about a land-home package?
+          </h2>
+          <div className="bmh-spacer-lg" />
+          <PackageCtas page="hub" center />
+          <div className="bmh-spacer-md" />
+          <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center', gap: 10 }}>
+            <Link href="/browse" className="bmh-pill bmh-pill-static">Browse Homes →</Link>
+            <Link href="/cities" className="bmh-pill bmh-pill-static">Cities We Serve →</Link>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. Comparison — always last */}
+      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0 56px' }} data-section="comparison">
         <div className="bmh-container">
           <div className="bmh-city-prose">
             <h2 className="bmh-city-h2">A Home Alone vs. a Land-Home Package</h2>
@@ -173,67 +280,6 @@ export default function LandHomePackagesPage() {
           </div>
         </div>
       </section>
-
-      <section className="bmh-surface-card" style={{ padding: '40px 0' }}>
-        <div className="bmh-container">
-          <div className="bmh-city-prose">
-            <h2 className="bmh-city-h2">Current Inventory: Floresville, Texas</h2>
-            <p className="bmh-lead" style={{ marginTop: 12 }}>
-              Three packages, one per lot. Each is turnkey with all utilities.
-            </p>
-          </div>
-          <div className="bmh-spacer-md" />
-          <ul className="bmh-lh-inventory">
-            {PACKAGES.map((p) => (
-              <li key={p.slug}>
-                <Link href={packagePath(p)} className="bmh-lh-inventory-link">
-                  {packageName(p)} →
-                </Link>
-                <span className="bmh-caption">Home shown: {packageSpecLine()}</span>
-              </li>
-            ))}
-          </ul>
-          <div className="bmh-spacer-md" />
-          <Link href={FLORESVILLE_PACKAGES_PATH} className="bmh-btn bmh-btn-secondary">
-            See the Floresville packages side by side →
-          </Link>
-        </div>
-      </section>
-
-      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
-        <div className="bmh-container">
-          <div className="bmh-city-prose bmh-faq-speakable">
-            <h2 className="bmh-city-h2">Land-Home Package Questions</h2>
-            <div className="bmh-spacer-sm" />
-            <FaqAccordion items={FAQ} defaultOpen={0} />
-          </div>
-        </div>
-      </section>
-
-      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '32px 0' }}>
-        <div className="bmh-container">
-          <div className="bmh-city-prose">
-            <h3 className="bmh-city-h3">Keep Exploring</h3>
-            <div className="bmh-spacer-sm" />
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              <Link href={FLORESVILLE_PACKAGES_PATH} className="bmh-pill bmh-pill-static">Floresville Land-Home Packages →</Link>
-              <Link href="/browse" className="bmh-pill bmh-pill-static">Browse Homes →</Link>
-              <Link href="/mobile-homes-floresville-tx" className="bmh-pill bmh-pill-static">A Home for Your Own Land in Floresville →</Link>
-              <Link href="/cities" className="bmh-pill bmh-pill-static">Cities We Serve →</Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '48px 0' }}>
-        <div className="bmh-container" style={{ textAlign: 'center' }}>
-          <h2 className="bmh-city-h2" style={{ maxWidth: 700, margin: '0 auto' }}>
-            Ready to talk about a land-home package?
-          </h2>
-          <div className="bmh-spacer-lg" />
-          <PackageCtas page="hub" center />
-        </div>
-      </section>
-    </>
+    </div>
   )
 }

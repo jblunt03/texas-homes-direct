@@ -1159,7 +1159,8 @@ No title, meta description, blog post or city-page copy mentions a model year.
 
 ## /browse sizing on large screens (`.bmh-wide-inventory`)
 
-`/browse` and `/tiny-homes` (both use `components/ListingCard.tsx`) are wrapped
+`/browse` and `/tiny-homes` (both use `components/ListingCard.tsx`, whose
+markup is the shared `components/InventoryCard.tsx`) are wrapped
 in `.bmh-wide-inventory`. Its CSS lives at the end of `app/globals.css` and
 applies **only at min-width 1024px**. Phones and tablets are unchanged, and
 375px, 768px and 1024px measured identically before and after on 2026-11-11.
@@ -1403,12 +1404,39 @@ FAQ, which describe buying a home alone). On these pages say "home" and
 is only where the properties are, never an office or showroom. No prices or
 payments in any FAQ answer, title, meta description, schema or `llms.txt`.
 
-**Placeholder rule:** no photos yet. `components/landHome/PhotosComingSoon.tsx`
-is text only ("Photos coming soon"; no image file, SVG, gradient or
-background image) on every card and package page. Never use another home's
-photos, never promise a date. Schema has no image fields and pages have no
-og:image (the site has no default og:image). When real photos exist, revisit
-the schema rule (Product/Offer/price/address/geo are banned until then).
+**Photo rule (2026-11-21):** until each package has its own photo, every
+card and package page uses one stand-in: `public/land-home/example-4-bed-2-bath.jpg`
+(`EXAMPLE_HOME_IMAGE` in `lib/packages.ts`; a byte-for-byte copy of a listing
+photo under a neutral name, 1672×941, 587KB). Alt text: "Example 4-bedroom,
+2-bathroom home". No filename, alt or markup may name a home or manufacturer,
+and the source listing is never named or linked. Cards carry an "Example
+home" tag; package pages a caption, "Example 4-bed, 2-bath home shown. You
+can choose your own home." (owner's addition — strike by setting `example:
+false`). Each package has its own `image` field, so photos can be replaced
+one at a time. No "coming soon" anywhere. Schema has no image fields and
+pages have no og:image (the photo is a stand-in; the site has no default
+og:image). Product/Offer/price/address/geo stay banned until real photos.
+
+**Cards and grid:** `components/landHome/PackageCard.tsx` renders the retail
+card (`components/InventoryCard.tsx`, shared with the homes' `ListingCard`):
+photo with a "Land-Home Package" badge, title, location label (`locationLabel`,
+e.g. "Floresville, TX"), spec row (bd, ba, sqft, wide type, acres), price.
+`PackageGrid` sizes it like /browse (pages are wrapped in
+`.bmh-wide-inventory`): 1/2/3 columns as on /browse, enlarged text from
+1280px; with 3 or fewer packages it stays at 3 columns from 1600px
+(`.bmh-inv-grid-max3`), 4 once more exist. First row eager, rest lazy.
+A package in another city joins the hub grid just by adding it to
+`PACKAGES` with its own `city`, `locationLabel` and `locationPath`.
+Packages never appear on /browse or in the homes' filters or counts.
+
+**Hub order (`/land-home-packages`):** H1 + one-line subline → strip
+(Turnkey · All utilities · Choose your own home) → Current Inventory (toggle
++ all package cards + "Browse by location") → definition → How It Works →
+FAQ → CTAs → the "home alone vs. land-home package" comparison, always last.
+Hub copy is statewide: Floresville appears only in the inventory (cards,
+location labels, the subline's current-inventory sentence), the
+comparison's example column and one FAQ. Its title, meta and H1 never say
+Floresville.
 
 **Price:** `components/landHome/PackagePrice.tsx` uses the homes' cash/payment
 switch (same `<html data-price-mode>`, same localStorage key, same two-line
@@ -1458,8 +1486,12 @@ H1, no image/price markup; 13d no new FAQ question repeats any other on the
 site (schema, visible FAQs and stored city copy; similarity < 0.80); 13e none
 of the unknown or banned terms on the new pages; 13f every package payment
 has est., the (i) button, `data-disclosure="package"` and the package
-footnote; 13g text-only placeholders and no images; plus the cash-price
-claims check on the new pages.
+footnote; 13g photos use only the approved `/land-home/` image(s) from
+`lib/packages.ts` (≤800KB), no image file/alt/markup names a home or
+manufacturer, no "coming soon", no og:image; 13i hub order (inventory before
+the definition, comparison last), hub title/meta/H1 without "Floresville",
+ItemList without image, no package on /browse; plus the cash-price claims
+check on the new pages.
 
 ## Fonts (`tailwind.config.ts`)
 

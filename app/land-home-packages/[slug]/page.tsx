@@ -5,7 +5,7 @@ import PriceModeToggle from '@/components/PriceModeToggle'
 import PaymentFootnote from '@/components/PaymentFootnote'
 import PackagePrice from '@/components/landHome/PackagePrice'
 import PackageCtas from '@/components/landHome/PackageCtas'
-import PhotosComingSoon from '@/components/landHome/PhotosComingSoon'
+import Image from 'next/image'
 import TrackedLink from '@/components/landHome/TrackedLink'
 import { PACKAGE_PAYMENT_DISCLOSURE } from '@/lib/disclaimers'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
@@ -121,14 +121,29 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
         </div>
       </nav>
 
-      <section style={{ background: 'var(--color-canvas)', padding: '24px 0 40px' }}>
+      <section style={{ background: 'var(--color-canvas)', padding: '16px 0 40px' }}>
         <div className="bmh-container">
+          {/* Hero photo. While it's a stand-in (image.example), the caption says so. */}
+          <figure style={{ margin: 0 }}>
+            <div className="bmh-lh-hero">
+              <Image
+                src={p.image.src}
+                alt={p.image.alt}
+                fill
+                priority
+                sizes="(max-width: 1240px) 100vw, 1200px"
+              />
+            </div>
+            {p.image.example && (
+              <figcaption className="bmh-lh-hero-caption">
+                Example 4-bed, 2-bath home shown. You can choose your own home.
+              </figcaption>
+            )}
+          </figure>
+          <div className="bmh-spacer-md" />
           <div className="bmh-lh-detail">
             <div>
-              <PhotosComingSoon />
-            </div>
-            <div>
-              <span className="bmh-eyebrow">Floresville, Texas · Land-Home Package</span>
+              <span className="bmh-eyebrow">{p.locationLabel} · Land-Home Package</span>
               <h1 className="bmh-city-h1 bmh-lh-h1">{packageName(p)}</h1>
               <p className="bmh-lead bmh-explainer-lead">{INTRO[p.acres]}</p>
 
@@ -140,7 +155,8 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
                 <div><dt>Home</dt><dd>{S.wideType}</dd></div>
                 <div><dt>Sold</dt><dd>Turnkey, with all utilities</dd></div>
               </dl>
-
+            </div>
+            <div>
               <div className="bmh-lh-price">
                 <PriceModeToggle placement="land-home" />
                 <div className="bmh-spacer-sm" />

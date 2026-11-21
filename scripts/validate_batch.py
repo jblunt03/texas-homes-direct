@@ -1573,7 +1573,8 @@ def step_land_home_payments():
     if "NEEDS LENDER/COMPLIANCE APPROVAL" not in src:
         problems.append("  PACKAGE_PAYMENT_DISCLOSURE isn't marked [NEEDS LENDER/COMPLIANCE APPROVAL]")
     home_only = ["The estimate includes insurance.", "Site work your land requires"]
-    expected = {LAND_HOME_FLORESVILLE: 3, LAND_HOME_HUB: 0}
+    n_pkgs = len(land_home_package_paths())
+    expected = {LAND_HOME_FLORESVILLE: n_pkgs, LAND_HOME_HUB: n_pkgs}
     total = 0
     for path in land_home_paths():
         status, html = fetch_status(path)
@@ -1609,34 +1610,117 @@ def step_land_home_payments():
     return report("13f. Package payments: est. + (i) + footnote", ok, detail)
 
 
-# 13g — the photo placeholder is text only; no image anywhere on the new pages.
-def step_land_home_placeholders():
+# 13g — photos on the new pages: only the approved image path(s) from
+# lib/packages.ts (today the one example image under /land-home/); no
+# filename, alt text or markup that names a home or manufacturer; no
+# "coming soon" text; no og:image.
+def approved_package_images():
+    src = (REPO_ROOT / "lib" / "packages.ts").read_text()
+    return set(re.findall(r"src: '(/land-home/[^']+)'", src))
+
+
+def home_and_maker_names():
+    """Names that must never appear in land-home image markup: each home's
+    title word ("The Austin" -> "austin"), its photo folder's first word
+    (e.g. "jasper"), and every manufacturer in lib/sampleListings.ts."""
+    src = (REPO_ROOT / "lib" / "sampleListings.ts").read_text()
+    names = set()
+    for t in re.findall(r"\n    title: '([^']+)'", src):
+        names.add(re.sub(r"^the\s+", "", t.lower()).strip())
+    for m in re.findall(r"\n    manufacturer: '([^']+)'", src):
+        names.add(m.lower().strip())
+    for folder in re.findall(r"'/homes/([a-z0-9-]+)/", src):
+        names.add(folder.split("-")[0])
+    names.update({"cavco", "fleetwood", "palm harbor", "clayton", "champion", "jasper", "marathon"})
+    return {n for n in names if len(n) >= 4}
+
+
+def step_land_home_images():
     problems = []
-    css = (REPO_ROOT / "app" / "globals.css").read_text()
-    for rule in re.findall(r"\.bmh-photos-soon[^{]*\{([^}]*)\}", css):
-        if re.search(r"url\(|gradient|image", rule, re.I):
-            problems.append(f"  app/globals.css: .bmh-photos-soon uses an image/gradient: {rule.strip()[:80]!r}")
-    expected = {LAND_HOME_FLORESVILLE: 3, LAND_HOME_HUB: 0}
+    approved = approved_package_images()
+    names = home_and_maker_names()
+    for img in approved:
+        f = REPO_ROOT / "public" / img.lstrip("/")
+        if not f.exists():
+            problems.append(f"  {img}: approved image file is missing")
+        elif f.stat().st_size > 800 * 1024:
+            problems.append(f"  {img}: {f.stat().st_size // 1024}KB (max 800KB)")
+    if not approved:
+        problems.append("  lib/packages.ts has no approved /land-home/ image")
     for path in land_home_paths():
         status, html = fetch_status(path)
         if status != 200:
             problems.append(f"  {path}: HTTP {status}")
             continue
         main = main_content(html)
-        if re.search(r"<img\b|<picture\b|<video\b|background-image|url\(", main, re.I):
-            problems.append(f"  {path}: image markup in the page content")
-        holders = re.findall(r'<div class="bmh-photos-soon[^"]*" data-photos-placeholder="">(.*?)</div>', main, re.S)
-        want = expected.get(path, 1)
-        if len(holders) != want:
-            problems.append(f"  {path}: {len(holders)} photo placeholders, expected {want}")
-        for h in holders:
-            if "Photos coming soon" not in h or re.search(r"<svg|<img|url\(", h):
-                problems.append(f"  {path}: placeholder isn't text-only 'Photos coming soon'")
-            if re.search(r"\b(19|20)\d\d\b|january|february|march|april|may|june|july|august|september|october|november|december|\bweeks?\b|\bsoon as\b", re.sub(r"<[^>]+>", " ", h), re.I):
-                problems.append(f"  {path}: placeholder promises a date")
+        tags = re.findall(r"<(?:img|source)\b[^>]*>", main, re.I)
+        if path != LAND_HOME_HUB and path != LAND_HOME_FLORESVILLE and not tags:
+            problems.append(f"  {path}: no photo on the package page")
+        for tag in tags:
+            for attr in ("src", "srcset", "srcSet"):
+                for val in re.findall(rf'\b{attr}="([^"]*)"', tag):
+                    for url in re.split(r",\s*", val):
+                        u = url.split(" ")[0]
+                        u = re.sub(r"^/_next/image\?url=([^&]+).*$", lambda m: urllib.request.unquote(m.group(1)), u)
+                        if u and u not in approved:
+                            problems.append(f"  {path}: image {u!r} isn't an approved land-home image")
+            low = tag.lower()
+            for n in names:
+                if re.search(rf"\b{re.escape(n)}\b", low):
+                    problems.append(f"  {path}: image markup names {n!r}: {tag[:120]}")
+        if re.search(r"<video\b|background-image", main, re.I):
+            problems.append(f"  {path}: video or background image in the page content")
+        if re.search(r"coming\s+soon", visible_main_text(html) + main, re.I):
+            problems.append(f"  {path}: 'coming soon' text")
+        if re.search(r'property="og:image"|name="twitter:image"', html):
+            problems.append(f"  {path}: has an og:image/twitter:image (the photo is a stand-in)")
     ok = not problems
-    detail = problems[:40] or [f"{len(land_home_paths())} pages: text-only 'Photos coming soon' placeholders (3 cards + 1 per package page), no <img>/<picture>/<video>/background image, CSS has no image or gradient."]
-    return report("13g. No image-based placeholder", ok, detail)
+    detail = problems[:40] or [f"{len(land_home_paths())} pages: photos use only {sorted(approved)} (≤800KB); no image file, alt or markup names a home or manufacturer ({len(names)} names checked); no 'coming soon'; no og:image."]
+    return report("13g. Land-Home photos: approved image only, no names", ok, detail)
+
+
+# 13i — hub layout: inventory before the definition, comparison last; hub
+# title/meta/H1 statewide; packages never on /browse.
+def step_land_home_hub_order():
+    problems = []
+    status, html = fetch_status(LAND_HOME_HUB)
+    main = main_content(html)
+    pos = {k: main.find(f'data-section="{k}"') for k in ("intro", "strip", "inventory", "definition", "comparison")}
+    for k, v in pos.items():
+        if v < 0:
+            problems.append(f"  {LAND_HOME_HUB}: section {k!r} not found")
+    if all(v >= 0 for v in pos.values()):
+        if not (pos["intro"] < pos["strip"] < pos["inventory"] < pos["definition"] < pos["comparison"]):
+            problems.append(f"  {LAND_HOME_HUB}: order is wrong (intro < strip < inventory < definition < comparison): {pos}")
+        inv = main[pos["inventory"]:pos["definition"]]
+        if inv.count("data-package-card") != len(land_home_package_paths()):
+            problems.append(f"  {LAND_HOME_HUB}: inventory section has {inv.count('data-package-card')} package cards, expected {len(land_home_package_paths())}")
+        if "bmh-explainer-lead" not in main[pos["definition"]:pos["comparison"]]:
+            problems.append(f"  {LAND_HOME_HUB}: the definition isn't between the inventory and the comparison")
+        if re.search(r"<section\b", main[pos["comparison"]:]):
+            problems.append(f"  {LAND_HOME_HUB}: another section follows the comparison (it must be last)")
+        strip = main[pos["strip"]:pos["inventory"]]
+        for label in ("Turnkey", "All utilities", "Choose your own home"):
+            if label not in strip:
+                problems.append(f"  {LAND_HOME_HUB}: strip is missing {label!r}")
+        if re.search(r"<svg(?![^>]*aria-hidden=\"true\")", strip):
+            problems.append(f"  {LAND_HOME_HUB}: strip icon without aria-hidden")
+    head = html.split("<body", 1)[0]
+    title = re.search(r"<title>(.*?)</title>", head, re.S)
+    desc = re.search(r'<meta name="description" content="([^"]*)"', head)
+    h1 = re.search(r"<h1\b.*?</h1>", main, re.S)
+    for label, val in (("title", title and title.group(1)), ("meta description", desc and desc.group(1)), ("H1", h1 and h1.group(0))):
+        if val and "floresville" in val.lower():
+            problems.append(f"  {LAND_HOME_HUB}: {label} contains 'Floresville'")
+    for b in main_jsonld(html):
+        if b.get("@type") == "ItemList" and "image" in json.dumps(b):
+            problems.append(f"  {LAND_HOME_HUB}: ItemList has an image")
+    status, browse = fetch_status("/browse")
+    if "data-package-card" in browse or "Land-Home Package" in main_content(browse):
+        problems.append("  /browse: shows a land-home package")
+    ok = not problems
+    detail = problems[:40] or ["Hub: intro → strip → Current Inventory (all package cards) → definition → … → comparison last; title, meta and H1 have no 'Floresville'; ItemList has no image; no package on /browse."]
+    return report("13i. Land-Home hub order and statewide head", ok, detail)
 
 
 # 13h — flag on: tab in header (desktop + mobile) and footer, pages in the
@@ -1683,7 +1767,8 @@ def run_land_home_steps():
         ok &= step_land_home_faq_unique(sitemap)
         ok &= step_land_home_unknowns()
         ok &= step_land_home_payments()
-        ok &= step_land_home_placeholders()
+        ok &= step_land_home_images()
+        ok &= step_land_home_hub_order()
         ok &= step_price_claims_on_pages(land_home_paths())
     print(f"lib/features.json restored (landHomePackages={'true' if committed_on else 'false'}).")
     return ok

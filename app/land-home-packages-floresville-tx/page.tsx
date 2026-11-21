@@ -3,21 +3,19 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import FaqAccordion from '@/components/FaqAccordion'
 import PriceModeToggle from '@/components/PriceModeToggle'
-import PaymentFootnote from '@/components/PaymentFootnote'
-import PackageCard from '@/components/landHome/PackageCard'
+import PackageGrid from '@/components/landHome/PackageGrid'
 import PackageCtas from '@/components/landHome/PackageCtas'
-import { PACKAGE_PAYMENT_DISCLOSURE } from '@/lib/disclaimers'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
 import {
   FLORESVILLE_PACKAGES_PATH,
   LAND_HOME_DATE_MODIFIED,
   LAND_HOME_HUB_PATH,
   LAND_HOME_KEYWORDS,
-  PACKAGES,
   PACKAGE_HOME_SPECS,
   SITE_URL,
   packageName,
   packagePath,
+  packagesIn,
 } from '@/lib/packages'
 
 // The Floresville land-home packages (CLAUDE.md "Land-Home Packages"). The
@@ -46,6 +44,7 @@ export const metadata: Metadata = {
 }
 
 const S = PACKAGE_HOME_SPECS
+const FLORESVILLE = packagesIn('Floresville')
 
 const FAQ = [
   {
@@ -104,7 +103,7 @@ export default function FloresvillePackagesPage() {
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: 'Land-home packages in Floresville, Texas',
-    itemListElement: PACKAGES.map((p, i) => ({
+    itemListElement: FLORESVILLE.map((p, i) => ({
       '@type': 'ListItem',
       position: i + 1,
       name: packageName(p),
@@ -113,7 +112,7 @@ export default function FloresvillePackagesPage() {
   }
 
   return (
-    <>
+    <div className="bmh-wide-inventory">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
@@ -151,12 +150,7 @@ export default function FloresvillePackagesPage() {
             <PriceModeToggle placement="land-home" />
           </div>
           <div className="bmh-spacer-md" />
-          <div className="bmh-inv-grid">
-            {PACKAGES.map((p) => (
-              <PackageCard key={p.slug} pkg={p} />
-            ))}
-          </div>
-          <PaymentFootnote disclosure={PACKAGE_PAYMENT_DISCLOSURE} />
+          <PackageGrid packages={FLORESVILLE} />
         </div>
       </section>
 
@@ -172,7 +166,6 @@ export default function FloresvillePackagesPage() {
                 {S.sqft.toLocaleString('en-US')} square feet.
               </li>
               <li><strong>Your choice of home.</strong> The buyer has the option to choose their own home instead of the one shown.</li>
-              <li><strong>Photos coming soon.</strong> We&rsquo;ll add photos of each package as they&rsquo;re ready.</li>
             </ul>
           </div>
         </div>
@@ -212,6 +205,6 @@ export default function FloresvillePackagesPage() {
           <PackageCtas page="floresville" center />
         </div>
       </section>
-    </>
+    </div>
   )
 }
