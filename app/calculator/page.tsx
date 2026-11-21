@@ -29,10 +29,6 @@ const FAQ_ITEMS = [
     q: "What if I'm self-employed or don't have W-2 income?",
     a: "No problem. Several of the lenders we work with specialize in self-employed buyers — they'll look at tax returns, bank statements, and 1099 income. Mention it in the analysis and we'll route you to the right people.",
   },
-  {
-    q: 'Can I finance the land too?',
-    a: "Yes. A land-and-home package combines the lot purchase and the home into one loan with one payment. We can help you scope out land too if you haven't picked a piece yet.",
-  },
 ]
 
 export default function CalculatorPage() {
@@ -171,7 +167,7 @@ export default function CalculatorPage() {
             </p>
           </div>
 
-          <div className="bmh-feature-grid-3">
+          <div className="bmh-feature-grid-3 bmh-feature-grid-2up">
             {[
               {
                 badge: 'Most common',
@@ -186,13 +182,6 @@ export default function CalculatorPage() {
                 title: 'Land & lieu',
                 desc: 'Own land already? Use it as your down payment instead of cash. Your dirt = your down payment.',
                 terms: ['Up to 25-year terms', 'No min credit', 'Down payment from 0%'],
-              },
-              {
-                badge: 'Land-and-home',
-                badgeCls: '',
-                title: 'Conventional',
-                desc: "For buyers with stronger credit who want a traditional mortgage. We can roll land purchase into a single loan.",
-                terms: ['15–30 year terms', 'Min credit ~660', 'Down payment 10–20%'],
               },
             ].map((loan, i) => (
               <div key={i} className="bmh-card-canvas">

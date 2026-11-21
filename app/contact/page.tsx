@@ -6,7 +6,7 @@ import FaqAccordion from '@/components/FaqAccordion'
 export const metadata: Metadata = {
   title: 'Contact Us — Texas Homes Direct',
   description:
-    "Drop us a note, give us a call, or stop by the lot. We answer the phone ourselves. Serving all of Texas.",
+    "Drop us a note or give us a call. We answer the phone ourselves. Serving all of Texas.",
 }
 
 const FAQ_ITEMS = [
@@ -15,12 +15,8 @@ const FAQ_ITEMS = [
     a: 'Yes — every corner of the state. Our crews coordinate transport, blocking, leveling, tie-down, and skirting. The cash price covers the home and delivery and setup are quoted separately — or included in your estimated monthly payment if you finance.',
   },
   {
-    q: 'How long does it take from signing to move-in?',
-    a: 'For homes already on our lot: typically 2–4 weeks once financing and land prep are sorted. For a custom factory order: 4–6 weeks depending on the model and the manufacturer\'s queue.',
-  },
-  {
     q: 'Do I need to own land before I can buy?',
-    a: "No. We can finance the home alone, or as a land-and-home package. We can also help you scope out a piece of land before you commit if you'd like.",
+    a: "No. We can finance the home alone. We can also help you scope out a piece of land before you commit if you'd like.",
   },
   {
     q: 'What credit score do I need to qualify?',
@@ -145,7 +141,7 @@ export default function ContactPage() {
               </h2>
               <div className="bmh-spacer-md" />
               <p className="bmh-lead">
-                Quick questions about a listing, financing, or scheduling a visit — drop a line and
+                Quick questions about a listing or financing — drop a line and
                 we&rsquo;ll get back the same day, often within the hour.
               </p>
               <div className="bmh-spacer-lg" />

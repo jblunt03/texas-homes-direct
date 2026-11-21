@@ -11,7 +11,7 @@ export const revalidate = 3000
 
 export const metadata: Metadata = {
   title:
-    'Texas Homes Direct — Quality manufactured homes at the best prices in Texas',
+    'Texas Homes Direct — Quality manufactured homes across Texas',
   description:
     'The best prices on manufactured homes in Texas. Singlewides and doublewides — delivered and set up anywhere we serve. Family-owned & faith-based.',
 }

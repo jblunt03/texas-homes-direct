@@ -1143,3 +1143,5 @@ html[data-price-mode="payment"] .bmh-pm-pay-li { display: flex; }
   letter-spacing: 0.4px; text-transform: uppercase; white-space: nowrap;
   box-shadow: 0 0 0 1px rgba(28, 25, 23, 0.55), 0 1px 2px rgba(15, 23, 42, 0.25);
 }
+/* Two cards in a three-column feature grid (/calculator loan types): two equal columns, no empty third. */
+@media (min-width: 881px) { .bmh-feature-grid-2up { grid-template-columns: repeat(2, 1fr); } }

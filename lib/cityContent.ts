@@ -2142,26 +2142,26 @@ export const CITY_CONTENT: Record<string, CityContent> = {
     metaDescription:
       "Mobile homes for sale in Schulenburg, TX and Fayette County. HUD-certified manufactured homes with honest, no-pressure financing. Get a free quote today.",
     intro:
-      "Texas Homes Direct doesn't sell land, and we don't bundle land-and-home packages near Schulenburg — just homes, priced and financed on their own.",
+      "Whatever your land situation near Schulenburg — family property, a lot you already own, or one you're still deciding on — Texas Homes Direct starts there and builds a straightforward home purchase around it.",
     buyingHeading: 'Buying a Mobile Home in Fayette County',
     buying: [
-      "That's a deliberate line: a Fayette County buyer working with land they already have, or buying a lot on their own, gets the same straightforward home purchase either way.",
+      "That starting point keeps things clear: a Fayette County buyer working with land they already have, or a lot they're buying on their own, gets the same straightforward home purchase either way.",
       "Site-built construction costs add up fast around Fayette County — a HUD-code manufactured home gets you the same quality build for meaningfully less.",
     ],
     pricingExplainer: [
-      "Since we're not bundling land into the deal, a Schulenburg-area quote stays simple — everything itemized above covers the home itself, nothing else mixed in.",
+      "Whatever the land situation, a Schulenburg-area quote stays simple — everything itemized above covers the home itself, nothing else mixed in.",
       "A Fayette County lot's soil and access aren't things we can judge over the phone, so we hold off on a firm utility number until a contractor has actually stood on the property.",
     ],
     gettingStarted: [
       "The first thing we ask a Schulenburg-area buyer is what's happening with the land — already in the family, or a lot you've bought on your own — since that's the starting point for everything else.",
-      "One thing that won't come up: Texas Homes Direct doesn't sell land or bundle land-and-home packages near Schulenburg, so whichever situation applies, you're getting a straightforward home purchase, priced and financed on its own.",
+      "Once that's clear, the home side stays simple whichever situation applies: choose a floor plan, see every item spelled out, and work through financing with us.",
     ],
     localProof:
-      "We've worked with Schulenburg-area buyers at every stage of the land question — some already owned it, some had just closed on a lot, some were still weighing options. Either way, our part is the home, never the land.",
+      "We've worked with Schulenburg-area buyers at every stage of the land question — some already owned it, some had just closed on a lot, some were still weighing options. Either way, we started from where they were.",
     faq: [
       {
-        q: "Does Texas Homes Direct sell land along with the home?",
-        a: "No — we sell manufactured homes only. Whatever land situation you're working with, family property, your own lot, or one you're buying separately, we work with it.",
+        q: "Does my land situation change how buying a home works near Schulenburg?",
+        a: "Not on the home side. Family property, your own lot, or one you're buying separately — we start from your situation and walk through the home, its price, and financing with you.",
       },
       {
         q: "How do I find out if you deliver to my specific address near Schulenburg?",
