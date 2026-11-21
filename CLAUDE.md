@@ -1441,13 +1441,11 @@ header gets `.bmh-nav-lh`: the logo can't shrink, and between 961px and
 mobile_menu | footer} and `land_home_cta` {cta: quote | finance | phone |
 browse_homes | phone_choose_home, page}, via `sendGAEvent`.
 
-**Pre-existing land wording outside the section (reported 2026-11-21, left
-unchanged, allowlisted by exact text in step 13b):** `/contact` FAQ ("or as a
-land-and-home package"), `/calculator` FAQ and loan card ("Land-and-home"),
-Schulenburg's stored copy (says Texas Homes Direct doesn't sell land or
-bundle land-and-home packages — now contradicts the business), Fairfield's
-stored FAQ ("the land and home you choose"), and a blog post ("The home and
-land must be…"). Change them only on the owner's instruction.
+**Pre-existing land wording outside the section (allowlisted by exact text
+in step 13b, owner said leave them):** Fairfield's stored FAQ ("the land and
+home you choose") and a blog post ("The home and land must be…"). `/contact`,
+`/calculator` and Schulenburg had contradicting land wording and were fixed
+on 2026-11-21 (d10b170); they're no longer allowlisted.
 
 **Validator (steps 13a–13h, run inside `--all`):** the run checks the
 committed flag-off state, then switches the flag on (restoring

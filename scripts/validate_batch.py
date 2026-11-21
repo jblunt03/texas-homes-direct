@@ -1352,15 +1352,8 @@ def step_land_home_flag_off():
 # and left unchanged on purpose; anything else fails.
 LAND_SALE_RE = re.compile(r"land[- ]home|land[- ]and[- ]home|home[- ]and[- ]land|\bland packages?\b|home and its lot|\blot sold together", re.I)
 LAND_WORDING_KNOWN = {
-    "/contact": ["We can finance the home alone, or as a land-and-home package"],
-    "/calculator": [
-        "A land-and-home package combines the lot purchase and the home into one loan with one payment",
-        "Land-and-home",
-    ],
-    "/mobile-homes-schulenburg-tx": [
-        "doesn't sell land, and we don't bundle land-and-home packages near Schulenburg",
-        "doesn't sell land or bundle land-and-home packages near Schulenburg",
-    ],
+    # /contact, /calculator and Schulenburg were fixed on 2026-11-21 (d10b170);
+    # they must not regain land-home wording.
     "/mobile-homes-fairfield-tx": ["the land and home you choose fit the same budget"],
     "/blog/how-to-finance-mobile-home-on-family-land-texas": ["The home and land must be in an acceptable area per lender guidelines"],
 }
@@ -1385,7 +1378,7 @@ def step_land_wording_scope(sitemap):
             ctx = text[max(0, m.start() - 70): m.end() + 70].replace("\n", " ")
             problems.append(f"  {path}: {m.group(0)!r} in …{ctx.strip()}…")
     ok = not problems
-    detail = problems[:40] or [f"{checked} other sitemap pages: no land-home wording outside the new routes and the nav/footer label (5 pre-existing pages allowlisted by exact text and reported to the owner)."]
+    detail = problems[:40] or [f"{checked} other sitemap pages: no land-home wording outside the new routes and the nav/footer label (2 pre-existing pages allowlisted by exact text: Fairfield and one blog post)."]
     return report("13b. Land-home wording only in the new section", ok, detail)
 
 
