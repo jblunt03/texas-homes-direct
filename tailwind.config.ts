@@ -44,9 +44,15 @@ const config: Config = {
           700: '#7D0000',
         },
       },
+      // Both point at the design system's --font-sans stack (app/globals.css),
+      // the one every other sans-serif element on the site uses. They used to
+      // read next/font's --font-inter / --font-montserrat, but in Vercel builds
+      // the <html> class and the CSS get different next/font hashes, so those
+      // variables were never defined, the whole font-family declaration was
+      // invalid, and body text fell back to the browser default serif.
       fontFamily: {
-        sans: ['var(--font-inter)', 'system-ui', 'sans-serif'],
-        display: ['var(--font-montserrat)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-sans)'],
+        display: ['var(--font-sans)'],
       },
       backgroundImage: {
         'navy-gradient':

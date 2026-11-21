@@ -1461,6 +1461,19 @@ has est., the (i) button, `data-disclosure="package"` and the package
 footnote; 13g text-only placeholders and no images; plus the cash-price
 claims check on the new pages.
 
+## Fonts (`tailwind.config.ts`)
+
+Tailwind's `font-sans` (on `<body>`) and `font-display` use the design
+system's `--font-sans` stack from `app/globals.css`, like every other
+sans-serif element. Until 2026-11-21 they read next/font's `--font-inter` /
+`--font-montserrat`, but Vercel builds give the `<html>` class and the CSS
+different next/font hashes, so those variables were never defined and text
+without its own font fell back to Times. Known and not yet fixed: no web font
+actually loads on the live site — the Google Fonts `@import` in
+`globals.css` lands after other rules in the built CSS, so browsers ignore
+it, and the next/font files are preloaded but unused. Serif text renders in
+the `--font-serif` fallbacks and sans text in the system font.
+
 ## Analytics
 
 Google Analytics 4 (`G-TEY2WEP5QP`) is installed **once**, in
