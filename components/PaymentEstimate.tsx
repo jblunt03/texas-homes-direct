@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState, type ReactNode } from 'react'
 import { createPortal } from 'react-dom'
-import { PAYMENT_DISCLOSURE } from '@/lib/disclaimers'
+import { PAYMENT_DISCLOSURE, type PaymentDisclosure } from '@/lib/disclaimers'
 
 /**
  * A monthly payment figure with its required "est." label and info button:
@@ -21,10 +21,13 @@ export default function PaymentEstimate({
   amount,
   children,
   className,
+  disclosure = PAYMENT_DISCLOSURE,
 }: {
   amount: number
   children?: ReactNode
   className?: string
+  /** Land-Home Packages pass PACKAGE_PAYMENT_DISCLOSURE; homes use the default. */
+  disclosure?: PaymentDisclosure
 }) {
   const [open, setOpen] = useState(false)
   const buttonRef = useRef<HTMLButtonElement>(null)
@@ -60,7 +63,9 @@ export default function PaymentEstimate({
   return (
     <span className={`bmh-pay${className ? ` ${className}` : ''}`} data-pay="">
       <span className="bmh-pay-amount">{children ?? `$${amount.toLocaleString()}/mo`}</span>{' '}
-      <span className="bmh-pay-est">{PAYMENT_DISCLOSURE.label}</span>
+      <span className="bmh-pay-est" data-disclosure={'kind' in disclosure ? disclosure.kind : undefined}>
+        {disclosure.label}
+      </span>
       <button
         ref={buttonRef}
         type="button"
@@ -97,9 +102,9 @@ export default function PaymentEstimate({
               className="bmh-pay-dialog"
             >
               <h2 id={titleId} className="bmh-pay-dialog-title">
-                {PAYMENT_DISCLOSURE.title}
+                {disclosure.title}
               </h2>
-              <p className="bmh-pay-dialog-body">{PAYMENT_DISCLOSURE.body}</p>
+              <p className="bmh-pay-dialog-body">{disclosure.body}</p>
               <button ref={closeRef} type="button" className="bmh-btn bmh-btn-secondary" onClick={close}>
                 Close
               </button>

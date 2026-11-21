@@ -4,10 +4,15 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 import { isArchivedPath } from '@/lib/archived'
+import { LAND_HOME_PACKAGES } from '@/lib/features'
+import { LAND_HOME_HUB_PATH } from '@/lib/packages'
+import { trackLandHome } from '@/components/landHome/TrackedLink'
 
 const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/browse', label: 'Inventory' },
+  // Behind lib/features.json "landHomePackages" (CLAUDE.md "Land-Home Packages").
+  ...(LAND_HOME_PACKAGES ? [{ href: LAND_HOME_HUB_PATH, label: 'Land-Home Packages' }] : []),
   { href: '/cities', label: 'Cities We Serve' },
   { href: '/calculator', label: 'Free Pre-Approval' },
   { href: '/testimonials', label: 'Reviews' },
@@ -19,7 +24,8 @@ export default function Navbar() {
   const pathname = usePathname()
 
   return (
-    <header className="bmh-nav">
+    // bmh-nav-lh: the extra tab needs tighter spacing at 961–1180px (app/globals.css).
+    <header className={LAND_HOME_PACKAGES ? 'bmh-nav bmh-nav-lh' : 'bmh-nav'}>
       <div className="bmh-container bmh-nav-inner">
         {/* Brand */}
         <Link href="/" className="bmh-brand" aria-label="Texas Homes Direct home">
@@ -39,7 +45,8 @@ export default function Navbar() {
             <Link
               key={link.href}
               href={link.href}
-              className={pathname === link.href ? 'bmh-is-active' : ''}
+              className={pathname === link.href || (link.href === LAND_HOME_HUB_PATH && pathname.startsWith(LAND_HOME_HUB_PATH)) ? 'bmh-is-active' : ''}
+              onClick={link.href === LAND_HOME_HUB_PATH ? () => trackLandHome('land_home_nav_click', { placement: 'header' }) : undefined}
             >
               {link.label}
             </Link>
@@ -102,7 +109,10 @@ export default function Navbar() {
           <Link
             key={link.href}
             href={link.href}
-            onClick={() => setMenuOpen(false)}
+            onClick={() => {
+              if (link.href === LAND_HOME_HUB_PATH) trackLandHome('land_home_nav_click', { placement: 'mobile_menu' })
+              setMenuOpen(false)
+            }}
           >
             {link.label}
           </Link>

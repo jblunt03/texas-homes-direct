@@ -1,5 +1,5 @@
 import type { CSSProperties } from 'react'
-import { PAYMENT_DISCLOSURE } from '@/lib/disclaimers'
+import { PAYMENT_DISCLOSURE, type PaymentDisclosure } from '@/lib/disclaimers'
 
 /**
  * The full estimated-payment disclosure as visible text, so it's never only
@@ -10,10 +10,17 @@ import { PAYMENT_DISCLOSURE } from '@/lib/disclaimers'
  * by CSS only while <html data-price-mode="payment">, i.e. only when a
  * payment is actually on screen.
  */
-export default function PaymentFootnote({ style }: { style?: CSSProperties }) {
+export default function PaymentFootnote({
+  style,
+  disclosure = PAYMENT_DISCLOSURE,
+}: {
+  style?: CSSProperties
+  /** Land-Home Packages pass PACKAGE_PAYMENT_DISCLOSURE; homes use the default. */
+  disclosure?: PaymentDisclosure
+}) {
   return (
     <p className="bmh-pay-footnote bmh-pm-pay-block" data-pm="pay" style={style}>
-      <strong>{PAYMENT_DISCLOSURE.title}:</strong> {PAYMENT_DISCLOSURE.body}
+      <strong>{disclosure.title}:</strong> {disclosure.body}
     </p>
   )
 }

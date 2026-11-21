@@ -1,5 +1,8 @@
 import Link from 'next/link'
 import Image from 'next/image'
+import { LAND_HOME_PACKAGES } from '@/lib/features'
+import { LAND_HOME_HUB_PATH } from '@/lib/packages'
+import TrackedLink from '@/components/landHome/TrackedLink'
 
 export default function Footer() {
   const year = new Date().getFullYear()
@@ -48,6 +51,11 @@ export default function Footer() {
             <Link href="/browse?type=single">Singlewides</Link>
             <Link href="/browse?type=double">Doublewides</Link>
             <Link href="/tiny-homes">Tiny homes</Link>
+            {LAND_HOME_PACKAGES && (
+              <TrackedLink href={LAND_HOME_HUB_PATH} event="land_home_nav_click" params={{ placement: 'footer' }}>
+                Land-Home Packages
+              </TrackedLink>
+            )}
           </div>
 
           {/* Buy */}

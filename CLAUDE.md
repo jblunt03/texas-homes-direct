@@ -44,10 +44,13 @@ these is a launch blocker, not a style note.
   "we don't have a location." Just don't address the topic — frame
   everything around delivery, contact, and financing instead.
 - **Always "Texas Homes Direct" — never the abbreviation "THD".**
-- **No land sales or land-home packages — homes only.** It's fine to
+- **City pages, home pages and stored city copy stay homes-only: no land
+  sales or land-home packages there.** (Scoped 2026-11-21: Texas Homes Direct
+  now sells land-home packages, but ONLY the flagged Land-Home Packages
+  section may talk about them — see "Land-Home Packages" below.) It's fine to
   describe a buyer's own land options (family land / land they already own
   / a lot they're purchasing separately), since that's about where the
-  buyer places a home, not something Texas Homes Direct sells.
+  buyer places a home.
 - **No Spanish-language content** in city-page copy (this is separate from
   the `/api/chat` advisor, which does support Spanish per its own system
   prompt — don't conflate the two).
@@ -1100,7 +1103,7 @@ a flag is true:
 - **Nothing deleted:** the page (`app/commercial/page.tsx`), its components and
   its content stay in the repo, unchanged.
 - **Validator:** `validate_batch.py` step 11c fails if an archived route still
-  appears in the nav, mobile menu, footer, sitemap or `public/llms.txt`, or
+  appears in the nav, mobile menu, footer, sitemap or `/llms.txt`, or
   doesn't answer with a 307 to `/`.
 
 **To restore Commercial:** set `"commercial": false` in `lib/archived.json`,
@@ -1353,6 +1356,110 @@ relying on `listing_id` for a new video.
   - a video chip without its aria-label
   - a chip count that doesn't match the number of videos
   - VideoObject schema on `/browse`
+
+## Land-Home Packages (`lib/packages.ts`, flag in `lib/features.json`)
+
+**What:** a Land-Home Packages category (owner, 2026-11-21). Texas Homes
+Direct sells land-home packages across Texas; current inventory is three
+Floresville, Texas packages, one per lot. This replaces the old "homes only,
+no land" rule **for this section only** — every other page stays homes-only.
+
+**Flag:** `lib/features.json` `"landHomePackages"` (read via
+`lib/features.ts`). While false: no "Land-Home Packages" tab in the header
+(desktop + mobile menu) or the footer's Shop column, every route below 404s
+(`notFound()`), and nothing is in the sitemap or `/llms.txt`. Keep it false
+in commits until the owner says "ship it"; turn it on only locally for review.
+
+**Routes:** `/land-home-packages` (Texas pillar/hub),
+`/land-home-packages-floresville-tx` (the three packages as cards), and
+`/land-home-packages/<slug>` for each package. Slugs are frozen once live.
+
+**Data:** `lib/packages.ts` — acreage, cash price and est. monthly payment
+per package, in the owner's order. Packages are NOT listings: not in
+`lib/sampleListings.ts`, `/browse` or the homes' filters.
+
+**Fixed-values rule (the home shown):** `PACKAGE_HOME_SPECS` (4 bed, 2 bath,
+1,493 sq ft, Double Wide) were COPIED as literals from The Austin (BMH-93) on
+2026-11-21. Never import them from the listing, so edits to The Austin can't
+change the packages. Never use The Austin's name, price, payment, photos,
+tour, features, description, year or manufacturer, and never name or link
+to it on a package page.
+
+**Unknown-facts rule:** use only the owner's facts (statewide land-home
+sales; three Floresville packages; turnkey; all utilities; a 4-bed, 2-bath
+home shown that the buyer can swap for their own; acreage, price, payment).
+Never state or infer: builder, model, manufacturer or HUD status; what
+"turnkey" or "all utilities" covers beyond those words; what the monthly
+estimate includes or assumes (term, rate, down payment, taxes, insurance,
+delivery, setup); what changes if the buyer picks another home; which homes
+fit which lot; addresses, dimensions or lot features; financing types;
+delivery or move-in timing; county facts. No "includes/excludes delivery and
+setup", no "what's included" list, no utility bid after a site visit (except
+the hub's owner-specified comparison row and its "how is this different"
+FAQ, which describe buying a home alone). On these pages say "home" and
+"double wide" — never "mobile home", "manufactured home" or "HUD". Floresville
+is only where the properties are, never an office or showroom. No prices or
+payments in any FAQ answer, title, meta description, schema or `llms.txt`.
+
+**Placeholder rule:** no photos yet. `components/landHome/PhotosComingSoon.tsx`
+is text only ("Photos coming soon"; no image file, SVG, gradient or
+background image) on every card and package page. Never use another home's
+photos, never promise a date. Schema has no image fields and pages have no
+og:image (the site has no default og:image). When real photos exist, revisit
+the schema rule (Product/Offer/price/address/geo are banned until then).
+
+**Price:** `components/landHome/PackagePrice.tsx` uses the homes' cash/payment
+switch (same `<html data-price-mode>`, same localStorage key, same two-line
+box — no layout shift). Cash (default): "Cash price $249,000". Payment:
+"$2,200/mo est." + (i) + footnote, using `PACKAGE_PAYMENT_DISCLOSURE` in
+`lib/disclaimers.ts` — the homes' base wording WITHOUT the insurance sentence
+and WITHOUT any delivery, setup or site-work statement, marked
+[NEEDS LENDER/COMPLIANCE APPROVAL]. `PaymentEstimate` / `PaymentFootnote`
+take an optional `disclosure` prop; the homes use the default, unchanged.
+
+**SEO/AEO:** hub and Floresville page each have an answer-first 40–60-word
+definition, FAQs (answer-first, 40–60 words, in the HTML), BreadcrumbList,
+FAQPage, WebPage (speakable + dateModified) and an ItemList of the packages
+(name + url only). Package pages: BreadcrumbList + WebPage, short copy, a
+unique title and first sentence by acreage; the shared detail lives on the
+Floresville page. Pages override the layout's keywords and twitter text
+(those say "manufactured homes"). Internal links: hub ↔ Floresville ↔
+packages, plus `/browse`, `/cities`, `/mobile-homes-floresville-tx`. Never
+link to `/how-pricing-works` or `/whats-included-in-setup` (they describe
+buying a home alone).
+
+**`/llms.txt`** is now served by `app/llms.txt/route.ts` from `lib/llmsTxt.ts`
+(moved from `public/llms.txt` so the Key Offerings line can follow the flag;
+with the flag off the output is byte-for-byte the old file). Edit
+`lib/llmsTxt.ts`, not `public/`.
+
+**Nav:** "Land-Home Packages" sits after Inventory. With the tab on, the
+header gets `.bmh-nav-lh`: the logo can't shrink, and between 961px and
+1180px the gaps tighten (link gap 18px) so all six tabs stay on one line.
+
+**Analytics:** GA4 events `land_home_nav_click` {placement: header |
+mobile_menu | footer} and `land_home_cta` {cta: quote | finance | phone |
+browse_homes | phone_choose_home, page}, via `sendGAEvent`.
+
+**Pre-existing land wording outside the section (reported 2026-11-21, left
+unchanged, allowlisted by exact text in step 13b):** `/contact` FAQ ("or as a
+land-and-home package"), `/calculator` FAQ and loan card ("Land-and-home"),
+Schulenburg's stored copy (says Texas Homes Direct doesn't sell land or
+bundle land-and-home packages — now contradicts the business), Fairfield's
+stored FAQ ("the land and home you choose"), and a blog post ("The home and
+land must be…"). Change them only on the owner's instruction.
+
+**Validator (steps 13a–13h, run inside `--all`):** the run checks the
+committed flag-off state, then switches the flag on (restoring
+`lib/features.json` exactly afterwards) and checks: 13a flag off is clean;
+13h tab in header/mobile/footer, pages in sitemap and llms.txt; 13b land
+wording only in the new section; 13c schema, canonicals, og:url, titles, one
+H1, no image/price markup; 13d no new FAQ question repeats any other on the
+site (schema, visible FAQs and stored city copy; similarity < 0.80); 13e none
+of the unknown or banned terms on the new pages; 13f every package payment
+has est., the (i) button, `data-disclosure="package"` and the package
+footnote; 13g text-only placeholders and no images; plus the cash-price
+claims check on the new pages.
 
 ## Analytics
 

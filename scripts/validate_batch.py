@@ -641,9 +641,9 @@ def step_cash_price_rendered(city_slugs):
         for ld in re.findall(r'<script type="application/ld\+json">(.*?)</script>', html, re.S):
             if re.search(r'"(offers|price|priceCurrency|discount)"', ld):
                 problems.append(f"  {path}: price/offers/discount in JSON-LD")
-    llms = (REPO_ROOT / "public" / "llms.txt").read_text()
+    llms = llms_text()
     if re.search(r"\$\d", llms):
-        problems.append("  public/llms.txt: contains a price or payment")
+        problems.append("  /llms.txt: contains a price or payment")
     if cards == 0:
         problems.append("  Found zero price blocks on any page — the check's patterns no longer match the markup.")
     ok = not problems
@@ -789,7 +789,7 @@ def step_archived_routes():
         return report("11c. Archived sections hidden", True, ["No section is archived."])
     status, home = fetch("/")
     _, sitemap = fetch("/sitemap.xml")
-    llms = (REPO_ROOT / "public" / "llms.txt").read_text()
+    llms = llms_text()
     header = "".join(re.findall(r"<header.*?</header>", home, re.S))
     footer = "".join(re.findall(r"<footer.*?</footer>", home, re.S))
     # The mobile menu renders outside <header> on some layouts; check it too.
@@ -806,7 +806,7 @@ def step_archived_routes():
         if re.search(rf"<loc>[^<]*{re.escape(route)}(?:/[^<]*)?</loc>", sitemap):
             problems.append(f"  {route} is archived but listed in /sitemap.xml")
         if re.search(rf"{re.escape(route)}\b", llms):
-            problems.append(f"  {route} is archived but mentioned in public/llms.txt")
+            problems.append(f"  {route} is archived but mentioned in /llms.txt")
         rstatus, location = fetch_no_redirect(route)
         if rstatus != 307 or (location or "").rstrip("/") not in ("", "http://localhost:%d" % PORT):
             problems.append(f"  {route} should 307-redirect to / while archived, got {rstatus} -> {location!r}")
@@ -1088,9 +1088,9 @@ def step_youtube_archived(city_slugs):
         for label, rx in VIDEO_TRACE_RES:
             if rx.search(html):
                 problems.append(f"  {path}: contains {label} while videos are archived")
-    llms = (REPO_ROOT / "public" / "llms.txt").read_text()
+    llms = llms_text()
     if re.search(r"youtube|youtu\.be", llms, re.I):
-        problems.append("  public/llms.txt: mentions YouTube while videos are archived")
+        problems.append("  /llms.txt: mentions YouTube while videos are archived")
     ok = not problems
     detail = problems[:40] or [f"Videos archived: no Video chip, YouTube iframe, VideoObject, embedUrl or YouTube URL on {len(pages)} pages or in llms.txt."]
     return report("11f. Listing videos archived (lib/archived.json)", ok, detail)
@@ -1220,14 +1220,490 @@ def step_price_claims_rendered():
             if sentence not in seen:
                 seen.add(sentence)
                 problems.append(f"  {path}: {term!r} in {sentence!r}")
-    llms = (REPO_ROOT / "public" / "llms.txt").read_text()
+    llms = llms_text()
     for term, sentence in price_claim_problems(llms):
-        problems.append(f"  public/llms.txt: {term!r} in {sentence!r}")
+        problems.append(f"  /llms.txt: {term!r} in {sentence!r}")
     ok = not problems and bool(paths)
     detail = problems[:60] + ([f"  ... {len(problems) - 60} more"] if len(problems) > 60 else [])
     if ok:
         detail = [f"{len(paths)} sitemap pages + llms.txt: no out-the-door / all-in / delivered-and-set wording and no 'delivery or setup included in the price' outside payment-mode text."]
     return report("11j. Cash-price claims (rendered pages)", ok, detail)
+
+
+
+# ─── Land-Home Packages (CLAUDE.md "Land-Home Packages") ──────────────────
+# Behind lib/features.json "landHomePackages". Steps 13a–13h check the
+# flag-off state, then switch the flag on for the run (restored exactly
+# afterwards, even on failure) and check the new pages.
+FEATURES_FILE = REPO_ROOT / "lib" / "features.json"
+LAND_HOME_HUB = "/land-home-packages"
+LAND_HOME_FLORESVILLE = "/land-home-packages-floresville-tx"
+LAND_HOME_NAV_LABEL = "Land-Home Packages"
+
+
+def land_home_package_paths():
+    src = (REPO_ROOT / "lib" / "packages.ts").read_text()
+    return [f"{LAND_HOME_HUB}/{s}" for s in re.findall(r"slug: '([a-z0-9-]+-land-home-package)'", src)]
+
+
+def land_home_paths():
+    return [LAND_HOME_HUB, LAND_HOME_FLORESVILLE] + land_home_package_paths()
+
+
+def fetch_status(path):
+    """(status, body) without raising on 4xx/5xx."""
+    try:
+        return fetch(path)
+    except urllib.error.HTTPError as e:
+        return e.code, e.read().decode("utf-8", "replace")
+
+
+def llms_text():
+    """/llms.txt as served (app/llms.txt/route.ts builds it from lib/llmsTxt.ts)."""
+    status, body = fetch_status("/llms.txt")
+    return body if status == 200 else ""
+
+
+class LandHomeFlag:
+    """Temporarily set lib/features.json "landHomePackages", then wait for the
+    dev server to pick it up (the hub answers 200 when on, 404 when off).
+    The file is restored byte-for-byte on exit."""
+
+    def __init__(self, value):
+        self.value = value
+        self.original = None
+
+    def _wait(self, want):
+        deadline = time.time() + 120
+        while time.time() < deadline:
+            if fetch_status(LAND_HOME_HUB)[0] == want and (fetch_status("/sitemap.xml")[1].count(LAND_HOME_HUB) > 0) == (want == 200):
+                return True
+            time.sleep(2)
+        return False
+
+    def __enter__(self):
+        self.original = FEATURES_FILE.read_text()
+        data = json.loads(self.original)
+        data["landHomePackages"] = self.value
+        FEATURES_FILE.write_text(json.dumps(data, indent=2) + "\n")
+        self.ready = self._wait(200 if self.value else 404)
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        FEATURES_FILE.write_text(self.original)
+        self._wait(200 if json.loads(self.original).get("landHomePackages") else 404)
+        return False
+
+
+def main_content(html):
+    m = re.search(r"<main[^>]*>(.*)</main>", html, re.S)
+    return m.group(1) if m else html
+
+
+def page_meta_text(html):
+    head = html.split("<body", 1)[0]
+    parts = re.findall(r"<title>(.*?)</title>", head, re.S)
+    parts += re.findall(r'<meta[^>]+(?:name|property)="(?:description|keywords|og:[a-z:_]+|twitter:[a-z:_]+)"[^>]+content="([^"]*)"', head)
+    return "\n".join(parts)
+
+
+def main_jsonld(html):
+    out = []
+    for b in re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>', main_content(html), re.S):
+        try:
+            out.append(json.loads(b))
+        except ValueError:
+            pass
+    return out
+
+
+def visible_main_text(html):
+    import html as _html
+
+    body = re.sub(r"<script\b.*?</script>|<style\b.*?</style>|<!-- -->", " ", main_content(html), flags=re.S)
+    return _html.unescape(re.sub(r"<[^>]+>", " ", body))
+
+
+# 13a — flag off: no tab, no footer link, 404s, nothing in the sitemap or llms.txt.
+def step_land_home_flag_off():
+    problems = []
+    for path in ["/", "/browse", "/cities", "/mobile-homes-floresville-tx", "/how-pricing-works"]:
+        status, html = fetch_status(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        if LAND_HOME_NAV_LABEL in html or f'href="{LAND_HOME_HUB}' in html:
+            problems.append(f"  {path}: shows the {LAND_HOME_NAV_LABEL!r} tab/link while the flag is off")
+    for path in land_home_paths():
+        status, _ = fetch_status(path)
+        if status != 404:
+            problems.append(f"  {path}: HTTP {status} (expected 404 while the flag is off)")
+    if LAND_HOME_HUB in fetch_status("/sitemap.xml")[1]:
+        problems.append("  /sitemap.xml lists land-home pages while the flag is off")
+    if re.search(r"land[- ]home", llms_text(), re.I):
+        problems.append("  /llms.txt mentions land-home packages while the flag is off")
+    ok = not problems
+    detail = problems or [f"Flag off: no tab or footer link on 5 pages, {len(land_home_paths())} routes 404, absent from the sitemap and llms.txt."]
+    return report("13a. Land-Home flag off is clean", ok, detail)
+
+
+# 13b — land-sale wording only in the new routes, the nav/footer label and
+# llms.txt. These pre-existing lines are reported to the owner (2026-11-21)
+# and left unchanged on purpose; anything else fails.
+LAND_SALE_RE = re.compile(r"land[- ]home|land[- ]and[- ]home|home[- ]and[- ]land|\bland packages?\b|home and its lot|\blot sold together", re.I)
+LAND_WORDING_KNOWN = {
+    "/contact": ["We can finance the home alone, or as a land-and-home package"],
+    "/calculator": [
+        "A land-and-home package combines the lot purchase and the home into one loan with one payment",
+        "Land-and-home",
+    ],
+    "/mobile-homes-schulenburg-tx": [
+        "doesn't sell land, and we don't bundle land-and-home packages near Schulenburg",
+        "doesn't sell land or bundle land-and-home packages near Schulenburg",
+    ],
+    "/mobile-homes-fairfield-tx": ["the land and home you choose fit the same budget"],
+    "/blog/how-to-finance-mobile-home-on-family-land-texas": ["The home and land must be in an acceptable area per lender guidelines"],
+}
+
+
+def step_land_wording_scope(sitemap):
+    problems = []
+    new = set(land_home_paths())
+    checked = 0
+    for path in sitemap:
+        if path in new:
+            continue
+        status, html = fetch_status(path)
+        if status != 200:
+            continue
+        checked += 1
+        text = rendered_text(html)
+        text = text.replace(f"{LAND_HOME_NAV_LABEL}", " ")  # the nav/footer label itself
+        for known in LAND_WORDING_KNOWN.get(path, []):
+            text = text.replace(known, " ").replace(known.replace("'", "’"), " ")
+        for m in LAND_SALE_RE.finditer(text):
+            ctx = text[max(0, m.start() - 70): m.end() + 70].replace("\n", " ")
+            problems.append(f"  {path}: {m.group(0)!r} in …{ctx.strip()}…")
+    ok = not problems
+    detail = problems[:40] or [f"{checked} other sitemap pages: no land-home wording outside the new routes and the nav/footer label (5 pre-existing pages allowlisted by exact text and reported to the owner)."]
+    return report("13b. Land-home wording only in the new section", ok, detail)
+
+
+# 13c — schema on the new pages.
+LH_FORBIDDEN_TYPES = {"Product", "Offer", "AggregateOffer", "AggregateRating", "Review", "Rating", "Place", "PostalAddress", "GeoCoordinates", "ImageObject"}
+LH_FORBIDDEN_KEYS = {"price", "priceCurrency", "offers", "image", "address", "geo", "aggregateRating", "review", "lowPrice", "highPrice"}
+
+
+def _walk(obj):
+    if isinstance(obj, dict):
+        yield obj
+        for v in obj.values():
+            yield from _walk(v)
+    elif isinstance(obj, list):
+        for v in obj:
+            yield from _walk(v)
+
+
+def step_land_home_schema():
+    problems = []
+    titles = {}
+    pkgs = land_home_package_paths()
+    for path in land_home_paths():
+        status, html = fetch_status(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        blocks = main_jsonld(html)
+        types = {b.get("@type") for b in blocks}
+        required = {"BreadcrumbList", "WebPage"} | ({"FAQPage", "ItemList"} if path not in pkgs else set())
+        if required - types:
+            problems.append(f"  {path}: missing schema {sorted(required - types)}")
+        for node in _walk(blocks):
+            t = node.get("@type")
+            if t in LH_FORBIDDEN_TYPES:
+                problems.append(f"  {path}: forbidden schema type {t}")
+            bad = LH_FORBIDDEN_KEYS & set(node)
+            if bad:
+                problems.append(f"  {path}: forbidden schema key(s) {sorted(bad)}")
+        for b in blocks:
+            if b.get("@type") == "WebPage":
+                if not b.get("dateModified"):
+                    problems.append(f"  {path}: WebPage without dateModified")
+                if not (isinstance(b.get("speakable"), dict) and b["speakable"].get("cssSelector")):
+                    problems.append(f"  {path}: WebPage without speakable")
+            if b.get("@type") == "ItemList":
+                for item in b.get("itemListElement", []):
+                    extra = set(item) - {"@type", "position", "name", "url"}
+                    if extra or not item.get("url", "").startswith("https://www.texashomesdirect.com/land-home-packages/"):
+                        problems.append(f"  {path}: ItemList item must be name + url only, got {sorted(item)}")
+        if re.search(r"localhost|127\.0\.0\.1", json.dumps(blocks)):
+            problems.append(f"  {path}: schema points at localhost")
+        canon = re.search(r'<link rel="canonical" href="([^"]+)"', html)
+        if not canon or canon.group(1) != f"https://www.texashomesdirect.com{path}":
+            problems.append(f"  {path}: canonical is {canon.group(1) if canon else None!r}, not self-referencing")
+        ogurl = re.search(r'<meta property="og:url" content="([^"]+)"', html)
+        if not ogurl or ogurl.group(1) != f"https://www.texashomesdirect.com{path}":
+            problems.append(f"  {path}: og:url isn't the page's own URL")
+        if re.search(r'property="og:image"|name="twitter:image"', html):
+            problems.append(f"  {path}: has an og:image/twitter:image (packages use the site default until real photos exist)")
+        h1s = re.findall(r"<h1\b", main_content(html))
+        if len(h1s) != 1:
+            problems.append(f"  {path}: {len(h1s)} H1s")
+        title = re.search(r"<title>(.*?)</title>", html, re.S)
+        title = title.group(1) if title else ""
+        if title in titles:
+            problems.append(f"  {path}: same <title> as {titles[title]}")
+        titles[title] = path
+        if re.search(r"\$\d", page_meta_text(html) + json.dumps(blocks)):
+            problems.append(f"  {path}: price or payment in the title, meta or schema")
+        faq = [b for b in blocks if b.get("@type") == "FAQPage"]
+        for b in faq:
+            for q in b.get("mainEntity", []):
+                a = q.get("acceptedAnswer", {}).get("text", "")
+                if re.search(r"\$\d", a):
+                    problems.append(f"  {path}: price in FAQ answer {q.get('name')!r}")
+                if not 40 <= len(a.split()) <= 60:
+                    problems.append(f"  {path}: FAQ answer {q.get('name')!r} is {len(a.split())} words (40–60)")
+    expect = {
+        LAND_HOME_HUB: "Land and Home Packages in Texas | Texas Homes Direct",
+        LAND_HOME_FLORESVILLE: "Land and Home Packages in Floresville, TX | Texas Homes Direct",
+    }
+    for path, want in expect.items():
+        if titles.get(want) != path:
+            problems.append(f"  {path}: title isn't {want!r}")
+    ok = not problems
+    detail = problems[:40] or [f"{len(land_home_paths())} pages: required schema, no Product/Offer/price/image/address/geo, ItemList is name+url, self canonicals and og:url, one H1, unique titles, no og:image, no prices in titles/meta/schema/FAQ."]
+    return report("13c. Land-Home pages: schema, canonicals, titles", ok, detail)
+
+
+# 13d — no new FAQ question repeats any other question on the site.
+def _norm_q(q):
+    return re.sub(r"[^a-z0-9 ]", "", q.lower().replace("’", "'")).strip()
+
+
+def step_land_home_faq_unique(sitemap):
+    from difflib import SequenceMatcher
+
+    new = set(land_home_paths())
+    import html as _html
+
+    questions = []  # (path, question)
+    # Stored city FAQ questions (incl. unpublished cities).
+    import write_city_content  # noqa: E402
+
+    for slug, copy in write_city_content.CITY_COPY.items():
+        for item in copy.get("faq", []):
+            if isinstance(item, dict) and item.get("q"):
+                questions.append((f"/mobile-homes-{slug}-tx", item["q"]))
+    for path in sitemap:
+        status, html = fetch_status(path)
+        if status != 200:
+            continue
+        # Visible FAQ questions (pages without FAQPage schema, e.g. /contact).
+        for q in re.findall(r'<div class="bmh-faq-q"[^>]*>(.*?)<span', html, re.S):
+            questions.append((path, _html.unescape(re.sub(r"<[^>]+>|<!-- -->", "", q)).strip()))
+        for b in re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
+            try:
+                obj = json.loads(b)
+            except ValueError:
+                continue
+            for node in _walk(obj):
+                if node.get("@type") == "Question" and node.get("name"):
+                    questions.append((path, node["name"]))
+    problems = []
+    questions = list(dict.fromkeys(questions))  # schema + visible copies of the same question
+    mine = [(p, q) for p, q in questions if p in new]
+    for i, (p, q) in enumerate(mine):
+        for p2, q2 in questions:
+            if (p2, q2) == (p, q):
+                continue
+            a, b = _norm_q(q), _norm_q(q2)
+            r = 1.0 if a == b else SequenceMatcher(None, a, b).ratio()
+            if r >= 0.8:
+                problems.append(f"  {p}: {q!r} repeats {p2}: {q2!r} (similarity {r:.2f})")
+    ok = not problems and bool(mine)
+    detail = problems[:40] or [f"{len(mine)} new FAQ questions checked against {len(questions)} questions site-wide: none repeats (similarity < 0.80)."]
+    return report("13d. Land-Home FAQ questions are unique", ok, detail)
+
+
+# 13e — none of the UNKNOWN facts or banned terms on the new pages.
+LH_BANNED = [
+    ("the source home's name", r"\bthe austin\b|austin-texas-4-bed"),
+    ("manufacturer", r"\bcavco\b|\bmanufacturer\b|\bbuilder\b|\bmodel\b|\bclayton\b"),
+    ("product type", r"\bmobile homes?\b|\bmanufactured\b|\bHUD\b"),
+    ("delivery/setup claim", r"\bincludes? delivery\b|\bexcludes? delivery\b|\bdeliver|\bset[- ]?up\b"),
+    ("timing", r"\bmove[- ]in\b|\bweeks?\b|\bdays?\b|\btimeline\b|\bmonths?\b"),
+    ("payment assumption", r"\binsurance\b|\d+(\.\d+)?\s*%|\bAPR\b|\d+[- ]years?\b|\bterm of\b"),
+    ("financing type", r"\bmortgage\b|\bFHA\b|\bVA loan|\bUSDA\b|\bchattel\b|\bin-house financing\b|\bowner financ"),
+    ("what's-included list", r"what['’]s included|\bincluded in the\b"),
+    ("lot detail", r"\baddress(es)?\b|\bdimensions?\b|\bfrontage\b|\bwell\b|\bseptic\b|\bcounty\b|\bwilson\b"),
+    ("office/showroom", r"\bshowroom\b|\boffice\b|\bour lot\b|\bvisit us\b|\bheadquartered\b"),
+    ("testimonial/review", r"\btestimonial|\breviews?\b|\bstars?\b|\brated\b"),
+]
+# The hub's comparison row and its "how is this different" FAQ describe
+# buying a home ALONE (owner-specified), so the utility bid is allowed there only.
+LH_NOT_ON_PACKAGE_PAGES = ("utility bid", r"\bbid\b|\bcontractor\b|site visit|visits your property")
+
+
+def step_land_home_unknowns():
+    problems = []
+    for path in land_home_paths():
+        status, html = fetch_status(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        text = "\n".join([visible_main_text(html), page_meta_text(html), json.dumps(main_jsonld(html), ensure_ascii=False)])
+        rules = list(LH_BANNED)
+        if path != LAND_HOME_HUB:
+            rules.append(LH_NOT_ON_PACKAGE_PAGES)
+        for label, rx in rules:
+            m = re.search(rx, text, re.I)
+            if m:
+                ctx = text[max(0, m.start() - 60): m.end() + 60].replace("\n", " ")
+                problems.append(f"  {path}: {label}: {m.group(0)!r} in …{ctx.strip()}…")
+    ok = not problems
+    detail = problems[:40] or [f"{len(land_home_paths())} pages (main content, title/meta/keywords, schema): none of the unknown or banned terms."]
+    return report("13e. Land-Home pages state no unknowns", ok, detail)
+
+
+# 13f — every package payment: est. + (i) + package footnote; package
+# disclosure only (no insurance or site-work sentence).
+def step_land_home_payments():
+    problems = []
+    src = (REPO_ROOT / "lib" / "disclaimers.ts").read_text()
+    m = re.search(r"PACKAGE_PAYMENT_DISCLOSURE = \{.*?body:\s*'((?:[^'\\]|\\.)*)'", src, re.S)
+    if not m:
+        return report("13f. Package payments: est. + (i) + footnote", False, ["  PACKAGE_PAYMENT_DISCLOSURE.body not found in lib/disclaimers.ts"])
+    pkg_body = m.group(1)
+    if re.search(r"insurance|deliver|set[- ]?up|site work|\d+(\.\d+)?\s*%|\d+[- ]year", pkg_body, re.I):
+        problems.append("  PACKAGE_PAYMENT_DISCLOSURE.body states insurance, delivery/setup, site work, a rate or a term")
+    if "NEEDS LENDER/COMPLIANCE APPROVAL" not in src:
+        problems.append("  PACKAGE_PAYMENT_DISCLOSURE isn't marked [NEEDS LENDER/COMPLIANCE APPROVAL]")
+    home_only = ["The estimate includes insurance.", "Site work your land requires"]
+    expected = {LAND_HOME_FLORESVILLE: 3, LAND_HOME_HUB: 0}
+    total = 0
+    for path in land_home_paths():
+        status, html = fetch_status(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        body = re.sub(r"<script.*?</script>|<select.*?</select>|<!-- -->", "", html, flags=re.S)
+        blocks = list(PAY_BLOCK_RE.finditer(body))
+        want = expected.get(path, 1)
+        if len(blocks) != want:
+            problems.append(f"  {path}: {len(blocks)} payment figures, expected {want}")
+        for mm in blocks:
+            total += 1
+            blk = mm.group(1)
+            if ">est.<" not in blk or PAY_INFO_LABEL not in blk or 'type="button"' not in blk:
+                problems.append(f"  {path}: payment missing 'est.' or the (i) button")
+            if 'data-disclosure="package"' not in blk:
+                problems.append(f"  {path}: payment's (i) dialog isn't the package disclosure (no data-disclosure=\"package\")")
+            if 'data-pm="pay"' not in body[max(0, mm.start() - 400): mm.start()]:
+                problems.append(f"  {path}: payment outside the payment-only container")
+        bare = PAY_AMOUNT_RE.findall(PAY_BLOCK_RE.sub("", body))
+        if bare:
+            problems.append(f"  {path}: bare payment(s) {bare[:3]}")
+        if want:
+            foot = re.search(r'<p class="bmh-pay-footnote bmh-pm-pay-block" data-pm="pay"[^>]*>(.*?)</p>', body, re.S)
+            if not foot or pkg_body[:80] not in re.sub(r"<[^>]+>", "", foot.group(1)).replace("&#x27;", "'"):
+                problems.append(f"  {path}: package footnote missing or not the package disclosure")
+        for s in home_only:
+            if s in html:
+                problems.append(f"  {path}: contains the homes-only disclosure sentence {s!r}")
+    ok = not problems and total > 0
+    detail = problems[:40] or [f"{total} package payments: each with 'est.', the (i) button, inside payment mode, and the package footnote; no insurance or site-work sentence; disclosure marked for approval."]
+    return report("13f. Package payments: est. + (i) + footnote", ok, detail)
+
+
+# 13g — the photo placeholder is text only; no image anywhere on the new pages.
+def step_land_home_placeholders():
+    problems = []
+    css = (REPO_ROOT / "app" / "globals.css").read_text()
+    for rule in re.findall(r"\.bmh-photos-soon[^{]*\{([^}]*)\}", css):
+        if re.search(r"url\(|gradient|image", rule, re.I):
+            problems.append(f"  app/globals.css: .bmh-photos-soon uses an image/gradient: {rule.strip()[:80]!r}")
+    expected = {LAND_HOME_FLORESVILLE: 3, LAND_HOME_HUB: 0}
+    for path in land_home_paths():
+        status, html = fetch_status(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        main = main_content(html)
+        if re.search(r"<img\b|<picture\b|<video\b|background-image|url\(", main, re.I):
+            problems.append(f"  {path}: image markup in the page content")
+        holders = re.findall(r'<div class="bmh-photos-soon[^"]*" data-photos-placeholder="">(.*?)</div>', main, re.S)
+        want = expected.get(path, 1)
+        if len(holders) != want:
+            problems.append(f"  {path}: {len(holders)} photo placeholders, expected {want}")
+        for h in holders:
+            if "Photos coming soon" not in h or re.search(r"<svg|<img|url\(", h):
+                problems.append(f"  {path}: placeholder isn't text-only 'Photos coming soon'")
+            if re.search(r"\b(19|20)\d\d\b|january|february|march|april|may|june|july|august|september|october|november|december|\bweeks?\b|\bsoon as\b", re.sub(r"<[^>]+>", " ", h), re.I):
+                problems.append(f"  {path}: placeholder promises a date")
+    ok = not problems
+    detail = problems[:40] or [f"{len(land_home_paths())} pages: text-only 'Photos coming soon' placeholders (3 cards + 1 per package page), no <img>/<picture>/<video>/background image, CSS has no image or gradient."]
+    return report("13g. No image-based placeholder", ok, detail)
+
+
+# 13h — flag on: tab in header (desktop + mobile) and footer, pages in the
+# sitemap and llms.txt.
+def step_land_home_flag_on():
+    problems = []
+    status, html = fetch_status("/")
+    header = re.search(r"<header.*?</header>", html, re.S)
+    footer = re.search(r"<footer.*?</footer>", html, re.S)
+    n_header = len(re.findall(rf'href="{LAND_HOME_HUB}"[^>]*>{LAND_HOME_NAV_LABEL}<', header.group(0) if header else ""))
+    if n_header != 2:
+        problems.append(f"  /: {n_header} header links (expected desktop + mobile = 2)")
+    if not footer or not re.search(rf'href="{LAND_HOME_HUB}"[^>]*>{LAND_HOME_NAV_LABEL}<', footer.group(0)):
+        problems.append("  /: no footer link")
+    sm = fetch_status("/sitemap.xml")[1]
+    for path in land_home_paths():
+        if f"<loc>https://www.texashomesdirect.com{path}</loc>" not in sm:
+            problems.append(f"  sitemap missing {path}")
+    llms = llms_text()
+    if f"https://www.texashomesdirect.com{LAND_HOME_HUB}" not in llms:
+        problems.append("  /llms.txt doesn't list the land-home hub under Key Offerings")
+    if re.search(r"\$\d", llms):
+        problems.append("  /llms.txt has a price")
+    ok = not problems
+    detail = problems or [f"Flag on: tab in header (desktop + mobile) and footer; {len(land_home_paths())} pages in the sitemap; hub in llms.txt."]
+    return report("13h. Land-Home flag on: nav, footer, sitemap, llms.txt", ok, detail)
+
+
+def run_land_home_steps():
+    """Flag-off checks in the repo's committed state, then the flag-on checks."""
+    ok = True
+    committed_on = json.loads(FEATURES_FILE.read_text()).get("landHomePackages") is True
+    with LandHomeFlag(False) as off:
+        if not off.ready:
+            return report("13. Land-Home flag switch", False, ["  dev server didn't pick up landHomePackages=false within 120s"])
+        ok &= step_land_home_flag_off()
+    with LandHomeFlag(True) as on:
+        if not on.ready:
+            return report("13. Land-Home flag switch", False, ["  dev server didn't pick up landHomePackages=true within 120s"])
+        sitemap = sitemap_paths()
+        ok &= step_land_home_flag_on()
+        ok &= step_land_wording_scope(sitemap)
+        ok &= step_land_home_schema()
+        ok &= step_land_home_faq_unique(sitemap)
+        ok &= step_land_home_unknowns()
+        ok &= step_land_home_payments()
+        ok &= step_land_home_placeholders()
+        ok &= step_price_claims_on_pages(land_home_paths())
+    print(f"lib/features.json restored (landHomePackages={'true' if committed_on else 'false'}).")
+    return ok
+
+
+def step_price_claims_on_pages(paths):
+    problems = []
+    for path in paths:
+        status, html = fetch_status(path)
+        for term, sentence in price_claim_problems(rendered_text(html)):
+            problems.append(f"  {path}: {term!r} in {sentence!r}")
+    ok = not problems
+    return report("11j+. Cash-price claims on the Land-Home pages", ok, problems or [f"{len(paths)} Land-Home pages: no out-the-door / all-in / delivered-and-set wording."])
 
 
 def main():
@@ -1277,6 +1753,7 @@ def main():
                 ok &= step_included_by_mode()
                 ok &= step_clearance_labels()
                 ok &= step_price_claims_rendered()
+                ok &= run_land_home_steps()
         finally:
             stop_dev_server(proc)
             if ctx:

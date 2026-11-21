@@ -19,7 +19,7 @@ const OPTIONS: { value: PriceMode; label: string }[] = [
   { value: 'payment', label: 'Est. monthly payment' },
 ]
 
-export default function PriceModeToggle({ placement }: { placement: 'browse' | 'listing' }) {
+export default function PriceModeToggle({ placement }: { placement: 'browse' | 'listing' | 'land-home' }) {
   const mode = usePriceMode()
   const name = useId()
 

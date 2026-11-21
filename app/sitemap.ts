@@ -3,6 +3,8 @@ import { sampleListings } from '@/lib/sampleListings'
 import { blogPosts } from '@/lib/blogPosts'
 import { publishedCities } from '@/lib/cities'
 import { isArchivedPath } from '@/lib/archived'
+import { LAND_HOME_PACKAGES } from '@/lib/features'
+import { FLORESVILLE_PACKAGES_PATH, LAND_HOME_HUB_PATH, PACKAGES, packagePath } from '@/lib/packages'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = 'https://www.texashomesdirect.com'
@@ -46,5 +48,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))
-  return [...staticPages, ...listings, ...cityPages, ...blogPages]
+  // Land-Home Packages only while lib/features.json "landHomePackages" is on.
+  const landHomePages = LAND_HOME_PACKAGES
+    ? [LAND_HOME_HUB_PATH, FLORESVILLE_PACKAGES_PATH, ...PACKAGES.map(packagePath)].map((path) => ({
+        url: `${base}${path}`,
+        lastModified: new Date(),
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+      }))
+    : []
+  return [...staticPages, ...listings, ...landHomePages, ...cityPages, ...blogPages]
 }
