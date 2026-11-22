@@ -1,15 +1,6 @@
 {
   "generated": "2026-11-21",
-  "method": "For each of the 154 city pages, pick the 6 nearest other city pages by great-circle (haversine) distance, using a mean Earth radius of 3,958.7613 miles, from U.S. Census Bureau 2026 Place Gazetteer internal points (INTPTLAT/INTPTLONG). Only cities that already have a Texas Homes Direct city page are included; do not add unlinked city names that have no page. Driving distance is not used for this ranking. The Census gazetteer name for Pecos is \u201cTown of Pecos city\u201d (GEOID 4873493); the on-page name stays Pecos.",
-  "lot": {
-    "streetAddress": "4580 FM 2438",
-    "addressLocality": "Seguin",
-    "addressRegion": "TX",
-    "postalCode": "78155",
-    "postalCode_source": "U.S. Census Bureau Geocoder, Public Address Ranges \u2013 Current Benchmark, matched address \u201c4580 FM 2438, SEGUIN, TX, 78155\u201d, retrieved 2026-11-21 (https://geocoding.geo.census.gov/). Coordinates: latitude 29.612136009988, longitude -97.834249908605.",
-    "latitude": 29.612136009988,
-    "longitude": -97.834249908605
-  },
+  "method": "For each of the 154 city pages, pick the 6 nearest other city pages by great-circle (haversine) distance, using a mean Earth radius of 3,958.7613 miles, from U.S. Census Bureau 2026 Place Gazetteer internal points (INTPTLAT/INTPTLONG). Only cities that already have a Texas Homes Direct city page are included; do not add unlinked city names that have no page. Driving distance is not used for this ranking. The Census gazetteer name for Pecos is “Town of Pecos city” (GEOID 4873493); the on-page name stays Pecos.",
   "priority_no_links_first": [
     "alice",
     "corpus-christi",

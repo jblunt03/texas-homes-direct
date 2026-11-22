@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import {
   FLORESVILLE_COUNTY,
-  FLORESVILLE_DRIVE_MILES,
   PER_MILE_NO_RATE,
   STATEWIDE_DELIVERY,
 } from '@/lib/cityFacts'
@@ -31,9 +30,7 @@ export function LandHomeDelivery({ floresville = false }: { floresville?: boolea
       <h2 className="bmh-city-h2">Delivery</h2>
       <p className="bmh-lead" style={{ marginTop: 12 }}>
         {STATEWIDE_DELIVERY} {PER_MILE_NO_RATE}
-        {floresville
-          ? ` Floresville is about ${FLORESVILLE_DRIVE_MILES} driving miles from our lot. For permits, check with ${FLORESVILLE_COUNTY}.`
-          : ''}
+        {floresville ? ` For permits, check with ${FLORESVILLE_COUNTY}.` : ''}
       </p>
       <div className="bmh-spacer-sm" />
       <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>

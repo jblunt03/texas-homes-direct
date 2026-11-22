@@ -8,13 +8,11 @@ const DELIVERY_PRICED = {
   author: 'the Texas Homes Direct team',
   content: `If you are looking at mobile homes in Texas, the next question is usually how the home gets to your land, and what that costs.
 
-Texas Homes Direct delivers new manufactured homes all over Texas, from Lubbock to Seguin and beyond, with its own crew. Delivery is priced per mile. We do not publish a per-mile rate in this article. The mile figure that matters is the driving distance from our lot to your site, and the quote is written for your place, not as a generic number on a blog post.
+Texas Homes Direct delivers new manufactured homes all over Texas, from Lubbock to Seguin and beyond, with its own crew. Delivery is priced per mile. We do not publish a per-mile rate in this article. The quote is written for your place, not as a generic number on a blog post.
 
 We deliver throughout Texas.
 
 The cash price of a home covers the home. Delivery and setup are quoted separately if you pay cash. If you finance, delivery and setup are included in your estimated monthly payment. That split is explained in more detail on our [how pricing works](/how-pricing-works) and [what’s included in setup](/whats-included-in-setup) pages.
-
-A few examples of driving distance from our lot, measured on November 21, 2026 with OpenStreetMap routing (OSRM) to each city’s Census map point, then rounded to the nearest mile: San Antonio about 46 miles, Austin about 61 miles, Victoria about 89 miles, Houston about 151 miles, Waco about 160 miles, Dallas about 254 miles, Lubbock about 427 miles, and El Paso about 596 miles. Those figures are for the city point, not your exact site, so your quote may differ. They are here so “priced per mile” has a real sense of scale. They are not a bid.
 
 See [how long delivery and setup take](/blog/how-long-manufactured-home-delivery-and-setup-take-in-texas).
 

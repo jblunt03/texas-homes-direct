@@ -1,15 +1,6 @@
 {
   "generated": "2026-11-21",
   "selection": "Named first-wave cities from the approved Nov 21 growth plan (Austin, Houston, Dallas, San Antonio, Waco, El Paso, Longview, Lubbock, Tyler, Victoria), then the next 10 highest-impression city pages from the Nov 13 Search Console Pages.csv export that were not already in that list: Burleson, McAllen, Amarillo, Rockwall, Laredo, Granbury, Weatherford, Arlington, Sealy, Canton.",
-  "lot": {
-    "streetAddress": "4580 FM 2438",
-    "addressLocality": "Seguin",
-    "addressRegion": "TX",
-    "postalCode": "78155",
-    "postalCode_source": "U.S. Census Bureau Geocoder, Public Address Ranges \u2013 Current Benchmark, matched address \u201c4580 FM 2438, SEGUIN, TX, 78155\u201d, retrieved 2026-11-21 (https://geocoding.geo.census.gov/). Coordinates: latitude 29.612136009988, longitude -97.834249908605.",
-    "latitude": 29.612136009988,
-    "longitude": -97.834249908605
-  },
   "cities": [
     {
       "rank": 1,
@@ -58,7 +49,7 @@
       "driving_miles_rounded": 61,
       "driving_miles_exact": 60.6,
       "driving_duration_minutes_rounded": 68,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 1002632,
       "population_census_name": "Austin city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -66,7 +57,7 @@
       "longitude": -97.754134,
       "geoid": "4805000",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4805000, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Austin from our lot at 4580 FM 2438 in Seguin, about 61 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Travis County, Williamson County, and Hays County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Austin. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Travis County, Williamson County, and Hays County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Travis County",
@@ -153,7 +144,7 @@
       "driving_miles_rounded": 151,
       "driving_miles_exact": 150.7,
       "driving_duration_minutes_rounded": 160,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 2397315,
       "population_census_name": "Houston city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -161,7 +152,7 @@
       "longitude": -95.388806,
       "geoid": "4835000",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4835000, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Houston from our lot at 4580 FM 2438 in Seguin, about 151 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Harris County, Fort Bend County, and Montgomery County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Houston. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Harris County, Fort Bend County, and Montgomery County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Harris County",
@@ -252,7 +243,7 @@
       "driving_miles_rounded": 254,
       "driving_miles_exact": 254.3,
       "driving_duration_minutes_rounded": 259,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 1329491,
       "population_census_name": "Dallas city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -260,7 +251,7 @@
       "longitude": -96.766513,
       "geoid": "4819000",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4819000, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Dallas from our lot at 4580 FM 2438 in Seguin, about 254 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Dallas County, Collin County, and Denton County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Dallas. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Dallas County, Collin County, and Denton County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Dallas County",
@@ -338,7 +329,7 @@
       "driving_miles_rounded": 46,
       "driving_miles_exact": 46.3,
       "driving_duration_minutes_rounded": 55,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 1548422,
       "population_census_name": "San Antonio city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -346,7 +337,7 @@
       "longitude": -98.524263,
       "geoid": "4865000",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4865000, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to San Antonio from our lot at 4580 FM 2438 in Seguin, about 46 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Bexar County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to San Antonio. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Bexar County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Bexar County",
@@ -397,7 +388,7 @@
       "driving_miles_rounded": 160,
       "driving_miles_exact": 160.5,
       "driving_duration_minutes_rounded": 165,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 147788,
       "population_census_name": "Waco city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -405,7 +396,7 @@
       "longitude": -97.190841,
       "geoid": "4876000",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4876000, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Waco from our lot at 4580 FM 2438 in Seguin, about 160 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with McLennan County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Waco. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with McLennan County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "McLennan County",
@@ -446,7 +437,7 @@
       "driving_miles_rounded": 596,
       "driving_miles_exact": 595.7,
       "driving_duration_minutes_rounded": 584,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 683012,
       "population_census_name": "El Paso city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -454,7 +445,7 @@
       "longitude": -106.431106,
       "geoid": "4824000",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4824000, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to El Paso from our lot at 4580 FM 2438 in Seguin, about 596 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with El Paso County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to El Paso. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with El Paso County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "El Paso County",
@@ -505,7 +496,7 @@
       "driving_miles_rounded": 325,
       "driving_miles_exact": 324.9,
       "driving_duration_minutes_rounded": 351,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 83236,
       "population_census_name": "Longview city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -513,7 +504,7 @@
       "longitude": -94.761114,
       "geoid": "4843888",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4843888, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Longview from our lot at 4580 FM 2438 in Seguin, about 325 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Gregg County and Harrison County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Longview. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Gregg County and Harrison County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Gregg County",
@@ -563,7 +554,7 @@
       "driving_miles_rounded": 427,
       "driving_miles_exact": 427.1,
       "driving_duration_minutes_rounded": 452,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 273071,
       "population_census_name": "Lubbock city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -571,7 +562,7 @@
       "longitude": -101.888883,
       "geoid": "4845000",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4845000, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Lubbock from our lot at 4580 FM 2438 in Seguin, about 427 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Lubbock County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Lubbock. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Lubbock County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Lubbock County",
@@ -612,7 +603,7 @@
       "driving_miles_rounded": 289,
       "driving_miles_exact": 288.7,
       "driving_duration_minutes_rounded": 308,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 113723,
       "population_census_name": "Tyler city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -620,7 +611,7 @@
       "longitude": -95.306399,
       "geoid": "4874144",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4874144, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Tyler from our lot at 4580 FM 2438 in Seguin, about 289 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Smith County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Tyler. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Smith County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Smith County",
@@ -661,7 +652,7 @@
       "driving_miles_rounded": 89,
       "driving_miles_exact": 88.7,
       "driving_duration_minutes_rounded": 100,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 66500,
       "population_census_name": "Victoria city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -669,7 +660,7 @@
       "longitude": -96.986015,
       "geoid": "4875428",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4875428, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Victoria from our lot at 4580 FM 2438 in Seguin, about 89 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Victoria County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Victoria. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Victoria County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Victoria County",
@@ -720,7 +711,7 @@
       "driving_miles_rounded": 232,
       "driving_miles_exact": 231.9,
       "driving_duration_minutes_rounded": 236,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 56907,
       "population_census_name": "Burleson city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -728,7 +719,7 @@
       "longitude": -97.323293,
       "geoid": "4811428",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4811428, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Burleson from our lot at 4580 FM 2438 in Seguin, about 232 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Johnson County and Tarrant County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Burleson. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Johnson County and Tarrant County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Johnson County",
@@ -778,7 +769,7 @@
       "driving_miles_rounded": 273,
       "driving_miles_exact": 273.2,
       "driving_duration_minutes_rounded": 298,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 150640,
       "population_census_name": "McAllen city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -786,7 +777,7 @@
       "longitude": -98.246083,
       "geoid": "4845384",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4845384, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to McAllen from our lot at 4580 FM 2438 in Seguin, about 273 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Hidalgo County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to McAllen. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Hidalgo County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Hidalgo County",
@@ -837,7 +828,7 @@
       "driving_miles_rounded": 547,
       "driving_miles_exact": 547.0,
       "driving_duration_minutes_rounded": 572,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 205130,
       "population_census_name": "Amarillo city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -845,7 +836,7 @@
       "longitude": -101.830194,
       "geoid": "4803000",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4803000, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Amarillo from our lot at 4580 FM 2438 in Seguin, about 547 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Randall County and Potter County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Amarillo. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Randall County and Potter County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Randall County",
@@ -895,7 +886,7 @@
       "driving_miles_rounded": 276,
       "driving_miles_exact": 276.5,
       "driving_duration_minutes_rounded": 285,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 53980,
       "population_census_name": "Rockwall city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -903,7 +894,7 @@
       "longitude": -96.43805,
       "geoid": "4862828",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4862828, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Rockwall from our lot at 4580 FM 2438 in Seguin, about 276 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Rockwall County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Rockwall. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Rockwall County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Rockwall County",
@@ -944,7 +935,7 @@
       "driving_miles_rounded": 196,
       "driving_miles_exact": 195.5,
       "driving_duration_minutes_rounded": 205,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 269515,
       "population_census_name": "Laredo city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -952,7 +943,7 @@
       "longitude": -99.489181,
       "geoid": "4841464",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4841464, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Laredo from our lot at 4580 FM 2438 in Seguin, about 196 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Webb County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Laredo. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Webb County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Webb County",
@@ -993,7 +984,7 @@
       "driving_miles_rounded": 227,
       "driving_miles_exact": 227.1,
       "driving_duration_minutes_rounded": 262,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 13263,
       "population_census_name": "Granbury city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -1001,7 +992,7 @@
       "longitude": -97.77009,
       "geoid": "4830416",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4830416, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Granbury from our lot at 4580 FM 2438 in Seguin, about 227 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Hood County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Granbury. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Hood County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Hood County",
@@ -1042,7 +1033,7 @@
       "driving_miles_rounded": 268,
       "driving_miles_exact": 267.7,
       "driving_duration_minutes_rounded": 275,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 40634,
       "population_census_name": "Weatherford city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -1050,7 +1041,7 @@
       "longitude": -97.765731,
       "geoid": "4876864",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4876864, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Weatherford from our lot at 4580 FM 2438 in Seguin, about 268 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Parker County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Weatherford. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Parker County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Parker County",
@@ -1091,7 +1082,7 @@
       "driving_miles_rounded": 253,
       "driving_miles_exact": 253.0,
       "driving_duration_minutes_rounded": 258,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 402134,
       "population_census_name": "Arlington city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -1099,7 +1090,7 @@
       "longitude": -97.124691,
       "geoid": "4804000",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4804000, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Arlington from our lot at 4580 FM 2438 in Seguin, about 253 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Tarrant County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Arlington. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Tarrant County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Tarrant County",
@@ -1140,7 +1131,7 @@
       "driving_miles_rounded": 104,
       "driving_miles_exact": 103.9,
       "driving_duration_minutes_rounded": 107,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 7937,
       "population_census_name": "Sealy city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -1148,7 +1139,7 @@
       "longitude": -96.162165,
       "geoid": "4866464",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4866464, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Sealy from our lot at 4580 FM 2438 in Seguin, about 104 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Austin County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Sealy. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Austin County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Austin County",
@@ -1189,7 +1180,7 @@
       "driving_miles_rounded": 275,
       "driving_miles_exact": 275.0,
       "driving_duration_minutes_rounded": 298,
-      "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+      "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
       "population_july_1_2025": 5070,
       "population_census_name": "Canton city",
       "population_source": "U.S. Census Bureau, Population Estimates Program, Vintage 2025, resident population for July 1, 2025 (POPESTIMATE2025 in sub-est2025_48.csv). These are the city population estimates Census publishes in QuickFacts.",
@@ -1197,7 +1188,7 @@
       "longitude": -95.863534,
       "geoid": "4812496",
       "coord_source": "U.S. Census Bureau, 2026 Place Gazetteer (INTPTLAT/INTPTLONG), GEOID 4812496, retrieved 2026-11-21",
-      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Canton from our lot at 4580 FM 2438 in Seguin, about 275 driving miles away. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Van Zandt County. We do not list permit fees or timelines because those come from the county.",
+      "getting_a_home_delivered_paragraph": "Texas Homes Direct delivers new manufactured homes to Canton. Delivery is priced per mile from the lot. We do not publish a per-mile rate here. For permits and placement rules, check with Van Zandt County. We do not list permit fees or timelines because those come from the county.",
       "counties_all_census_parts": [
         {
           "name": "Van Zandt County",
@@ -1221,7 +1212,7 @@
     "url": "/mobile-homes-floresville-tx",
     "driving_miles_rounded": 48,
     "driving_miles_exact": 48.1,
-    "driving_source": "OSRM public routing server (router.project-osrm.org) using OpenStreetMap data. Driving distance from the lot coordinates returned by the U.S. Census Bureau Geocoder for 4580 FM 2438, Seguin, TX (29.612136, -97.834250) to the 2026 Census Gazetteer internal point of the city. Retrieved 2026-11-21. Rounded to the nearest mile for on-page copy.",
+    "driving_source": "OpenStreetMap routing, retrieved 2026-11-21. The lot point is not stored.",
     "county_principal": "Wilson County",
     "latitude": 29.146743,
     "longitude": -98.165173,

@@ -76,7 +76,6 @@ const localBusinessJsonLd = {
   // guessed or unverified link.
   sameAs: [
     'https://www.facebook.com/profile.php?id=61593330354434',
-    'https://www.google.com/maps/place/Texas+Homes+Direct/@30.998505,-110.7156328,5z/data=!4m7!3m6!1s0x4e3ba62879afeaf7:0x6eddce7a32c31cdf!8m2!3d31.4197143!4d-100.0768425!16s%2Fg%2F11zdf35szd',
   ],
   openingHoursSpecification: [
     {

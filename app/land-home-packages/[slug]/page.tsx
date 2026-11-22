@@ -10,7 +10,6 @@ import PackagePrice from '@/components/landHome/PackagePrice'
 import PackageCtas from '@/components/landHome/PackageCtas'
 import Image from 'next/image'
 import TrackedLink from '@/components/landHome/TrackedLink'
-import { FLORESVILLE_DRIVE_MILES } from '@/lib/cityFacts'
 import { PACKAGE_PAYMENT_DISCLOSURE } from '@/lib/disclaimers'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
 import {
@@ -51,7 +50,7 @@ function packageFaq(acres: string) {
     },
     {
       q: `How is delivery priced for this ${acres}-acre package, and how long does it take?`,
-      a: `Delivery is priced per mile. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew. Floresville is about ${FLORESVILLE_DRIVE_MILES} driving miles from our lot.`,
+      a: 'Delivery is priced per mile. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew.',
     },
     {
       q: `Can I use land I already own instead of this ${acres}-acre package?`,
