@@ -2,7 +2,9 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import FaqAccordion from '@/components/FaqAccordion'
+import GoogleReviewLinks from '@/components/GoogleReviewLinks'
 import PriceModeToggle from '@/components/PriceModeToggle'
+import { LandHomeDelivery, LandHomeFinancing, LandHomeLinkRow } from '@/components/landHome/LandHomeExtras'
 import PackageGrid from '@/components/landHome/PackageGrid'
 import PackageCtas from '@/components/landHome/PackageCtas'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
@@ -173,6 +175,14 @@ export default function FloresvillePackagesPage() {
 
       <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
         <div className="bmh-container">
+          <LandHomeFinancing />
+          <div className="bmh-spacer-lg" />
+          <LandHomeDelivery floresville />
+        </div>
+      </section>
+
+      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+        <div className="bmh-container">
           <div className="bmh-city-prose bmh-faq-speakable">
             <h2 className="bmh-city-h2">Floresville Package Questions</h2>
             <div className="bmh-spacer-sm" />
@@ -186,15 +196,19 @@ export default function FloresvillePackagesPage() {
           <div className="bmh-city-prose">
             <h3 className="bmh-city-h3">Keep Exploring</h3>
             <div className="bmh-spacer-sm" />
-            <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              <Link href={LAND_HOME_HUB_PATH} className="bmh-pill bmh-pill-static">Land-Home Packages in Texas →</Link>
-              <Link href="/browse" className="bmh-pill bmh-pill-static">Browse Homes →</Link>
-              <Link href="/mobile-homes-floresville-tx" className="bmh-pill bmh-pill-static">A Home for Your Own Land in Floresville →</Link>
-              <Link href="/cities" className="bmh-pill bmh-pill-static">Cities We Serve →</Link>
-            </div>
+            <LandHomeLinkRow
+              links={[
+                { href: LAND_HOME_HUB_PATH, label: 'Land-Home Packages in Texas →' },
+                { href: '/mobile-homes-floresville-tx', label: 'A home for your own land in Floresville →' },
+                { href: '/calculator', label: 'Free mortgage analysis →' },
+                ...FLORESVILLE.map((p) => ({ href: packagePath(p), label: `${packageName(p)} →` })),
+              ]}
+            />
           </div>
         </div>
       </section>
+
+      <GoogleReviewLinks />
 
       <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '48px 0' }}>
         <div className="bmh-container" style={{ textAlign: 'center' }}>

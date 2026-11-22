@@ -1,8 +1,11 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
+import FaqAccordion from '@/components/FaqAccordion'
+import GoogleReviewLinks from '@/components/GoogleReviewLinks'
 import PriceModeToggle from '@/components/PriceModeToggle'
 import PaymentFootnote from '@/components/PaymentFootnote'
+import { LandHomeDelivery, LandHomeFinancing, LandHomeLinkRow } from '@/components/landHome/LandHomeExtras'
 import PackagePrice from '@/components/landHome/PackagePrice'
 import PackageCtas from '@/components/landHome/PackageCtas'
 import Image from 'next/image'
@@ -33,6 +36,27 @@ const INTRO: Record<string, string> = {
     'This 1.2-acre land-home package in Floresville, Texas is sold turnkey and includes all utilities.',
   '0.75':
     'At 0.75 acres, this is the most compact of the three Floresville land-home packages, sold turnkey with all utilities.',
+}
+
+function packageFaq(acres: string) {
+  return [
+    {
+      q: `What is included in this ${acres}-acre package?`,
+      a: 'A home and this lot, sold together, turnkey, with all utilities. The home shown is a 4-bed, 2-bath double wide with 1,493 square feet; you can choose a different home.',
+    },
+    {
+      q: `How is this ${acres}-acre package financed?`,
+      a: 'Texas Homes Direct works with 21st Mortgage, Cascade, Triad, and Porch Pass. 0 down at 680+ credit; about 5% down in the mid-500s. Start the free mortgage analysis (normally $75, no credit pull).',
+    },
+    {
+      q: `How is delivery priced for this ${acres}-acre package, and how long does it take?`,
+      a: 'Delivery is priced per mile. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew.',
+    },
+    {
+      q: `Can I use land I already own instead of this ${acres}-acre package?`,
+      a: 'Yes. You can buy a home for land you already have, and that land can serve as collateral in place of a down payment. This page is for a home-and-lot package.',
+    },
+  ]
 }
 
 const DESCRIPTION: Record<string, string> = {
@@ -100,14 +124,25 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
     dateModified: LAND_HOME_DATE_MODIFIED,
     speakable: {
       '@type': 'SpeakableSpecification',
-      cssSelector: ['.bmh-explainer-lead'],
+      cssSelector: ['.bmh-faq-speakable', '.bmh-explainer-lead'],
     },
+  }
+  const faq = packageFaq(p.acres)
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faq.map((item) => ({
+      '@type': 'Question',
+      name: item.q,
+      acceptedAnswer: { '@type': 'Answer', text: item.a },
+    })),
   }
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
 
       <nav aria-label="Breadcrumb" style={{ background: 'var(--color-canvas)', padding: '16px 0 0' }}>
         <div className="bmh-container bmh-crumbs">
@@ -167,6 +202,46 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
           </div>
         </div>
       </section>
+
+      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+        <div className="bmh-container">
+          <div className="bmh-city-prose">
+            <h2 className="bmh-city-h2">This package</h2>
+            <p className="bmh-lead" style={{ marginTop: 12 }}>
+              Sold by Texas Homes Direct. This {p.acres}-acre lot and a home are sold together, turnkey, with all utilities.
+              The home shown is a {S.beds}-bed, {S.baths}-bath double wide with {S.sqft.toLocaleString('en-US')} square feet.
+              You can choose a different home. The cash price is ${p.price.toLocaleString('en-US')}. The estimated monthly
+              payment is ${p.monthlyPayment.toLocaleString('en-US')} per month. The payment note under the price explains the estimate.
+            </p>
+          </div>
+          <div className="bmh-spacer-lg" />
+          <LandHomeFinancing />
+          <div className="bmh-spacer-lg" />
+          <LandHomeDelivery floresville />
+        </div>
+      </section>
+
+      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+        <div className="bmh-container">
+          <div className="bmh-city-prose bmh-faq-speakable">
+            <h2 className="bmh-city-h2">Package questions</h2>
+            <div className="bmh-spacer-sm" />
+            <FaqAccordion items={faq} defaultOpen={0} />
+          </div>
+          <div className="bmh-spacer-md" />
+          <LandHomeLinkRow
+            links={[
+              { href: '/browse', label: 'Browse homes →' },
+              { href: '/blog/how-to-put-a-mobile-home-on-your-land-in-texas', label: 'Putting a home on land you already own →' },
+              { href: '/calculator', label: 'Free mortgage analysis →' },
+              { href: '/contact', label: 'Contact →' },
+              { href: '/whats-included-in-setup', label: 'What’s included in setup →' },
+            ]}
+          />
+        </div>
+      </section>
+
+      <GoogleReviewLinks />
 
       <section className="bmh-surface-card" style={{ padding: '32px 0' }}>
         <div className="bmh-container">

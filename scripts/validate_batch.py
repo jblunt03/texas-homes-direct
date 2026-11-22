@@ -426,8 +426,10 @@ def extract_jsonld_types_and_urls(html):
         except json.JSONDecodeError:
             continue
         t = obj.get("@type")
-        if t:
+        if isinstance(t, str):
             types.add(t)
+        elif isinstance(t, list):
+            types.update(x for x in t if isinstance(x, str))
         # Nested rating markup (e.g. aggregateRating inside a Product) counts too.
         for nested in re.findall(r'"@type":\s*"([A-Za-z]+)"', b):
             types.add(nested)
@@ -1538,6 +1540,21 @@ LH_BANNED = [
 LH_NOT_ON_PACKAGE_PAGES = ("utility bid", r"\bbid\b|\bcontractor\b|site visit|visits your property")
 
 
+# The 1–2 day delivery line is not allowed. Links to the two home-only
+# explainers stay. Strip those link labels before the banned-term scan so
+# the links themselves are not treated as a setup claim, and require them.
+LH_DAY_WINDOW = re.compile(r"1[–-]2\s*days", re.I)
+LH_EXPLAINER_HREFS = ("/whats-included-in-setup", "/how-pricing-works")
+LH_EXPLAINER_LABELS = re.compile(
+    r"/whats-included-in-setup|/how-pricing-works|What['’]s Included in Setup|How Pricing Works|What['’]s included in setup",
+    re.I,
+)
+
+
+def lh_without_approved(text):
+    return LH_EXPLAINER_LABELS.sub(" ", text)
+
+
 def step_land_home_unknowns():
     problems = []
     for path in land_home_paths():
@@ -1545,7 +1562,17 @@ def step_land_home_unknowns():
         if status != 200:
             problems.append(f"  {path}: HTTP {status}")
             continue
-        text = "\n".join([visible_main_text(html), page_meta_text(html), json.dumps(main_jsonld(html), ensure_ascii=False)])
+        visible = visible_main_text(html)
+        if LH_DAY_WINDOW.search(visible):
+            problems.append(f"  {path}: still has a 1–2 day delivery line")
+        for href in LH_EXPLAINER_HREFS:
+            if f'href="{href}"' not in html:
+                problems.append(f"  {path}: missing link {href}")
+        text = "\n".join([
+            lh_without_approved(visible),
+            lh_without_approved(page_meta_text(html)),
+            lh_without_approved(json.dumps(main_jsonld(html), ensure_ascii=False)),
+        ])
         rules = list(LH_BANNED)
         if path != LAND_HOME_HUB:
             rules.append(LH_NOT_ON_PACKAGE_PAGES)

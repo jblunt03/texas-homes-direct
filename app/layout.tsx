@@ -1,11 +1,13 @@
 import type { Metadata } from 'next'
 import Script from 'next/script'
+import { headers } from 'next/headers'
 import { GoogleAnalytics } from '@next/third-parties/google'
 import { Inter, Montserrat } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import { LanguageProvider } from '@/components/LanguageContext'
+import { UPGRADED_BUSINESS_JSON_LD, usesUpgradedBusinessSchema } from '@/lib/businessSchema'
 import { PRICE_MODE_BOOT_SCRIPT } from '@/lib/priceMode'
 
 const inter = Inter({
@@ -74,7 +76,6 @@ const localBusinessJsonLd = {
   // guessed or unverified link.
   sameAs: [
     'https://www.facebook.com/profile.php?id=61593330354434',
-    'https://www.google.com/maps/place/Texas+Homes+Direct/@30.998505,-110.7156328,5z/data=!4m7!3m6!1s0x4e3ba62879afeaf7:0x6eddce7a32c31cdf!8m2!3d31.4197143!4d-100.0768425!16s%2Fg%2F11zdf35szd',
   ],
   openingHoursSpecification: [
     {
@@ -98,6 +99,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  // One business block per page. Upgraded routes replace this script;
+  // `/` and every other route keep the object above, unchanged.
+  const pathname = headers().get('x-pathname') ?? '/'
+  const businessJsonLd = usesUpgradedBusinessSchema(pathname)
+    ? UPGRADED_BUSINESS_JSON_LD
+    : localBusinessJsonLd
+
   return (
     // suppressHydrationWarning: the boot script below may add data-price-mode
     // to <html> before React hydrates (CLAUDE.md "Cash price").
@@ -110,7 +118,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessJsonLd),
+            __html: JSON.stringify(businessJsonLd),
           }}
         />
         <LanguageProvider>

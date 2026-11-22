@@ -2,7 +2,10 @@
 import Link from 'next/link'
 import { BlogPost } from '@/lib/blogPosts'
 import { useLang } from '@/components/LanguageContext'
+import FaqAccordion from '@/components/FaqAccordion'
 import LeadForm from '@/components/LeadForm'
+
+const SITE = 'https://www.texashomesdirect.com'
 
 function renderMarkdown(md: string): string {
   // very light markdown: ## headers, **bold**, paragraphs, lists
@@ -22,6 +25,10 @@ function renderMarkdown(md: string): string {
     s
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(
+        /\[([^\]]+)\]\((\/[^)\s]*)\)/g,
+        '<a class="text-gold-700 font-semibold" href="$2">$1</a>',
+      )
 
   for (const raw of lines) {
     const line = raw.trimEnd()
@@ -75,6 +82,28 @@ export default function BlogPostContent({
       year: 'numeric',
     })
 
+  const pageUrl = `${SITE}/blog/${post.slug}`
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${SITE}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: pageUrl },
+    ],
+  }
+  const faqSchema = post.faq
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: post.faq.map((item) => ({
+          '@type': 'Question',
+          name: item.q,
+          acceptedAnswer: { '@type': 'Answer', text: item.a },
+        })),
+      }
+    : null
+
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -94,11 +123,28 @@ export default function BlogPostContent({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
       <article className="bg-white py-12 sm:py-16">
         <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+          <nav aria-label="Breadcrumb" className="text-sm text-navy/70">
+            <Link href="/" className="font-semibold text-gold-700 hover:text-gold">Home</Link>
+            <span aria-hidden="true"> / </span>
+            <Link href="/blog" className="font-semibold text-gold-700 hover:text-gold">Blog</Link>
+            <span aria-hidden="true"> / </span>
+            <span>{post.title}</span>
+          </nav>
           <Link
             href="/blog"
-            className="text-sm font-semibold text-gold-700 hover:text-gold"
+            className="mt-3 inline-block text-sm font-semibold text-gold-700 hover:text-gold"
           >
             ← Back to Blog
           </Link>
@@ -121,6 +167,12 @@ export default function BlogPostContent({
             className="prose-article mt-10"
             dangerouslySetInnerHTML={{ __html: renderMarkdown(post.content) }}
           />
+          {post.faq && post.faq.length > 0 && (
+            <div className="bmh-faq-speakable mt-10">
+              <h2 className="font-display text-2xl font-bold text-navy">Frequently Asked Questions</h2>
+              <FaqAccordion items={post.faq} defaultOpen={0} />
+            </div>
+          )}
         </div>
       </article>
 
