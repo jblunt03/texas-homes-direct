@@ -7,7 +7,6 @@ import { inScopeImageAlt } from '@/lib/inScopeImageAlt'
 import { nearbyFor } from '@/lib/nearbyCities'
 import { findListingByAnySlug } from '@/lib/listingLookup'
 import GoogleReviewLinks from '@/components/GoogleReviewLinks'
-import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
 import {
   TURNKEY_ITEMS,
   CASH_PRICE_ITEMS,
@@ -122,7 +121,6 @@ export default function CityPageContentV2({
 
   return (
     <>
-      <UpgradedBusinessJsonLd />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />

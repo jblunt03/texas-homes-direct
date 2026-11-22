@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import FaqAccordion from '@/components/FaqAccordion'
-import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
 import { TURNKEY_ITEMS, SETUP_FINANCE_CAPTION } from '@/lib/setupItems'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
@@ -95,7 +94,6 @@ export default function WhatsIncludedInSetupPage() {
 
   return (
     <>
-      <UpgradedBusinessJsonLd />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />

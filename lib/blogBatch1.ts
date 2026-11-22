@@ -16,7 +16,7 @@ The cash price of a home covers the home. Delivery and setup are quoted separate
 
 A few examples of driving distance from our lot, measured on November 21, 2026 with OpenStreetMap routing (OSRM) to each city’s Census map point, then rounded to the nearest mile: San Antonio about 46 miles, Austin about 61 miles, Victoria about 89 miles, Houston about 151 miles, Waco about 160 miles, Dallas about 254 miles, Lubbock about 427 miles, and El Paso about 596 miles. Those figures are for the city point, not your exact site, so your quote may differ. They are here so “priced per mile” has a real sense of scale. They are not a bid.
 
-In Texas, delivery and setup usually take 1–2 days.
+In Texas, delivery and setup usually take 1–2 days. See [how long delivery and setup take](/blog/how-long-manufactured-home-delivery-and-setup-take-in-texas).
 
 If you already have land, start with [how to put a mobile home on your land in Texas](/blog/how-to-put-a-mobile-home-on-your-land-in-texas). If you want a home and a lot sold together, see our [land-home packages](/land-home-packages). To see cities we already have pages for, use the [cities directory](/cities), including [Seguin](/mobile-homes-seguin-tx) and [Austin](/mobile-homes-austin-tx).
 

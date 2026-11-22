@@ -5,7 +5,6 @@ import FaqAccordion from '@/components/FaqAccordion'
 import GoogleReviewLinks from '@/components/GoogleReviewLinks'
 import PriceModeToggle from '@/components/PriceModeToggle'
 import PaymentFootnote from '@/components/PaymentFootnote'
-import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
 import { LandHomeDelivery, LandHomeFinancing, LandHomeLinkRow } from '@/components/landHome/LandHomeExtras'
 import PackagePrice from '@/components/landHome/PackagePrice'
 import PackageCtas from '@/components/landHome/PackageCtas'
@@ -142,7 +141,6 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <UpgradedBusinessJsonLd />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />

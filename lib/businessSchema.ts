@@ -2,11 +2,31 @@
  * Upgraded Organization / HomeAndConstructionBusiness block for the SEO
  * batch-1 page types (city, land-home, blog, guides, testimonials).
  *
- * The root layout still emits the original LocalBusiness on every page,
- * including `/`, so the homepage markup stays as it is. These pages add
- * this block with the same `@id`. areaServed lists Texas first, then
- * Oklahoma, New Mexico, and Louisiana. Hours match the layout block.
+ * The root layout emits this block instead of the original LocalBusiness
+ * on those routes only, same `@id`. Every other route, including `/`,
+ * keeps the original block. areaServed lists Texas first, then Oklahoma,
+ * New Mexico, and Louisiana. Hours match the layout block.
  */
+
+const UPGRADED_EXACT = new Set([
+  '/land-home-packages',
+  '/land-home-packages-floresville-tx',
+  '/blog',
+  '/whats-included-in-setup',
+  '/how-pricing-works',
+  '/manufactured-vs-mobile-home',
+  '/tiny-homes',
+  '/testimonials',
+])
+
+export function usesUpgradedBusinessSchema(pathname: string): boolean {
+  const path = (pathname.split('?')[0] || '/').replace(/\/+$/, '') || '/'
+  if (UPGRADED_EXACT.has(path)) return true
+  if (path.startsWith('/mobile-homes-') && path.endsWith('-tx')) return true
+  if (path.startsWith('/land-home-packages/')) return true
+  if (path.startsWith('/blog/')) return true
+  return false
+}
 export const UPGRADED_BUSINESS_JSON_LD = {
   '@context': 'https://schema.org',
   '@type': ['Organization', 'HomeAndConstructionBusiness'],

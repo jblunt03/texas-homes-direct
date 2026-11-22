@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { blogPosts } from '@/lib/blogPosts'
-import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
 import BlogPostContent from './BlogPostContent'
 
 export async function generateStaticParams() {
@@ -39,10 +38,5 @@ export default function BlogPostPage({
   const related = blogPosts
     .filter((p) => p.slug !== post.slug)
     .slice(0, 2)
-  return (
-    <>
-      <UpgradedBusinessJsonLd />
-      <BlogPostContent post={post} related={related} />
-    </>
-  )
+  return <BlogPostContent post={post} related={related} />
 }

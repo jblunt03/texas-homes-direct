@@ -1,6 +1,5 @@
 import type { Metadata } from 'next'
 import { blogPosts } from '@/lib/blogPosts'
-import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
 import BlogClient, { type BlogCat, type BlogPostItem } from './BlogClient'
 
 export const metadata: Metadata = {
@@ -71,10 +70,5 @@ const POSTS: BlogPostItem[] = blogPosts.map((post) => {
 })
 
 export default function BlogPage() {
-  return (
-    <>
-      <UpgradedBusinessJsonLd />
-      <BlogClient posts={POSTS} />
-    </>
-  )
+  return <BlogClient posts={POSTS} />
 }

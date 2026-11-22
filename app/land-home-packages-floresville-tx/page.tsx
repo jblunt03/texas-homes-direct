@@ -4,7 +4,6 @@ import { notFound } from 'next/navigation'
 import FaqAccordion from '@/components/FaqAccordion'
 import GoogleReviewLinks from '@/components/GoogleReviewLinks'
 import PriceModeToggle from '@/components/PriceModeToggle'
-import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
 import { LandHomeDelivery, LandHomeFinancing, LandHomeLinkRow } from '@/components/landHome/LandHomeExtras'
 import PackageGrid from '@/components/landHome/PackageGrid'
 import PackageCtas from '@/components/landHome/PackageCtas'
@@ -116,7 +115,6 @@ export default function FloresvillePackagesPage() {
 
   return (
     <div className="bmh-wide-inventory">
-      <UpgradedBusinessJsonLd />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />

@@ -1540,6 +1540,25 @@ LH_BANNED = [
 LH_NOT_ON_PACKAGE_PAGES = ("utility bid", r"\bbid\b|\bcontractor\b|site visit|visits your property")
 
 
+# SEO batch 1 keeps this exact Texas window, and links to the two home-only
+# explainers, on the land-home pages that already have them. They are not
+# unknown facts. Strip them before the banned-term scan, and require them.
+LH_TEXAS_WINDOW = re.compile(
+    r"In Texas, delivery and setup usually take 1[\u2013-]2 days\.?",
+    re.I,
+)
+LH_EXPLAINER_HREFS = ("/whats-included-in-setup", "/how-pricing-works")
+LH_EXPLAINER_LABELS = re.compile(
+    r"/whats-included-in-setup|/how-pricing-works|What['’]s Included in Setup|How Pricing Works|What['’]s included in setup",
+    re.I,
+)
+
+
+def lh_without_approved(text):
+    text = LH_TEXAS_WINDOW.sub(" ", text)
+    return LH_EXPLAINER_LABELS.sub(" ", text)
+
+
 def step_land_home_unknowns():
     problems = []
     for path in land_home_paths():
@@ -1547,7 +1566,17 @@ def step_land_home_unknowns():
         if status != 200:
             problems.append(f"  {path}: HTTP {status}")
             continue
-        text = "\n".join([visible_main_text(html), page_meta_text(html), json.dumps(main_jsonld(html), ensure_ascii=False)])
+        visible = visible_main_text(html)
+        if not LH_TEXAS_WINDOW.search(visible):
+            problems.append(f"  {path}: missing the Texas 1–2 day delivery line")
+        for href in LH_EXPLAINER_HREFS:
+            if f'href="{href}"' not in html:
+                problems.append(f"  {path}: missing link {href}")
+        text = "\n".join([
+            lh_without_approved(visible),
+            lh_without_approved(page_meta_text(html)),
+            lh_without_approved(json.dumps(main_jsonld(html), ensure_ascii=False)),
+        ])
         rules = list(LH_BANNED)
         if path != LAND_HOME_HUB:
             rules.append(LH_NOT_ON_PACKAGE_PAGES)
