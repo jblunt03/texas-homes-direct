@@ -2,7 +2,10 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import FaqAccordion from '@/components/FaqAccordion'
+import GoogleReviewLinks from '@/components/GoogleReviewLinks'
 import PriceModeToggle from '@/components/PriceModeToggle'
+import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
+import { LandHomeDelivery, LandHomeFinancing, LandHomeLinkRow } from '@/components/landHome/LandHomeExtras'
 import PackageCtas from '@/components/landHome/PackageCtas'
 import PackageGrid from '@/components/landHome/PackageGrid'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
@@ -25,7 +28,7 @@ import {
 const PAGE_URL = `${SITE_URL}${LAND_HOME_HUB_PATH}`
 const TITLE = 'Land and Home Packages in Texas | Texas Homes Direct'
 const DESCRIPTION =
-  'Texas Homes Direct sells land-home packages across Texas: a home and its lot sold together, turnkey. See the current inventory and how to get started.'
+  'Texas Homes Direct sells land-home packages across Texas: a home and its lot sold together, turnkey. Financing is available, including a free mortgage analysis. See the current inventory and how to get started.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -128,6 +131,7 @@ export default function LandHomePackagesPage() {
 
   return (
     <div className="bmh-wide-inventory">
+      <UpgradedBusinessJsonLd />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
@@ -247,6 +251,34 @@ export default function LandHomePackagesPage() {
           </div>
         </div>
       </section>
+
+      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+        <div className="bmh-container">
+          <LandHomeFinancing />
+          <div className="bmh-spacer-lg" />
+          <LandHomeDelivery />
+          <div className="bmh-spacer-lg" />
+          <div className="bmh-city-prose">
+            <h3 className="bmh-city-h3">More to read</h3>
+            <div className="bmh-spacer-sm" />
+            <LandHomeLinkRow
+              links={[
+                { href: '/land-home-packages-floresville-tx', label: 'Floresville land-home packages →' },
+                { href: '/mobile-homes-floresville-tx', label: 'Floresville city page →' },
+                { href: '/cities', label: 'Cities we serve →' },
+                { href: '/calculator', label: 'Free mortgage analysis →' },
+                { href: '/contact', label: 'Contact →' },
+                { href: '/whats-included-in-setup', label: 'What’s included in setup →' },
+                { href: '/how-pricing-works', label: 'How pricing works →' },
+                { href: '/blog/how-manufactured-home-delivery-is-priced-in-texas', label: 'How delivery is priced →' },
+                { href: '/blog/how-long-manufactured-home-delivery-and-setup-take-in-texas', label: 'How long delivery and setup take →' },
+              ]}
+            />
+          </div>
+        </div>
+      </section>
+
+      <GoogleReviewLinks />
 
       {/* 5. Comparison — always last */}
       <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0 56px' }} data-section="comparison">

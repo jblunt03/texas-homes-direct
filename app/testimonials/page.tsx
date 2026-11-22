@@ -2,6 +2,8 @@ import Link from 'next/link'
 import type { Metadata } from 'next'
 import FaqAccordion from '@/components/FaqAccordion'
 import FeaturableReviews from '@/components/FeaturableReviews'
+import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
+import { GOOGLE_MAPS_PROFILE_URL } from '@/lib/businessSchema'
 import { CtaRow, RelatedLinks, TurnkeyChecklist } from '@/components/SiteBlocks'
 
 // Reviews page rules (see CLAUDE.md "Reviews page"): the Google widget is the
@@ -83,6 +85,7 @@ export default function TestimonialsPage() {
 
   return (
     <>
+      <UpgradedBusinessJsonLd />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
@@ -133,6 +136,14 @@ export default function TestimonialsPage() {
           </ol>
           <div className="bmh-spacer-lg" />
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
+            <a
+              href={GOOGLE_MAPS_PROFILE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bmh-btn bmh-btn-secondary bmh-btn-lg"
+            >
+              Read our Google reviews
+            </a>
             <a
               href={GOOGLE_REVIEW_URL}
               target="_blank"

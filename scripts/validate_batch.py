@@ -426,8 +426,10 @@ def extract_jsonld_types_and_urls(html):
         except json.JSONDecodeError:
             continue
         t = obj.get("@type")
-        if t:
+        if isinstance(t, str):
             types.add(t)
+        elif isinstance(t, list):
+            types.update(x for x in t if isinstance(x, str))
         # Nested rating markup (e.g. aggregateRating inside a Product) counts too.
         for nested in re.findall(r'"@type":\s*"([A-Za-z]+)"', b):
             types.add(nested)

@@ -1,9 +1,13 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import type { CityEntry } from '@/lib/cities'
-import { TEXAS_CITIES } from '@/lib/cities'
 import type { CityContent } from '@/lib/cityContent'
+import { cityDeliveryParagraph, cityFact, cityFactsLine } from '@/lib/cityFacts'
+import { inScopeImageAlt } from '@/lib/inScopeImageAlt'
+import { nearbyFor } from '@/lib/nearbyCities'
 import { findListingByAnySlug } from '@/lib/listingLookup'
+import GoogleReviewLinks from '@/components/GoogleReviewLinks'
+import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
 import {
   TURNKEY_ITEMS,
   CASH_PRICE_ITEMS,
@@ -63,34 +67,17 @@ export default function CityPageContentV2({
   const pageUrl = `${SITE_URL}/mobile-homes-${city.slug}-tx`
   const heroUrl = `${SITE_URL}${content.heroImage}`
   const secondaryUrl = `${SITE_URL}${content.secondaryImage}`
-
-  // Nearby cities render as real links only when a page exists for them —
-  // otherwise as a plain (unlinked) label, so we never ship a dead link.
-  const nearbyCities = content.nearby
-    .map((slug) => TEXAS_CITIES.find((c) => c.slug === slug))
-    .filter((c): c is CityEntry => Boolean(c))
+  const heroAlt = inScopeImageAlt(content.heroImage, content.heroAlt)
+  const secondaryAlt = inScopeImageAlt(content.secondaryImage, content.secondaryAlt)
+  const fact = cityFact(city.slug)
+  // Six linked city pages from the batch file. No unlinked names.
+  const nearbyCities = nearbyFor(city.slug)
 
   const popular = content.popularHomes
     // popularHomes in lib/cityContent.ts may hold legacy slugs; resolve each
     // to its listing so cards always link to the current URL.
     .map((slug) => findListingByAnySlug(slug))
     .filter((l): l is NonNullable<typeof l> => Boolean(l))
-
-  const localBusinessJsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: `Texas Homes Direct — ${city.name}, TX`,
-    url: pageUrl,
-    telephone: '+1-830-381-1309',
-    areaServed: {
-      '@type': 'City',
-      name: city.name,
-      containedInPlace: [
-        { '@type': 'AdministrativeArea', name: `${content.county} County` },
-        { '@type': 'State', name: 'Texas' },
-      ],
-    },
-  }
 
   const faqJsonLd = {
     '@context': 'https://schema.org',
@@ -103,8 +90,8 @@ export default function CityPageContentV2({
   }
 
   const imageJsonLd = [
-    { '@context': 'https://schema.org', '@type': 'ImageObject', contentUrl: heroUrl, description: content.heroAlt },
-    { '@context': 'https://schema.org', '@type': 'ImageObject', contentUrl: secondaryUrl, description: content.secondaryAlt },
+    { '@context': 'https://schema.org', '@type': 'ImageObject', contentUrl: heroUrl, description: heroAlt },
+    { '@context': 'https://schema.org', '@type': 'ImageObject', contentUrl: secondaryUrl, description: secondaryAlt },
   ]
 
   const breadcrumbJsonLd = {
@@ -135,7 +122,7 @@ export default function CityPageContentV2({
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
+      <UpgradedBusinessJsonLd />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
@@ -171,7 +158,7 @@ export default function CityPageContentV2({
       <section style={{ background: 'var(--color-canvas)', paddingBottom: 40 }}>
         <div className="bmh-container">
           <div className="bmh-ratio-16x9" style={{ position: 'relative', borderRadius: 'var(--radius-lg)', overflow: 'hidden' }}>
-            <Image src={content.heroImage} alt={content.heroAlt} fill style={{ objectFit: 'cover' }} priority />
+            <Image src={content.heroImage} alt={heroAlt} fill style={{ objectFit: 'cover' }} priority />
           </div>
         </div>
       </section>
@@ -185,6 +172,20 @@ export default function CityPageContentV2({
               {content.gettingStarted.map((paragraph, i) => (
                 <p key={i} className="bmh-lead" style={{ marginTop: 12 }}>{paragraph}</p>
               ))}
+              {fact && (
+                <p className="bmh-caption" style={{ marginTop: 12 }}>{cityFactsLine(fact)}</p>
+              )}
+            </div>
+          </div>
+        </section>
+      )}
+
+      {fact && (
+        <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+          <div className="bmh-container">
+            <div className="bmh-city-prose">
+              <h2 className="bmh-city-h2">{`Getting a home delivered to ${city.name}`}</h2>
+              <p className="bmh-lead" style={{ marginTop: 12 }}>{cityDeliveryParagraph(fact)}</p>
             </div>
           </div>
         </section>
@@ -310,7 +311,7 @@ export default function CityPageContentV2({
                     {listing.images[0] && (
                       <Image
                         src={listing.images[0]}
-                        alt={`${listing.title} exterior`}
+                        alt={inScopeImageAlt(listing.images[0], `${listing.title} exterior`)}
                         fill
                         style={{ objectFit: 'cover' }}
                         sizes="(max-width: 600px) 100vw, (max-width: 960px) 50vw, 33vw"
@@ -376,6 +377,8 @@ export default function CityPageContentV2({
         </div>
       </section>
 
+      <GoogleReviewLinks />
+
       {/* ── NEARBY AREAS ─────────────────────────────────────────── */}
       <section className="bmh-surface-card" style={{ padding: '32px 0' }}>
         <div className="bmh-container">
@@ -383,17 +386,11 @@ export default function CityPageContentV2({
             <h3 className="bmh-city-h3">Also Serving Nearby Areas</h3>
             <div className="bmh-spacer-sm" />
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-              {nearbyCities.map((c) =>
-                c.published ? (
-                  <Link key={c.slug} href={`/mobile-homes-${c.slug}-tx`} className="bmh-pill bmh-pill-static">
-                    {c.name}
-                  </Link>
-                ) : (
-                  <span key={c.slug} className="bmh-pill bmh-pill-static" style={{ opacity: 0.6, cursor: 'default' }}>
-                    {c.name}
-                  </span>
-                )
-              )}
+              {nearbyCities.map((c) => (
+                <Link key={c.slug} href={c.url} className="bmh-pill bmh-pill-static">
+                  {c.name}
+                </Link>
+              ))}
               <Link href="/cities" className="bmh-pill bmh-pill-static">
                 See all cities we serve →
               </Link>

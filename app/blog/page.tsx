@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { blogPosts } from '@/lib/blogPosts'
+import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
 import BlogClient, { type BlogCat, type BlogPostItem } from './BlogClient'
 
 export const metadata: Metadata = {
@@ -40,6 +41,16 @@ const LIST_META: Record<string, { cat: BlogCat; catLabel: string; phLabel: strin
     catLabel: 'Land & permits',
     phLabel: 'Well drilling rig on Texas property',
   },
+  'how-manufactured-home-delivery-is-priced-in-texas': {
+    cat: 'delivery',
+    catLabel: 'Delivery & setup',
+    phLabel: 'Delivery priced per mile across Texas',
+  },
+  'how-long-manufactured-home-delivery-and-setup-take-in-texas': {
+    cat: 'delivery',
+    catLabel: 'Delivery & setup',
+    phLabel: 'Delivery and setup timing in Texas',
+  },
 }
 
 const POSTS: BlogPostItem[] = blogPosts.map((post) => {
@@ -60,5 +71,10 @@ const POSTS: BlogPostItem[] = blogPosts.map((post) => {
 })
 
 export default function BlogPage() {
-  return <BlogClient posts={POSTS} />
+  return (
+    <>
+      <UpgradedBusinessJsonLd />
+      <BlogClient posts={POSTS} />
+    </>
+  )
 }

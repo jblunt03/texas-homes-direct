@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
 import FaqAccordion from '@/components/FaqAccordion'
+import UpgradedBusinessJsonLd from '@/components/UpgradedBusinessJsonLd'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
 const PAGE_URL = `${SITE_URL}/manufactured-vs-mobile-home`
@@ -74,6 +75,7 @@ export default function ManufacturedVsMobileHomePage() {
 
   return (
     <>
+      <UpgradedBusinessJsonLd />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(webPageJsonLd) }} />
