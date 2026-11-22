@@ -108,6 +108,11 @@ export default function BlogPostContent({
       }
     : null
 
+  const articleImage = post.image
+    ? post.image.startsWith('http')
+      ? post.image
+      : `${SITE}${post.image}`
+    : undefined
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -119,6 +124,9 @@ export default function BlogPostContent({
       name: 'Texas Homes Direct',
     },
     description: post.excerpt,
+    ...(articleImage
+      ? { url: pageUrl, dateModified: post.date, image: articleImage }
+      : {}),
   }
 
   return (

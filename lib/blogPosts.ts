@@ -10,6 +10,8 @@ export interface BlogPost {
   author: string
   content: string
   faq?: { q: string; a: string }[]
+  /** Absolute or site-relative image. When set, Article JSON-LD also gets url and dateModified. */
+  image?: string
 }
 
 export const blogPosts: BlogPost[] = [

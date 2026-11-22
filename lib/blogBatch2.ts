@@ -6,6 +6,7 @@ const SINGLE_VS_DOUBLE = {
   date: '2026-11-22',
   readTime: '5 min',
   author: 'the Texas Homes Direct team',
+  image: '/icon.png',
   content: `A single-wide and a double-wide are the same kind of home. The difference is how many sections travel to the property. A single-wide is one section. A double-wide is two sections that are joined where the home will stand.
 
 ## One code, one or more sections
@@ -24,7 +25,7 @@ Section count changes the trip and the finished width. It does not change the le
 Wind zone is also separate from single-wide versus double-wide. Occupations Code Section 1201.256 names the Texas counties in Wind Zone II and places every other Texas county in Wind Zone I. A home constructed on or after September 1, 1997, must meet the HUD Wind Zone II standards to be installed in a Wind Zone II county. Read the statute and the home's own papers. A wider home is not automatically built for a higher wind zone.
 
 ## Delivery either way
-Texas Homes Direct delivers new manufactured homes all over Texas, from Lubbock to Seguin and beyond, with its own crew. Delivery is priced per mile. We do not publish a per-mile rate in this article.
+Texas Homes Direct delivers new manufactured homes all over Texas, from Lubbock to Seguin and beyond, with its own crew. Delivery is priced per mile. We do not publish a per-mile rate in this article. [How delivery is priced](/blog/how-manufactured-home-delivery-is-priced-in-texas) and [how long delivery and setup take](/blog/how-long-manufactured-home-delivery-and-setup-take-in-texas) cover the quote and what happens once the home is on its way.
 
 The cash price covers the home. Delivery and setup are quoted separately. If you finance, delivery and setup are included in your estimated monthly payment.
 
@@ -51,12 +52,13 @@ To see financing for your own situation, start the [free mortgage analysis](/cal
 
 const LAND_CHECKS = {
   slug: 'what-to-check-on-texas-land-before-a-manufactured-home',
-  title: 'What to Check on Your Land Before Buying a Manufactured Home in Texas',
+  title: 'What to Check on Texas Land Before a Manufactured Home',
   excerpt:
     'What to verify on Texas land before you buy a manufactured home: city rules, deed restrictions, septic, water, electric, floodplain, access, and wind zone.',
   date: '2026-11-22',
   readTime: '7 min',
   author: 'the Texas Homes Direct team',
+  image: '/icon.png',
   content: `Check the specific tract before you buy the home. Texas does not have one statewide permit that clears every property. City rules, recorded restrictions, septic, water, electric service, floodplain, the route in, and the county wind zone are separate questions. This page tells you who answers each one. It does not guess a cost, and it does not state a schedule.
 
 ## Ask the city, then read the restrictions
@@ -87,7 +89,7 @@ Call the utility that serves the tract and ask whether power can reach the place
 Look up the tract on [FEMA's Flood Map Service Center](https://msc.fema.gov/portal/home). If it is in a Special Flood Hazard Area, [44 CFR 60.3](https://www.ecfr.gov/current/title-44/chapter-I/subchapter-B/part-60/subpart-A/section-60.3) sets minimum standards for communities in the National Flood Insurance Program, including permits for placing a manufactured home in those mapped areas and elevation and anchoring where those standards apply. Ask the local floodplain administrator what that community requires. A map is not a permit.
 
 ## The way onto the property
-The sections have to reach the spot where the home will be installed. Walk from the public road and note gates, trees, brush, and overhead lines. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew. Delivery is priced per mile. Ask us what clearance the home you are considering needs on that property. We do not publish a per-mile rate here.
+The sections have to reach the spot where the home will be installed. Walk from the public road and note gates, trees, brush, and overhead lines. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew. Delivery is priced per mile. Ask us what clearance the home you are considering needs on that property. We do not publish a per-mile rate here. [How delivery is priced](/blog/how-manufactured-home-delivery-is-priced-in-texas) explains the quote, and [how long delivery and setup take](/blog/how-long-manufactured-home-delivery-and-setup-take-in-texas) explains the work after the home arrives.
 
 ## Wind zone for that county
 Occupations Code Section 1201.256 names the Wind Zone II counties and puts every other Texas county in Wind Zone I. A manufactured home constructed on or after September 1, 1997, must meet HUD Wind Zone II standards to be installed in a Wind Zone II county. Check the home against the statute for the county where it will stand. The [Texas Department of Housing and Community Affairs](https://www.tdhca.texas.gov/manufactured-housing-federal-and-state-laws-and-rules) publishes the state manufactured-housing rules with the statute.
@@ -124,6 +126,7 @@ const DELIVERY_DAY = {
   date: '2026-11-22',
   readTime: '5 min',
   author: 'the Texas Homes Direct team',
+  image: '/icon.png',
   content: `Prepare the property. Texas Homes Direct does not publish a delivery schedule. What you can settle ahead of the crew is the route on your land, the spot where the home will be installed, and the status of water, wastewater, and power.
 
 ## Open a path from the public road
@@ -136,7 +139,7 @@ For the haul itself, [Texas Occupations Code Section 1201.161](https://statutes.
 ## Mark the spot where it will be installed
 A new manufactured home is installed by a licensed installer in line with the manufacturer's installation instructions. [10 Texas Administrative Code Chapter 80](https://www.tdhca.texas.gov/manufactured-housing-federal-and-state-laws-and-rules), published by the Texas Department of Housing and Community Affairs, is the state installation rule, and Occupations Code Section 1201.255 requires the installation to comply with the department's standards and rules. Identify the spot before the crew arrives so those instructions can be followed on that ground. This page will not name a foundation type or a soil condition for your county.
 
-If you have not confirmed that the tract can take a HUD-code home, do that first. The checks are in [what to check on your land before buying a manufactured home in Texas](/blog/what-to-check-on-texas-land-before-a-manufactured-home).
+If you have not confirmed that the tract can take a HUD-code home, do that first. The checks are in [what to check on Texas land before a manufactured home](/blog/what-to-check-on-texas-land-before-a-manufactured-home).
 
 ## Know where water, wastewater, and power stand
 Setup is the work on the property after the home arrives. The list, including water, septic when the property needs it, electric, the base pad, block, tie-down, underpinning, skirting, trim-out, and air conditioning, is on [what's included in setup](/whats-included-in-setup). Tell us whether those services already reach the property or still have to be built. A new on-site sewage facility still needs its own authorization before construction, under Health and Safety Code Section 366.051.
