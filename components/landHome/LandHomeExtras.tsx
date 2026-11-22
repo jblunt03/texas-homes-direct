@@ -4,7 +4,6 @@ import {
   FLORESVILLE_DRIVE_MILES,
   PER_MILE_NO_RATE,
   STATEWIDE_DELIVERY,
-  TEXAS_DELIVERY_WINDOW,
 } from '@/lib/cityFacts'
 
 export function LandHomeFinancing() {
@@ -31,7 +30,7 @@ export function LandHomeDelivery({ floresville = false }: { floresville?: boolea
     <div className="bmh-city-prose">
       <h2 className="bmh-city-h2">Delivery</h2>
       <p className="bmh-lead" style={{ marginTop: 12 }}>
-        {STATEWIDE_DELIVERY} {PER_MILE_NO_RATE} {TEXAS_DELIVERY_WINDOW}
+        {STATEWIDE_DELIVERY} {PER_MILE_NO_RATE}
         {floresville
           ? ` Floresville is about ${FLORESVILLE_DRIVE_MILES} driving miles from our lot. For permits, check with ${FLORESVILLE_COUNTY}.`
           : ''}

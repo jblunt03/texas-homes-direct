@@ -1540,13 +1540,10 @@ LH_BANNED = [
 LH_NOT_ON_PACKAGE_PAGES = ("utility bid", r"\bbid\b|\bcontractor\b|site visit|visits your property")
 
 
-# SEO batch 1 keeps this exact Texas window, and links to the two home-only
-# explainers, on the land-home pages that already have them. They are not
-# unknown facts. Strip them before the banned-term scan, and require them.
-LH_TEXAS_WINDOW = re.compile(
-    r"In Texas, delivery and setup usually take 1[\u2013-]2 days\.?",
-    re.I,
-)
+# The 1–2 day delivery line is not allowed. Links to the two home-only
+# explainers stay. Strip those link labels before the banned-term scan so
+# the links themselves are not treated as a setup claim, and require them.
+LH_DAY_WINDOW = re.compile(r"1[–-]2\s*days", re.I)
 LH_EXPLAINER_HREFS = ("/whats-included-in-setup", "/how-pricing-works")
 LH_EXPLAINER_LABELS = re.compile(
     r"/whats-included-in-setup|/how-pricing-works|What['’]s Included in Setup|How Pricing Works|What['’]s included in setup",
@@ -1555,7 +1552,6 @@ LH_EXPLAINER_LABELS = re.compile(
 
 
 def lh_without_approved(text):
-    text = LH_TEXAS_WINDOW.sub(" ", text)
     return LH_EXPLAINER_LABELS.sub(" ", text)
 
 
@@ -1567,8 +1563,8 @@ def step_land_home_unknowns():
             problems.append(f"  {path}: HTTP {status}")
             continue
         visible = visible_main_text(html)
-        if not LH_TEXAS_WINDOW.search(visible):
-            problems.append(f"  {path}: missing the Texas 1–2 day delivery line")
+        if LH_DAY_WINDOW.search(visible):
+            problems.append(f"  {path}: still has a 1–2 day delivery line")
         for href in LH_EXPLAINER_HREFS:
             if f'href="{href}"' not in html:
                 problems.append(f"  {path}: missing link {href}")

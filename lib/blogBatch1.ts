@@ -16,7 +16,7 @@ The cash price of a home covers the home. Delivery and setup are quoted separate
 
 A few examples of driving distance from our lot, measured on November 21, 2026 with OpenStreetMap routing (OSRM) to each city’s Census map point, then rounded to the nearest mile: San Antonio about 46 miles, Austin about 61 miles, Victoria about 89 miles, Houston about 151 miles, Waco about 160 miles, Dallas about 254 miles, Lubbock about 427 miles, and El Paso about 596 miles. Those figures are for the city point, not your exact site, so your quote may differ. They are here so “priced per mile” has a real sense of scale. They are not a bid.
 
-In Texas, delivery and setup usually take 1–2 days. See [how long delivery and setup take](/blog/how-long-manufactured-home-delivery-and-setup-take-in-texas).
+See [how long delivery and setup take](/blog/how-long-manufactured-home-delivery-and-setup-take-in-texas).
 
 If you already have land, start with [how to put a mobile home on your land in Texas](/blog/how-to-put-a-mobile-home-on-your-land-in-texas). If you want a home and a lot sold together, see our [land-home packages](/land-home-packages). To see cities we already have pages for, use the [cities directory](/cities), including [Seguin](/mobile-homes-seguin-tx) and [Austin](/mobile-homes-austin-tx).
 
@@ -29,10 +29,6 @@ To get a delivery quote, [contact us](/contact) or call (830) 381-1309. You can 
     {
       q: 'Is delivery included in the cash price?',
       a: 'No. The cash price covers the home. Delivery and setup are quoted separately if you pay cash. If you finance, delivery and setup are included in your estimated monthly payment.',
-    },
-    {
-      q: 'How long do delivery and setup take in Texas?',
-      a: 'In Texas, they usually take 1–2 days.',
     },
     {
       q: 'Where does Texas Homes Direct deliver?',
@@ -49,13 +45,11 @@ const DELIVERY_TIMING = {
   slug: 'how-long-manufactured-home-delivery-and-setup-take-in-texas',
   title: 'How Long Manufactured Home Delivery and Setup Take in Texas',
   excerpt:
-    'In Texas, delivery and setup usually take 1–2 days. Here’s what that covers for a delivery anywhere in Texas, and how to get started with Texas Homes Direct.',
+    'What setup covers for a delivery anywhere in Texas, and how to get started with Texas Homes Direct.',
   date: '2026-11-22',
   readTime: '4 min',
   author: 'the Texas Homes Direct team',
-  content: `Once you have chosen a manufactured home, the practical question is how long it takes to get it to your land and set up.
-
-For Texas Homes Direct deliveries in Texas, delivery and setup usually take 1–2 days. That is the usual window for the move to your site, and for the setup work that follows. We do not break that window into a promised hour-by-hour schedule in this article, because your site is not like every other site.
+  content: `Once you have chosen a manufactured home, the practical question is what happens to get it to your land and set up.
 
 “Setup” is everything that happens on your property between delivery and move-in. Our [setup checklist](/whats-included-in-setup) walks through that work: water and electric hookup, septic when it is needed, the base pad, blocking, tie-down, underpinning, skirting, trim out, and AC. This post does not add costs or a different checklist.
 
@@ -69,10 +63,6 @@ If you would rather buy a home and a lot together, our [land-home packages](/lan
 
 To talk through timing for your site, [contact us](/contact) or call (830) 381-1309. You can also start the [free mortgage analysis](/calculator) — normally $75, with no credit pull — or browse cities in our [directory](/cities), including [Seguin](/mobile-homes-seguin-tx) and [Houston](/mobile-homes-houston-tx).`,
   faq: [
-    {
-      q: 'How long does delivery and setup take in Texas?',
-      a: 'Usually 1–2 days.',
-    },
     {
       q: 'What does setup include?',
       a: 'The on-site work between delivery and move-in. The full list is on our what’s included in setup page.',

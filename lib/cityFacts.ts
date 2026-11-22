@@ -21,9 +21,6 @@ export const STATEWIDE_DELIVERY =
 export const PER_MILE_NO_RATE =
   'Delivery is priced per mile. We do not publish a per-mile rate.'
 
-export const TEXAS_DELIVERY_WINDOW =
-  'In Texas, delivery and setup usually take 1–2 days.'
-
 export function cityFactsLine(fact: CityFact): string {
   const seats = fact.county_seats
     .map((item) => `${item.county} (seat ${item.seat})`)
@@ -36,7 +33,6 @@ export function cityDeliveryParagraph(fact: CityFact): string {
   return [
     `Texas Homes Direct delivers new manufactured homes all over Texas, from Lubbock to Seguin and beyond, with its own crew. That includes ${fact.name}, about ${fact.driving_miles_rounded} driving miles from our lot.`,
     PER_MILE_NO_RATE,
-    TEXAS_DELIVERY_WINDOW,
     `For permits and placement rules, check with ${fact.county_check_with}. We do not list permit fees or timelines because those come from the county.`,
   ].join(' ')
 }
