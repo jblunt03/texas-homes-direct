@@ -38,5 +38,6 @@ export default function BlogPostPage({
   const related = blogPosts
     .filter((p) => p.slug !== post.slug)
     .slice(0, 2)
+    .map(({ slug, title, excerpt }) => ({ slug, title, excerpt }))
   return <BlogPostContent post={post} related={related} />
 }

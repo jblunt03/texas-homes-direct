@@ -1,4 +1,5 @@
 import { blogBatch1Posts } from '@/lib/blogBatch1'
+import { blogBatch2Posts } from '@/lib/blogBatch2'
 
 export interface BlogPost {
   slug: string
@@ -283,4 +284,5 @@ If you are budgeting for a $75,000 home on raw land, plan for a total project co
 The single most useful step: get written quotes from a well driller, a septic installer, and the local electric utility before finalizing your home purchase. At Texas Homes Direct, we help our buyers put together the full cost picture upfront so the numbers are clear from the start.`,
   },
   ...blogBatch1Posts,
+  ...blogBatch2Posts,
 ]
