@@ -4,7 +4,7 @@ import Link from 'next/link'
 import type { Listing } from '@/lib/sampleListings'
 import ListingCard from '@/components/ListingCard'
 import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
-import { pinRank } from '@/lib/promo'
+import { featuredRank } from '@/lib/featured'
 import PriceModeToggle from '@/components/PriceModeToggle'
 import { usePriceMode } from '@/lib/priceModeClient'
 import type { PriceMode } from '@/lib/priceMode'
@@ -151,19 +151,19 @@ export default function BrowseClient({
     .slice()
     .sort((a, b) => {
       if (sort === 'featured') {
-        // Default order: pinned homes (PROMO.pinned in lib/promo.ts) first, in
-        // config order; then homes with photos before floorplan-only ones;
+        // Default order: featured homes (FEATURED in lib/featured.ts) first, in
+        // list order; then homes with photos before floorplan-only ones;
         // otherwise the existing order. The same in both modes, so nothing
         // reorders when a saved "payment" choice loads.
         return (
-          pinRank(a.slug) - pinRank(b.slug) ||
+          featuredRank(a.slug) - featuredRank(b.slug) ||
           Number(isFloorplanOnly(a)) - Number(isFloorplanOnly(b))
         )
       }
       if (sort === 'size-desc') return b.sqft - a.sqft
       // Price sorts use what's on screen: cash price, or the monthly payment.
       // In payment mode, homes with no payment ("Payment on request") go last
-      // in both directions. Pins don't apply after a sort.
+      // in both directions. The featured order doesn't apply after a sort.
       const val = (l: Listing) => (mode === 'payment' ? l.monthlyPayment : l.price)
       const va = val(a), vb = val(b)
       if (!va || !vb) return Number(!va) - Number(!vb)

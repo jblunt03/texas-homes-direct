@@ -181,7 +181,7 @@ function RelatedCard({ listing }: { listing: Listing }) {
     <div className="bmh-inv-card bmh-inv-card-stretch">
       {listing.images[0] ? (
         <div className="bmh-ratio-3x2 bmh-inv-card-media" style={{ position: 'relative' }}>
-          <CardTag slug={listing.slug} featured={listing.featured} />
+          <CardTag slug={listing.slug} />
           <Image
             src={listing.images[0]}
             alt={`${listing.title} exterior`}
@@ -196,7 +196,7 @@ function RelatedCard({ listing }: { listing: Listing }) {
         </div>
       ) : (
         <div className="bmh-ph bmh-ratio-3x2 bmh-inv-card-media">
-          <CardTag slug={listing.slug} featured={listing.featured} />
+          <CardTag slug={listing.slug} />
           <span className="bmh-ph-label">{listing.title} · exterior</span>
         </div>
       )}

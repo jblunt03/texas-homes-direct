@@ -44,7 +44,7 @@ export default function ListingCard({
     .filter(Boolean)
     .join(' · ')
   // Clearance / Featured / nothing (lib/badges.ts) — "In stock" was retired 2026-11-20.
-  const tag = <CardTag slug={listing.slug} featured={listing.featured} />
+  const tag = <CardTag slug={listing.slug} />
   const isPromo = isPromoListing(listing.slug)
   const badge = listingBadge(listing.slug)
   const cardTags =

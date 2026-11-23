@@ -721,19 +721,34 @@ it doesn't, something isn't idempotent.
 After a sync, re-run `python3 scripts/validate_batch.py` before committing. The
 listing names feed the city pages' "Homes to Get You Started" cards.
 
-## Promo badge and /browse pinning (`lib/promo.ts`)
+## Featured homes (`lib/featured.ts`)
 
-One config file drives both. `PROMO` holds:
+Since 2026-11-23, `FEATURED` is one ordered list of slugs: The Woodville
+(Notion BMH-42), The Austin (BMH-93), The Willis (BMH-80). It drives:
+- **The homepage's "Featured homes" cards:** the first three Active homes in
+  the list, in list order.
+- **The default ("Featured") order on /browse:** these homes first, in list
+  order, after filters run. A price or size sort ignores it. This replaced the
+  old Seguin/Austin pin (`PROMO.pinned`, removed).
+- **The "Featured" card tag** (`components/CardTag.tsx`). Clearance keeps
+  precedence, so a featured home on the Clearance list shows "Clearance". All
+  three are on that list today, so no card shows "Featured".
+
+It's site-owned, like slug and price. `npm run sync:listings` never writes
+`lib/featured.ts` or an existing listing's `featured` field, and Notion's
+Featured property isn't read for display. The `featured` flags in
+`lib/sampleListings.ts` mirror the list. Changing it: edit `FEATURED` (and the
+mirrored flags), then commit and deploy.
+
+## Promo badge (`lib/promo.ts`)
+
+`PROMO` holds:
 - **`label`:** the badge text, e.g. "15% Off This Month".
 - **`slugs`:** the listings that get the badge.
 - **`endsAt`:** an ISO time with its UTC offset. The first promo, added
   2026-10-21, ends at `2026-11-01T00:00:00-05:00`, which is end of day Oct 31,
   Central time. Central is UTC-5 while on daylight time and UTC-6 in winter,
   so use the right offset for the date.
-- **`pinned`:** slugs shown first on /browse, in that order. They're sorted
-  after filters run, so a pinned home only appears when it matches the
-  type/bedroom/bath/budget filters. Everything else keeps its existing order,
-  with floorplan-only homes last.
 
 Where the badge appears:
 - **/browse cards:** top-left on the image, stacked above the "In stock" or
@@ -759,8 +774,7 @@ on Nov 1: all badges disappeared through the minute timer alone.
 
 **Ending early:** set `endsAt` to a past time, or empty `slugs`, then commit and
 deploy. **Renewing:** update `label`, `slugs` and `endsAt`, then commit and
-deploy. Pinning is independent of `endsAt` and keeps applying until `pinned` is
-changed or emptied.
+deploy.
 
 **Rules:**
 - No dollar amount in the label.
@@ -776,8 +790,8 @@ changed or emptied.
   `discount` in Product JSON-LD.
 - Don't touch `lib/cityContent.ts` or city pages for a promo.
 
-**Pinning applies to the default ("Featured") order only.** After a price or
-size sort, pinned homes sort like any other.
+**The featured order (`lib/featured.ts`) applies to the default ("Featured")
+order only.** After a price or size sort, featured homes sort like any other.
 
 ## Permanent listing badges (`lib/badges.ts`)
 
@@ -822,8 +836,8 @@ keyed by slug with the name and ID beside each line.
   `components/CardTag.tsx`, stacked under the promo/permanent badge when a
   home has one (The Willis: Porch Model, then Clearance); and in the badge
   row above the listing page's title.
-- **Everyone else gets no label in that slot.** The three featured homes (The
-  Smithville, The Giddings, The San Saba) still show "Featured" there; the
+- **Everyone else gets no label in that slot.** Homes in `FEATURED`
+  (`lib/featured.ts`) show "Featured" there unless they're on Clearance; the
   homepage's featured cards show "New" as before. City pages' Popular Homes
   cards are separate markup with no tag, so no Clearance there.
 - **Style:** `.bmh-clearance-badge`, black on yellow (about 14:1), distinct
@@ -1028,7 +1042,7 @@ estimated monthly payment.** Built 2026-11-13.
 - **Sort and filter (/browse).** Sort options: Featured, Lowest price, Highest
   price, Size (largest first). Price sorts use what's shown: the cash price,
   or the payment, with "Payment on request" homes last in payment mode. The
-  Seguin/Austin pin holds in Featured only. Budget bands follow the mode:
+  featured order (`lib/featured.ts`) holds in Featured only. Budget bands follow the mode:
   cash bands (Under $80,000 / $80,000–$99,999 / $100,000–$129,999 /
   $130,000+, chosen from the data: 10/19/11/17 homes on 2026-11-13; 11/18/11/17 since The Mineola went to $77,000 on 2026-11-18) or the original payment
   bands. Switching modes clears a band from the other mode.

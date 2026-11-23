@@ -1,6 +1,6 @@
 /**
  * Site promo: a badge on specific listings (on /browse cards and on the
- * listing's own page) plus a pinned order for the top of /browse.
+ * listing's own page). The /browse default order lives in lib/featured.ts.
  *
  * To end the promo early: set `endsAt` to a past time (or empty `slugs`).
  * To renew it: change `label`/`slugs` as needed and move `endsAt` forward.
@@ -14,8 +14,7 @@
  * Never put a price or dollar amount in `label`, never compute or show a
  * sale/"was"/strikethrough price (the badge applies to the list price as
  * shown), and never add the promo or a price to any schema (no
- * offers/price/discount). Pinning (`pinned`) is independent of
- * the badge and of `endsAt`: it keeps applying until the list is changed.
+ * offers/price/discount).
  */
 export const PROMO = {
   label: '15% Off This Month',
@@ -31,8 +30,6 @@ export const PROMO = {
    * (UTC-5) on Oct 31, 2026, so the promo is active until midnight CDT.
    */
   endsAt: '2026-11-01T00:00:00-05:00',
-  /** Shown first on /browse, in this order (after filters are applied). */
-  pinned: ['seguin-texas-3-bed-2-bath-single-wide', 'austin-texas-4-bed-2-bath-double-wide'],
 }
 
 export function isPromoActive(now: number = Date.now()): boolean {
@@ -41,10 +38,4 @@ export function isPromoActive(now: number = Date.now()): boolean {
 
 export function isPromoListing(slug: string): boolean {
   return PROMO.slugs.includes(slug)
-}
-
-/** Sort key for /browse: pinned listings first in config order, everything else after. */
-export function pinRank(slug: string): number {
-  const i = PROMO.pinned.indexOf(slug)
-  return i === -1 ? PROMO.pinned.length : i
 }

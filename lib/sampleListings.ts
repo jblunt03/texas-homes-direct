@@ -27,6 +27,7 @@ export interface Listing {
   downPayment: number
   available: boolean
   hudCertified: boolean
+  /** Mirrors FEATURED in lib/featured.ts, which is what the site reads. */
   featured?: boolean
   manufacturer?: string
   model?: string
@@ -126,7 +127,7 @@ export const sampleListings: Listing[] = [
     downPayment: 0,
     available: true,
     hudCertified: true,
-    featured: true,
+    featured: false,
     status: 'Active',
     matterportUrl: 'https://my.matterport.com/show/?m=bAQiAM7npui&back=1',
     floorplanUrl: '/homes/floorplans/Dove-FloorPlan.jpeg',
@@ -222,7 +223,7 @@ export const sampleListings: Listing[] = [
     downPayment: 0,
     available: true,
     hudCertified: true,
-    featured: true,
+    featured: false,
     status: 'Active',
     matterportUrl: undefined,
     floorplanUrl: '/homes/floorplans/Pintail-FloorPlan.jpeg',
@@ -505,7 +506,7 @@ export const sampleListings: Listing[] = [
     downPayment: 0,
     available: true,
     hudCertified: true,
-    featured: true,
+    featured: false,
     status: 'Active',
     matterportUrl: 'https://my.matterport.com/show/?m=XGZhqhubvVW&back=1',
     floorplanUrl: '/homes/floorplans/Mallard-FloorPlan.jpeg',
@@ -1126,7 +1127,7 @@ export const sampleListings: Listing[] = [
     downPayment: 0,
     available: true,
     hudCertified: true,
-    featured: false,
+    featured: true,
     status: 'Active',
     matterportUrl: 'https://my.matterport.com/show/?m=6JCJDf86GgX',
     floorplanUrl: '/homes/floorplans/Jackson-FloorPlan.webp',
@@ -2096,7 +2097,7 @@ export const sampleListings: Listing[] = [
     downPayment: 0,
     available: true,
     hudCertified: true,
-    featured: false,
+    featured: true,
     floorplanUrl: '/homes/the-peredavid/PereDavid-FloorPlan.png',
     status: 'Active',
     matterportUrl: 'https://my.matterport.com/show/?m=Z2Z8ZcGATa8',
@@ -2344,7 +2345,7 @@ export const sampleListings: Listing[] = [
     downPayment: 0,
     available: true,
     hudCertified: true,
-    featured: false,
+    featured: true,
     status: 'Active',
     matterportUrl: 'https://my.matterport.com/show/?m=qpiFR7QYzmQ',
     floorplanUrl: '/homes/floorplans/jasper-4bed-2bath-double-wide-FloorPlan.png',

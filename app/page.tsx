@@ -6,6 +6,7 @@ import SpinToWinPopup from '@/components/SpinToWinPopup'
 import FeaturableReviews from '@/components/FeaturableReviews'
 import ListingPrice from '@/components/ListingPrice'
 import PaymentFootnote, { showsMonthlyPayment } from '@/components/PaymentFootnote'
+import { isFeatured, featuredRank } from '@/lib/featured'
 
 export const revalidate = 3000
 
@@ -18,8 +19,10 @@ export const metadata: Metadata = {
 
 export default async function HomePage() {
   const allListings = await fetchAllListings()
+  // FEATURED in lib/featured.ts decides which homes and in what order.
   const featured = allListings
-    .filter((l) => l.featured && l.status === 'Active')
+    .filter((l) => isFeatured(l.slug) && l.status === 'Active')
+    .sort((a, b) => featuredRank(a.slug) - featuredRank(b.slug))
     .slice(0, 3)
 
   return (
