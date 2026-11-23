@@ -50,6 +50,21 @@ const LIST_META: Record<string, { cat: BlogCat; catLabel: string; phLabel: strin
     catLabel: 'Delivery & setup',
     phLabel: 'Delivery and setup timing in Texas',
   },
+  'single-wide-vs-double-wide-texas': {
+    cat: 'floorplans',
+    catLabel: 'Floor plans',
+    phLabel: 'One section beside two sections joined on site',
+  },
+  'what-to-check-on-texas-land-before-a-manufactured-home': {
+    cat: 'land',
+    catLabel: 'Land & permits',
+    phLabel: 'Land checks before a manufactured home in Texas',
+  },
+  'how-to-prepare-for-manufactured-home-delivery-day-in-texas': {
+    cat: 'delivery',
+    catLabel: 'Delivery & setup',
+    phLabel: 'A clear route onto the property before delivery',
+  },
 }
 
 const POSTS: BlogPostItem[] = blogPosts.map((post) => {

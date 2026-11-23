@@ -26,6 +26,10 @@ function renderMarkdown(md: string): string {
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
       .replace(
+        /\[([^\]]+)\]\((https:\/\/[^)\s]+)\)/g,
+        '<a class="text-gold-700 font-semibold" href="$2" target="_blank" rel="noopener noreferrer">$1</a>',
+      )
+      .replace(
         /\[([^\]]+)\]\((\/[^)\s]*)\)/g,
         '<a class="text-gold-700 font-semibold" href="$2">$1</a>',
       )
@@ -72,7 +76,7 @@ export default function BlogPostContent({
   related,
 }: {
   post: BlogPost
-  related: BlogPost[]
+  related: Pick<BlogPost, 'slug' | 'title' | 'excerpt'>[]
 }) {
   const { t } = useLang()
   const fmtDate = (d: string) =>
@@ -104,6 +108,11 @@ export default function BlogPostContent({
       }
     : null
 
+  const articleImage = post.image
+    ? post.image.startsWith('http')
+      ? post.image
+      : `${SITE}${post.image}`
+    : undefined
   const articleSchema = {
     '@context': 'https://schema.org',
     '@type': 'Article',
@@ -115,6 +124,9 @@ export default function BlogPostContent({
       name: 'Texas Homes Direct',
     },
     description: post.excerpt,
+    ...(articleImage
+      ? { url: pageUrl, dateModified: post.date, image: articleImage }
+      : {}),
   }
 
   return (
