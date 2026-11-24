@@ -1358,6 +1358,12 @@ LAND_WORDING_KNOWN = {
     # they must not regain land-home wording.
     "/mobile-homes-fairfield-tx": ["the land and home you choose fit the same budget"],
     "/blog/how-to-finance-mobile-home-on-family-land-texas": ["The home and land must be in an acceptable area per lender guidelines"],
+    # Batch 3 Floresville city page: the spec adds a link to the live packages.
+    "/mobile-homes-floresville-tx": [
+        "land-home packages in Floresville",
+        "Floresville land-home packages",
+        "buy a land-home package in Floresville",
+    ],
 }
 
 

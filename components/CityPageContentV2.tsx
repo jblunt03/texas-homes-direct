@@ -3,6 +3,8 @@ import Image from 'next/image'
 import type { CityEntry } from '@/lib/cities'
 import type { CityContent } from '@/lib/cityContent'
 import { cityDeliveryParagraph, cityFact, cityFactsLine } from '@/lib/cityFacts'
+import { cityDeepening } from '@/lib/cityDeepening'
+import { faqAnswerHtml, withFaqHtml } from '@/lib/flaggedCopy'
 import { inScopeImageAlt } from '@/lib/inScopeImageAlt'
 import { nearbyFor } from '@/lib/nearbyCities'
 import { findListingByAnySlug } from '@/lib/listingLookup'
@@ -69,6 +71,8 @@ export default function CityPageContentV2({
   const heroAlt = inScopeImageAlt(content.heroImage, content.heroAlt)
   const secondaryAlt = inScopeImageAlt(content.secondaryImage, content.secondaryAlt)
   const fact = cityFact(city.slug)
+  const deepening = cityDeepening(city.slug)
+  const faqItems = deepening ? withFaqHtml(deepening.faq) : content.faq
   // Six linked city pages from the batch file. No unlinked names.
   const nearbyCities = nearbyFor(city.slug)
 
@@ -81,7 +85,7 @@ export default function CityPageContentV2({
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: content.faq.map((item) => ({
+    mainEntity: faqItems.map((item) => ({
       '@type': 'Question',
       name: item.q,
       acceptedAnswer: { '@type': 'Answer', text: item.a },
@@ -112,7 +116,7 @@ export default function CityPageContentV2({
     '@id': pageUrl,
     url: pageUrl,
     name: `Mobile Homes for Sale in ${city.name}, TX`,
-    dateModified: content.lastModified ?? '2026-09-10',
+    dateModified: deepening ? '2026-11-24' : (content.lastModified ?? '2026-09-10'),
     speakable: {
       '@type': 'SpeakableSpecification',
       cssSelector: ['.bmh-faq-speakable'],
@@ -178,7 +182,32 @@ export default function CityPageContentV2({
         </section>
       )}
 
-      {fact && (
+      {deepening ? (
+        <>
+          <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+            <div className="bmh-container">
+              <div className="bmh-city-prose">
+                <h2 className="bmh-city-h2">{`Getting a home delivered to ${city.name}`}</h2>
+                {deepening.delivery.map((paragraph) => (
+                  <p key={paragraph.slice(0, 48)} className="bmh-lead" style={{ marginTop: 12 }}>{paragraph}</p>
+                ))}
+              </div>
+            </div>
+          </section>
+          <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+            <div className="bmh-container">
+              <div className="bmh-city-prose">
+                <h2 className="bmh-city-h2">{`Land and placement in ${city.name}`}</h2>
+                <p
+                  className="bmh-lead"
+                  style={{ marginTop: 12 }}
+                  dangerouslySetInnerHTML={{ __html: faqAnswerHtml(deepening.placement, []) }}
+                />
+              </div>
+            </div>
+          </section>
+        </>
+      ) : fact ? (
         <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
           <div className="bmh-container">
             <div className="bmh-city-prose">
@@ -187,7 +216,7 @@ export default function CityPageContentV2({
             </div>
           </div>
         </section>
-      )}
+      ) : null}
 
       {/* ── BUYING SECTION + CHECKLIST ───────────────────────────── */}
       <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
@@ -353,7 +382,7 @@ export default function CityPageContentV2({
           <div className="bmh-city-prose bmh-faq-speakable">
             <h2 className="bmh-city-h2">Frequently Asked Questions</h2>
             <div className="bmh-spacer-sm" />
-            <FaqAccordion items={content.faq} defaultOpen={0} />
+            <FaqAccordion items={faqItems} defaultOpen={0} />
           </div>
 
           <div className="bmh-spacer-md" />
