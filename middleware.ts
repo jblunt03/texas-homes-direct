@@ -30,15 +30,16 @@ export function middleware(request: NextRequest) {
     if (PRODUCTION_HOSTS.has(host)) {
       const needsHost = host !== CANONICAL_HOST || proto !== 'https'
       if (needsHost || slash) {
-        const dest = request.nextUrl.clone()
-        dest.protocol = 'https'
+        // A plain URL, not NextURL: NextURL reapplies the request's trailing slash.
+        const dest = new URL(request.url)
+        dest.protocol = 'https:'
         dest.hostname = CANONICAL_HOST
         dest.port = ''
         dest.pathname = stripTrailingSlash(pathname)
         return NextResponse.redirect(dest, 301)
       }
     } else if (slash) {
-      const dest = request.nextUrl.clone()
+      const dest = new URL(request.url)
       dest.pathname = stripTrailingSlash(pathname)
       return NextResponse.redirect(dest, 301)
     }
