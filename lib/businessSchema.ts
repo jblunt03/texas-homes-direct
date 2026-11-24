@@ -66,5 +66,3 @@ export const UPGRADED_BUSINESS_JSON_LD = {
     },
   ],
 } as const
-
-export const GOOGLE_REVIEW_URL = 'https://g.page/r/texashomesdirect/review'
