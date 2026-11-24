@@ -11,10 +11,14 @@ import { isFeatured, featuredRank } from '@/lib/featured'
 export const revalidate = 3000
 
 export const metadata: Metadata = {
-  title:
-    'Texas Homes Direct — Quality manufactured homes across Texas',
+  // Absolute so the layout title template cannot append a second brand suffix.
+  // This is the live homepage title; the canonical stays the no-slash homepage URL.
+  title: {
+    absolute: 'Texas Homes Direct — Quality manufactured homes across Texas',
+  },
   description:
     'The best prices on manufactured homes in Texas. Singlewides and doublewides — delivered and set up anywhere we serve. Family-owned & faith-based.',
+  alternates: { canonical: 'https://www.texashomesdirect.com' },
 }
 
 export default async function HomePage() {

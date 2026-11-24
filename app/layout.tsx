@@ -54,9 +54,6 @@ export const metadata: Metadata = {
     title: 'Texas Homes Direct',
     description: 'Texas manufactured homes. Real numbers. No pressure.',
   },
-  alternates: {
-    canonical: 'https://www.texashomesdirect.com',
-  },
 }
 
 const localBusinessJsonLd = {

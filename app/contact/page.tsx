@@ -3,10 +3,28 @@ import Image from 'next/image'
 import ContactForm from '@/components/ContactForm'
 import FaqAccordion from '@/components/FaqAccordion'
 
+const TITLE = 'Contact Texas Homes Direct | Texas Homes Direct'
+const DESCRIPTION =
+  'Drop us a note or give us a call. We answer the phone ourselves. Serving all of Texas.'
+const CANONICAL = 'https://www.texashomesdirect.com/contact'
+
 export const metadata: Metadata = {
-  title: 'Contact Us — Texas Homes Direct',
-  description:
-    "Drop us a note or give us a call. We answer the phone ourselves. Serving all of Texas.",
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: CANONICAL,
+    siteName: 'Texas Homes Direct',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 }
 
 const FAQ_ITEMS = [

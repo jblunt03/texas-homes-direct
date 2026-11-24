@@ -3,10 +3,28 @@ import Image from 'next/image'
 import type { Metadata } from 'next'
 import FaqAccordion from '@/components/FaqAccordion'
 
+const TITLE = 'Free Mortgage Analysis (No Credit Pull) | Texas Homes Direct'
+const DESCRIPTION =
+  "A 3-minute pre-qualification tells you exactly what kind of home is in reach. We don't pull your credit."
+const CANONICAL = 'https://www.texashomesdirect.com/calculator'
+
 export const metadata: Metadata = {
-  title: 'Free Mortgage Analysis — Texas Homes Direct',
-  description:
-    "A 3-minute pre-qualification tells you exactly what kind of home is in reach. We don't pull your credit.",
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: CANONICAL,
+    siteName: 'Texas Homes Direct',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 }
 
 const CIRRUS_URL =
