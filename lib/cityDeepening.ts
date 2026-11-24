@@ -1,9 +1,4 @@
-import {
-  ANALYSIS_CTA,
-  CREDIT_DOWN,
-  DELIVERY_TIMING,
-  LAND_DOWN,
-} from '@/lib/flaggedCopy'
+import { ANALYSIS_CTA, CREDIT_DOWN, LAND_DOWN } from '@/lib/flaggedCopy'
 
 /**
  * Batch 3 city pages. Titles, H1s, intros, prices, and inventory stay as they
@@ -24,7 +19,7 @@ export interface CityDeepening {
 }
 
 function opener(city: string): string {
-  return `Texas Homes Direct delivers new manufactured homes all over Texas, from Lubbock to Seguin and beyond, with its own crew. That includes ${city}. Delivery is priced per mile. We do not publish a per-mile rate. ${DELIVERY_TIMING}`
+  return `Texas Homes Direct delivers new manufactured homes all over Texas, from Lubbock to Seguin and beyond, with its own crew. That includes ${city}. Delivery is priced per mile. We do not publish a per-mile rate.`
 }
 
 function closer(county: string): string {
@@ -51,7 +46,7 @@ const CITIES: Record<string, CityDeepening> = {
     faq: [
       {
         q: 'Do you deliver manufactured homes to Blanco and the rest of Blanco County?',
-        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Blanco and the rest of Blanco County. Blanco is on U.S. Highway 281, about 12 miles south of Johnson City, the county seat. Delivery is priced per mile. We do not publish a per-mile rate. In Texas, delivery and setup usually take 1–2 days. Send us the property address and we will confirm the plan for that site.',
+        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Blanco and the rest of Blanco County. Blanco is on U.S. Highway 281, about 12 miles south of Johnson City, the county seat. Delivery is priced per mile. We do not publish a per-mile rate. Send us the property address and we will confirm the plan for that site.',
       },
       {
         q: 'Who should I check with about permits for a manufactured home in Blanco County?',
@@ -76,7 +71,7 @@ const CITIES: Record<string, CityDeepening> = {
     faq: [
       {
         q: 'Do you deliver throughout San Patricio County, or only to Sinton?',
-        a: 'San Patricio County is in our Texas service area. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Sinton, the county seat at the intersection of U.S. Highways 77 and 181, about 28 miles from Corpus Christi. Delivery is priced per mile. We do not publish a per-mile rate. In Texas, delivery and setup usually take 1–2 days. Pass along the property address and we will confirm the plan for that site.',
+        a: 'San Patricio County is in our Texas service area. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Sinton, the county seat at the intersection of U.S. Highways 77 and 181, about 28 miles from Corpus Christi. Delivery is priced per mile. We do not publish a per-mile rate. Pass along the property address and we will confirm the plan for that site.',
       },
       {
         q: 'Do I need a San Patricio County lot secured before the first call?',
@@ -101,7 +96,7 @@ const CITIES: Record<string, CityDeepening> = {
     faq: [
       {
         q: 'Do you deliver manufactured homes to Yorktown and the rest of DeWitt County?',
-        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Yorktown and the rest of DeWitt County. Yorktown is on State Highway 72, about 75 miles east of San Antonio and about 36 miles northwest of Victoria. Delivery is priced per mile. We do not publish a per-mile rate. In Texas, delivery and setup usually take 1–2 days. Send us the address and we will confirm the plan for that site.',
+        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Yorktown and the rest of DeWitt County. Yorktown is on State Highway 72, about 75 miles east of San Antonio and about 36 miles northwest of Victoria. Delivery is priced per mile. We do not publish a per-mile rate. Send us the address and we will confirm the plan for that site.',
       },
       {
         q: 'Do I have to own DeWitt County land before I contact you?',
@@ -126,7 +121,7 @@ const CITIES: Record<string, CityDeepening> = {
     faq: [
       {
         q: 'Can you deliver a manufactured home to any address in Karnes County?',
-        a: 'Karnes County is in our Texas service area. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Karnes City, the county seat at U.S. Highway 181 and State Highways 80 and 123, about 50 miles southeast of San Antonio. Delivery is priced per mile. We do not publish a per-mile rate. In Texas, delivery and setup usually take 1–2 days. Send us the address and we will spell out what delivery and setup will look like at that property.',
+        a: 'Karnes County is in our Texas service area. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Karnes City, the county seat at U.S. Highway 181 and State Highways 80 and 123, about 50 miles southeast of San Antonio. Delivery is priced per mile. We do not publish a per-mile rate. Send us the address and we will spell out what delivery and setup will look like at that property.',
       },
       {
         q: 'Do I need land in Karnes County squared away before contacting you?',
@@ -151,7 +146,7 @@ const CITIES: Record<string, CityDeepening> = {
     faq: [
       {
         q: 'Do you deliver manufactured homes to Pleasanton and the rest of Atascosa County?',
-        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Pleasanton and the rest of Atascosa County. Pleasanton is on U.S. Highway 281, about 30 miles south of San Antonio and about 5 miles northeast of Jourdanton, the county seat. Delivery is priced per mile. We do not publish a per-mile rate. In Texas, delivery and setup usually take 1–2 days. Send us the address and we will confirm the plan for that site.',
+        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Pleasanton and the rest of Atascosa County. Pleasanton is on U.S. Highway 281, about 30 miles south of San Antonio and about 5 miles northeast of Jourdanton, the county seat. Delivery is priced per mile. We do not publish a per-mile rate. Send us the address and we will confirm the plan for that site.',
       },
       {
         q: 'Will I need a permit in Atascosa County?',
@@ -176,7 +171,7 @@ const CITIES: Record<string, CityDeepening> = {
     faq: [
       {
         q: 'Do you serve every part of Wilson County?',
-        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Floresville and the rest of Wilson County. Floresville is the county seat, at U.S. Highway 181 and State Highway 97, about 30 miles southeast of San Antonio. Delivery is priced per mile. We do not publish a per-mile rate. In Texas, delivery and setup usually take 1–2 days. Send us the address and we will lay out delivery and setup for that location.',
+        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Floresville and the rest of Wilson County. Floresville is the county seat, at U.S. Highway 181 and State Highway 97, about 30 miles southeast of San Antonio. Delivery is priced per mile. We do not publish a per-mile rate. Send us the address and we will lay out delivery and setup for that location.',
       },
       {
         q: 'Can I buy a land-home package in Floresville instead of placing a home on my own land?',
@@ -201,7 +196,7 @@ const CITIES: Record<string, CityDeepening> = {
     faq: [
       {
         q: 'Do you deliver manufactured homes to Gonzales and the rest of Gonzales County?',
-        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Gonzales and the rest of Gonzales County. Gonzales is the county seat, on U.S. Highways 90, 97, and 183. Delivery is priced per mile. We do not publish a per-mile rate. In Texas, delivery and setup usually take 1–2 days. Send us the address and we will confirm the plan for that site.',
+        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Gonzales and the rest of Gonzales County. Gonzales is the county seat, on U.S. Highways 90, 97, and 183. Delivery is priced per mile. We do not publish a per-mile rate. Send us the address and we will confirm the plan for that site.',
       },
       {
         q: 'Do you expect Gonzales County land to already be owned?',
@@ -226,7 +221,7 @@ const CITIES: Record<string, CityDeepening> = {
     faq: [
       {
         q: 'Does your delivery area cover all of Medina County?',
-        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Hondo and the rest of Medina County. Hondo is the county seat, on U.S. Highway 90, about 41 miles west of San Antonio. Delivery is priced per mile. We do not publish a per-mile rate. In Texas, delivery and setup usually take 1–2 days. Once we have the address, we will confirm the plan for that property.',
+        a: 'Yes. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew, including Hondo and the rest of Medina County. Hondo is the county seat, on U.S. Highway 90, about 41 miles west of San Antonio. Delivery is priced per mile. We do not publish a per-mile rate. Once we have the address, we will confirm the plan for that property.',
       },
       {
         q: 'What determines which floor plan fits my land near Hondo?',

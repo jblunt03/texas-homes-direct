@@ -4,7 +4,6 @@ import {
   PER_MILE_NO_RATE,
   STATEWIDE_DELIVERY,
 } from '@/lib/cityFacts'
-import { DELIVERY_TIMING } from '@/lib/flaggedCopy'
 
 export function LandHomeFinancing() {
   return (
@@ -30,7 +29,7 @@ export function LandHomeDelivery({ floresville = false }: { floresville?: boolea
     <div className="bmh-city-prose">
       <h2 className="bmh-city-h2">Delivery</h2>
       <p className="bmh-lead" style={{ marginTop: 12 }}>
-        {STATEWIDE_DELIVERY} {PER_MILE_NO_RATE} {DELIVERY_TIMING}
+        {STATEWIDE_DELIVERY} {PER_MILE_NO_RATE}
         {floresville ? ` For permits, check with ${FLORESVILLE_COUNTY}.` : ''}
       </p>
       <div className="bmh-spacer-sm" />

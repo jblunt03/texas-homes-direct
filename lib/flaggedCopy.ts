@@ -13,11 +13,8 @@ export const LAND_STANDS_IN = 'Land you already own can stand in for a down paym
 
 export const LAND_DOWN = `${LAND_STANDS_IN}.`
 
-export const DELIVERY_TIMING = 'In Texas, delivery and setup usually take 1–2 days.'
-
 export const DELIVERY_ANSWER =
-  'Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew. Delivery is priced per mile. We do not publish a per-mile rate. ' +
-  DELIVERY_TIMING
+  'Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew. Delivery is priced per mile. We do not publish a per-mile rate.'
 
 export const ANALYSIS_CTA =
   'Start it on the free mortgage analysis page, or call (830) 381-1309.'
