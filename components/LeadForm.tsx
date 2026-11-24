@@ -1,5 +1,6 @@
 'use client'
 import { useState, FormEvent } from 'react'
+import { trackLeadFormSubmit } from '@/lib/analytics'
 import { useLang } from './LanguageContext'
 
 interface LeadFormProps {
@@ -38,6 +39,11 @@ export default function LeadForm({
         body: JSON.stringify({ ...form, firstName: form.name, source }),
       })
       if (!res.ok) throw new Error('Submit failed')
+      trackLeadFormSubmit({
+        form_id: source.startsWith('blog-') ? 'blog_send_to_justin' : 'lead_form',
+        form_name: 'Send to Justin',
+        ...(form.ownsLand ? { lead_type: 'owns_land' } : {}),
+      })
       setSuccess(true)
     } catch (err) {
       setError(t.leadForm.error)
