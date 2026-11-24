@@ -1,5 +1,3 @@
-import { sendGAEvent } from '@next/third-parties/google'
-
 /** Existing GA4 measurement ID. Do not add a second tag. */
 export const GA_MEASUREMENT_ID = 'G-TEY2WEP5QP'
 
@@ -25,9 +23,43 @@ function safeSearch(search: string): string {
   return search
 }
 
+function clientId(): string {
+  const match = document.cookie.match(/_ga=GA\d+\.\d+\.(\d+\.\d+)/)
+  if (match) return match[1]
+  const key = 'thd-ga-cid'
+  try {
+    const existing = localStorage.getItem(key)
+    if (existing) return existing
+    const created = `${Math.floor(Math.random() * 1e10)}.${Math.floor(Date.now() / 1000)}`
+    localStorage.setItem(key, created)
+    return created
+  } catch {
+    return `${Math.floor(Math.random() * 1e10)}.${Math.floor(Date.now() / 1000)}`
+  }
+}
+
+/**
+ * Sends one hit to the existing G-TEY2WEP5QP collect endpoint.
+ * gtag's dataLayer push was not flushing custom events on some pages
+ * (verified on /contact), so the hit is a beacon instead of a second tag.
+ */
 export function trackEvent(name: string, params: Record<string, string>) {
   try {
-    sendGAEvent('event', name, params)
+    const query = new URLSearchParams({
+      v: '2',
+      tid: GA_MEASUREMENT_ID,
+      cid: clientId(),
+      en: name,
+      dl: params.page_location || window.location.href,
+      dp: params.page_path || window.location.pathname,
+    })
+    for (const [key, value] of Object.entries(params)) {
+      if (key === 'page_path' || key === 'page_location') continue
+      query.set(`ep.${key}`, value)
+    }
+    const url = `https://www.google-analytics.com/g/collect?${query.toString()}`
+    if (typeof navigator.sendBeacon === 'function') navigator.sendBeacon(url)
+    else fetch(url, { method: 'POST', keepalive: true, mode: 'no-cors' })
   } catch {
     /* analytics must never block the page */
   }
