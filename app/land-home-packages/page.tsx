@@ -27,7 +27,7 @@ import {
 const PAGE_URL = `${SITE_URL}${LAND_HOME_HUB_PATH}`
 const TITLE = 'Land and Home Packages in Texas | Texas Homes Direct'
 const DESCRIPTION =
-  'Texas Homes Direct sells land-home packages across Texas: a home and its lot sold together, turnkey. Financing is available, including a free mortgage analysis. See the current inventory and how to get started.'
+  'Texas Homes Direct sells land-home packages across Texas: a home and its lot sold together. Financing is available, including a free mortgage analysis. See the current inventory and how to get started.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -53,7 +53,7 @@ const FAQ = [
   },
   {
     q: 'What comes with each Floresville land-home package?',
-    a: 'Each one is a single lot and a home, sold turnkey with all utilities. The three lots measure 1.3, 1.2 and 0.75 acres. Every package shows a 4-bedroom, 2-bathroom double wide of 1,493 square feet, and the buyer has the option to choose their own home instead.',
+    a: 'Each one is a single lot and a home, sold turnkey with all utilities. The three lots measure 1.20, 1.05 and 0.75 acres. Every package shows a 4-bedroom, 2-bathroom double wide of 1,493 square feet, and the buyer has the option to choose their own home instead.',
   },
   {
     q: 'Where in Texas does Texas Homes Direct offer land-home packages?',
@@ -298,7 +298,7 @@ export default function LandHomePackagesPage() {
                 <tr>
                   <th scope="row">Land</th>
                   <td>You provide it</td>
-                  <td>Included, from 0.75 to 1.3 acres</td>
+                  <td>Included, from 0.75 to 1.20 acres</td>
                 </tr>
                 <tr>
                   <th scope="row">Utilities</th>

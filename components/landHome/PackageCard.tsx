@@ -4,8 +4,8 @@ import { type LandHomePackage, PACKAGE_HOME_SPECS, packageName, packagePath } fr
 
 /**
  * One land-home package as a retail inventory card (components/InventoryCard
- * — the same card as /browse): photo with a "Land-Home Package" badge and,
- * while the photo is a stand-in, an "Example home" tag; the title; the
+ * — the same card as /browse): photo with a "Land-Home Package" badge, an "Example home" tag
+ * and, on a render, an "Illustration" badge (validator step 13j); the title; the
  * location label (so packages from any city share one grid); a spec row;
  * the cash/payment price.
  */
@@ -19,11 +19,18 @@ export default function PackageCard({ pkg, priority = false }: { pkg: LandHomePa
       placeholderLabel={packageName(pkg)}
       priority={priority}
       tags={<span className="bmh-listing-badge bmh-inv-card-tag">Land-Home Package</span>}
-      mediaExtra={pkg.image.example ? <span className="bmh-example-tag">Example home</span> : null}
+      mediaExtra={
+        <>
+          <span className="bmh-example-tag">Example home</span>
+          {pkg.image.kind === 'render' && (
+            <span className="bmh-lh-illustration-badge bmh-lh-illustration-badge-card" data-lh-badge="">Illustration</span>
+          )}
+        </>
+      }
       sub={
         <>
           <span className="bmh-location-label" data-location-label="">{pkg.locationLabel}</span>
-          {' · Turnkey · All utilities'}
+          {' · All utilities'}
         </>
       }
       specs={[

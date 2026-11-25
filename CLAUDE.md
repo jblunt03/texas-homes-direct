@@ -1390,6 +1390,12 @@ three currently in Floresville) — keep it in step with this section.
 **Routes:** `/land-home-packages` (Texas pillar/hub),
 `/land-home-packages-floresville-tx` (the three packages as cards), and
 `/land-home-packages/<slug>` for each package. Slugs are frozen once live.
+When the acreage changed on 2026-11-24 (owner: the parcels are 1.20, 1.05
+and 0.75 acres, as on the aerials), two new slugs were added and the old
+ones moved to the package's `legacySlugs`, which `next.config.mjs` turns into
+exact-path 308s straight to the new slug (it throws on a chain):
+`…-1-3-acres-…` → `…-1-20-acres-…` and `…-1-2-acres-…` → `…-1-05-acres-…`.
+Nothing on the site links to a legacy slug. Acreage displays as "1.20-acre".
 
 **Data:** `lib/packages.ts` — acreage, cash price and est. monthly payment
 per package, in the owner's order. Packages are NOT listings: not in
@@ -1402,38 +1408,75 @@ change the packages. Never use The Austin's name, price, payment, photos,
 tour, features, description, year or manufacturer, and never name or link
 to it on a package page.
 
+**Lot description (owner, 2026-11-24):** `components/landHome/PackageDescription.tsx`
+renders, in order: the lead line, "This 1.20-acre lot on FM 536 comes with a
+brand new 4 bed, 2 bath double wide that's move-in ready.", the approximate
+location list, the school line, the included list and "Financing available."
+(linked to `CIRRUS_URL`). Package pages show it below the price block and
+above "Choose your own home"; the Floresville page shows it for all three
+lots. The facts live in `lib/packages.ts` (`FLORESVILLE_FACTS`, shared; a
+lot that differs overrides one value). `FM 536` is a road name: visible body
+text on the Floresville and package pages only, never in titles, metas,
+schema, alt text, `llms.txt` or the sitemap; no house number, coordinates
+or map. The school line keeps its year (`SCHOOL_RATING_YEAR`, TEA 2026: B;
+2023–2025 were C). Icons are inline SVG with aria-hidden; no emoji. Never
+"turnkey" on land-home pages (the hub's remaining uses await the owner's
+review).
+
 **Unknown-facts rule:** use only the owner's facts (statewide land-home
-sales; three Floresville packages; turnkey; all utilities; a 4-bed, 2-bath
-home shown that the buyer can swap for their own; acreage, price, payment).
+sales; three Floresville packages; all utilities; a 4-bed, 2-bath home shown
+that the buyer can swap for their own; acreage, price, payment; the lot
+description above).
 Never state or infer: builder, model, manufacturer or HUD status; what
 "turnkey" or "all utilities" covers beyond those words; what the monthly
 estimate includes or assumes (term, rate, down payment, taxes, insurance,
 delivery, setup); what changes if the buyer picks another home; which homes
 fit which lot; addresses, dimensions or lot features; financing types;
 delivery or move-in timing; county facts. No "includes/excludes delivery and
-setup", no "what's included" list, no utility bid after a site visit (except
+setup", no "what's included" list beyond the owner's included list, no utility bid after a site visit (except
 the hub's owner-specified comparison row and its "how is this different"
 FAQ, which describe buying a home alone). On these pages say "home" and
 "double wide" — never "mobile home", "manufactured home" or "HUD". Floresville
 is only where the properties are, never an office or showroom. No prices or
 payments in any FAQ answer, title, meta description, schema or `llms.txt`.
 
-**Photo rule (2026-11-21):** until each package has its own photo, every
-card and package page uses one stand-in: `public/land-home/example-4-bed-2-bath.jpg`
-(`EXAMPLE_HOME_IMAGE` in `lib/packages.ts`; a byte-for-byte copy of a listing
-photo under a neutral name, 1672×941, 587KB). Alt text: "Example 4-bedroom,
-2-bathroom home". No filename, alt or markup may name a home or manufacturer,
-and the source listing is never named or linked. Cards carry an "Example
-home" tag; package pages a caption, "Example 4-bed, 2-bath home shown. You
-can choose your own home." (owner's addition — strike by setting `example:
-false`). Each package has its own `image` field, so photos can be replaced
-one at a time. No "coming soon" anywhere. Schema has no image fields and
-pages have no og:image (the photo is a stand-in; the site has no default
-og:image). Product/Offer/price/address/geo stay banned until real photos.
+**Photo rule (2026-11-24, replaces 2026-11-21):** all files are copies under
+neutral names in `public/land-home/`, each at most 800KB; originals are never
+edited. In `lib/packages.ts`:
+- **Head image (`image`) = a front render**, an illustration of an example
+  home on the lot: 1.20 ac `example-render-1.jpg`, 1.05 ac
+  `example-render-2.jpg`, 0.75 ac `example-render-3.jpg` (2000×1116 copies of
+  the owner's 2752×1536 renders, never cropped or retouched; a faint "©" mark
+  is baked into the road and stays). **NOT CLEARED TO SHIP until the owner
+  confirms the image rights.** A visible "Illustration" badge everywhere a
+  render appears (cards, gallery, thumbnails); on the package page, the
+  caption "Illustration. Home shown is an example. Not the actual property."
+- **Aerials:** `parcels-aerial-empty.jpg` (owner's file, native 1024×572,
+  disclaimer baked in) is always uncropped (object-fit: contain), never
+  overlaid, with its disclaimer as real text directly beneath.
+  `parcels-aerial-homes.jpg` (1672×941, JPEG q82 of the owner's PNG) always
+  has the "Illustration" badge and its caption beneath. Tapping either opens
+  it at native size in a lightbox (Close button, Esc). Alt text: "Aerial
+  illustration of the three Floresville parcels". The Floresville page's
+  "The Parcels" section shows both, two-up on desktop and stacked on phones.
+- **Gallery (`packageGallery`, max 13):** render, empty aerial, homes
+  aerial, nine example interiors (`example-interior-1…9`: three each from
+  three example homes, at least 900px wide), then the one example floor plan
+  (`example-floor-plan-4-bed-2-bath.png`, 4 bed, 2 bath like the package's
+  home), captioned "Example homes shown. You can choose your own home."
+  `components/landHome/LandHomeGallery.tsx`: large image plus thumbnail
+  strip, arrow keys, swipe; no image drawn larger than its natural size.
+- No filename, alt text or caption names a home or manufacturer, and the
+  source homes are never named or linked. Cards keep the "Example home" tag.
+  Schema has no image fields and pages have no og:image.
+  Product/Offer/price/address/geo stay banned.
+- Validator step 13j enforces all of this (and 13e allows the owner's lot
+  facts on the Floresville and package pages only).
 
 **Cards and grid:** `components/landHome/PackageCard.tsx` renders the retail
 card (`components/InventoryCard.tsx`, shared with the homes' `ListingCard`):
-photo with a "Land-Home Package" badge, title, location label (`locationLabel`,
+photo with a "Land-Home Package" badge, an "Example home" tag and an
+"Illustration" badge, title, location label (`locationLabel`,
 e.g. "Floresville, TX"), spec row (bd, ba, sqft, wide type, acres), price.
 `PackageGrid` sizes it like /browse (pages are wrapped in
 `.bmh-wide-inventory`): 1/2/3 columns as on /browse, enlarged text from

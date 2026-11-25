@@ -1555,6 +1555,50 @@ def lh_without_approved(text):
     return LH_EXPLAINER_LABELS.sub(" ", text)
 
 
+# The owner's lot facts (2026-11-24) are allowed in the visible text of the
+# Floresville page and the package pages only, as these exact phrases. The
+# school line is allowed whole (it carries "great" and "rated") and only with
+# the verified year from lib/packages.ts SCHOOL_RATING_YEAR and "Texas
+# Education Agency". "move-in ready" is the owner's wording in the same
+# description, so it is allowed with them. The two aerial captions are the
+# owner's required text, allowed whole (the empty aerial's says "dimensions").
+LH_OWNER_FACTS = [r"FM 536", r"double wide", r"brand new", r"gravel driveway and parking pad", r"H-E-B", r"move-in ready"]
+# Allowed on those pages only: none of these may appear on the hub.
+LH_OWNER_FACTS_NOT_ON_HUB = [r"FM 536", r"H-E-B", r"gravel driveway and parking pad", r"move-in ready", r"great school district", r"Floresville ISD"]
+
+
+def lh_owner_fact_pages():
+    return {LAND_HOME_FLORESVILLE, *land_home_package_paths()}
+
+
+def lh_school_line_re():
+    src = (REPO_ROOT / "lib" / "packages.ts").read_text()
+    m = re.search(r"SCHOOL_RATING_YEAR = (\d{4})", src)
+    year = m.group(1) if m else "MISSING"
+    return re.compile(rf"Floresville ISD, a great school district rated B by the Texas Education Agency \({year}\)")
+
+
+def lh_strip_owner_facts(path, visible):
+    """(visible text with the allowed owner facts removed, problems)."""
+    problems = []
+    if path not in lh_owner_fact_pages():
+        for rx in LH_OWNER_FACTS_NOT_ON_HUB:
+            m = re.search(rx, visible, re.I)
+            if m:
+                problems.append(f"  {path}: owner lot fact {m.group(0)!r} is allowed only on the Floresville and package pages")
+        return visible, problems
+    school = lh_school_line_re()
+    if not school.search(visible):
+        problems.append(f"  {path}: school line missing, or without the verified year and 'Texas Education Agency'")
+    visible = school.sub(" ", visible)
+    for cap in (lh_captions().get("empty"), lh_captions().get("homes")):
+        if cap:
+            visible = visible.replace(cap, " ")
+    for rx in LH_OWNER_FACTS:
+        visible = re.sub(rx, " ", visible, flags=re.I)
+    return visible, problems
+
+
 def step_land_home_unknowns():
     problems = []
     for path in land_home_paths():
@@ -1563,6 +1607,8 @@ def step_land_home_unknowns():
             problems.append(f"  {path}: HTTP {status}")
             continue
         visible = visible_main_text(html)
+        visible, owner_problems = lh_strip_owner_facts(path, visible)
+        problems += owner_problems
         if LH_DAY_WINDOW.search(visible):
             problems.append(f"  {path}: still has a 1–2 day delivery line")
         for href in LH_EXPLAINER_HREFS:
@@ -1706,6 +1752,241 @@ def step_land_home_images():
     return report("13g. Land-Home photos: approved image only, no names", ok, detail)
 
 
+# 13j — land-home photos, renders and aerials (owner, 2026-11-24): approved
+# files only (neutral names, <=800KB, interiors >=900px wide, renders
+# >=1,200px); no home or manufacturer name in a filename, alt text or caption;
+# every front render and the homes-on-parcels aerial show the "Illustration"
+# badge wherever they appear (cards, gallery, thumbnails), with their caption
+# directly beneath every full-size render; the empty-parcels aerial is never
+# cropped or overlaid and has its caption directly beneath; only the one
+# example floor plan; no render in og:image or schema; FM 536 only in the
+# land-home pages' visible body text; no emoji in land-home HTML; no image in schema.
+LH_IMG_NAME_RE = re.compile(
+    r"^/land-home/(example-render-\d+\.jpg|example-interior-\d+\.jpg|example-floor-plan-4-bed-2-bath\.png|parcels-aerial-(empty|homes)\.jpg)$"
+)
+LH_RENDER_RE = re.compile(r"^/land-home/example-render-\d+\.jpg$")
+LH_FLOOR_PLAN = "/land-home/example-floor-plan-4-bed-2-bath.png"
+LH_AERIAL_SRC = {"empty": "/land-home/parcels-aerial-empty.jpg", "homes": "/land-home/parcels-aerial-homes.jpg"}
+LH_ROAD = "FM 536"
+EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF\uFE0F\u200D\u20E3]")
+
+
+def lh_captions():
+    src = (REPO_ROOT / "lib" / "packages.ts").read_text()
+    out = {}
+    for kind, name in (("render", "RENDER_CAPTION"), ("empty", "AERIAL_EMPTY_CAPTION"), ("homes", "AERIAL_HOMES_CAPTION"), ("photo", "EXAMPLE_PHOTO_CAPTION")):
+        m = re.search(rf"export const {name} =\s*'((?:[^'\\]|\\.)*)'", src)
+        out[kind] = m.group(1) if m else None
+    return out
+
+
+def lh_aerial_aspect(kind):
+    src = (REPO_ROOT / "lib" / "packages.ts").read_text()
+    name = {"empty": "AERIAL_EMPTY", "homes": "AERIAL_HOMES"}[kind]
+    m = re.search(rf"export const {name}: AerialImage = \{{[^}}]*width: (\d+), height: (\d+)", src)
+    return f"{m.group(1)} / {m.group(2)}" if m else None
+
+
+def jpeg_size(path):
+    """(width, height) of a JPEG (SOF marker) or PNG (IHDR)."""
+    data = path.read_bytes()
+    if data[:8] == b"\x89PNG\r\n\x1a\n":
+        return int.from_bytes(data[16:20], "big"), int.from_bytes(data[20:24], "big")
+    i = 2
+    while i < len(data) - 9:
+        if data[i] != 0xFF:
+            i += 1
+            continue
+        marker = data[i + 1]
+        if marker in (0xC0, 0xC1, 0xC2, 0xC3, 0xC5, 0xC6, 0xC7, 0xC9, 0xCA, 0xCB, 0xCD, 0xCE, 0xCF):
+            return int.from_bytes(data[i + 7:i + 9], "big"), int.from_bytes(data[i + 5:i + 7], "big")
+        i += 2 + int.from_bytes(data[i + 2:i + 4], "big")
+    return None
+
+
+def lh_img_src(tag):
+    m = re.search(r'\bsrc="([^"]*)"', tag)
+    u = m.group(1) if m else ""
+    return re.sub(r"^/_next/image\?url=([^&]+).*$", lambda mm: urllib.request.unquote(mm.group(1)), u.replace("&amp;", "&"))
+
+
+def lh_text(fragment):
+    import html as _html
+
+    return _html.unescape(re.sub(r"<[^>]+>|<!-- -->", "", fragment)).strip()
+
+
+def lh_file_problems():
+    """The approved files themselves (from lib/packages.ts)."""
+    problems = []
+    for img in sorted(approved_package_images()):
+        if not LH_IMG_NAME_RE.match(img):
+            problems.append(f"  {img}: not a neutral land-home filename (example-render-N, example-interior-N, the example floor plan, parcels-aerial-empty/homes)")
+        f = REPO_ROOT / "public" / img.lstrip("/")
+        if not f.exists():
+            continue
+        if f.stat().st_size > 800 * 1024:
+            problems.append(f"  {img}: {f.stat().st_size // 1024}KB (max 800KB)")
+        size = jpeg_size(f)
+        if img.startswith("/land-home/example-interior-") and (not size or size[0] < 900):
+            problems.append(f"  {img}: {size and size[0]}px wide (interiors must be at least 900px)")
+        if LH_RENDER_RE.match(img) and (not size or size[0] < 1200):
+            problems.append(f"  {img}: {size and size[0]}px wide (renders must be at least 1,200px)")
+    return problems
+
+
+def lh_page_photo_problems(path, html, names, captions):
+    """Photo, caption, FM 536, emoji and schema checks for one land-home page."""
+    problems = []
+    main = main_content(html)
+    fact_pages = lh_owner_fact_pages()
+    # Every full-size render sits in a figure: frame, then the caption directly beneath.
+    renders = {"empty": 0, "homes": 0}
+    for fig in re.finditer(r'<figure\b[^>]*data-lh-figure="(render|empty|homes|photo)"[^>]*>(.*?)</figure>', main, re.S):
+        kind, body = fig.group(1), fig.group(2)
+        m = re.match(
+            rf'\s*<(button|div)\b([^>]*\bdata-lh-frame="{kind}"[^>]*)>(.*?)</\1>\s*<figcaption\b[^>]*>(.*?)</figcaption>\s*$',
+            body,
+            re.S,
+        )
+        if not m:
+            problems.append(f"  {path}: {kind} figure isn't frame + caption directly beneath")
+            continue
+        attrs, inner, cap = m.group(2), m.group(3), lh_text(m.group(4))
+        imgs = re.findall(r"<img\b[^>]*>", inner)
+        if len(imgs) != 1:
+            problems.append(f"  {path}: {kind} frame has {len(imgs)} images")
+            continue
+        src = lh_img_src(imgs[0])
+        if cap != captions.get(kind):
+            problems.append(f"  {path}: {kind} caption is {cap[:70]!r}, not the required text")
+        if kind in LH_AERIAL_SRC:
+            renders[kind] += 1
+            if src != LH_AERIAL_SRC[kind]:
+                problems.append(f"  {path}: {kind} figure shows {src!r}")
+        elif src in LH_AERIAL_SRC.values():
+            problems.append(f"  {path}: an aerial is rendered as an ordinary photo (no aerial caption)")
+        if (kind == "render") != bool(LH_RENDER_RE.match(src)):
+            problems.append(f"  {path}: {src!r} is in a {kind!r} figure (renders need the render figure and caption)")
+        if kind == "empty":
+            if re.sub(r"<img\b[^>]*>", "", inner).strip():
+                problems.append(f"  {path}: something is overlaid on the empty-parcels aerial")
+            if "object-fit:contain" not in imgs[0].replace(" ", ""):
+                problems.append(f"  {path}: empty-parcels aerial isn't object-fit: contain (cropped)")
+            want = lh_aerial_aspect("empty")
+            if f"aspect-ratio:{want}" not in attrs.replace("aspect-ratio: ", "aspect-ratio:"):
+                problems.append(f"  {path}: empty-parcels aerial frame isn't its own aspect ({want}), so it doesn't fill the width")
+        if kind in ("homes", "render") and not re.search(r'data-lh-badge=""[^>]*>Illustration<', inner):
+            problems.append(f"  {path}: {kind} image has no visible 'Illustration' badge")
+        for n in names:
+            if re.search(rf"\b{re.escape(n)}\b", cap.lower()):
+                problems.append(f"  {path}: caption names {n!r}")
+    # Every <img> of an aerial is either one of the figures above or a contained thumbnail.
+    counted = {"empty": 0, "homes": 0}
+    for im in re.finditer(r"<img\b[^>]*>", main):
+        tag = im.group(0)
+        src = lh_img_src(tag)
+        if src.startswith("/land-home/") and not LH_IMG_NAME_RE.match(src):
+            problems.append(f"  {path}: image {src!r} isn't a neutral land-home filename")
+        if re.search(r"floor[-_ ]?plan", src, re.I) and src != LH_FLOOR_PLAN:
+            problems.append(f"  {path}: floor plan {src!r} isn't the approved 4 bed, 2 bath example")
+        alt = re.search(r'\balt="([^"]*)"', tag)
+        for n in names:
+            if alt and re.search(rf"\b{re.escape(n)}\b", alt.group(1).lower()):
+                problems.append(f"  {path}: alt text names {n!r}")
+        if LH_RENDER_RE.match(src) or src == LH_AERIAL_SRC["homes"]:
+            # The badge must sit in the same container: card photo, gallery frame or thumbnail.
+            starts = [main.rfind(m, 0, im.start()) for m in ("<button", "bmh-inv-card-media", "data-lh-frame=")]
+            box_start = max(starts)
+            ends = [e for e in (main.find("</button>", im.end()), main.find("</div>", im.end())) if e != -1]
+            box = main[box_start:min(ends) if ends else im.end()] if box_start != -1 else ""
+            if not re.search(r'data-lh-badge=""[^>]*>Illustration<', box):
+                problems.append(f"  {path}: {src!r} appears without a visible 'Illustration' badge")
+        kind = next((k for k, v in LH_AERIAL_SRC.items() if v == src), None)
+        if not kind:
+            continue
+        render = re.search(r'data-lh-render="(full|thumb)"', tag)
+        if not render:
+            problems.append(f"  {path}: {kind} aerial rendered outside the approved figure or thumbnail")
+        elif render.group(1) == "thumb" and "object-fit:contain" not in tag.replace(" ", ""):
+            problems.append(f"  {path}: {kind} aerial thumbnail is cropped (not object-fit: contain)")
+        elif render.group(1) == "full":
+            counted[kind] += 1
+    for kind in renders:
+        if counted[kind] != renders[kind]:
+            problems.append(f"  {path}: {counted[kind]} full-size {kind} aerial render(s) but {renders[kind]} with the required frame and caption")
+    # FM 536: visible body text of the Floresville and package pages only.
+    visible = visible_main_text(html)
+    if LH_ROAD in visible and path not in fact_pages:
+        problems.append(f"  {path}: {LH_ROAD!r} in the visible text (allowed on the Floresville and package pages only)")
+    blocks = []
+    for b in re.findall(r'<script type="application/ld\+json"[^>]*>(.*?)</script>', html, re.S):
+        try:
+            blocks.append(json.loads(b))
+        except ValueError:
+            pass
+    attr_vals = " ".join(re.findall(r'\b(?:alt|title|aria-label|content|href)="([^"]*)"', html))
+    for where, text in (("title/meta", page_meta_text(html)), ("schema", json.dumps(blocks)), ("an attribute (alt/title/aria/meta/href)", attr_vals)):
+        if LH_ROAD in text:
+            problems.append(f"  {path}: {LH_ROAD!r} in {where}")
+    # No render as og:image/twitter:image or anywhere in schema.
+    head_meta = " ".join(re.findall(r'<meta\b[^>]*>', html.split("<body", 1)[0]))
+    if re.search(r"example-render-\d+", head_meta + json.dumps(blocks)):
+        problems.append(f"  {path}: a render is used in a meta tag (og:image) or in schema")
+    # No emoji anywhere in the page's HTML.
+    m = EMOJI_RE.search(html)
+    if m:
+        problems.append(f"  {path}: emoji U+{ord(m.group(0)):04X} in the HTML")
+    # Schema still has no image.
+    for node in _walk(blocks):
+        if "image" in node or node.get("@type") == "ImageObject" or "thumbnailUrl" in node:
+            problems.append(f"  {path}: schema has an image")
+            break
+    if re.search(r'property="og:image"|name="twitter:image"', html):
+        problems.append(f"  {path}: has an og:image/twitter:image")
+    return problems
+
+
+def step_land_home_photo_rules(sitemap):
+    problems = lh_file_problems()
+    names = home_and_maker_names()
+    captions = lh_captions()
+    for kind, cap in captions.items():
+        if not cap:
+            problems.append(f"  lib/packages.ts: {kind} caption constant not found")
+    aerial_pages = 0
+    for path in land_home_paths():
+        status, html = fetch_status(path)
+        if status != 200:
+            problems.append(f"  {path}: HTTP {status}")
+            continue
+        problems += lh_page_photo_problems(path, html, names, captions)
+        if 'data-lh-figure="empty"' in html or 'data-lh-render="thumb"' in html:
+            aerial_pages += 1
+    land = set(land_home_paths())
+    others = 0
+    for path in sitemap:
+        if path in land:
+            continue
+        status, html = fetch_status(path)
+        if status != 200:
+            continue
+        others += 1
+        if LH_ROAD in html:
+            problems.append(f"  {path}: {LH_ROAD!r} outside the land-home pages")
+    if LH_ROAD in llms_text():
+        problems.append(f"  /llms.txt: {LH_ROAD!r}")
+    if LH_ROAD in fetch_status("/sitemap.xml")[1]:
+        problems.append(f"  /sitemap.xml: {LH_ROAD!r}")
+    ok = not problems
+    detail = problems[:40] or [
+        f"{len(land_home_paths())} land-home pages ({aerial_pages} with aerials): approved neutral files only (<=800KB, home photos >=1,200px); "
+        f"no home/maker name in a filename, alt or caption; every full-size homes aerial has the badge and caption; the empty aerial is contained, "
+        f"un-overlaid and captioned; {LH_ROAD!r} only in the land-home pages' visible text ({others} other pages, llms.txt and the sitemap clean); no emoji; no image in schema."
+    ]
+    return report("13j. Land-Home photos, aerials, captions, FM 536, emoji", ok, detail)
+
+
 # 13i — hub layout: inventory before the definition, comparison last; hub
 # title/meta/H1 statewide; packages never on /browse.
 def step_land_home_hub_order():
@@ -1795,6 +2076,7 @@ def run_land_home_steps():
         ok &= step_land_home_unknowns()
         ok &= step_land_home_payments()
         ok &= step_land_home_images()
+        ok &= step_land_home_photo_rules(sitemap)
         ok &= step_land_home_hub_order()
         ok &= step_price_claims_on_pages(land_home_paths())
     print(f"lib/features.json restored (landHomePackages={'true' if committed_on else 'false'}).")

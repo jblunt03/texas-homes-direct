@@ -8,7 +8,8 @@ import PaymentFootnote from '@/components/PaymentFootnote'
 import { LandHomeDelivery, LandHomeFinancing, LandHomeLinkRow } from '@/components/landHome/LandHomeExtras'
 import PackagePrice from '@/components/landHome/PackagePrice'
 import PackageCtas from '@/components/landHome/PackageCtas'
-import Image from 'next/image'
+import { PackageGallery } from '@/components/landHome/LandHomeGallery'
+import PackageDescription from '@/components/landHome/PackageDescription'
 import TrackedLink from '@/components/landHome/TrackedLink'
 import { PACKAGE_PAYMENT_DISCLOSURE } from '@/lib/disclaimers'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
@@ -22,6 +23,7 @@ import {
   SITE_URL,
   type LandHomePackage,
   findPackage,
+  packageGallery,
   packageName,
   packagePath,
 } from '@/lib/packages'
@@ -30,19 +32,19 @@ import {
 // purpose: the shared detail lives on the Floresville page. Each page's title
 // and first sentence differ by acreage.
 const INTRO: Record<string, string> = {
-  '1.3':
-    'The largest of our three Floresville lots, this 1.3-acre land-home package comes turnkey with all utilities.',
-  '1.2':
-    'This 1.2-acre land-home package in Floresville, Texas is sold turnkey and includes all utilities.',
+  '1.20':
+    'The largest of our three Floresville lots, this 1.20-acre land-home package comes with all utilities.',
+  '1.05':
+    'This 1.05-acre land-home package in Floresville, Texas includes all utilities.',
   '0.75':
-    'At 0.75 acres, this is the most compact of the three Floresville land-home packages, sold turnkey with all utilities.',
+    'At 0.75 acres, this is the most compact of the three Floresville land-home packages, sold with all utilities.',
 }
 
 function packageFaq(acres: string) {
   return [
     {
       q: `What is included in this ${acres}-acre package?`,
-      a: 'A home and this lot, sold together, turnkey, with all utilities. The home shown is a 4-bed, 2-bath double wide with 1,493 square feet; you can choose a different home.',
+      a: `A brand new 4 bed, 2 bath home and ${acres} acres of land, sold together, with a gravel driveway and parking pad, skirting installed, a front porch and all utilities connected to the house. It's move-in ready. You can choose a different home instead of the one shown.`,
     },
     {
       q: `How is this ${acres}-acre package financed?`,
@@ -60,9 +62,9 @@ function packageFaq(acres: string) {
 }
 
 const DESCRIPTION: Record<string, string> = {
-  '1.3': 'The largest Floresville land-home package: a 1.3-acre lot and a home, turnkey with all utilities. The home shown is a 4-bed, 2-bath double wide, or choose your own.',
-  '1.2': 'A 1.2-acre Floresville, Texas lot sold together with a home, turnkey and with all utilities. The home shown is a 4-bed, 2-bath double wide; you can choose your own.',
-  '0.75': 'The most compact Floresville land-home package: 0.75 acres plus a home, turnkey with all utilities. Shown with a 4-bed, 2-bath double wide, or pick your own home.',
+  '1.20': 'The largest Floresville land-home package: a 1.20-acre lot and a home, with all utilities. The home shown is a 4-bed, 2-bath double wide, or choose your own.',
+  '1.05': 'A 1.05-acre Floresville, Texas lot sold together with a home and all utilities. The home shown is a 4-bed, 2-bath double wide; you can choose your own.',
+  '0.75': 'The most compact Floresville land-home package: 0.75 acres plus a home, with all utilities. Shown with a 4-bed, 2-bath double wide, or pick your own home.',
 }
 
 export function generateStaticParams() {
@@ -158,23 +160,8 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
 
       <section style={{ background: 'var(--color-canvas)', padding: '16px 0 40px' }}>
         <div className="bmh-container">
-          {/* Hero photo. While it's a stand-in (image.example), the caption says so. */}
-          <figure style={{ margin: 0 }}>
-            <div className="bmh-lh-hero">
-              <Image
-                src={p.image.src}
-                alt={p.image.alt}
-                fill
-                priority
-                sizes="(max-width: 1240px) 100vw, 1200px"
-              />
-            </div>
-            {p.image.example && (
-              <figcaption className="bmh-lh-hero-caption">
-                Example 4-bed, 2-bath home shown. You can choose your own home.
-              </figcaption>
-            )}
-          </figure>
+          {/* Gallery: head image, the two parcel aerials, then the shared example photos. */}
+          <PackageGallery items={packageGallery(p)} />
           <div className="bmh-spacer-md" />
           <div className="bmh-lh-detail">
             <div>
@@ -188,7 +175,7 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
                 <div><dt>Bathrooms</dt><dd>{S.baths}</dd></div>
                 <div><dt>Square feet</dt><dd>{S.sqft.toLocaleString('en-US')}</dd></div>
                 <div><dt>Home</dt><dd>{S.wideType}</dd></div>
-                <div><dt>Sold</dt><dd>Turnkey, with all utilities</dd></div>
+                <div><dt>Sold</dt><dd>With all utilities</dd></div>
               </dl>
             </div>
             <div>
@@ -203,12 +190,22 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
         </div>
       </section>
 
+      {/* The owner's description, below the price and above "Choose your own home". */}
+      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
+        <div className="bmh-container">
+          <div className="bmh-city-prose">
+            <h2 className="bmh-city-h2">About this lot</h2>
+            <PackageDescription facts={p.facts} acres={[p.acres]} />
+          </div>
+        </div>
+      </section>
+
       <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '40px 0' }}>
         <div className="bmh-container">
           <div className="bmh-city-prose">
             <h2 className="bmh-city-h2">This package</h2>
             <p className="bmh-lead" style={{ marginTop: 12 }}>
-              Sold by Texas Homes Direct. This {p.acres}-acre lot and a home are sold together, turnkey, with all utilities.
+              Sold by Texas Homes Direct. This {p.acres}-acre lot and a home are sold together, with all utilities.
               The home shown is a {S.beds}-bed, {S.baths}-bath double wide with {S.sqft.toLocaleString('en-US')} square feet.
               You can choose a different home. The cash price is ${p.price.toLocaleString('en-US')}. The estimated monthly
               payment is ${p.monthlyPayment.toLocaleString('en-US')} per month. The payment note under the price explains the estimate.

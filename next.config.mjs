@@ -45,6 +45,25 @@ const LISTING_REDIRECTS = (() => {
   return out
 })()
 
+// Land-home package URLs (CLAUDE.md "Land-Home Packages"): every slug in a
+// package's legacySlugs 308-redirects straight to its current slug, read from
+// lib/packages.ts so the redirects can't drift from the data. Exact paths
+// only. Old and new slugs never overlap (checked below), so no chains or loops.
+const PACKAGE_REDIRECTS = (() => {
+  const src = readFileSync(new URL('./lib/packages.ts', import.meta.url), 'utf8')
+  const out = []
+  for (const m of src.matchAll(/\n {4}slug: '([^']+)',\n {4}legacySlugs: \[([^\]]*)\],/g)) {
+    for (const old of m[2].matchAll(/'([^']+)'/g)) {
+      out.push({ source: `/land-home-packages/${old[1]}`, destination: `/land-home-packages/${m[1]}`, permanent: true })
+    }
+  }
+  const destinations = new Set(out.map((r) => r.destination))
+  for (const r of out) {
+    if (destinations.has(r.source)) throw new Error(`Package redirect chain: ${r.source}`)
+  }
+  return out
+})()
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   async redirects() {
@@ -53,6 +72,7 @@ const nextConfig = {
         .filter(([key]) => ARCHIVED[key])
         .map(([, route]) => ({ source: route, destination: '/', permanent: false })),
       ...LISTING_REDIRECTS,
+      ...PACKAGE_REDIRECTS,
       { source: '/locations', destination: '/cities', permanent: true },
       ...RETIRED_LOCATION_SLUGS.map((slug) => ({
         source: `/locations/${slug}`,

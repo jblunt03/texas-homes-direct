@@ -7,13 +7,14 @@ import PriceModeToggle from '@/components/PriceModeToggle'
 import { LandHomeDelivery, LandHomeFinancing, LandHomeLinkRow } from '@/components/landHome/LandHomeExtras'
 import PackageGrid from '@/components/landHome/PackageGrid'
 import PackageCtas from '@/components/landHome/PackageCtas'
+import { ParcelAerials } from '@/components/landHome/LandHomeGallery'
+import PackageDescription from '@/components/landHome/PackageDescription'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
 import {
   FLORESVILLE_PACKAGES_PATH,
   LAND_HOME_DATE_MODIFIED,
   LAND_HOME_HUB_PATH,
   LAND_HOME_KEYWORDS,
-  PACKAGE_HOME_SPECS,
   SITE_URL,
   packageName,
   packagePath,
@@ -26,7 +27,7 @@ import {
 const PAGE_URL = `${SITE_URL}${FLORESVILLE_PACKAGES_PATH}`
 const TITLE = 'Land and Home Packages in Floresville, TX | Texas Homes Direct'
 const DESCRIPTION =
-  'Three turnkey land-home packages in Floresville, Texas, on lots from 0.75 to 1.3 acres, each with all utilities and a 4-bed, 2-bath home shown. From Texas Homes Direct.'
+  'Three land-home packages in Floresville, Texas, on lots from 0.75 to 1.20 acres, each with all utilities and a 4-bed, 2-bath home shown. From Texas Homes Direct.'
 
 export const metadata: Metadata = {
   title: { absolute: TITLE },
@@ -45,13 +46,12 @@ export const metadata: Metadata = {
   alternates: { canonical: PAGE_URL },
 }
 
-const S = PACKAGE_HOME_SPECS
 const FLORESVILLE = packagesIn('Floresville')
 
 const FAQ = [
   {
     q: 'How many land-home packages does Texas Homes Direct have in Floresville?',
-    a: 'Three, one per lot: 1.3 acres, 1.2 acres and 0.75 acres. Texas Homes Direct sells each Floresville package turnkey with all utilities. The cards above show each one’s cash price by default, or its estimated monthly payment if you switch views.',
+    a: 'Three, one per lot: 1.20 acres, 1.05 acres and 0.75 acres. Each comes with a brand new 4 bed, 2 bath home and all utilities connected to the house. The cards above show each one’s cash price by default, or its estimated monthly payment if you switch views.',
   },
   {
     q: 'Which home is shown with the Floresville packages?',
@@ -59,7 +59,7 @@ const FAQ = [
   },
   {
     q: 'Do the Floresville packages come with utilities?',
-    a: 'Yes. Each Floresville land-home package is turnkey and includes all utilities. If you have questions about the utilities on a particular lot, call Texas Homes Direct at (830) 381-1309 or request a free quote, tell us which package you’re looking at, and we’ll go over it with you.',
+    a: 'Yes. Each Floresville land-home package comes with all utilities connected to the house. If you have questions about the utilities on a particular lot, call Texas Homes Direct at (830) 381-1309 or request a free quote, tell us which package you’re looking at, and we’ll go over it with you.',
   },
   {
     q: 'Where can I compare cash prices and monthly estimates for these packages?',
@@ -138,10 +138,18 @@ export default function FloresvillePackagesPage() {
           </h1>
           <p className="bmh-lead bmh-explainer-lead">
             Texas Homes Direct has three land-home packages in Floresville, Texas, each a home and its lot
-            sold together, turnkey, with all utilities. The lots are 1.3, 1.2 and 0.75 acres. Each package
+            sold together, with all utilities. The lots are 1.20, 1.05 and 0.75 acres. Each package
             shows a 4-bedroom, 2-bathroom double wide with 1,493 square feet, and you can choose your own home
             instead.
           </p>
+        </div>
+      </section>
+
+      <section style={{ background: 'var(--color-canvas)', borderTop: '1px solid var(--color-hairline)', padding: '32px 0 40px' }} data-section="parcels">
+        <div className="bmh-container">
+          <h2 className="bmh-city-h2" style={{ margin: 0 }}>The Parcels</h2>
+          <div className="bmh-spacer-md" />
+          <ParcelAerials />
         </div>
       </section>
 
@@ -160,15 +168,7 @@ export default function FloresvillePackagesPage() {
         <div className="bmh-container">
           <div className="bmh-city-prose">
             <h2 className="bmh-city-h2">What Every Floresville Package Has in Common</h2>
-            <ul className="bmh-lh-facts">
-              <li><strong>One lot, one home.</strong> Each package is a single Floresville lot sold together with a home.</li>
-              <li><strong>Turnkey, with all utilities.</strong> All three are sold turnkey and include all utilities.</li>
-              <li>
-                <strong>The home shown.</strong> A {S.beds}-bedroom, {S.baths}-bathroom {S.wideType.toLowerCase()} with{' '}
-                {S.sqft.toLocaleString('en-US')} square feet.
-              </li>
-              <li><strong>Your choice of home.</strong> The buyer has the option to choose their own home instead of the one shown.</li>
-            </ul>
+            <PackageDescription facts={FLORESVILLE[0].facts} acres={FLORESVILLE.map((p) => p.acres)} />
           </div>
         </div>
       </section>
