@@ -1,6 +1,6 @@
 import InventoryCard from '@/components/InventoryCard'
 import PackagePrice from '@/components/landHome/PackagePrice'
-import { type LandHomePackage, PACKAGE_HOME_SPECS, packageName, packagePath } from '@/lib/packages'
+import { type LandHomePackage, packageName, packagePath } from '@/lib/packages'
 
 /**
  * One land-home package as a retail inventory card (components/InventoryCard
@@ -10,7 +10,7 @@ import { type LandHomePackage, PACKAGE_HOME_SPECS, packageName, packagePath } fr
  * the cash/payment price.
  */
 export default function PackageCard({ pkg, priority = false }: { pkg: LandHomePackage; priority?: boolean }) {
-  const s = PACKAGE_HOME_SPECS
+  const s = pkg.home
   return (
     <InventoryCard
       href={packagePath(pkg)}

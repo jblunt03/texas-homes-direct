@@ -1,5 +1,5 @@
 import { CIRRUS_URL } from '@/components/SiteBlocks'
-import { PACKAGE_HOME_LINE, includedItems, type LotFacts } from '@/lib/packages'
+import { homeLine, includedItems, type LotFacts, type PackageHome } from '@/lib/packages'
 
 /**
  * The owner's description of a lot (owner, 2026-11-24), in the owner's order:
@@ -42,11 +42,23 @@ function joinOr(list: string[]): string {
   return list.length <= 1 ? list.join('') : `${list.slice(0, -1).join(', ')} or ${list[list.length - 1]}`
 }
 
-export default function PackageDescription({ facts, acres }: { facts: LotFacts; acres: string[] }) {
-  const single = acres.length === 1
-  const sentence = single
-    ? `This ${acres[0]}-acre lot on ${facts.road} comes with a ${PACKAGE_HOME_LINE} that's move-in ready.`
-    : `Each lot on ${facts.road}, at ${joinOr(acres)} acres, comes with a ${PACKAGE_HOME_LINE} that's move-in ready.`
+/** One lot: its acreage and its home (from lib/packages.ts). */
+export interface DescribedLot {
+  acres: string
+  home: PackageHome
+}
+
+export default function PackageDescription({ facts, lots }: { facts: LotFacts; lots: DescribedLot[] }) {
+  const acres = lots.map((l) => l.acres)
+  const lines = lots.map((l) => homeLine(l.home))
+  const sameHome = lines.every((x) => x === lines[0])
+  const bedsBaths = lots.map((l) => `${l.home.beds} bed, ${l.home.baths} bath`)
+  const sentence =
+    lots.length === 1
+      ? `This ${acres[0]}-acre lot on ${facts.road} comes with a brand new ${lines[0]} that's move-in ready.`
+      : sameHome
+        ? `Each lot on ${facts.road}, at ${joinOr(acres)} acres, comes with a brand new ${lines[0]} that's move-in ready.`
+        : lots.map((l, i) => `This ${l.acres}-acre lot on ${facts.road} comes with a brand new ${lines[i]} that's move-in ready.`).join(' ')
   return (
     <div className="bmh-lh-desc" data-lh-description="">
       <p className="bmh-lead bmh-lh-desc-lead">{facts.lead}</p>
@@ -71,7 +83,7 @@ export default function PackageDescription({ facts, acres }: { facts: LotFacts; 
 
       <h3 className="bmh-city-h3 bmh-lh-desc-h3">Included</h3>
       <ul className="bmh-lh-icon-list">
-        {includedItems(joinOr(acres)).map((line) => (
+        {includedItems(joinOr(acres), bedsBaths.every((x) => x === bedsBaths[0]) ? bedsBaths[0] : joinOr(lots.slice().sort((a, b) => a.home.beds - b.home.beds || a.home.baths - b.home.baths).map((l) => `${l.home.beds} bed, ${l.home.baths} bath`).filter((x, i, all) => all.indexOf(x) === i))).map((line) => (
           <li key={line}>
             <CheckIcon />
             <span>{line}</span>

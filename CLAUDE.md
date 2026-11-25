@@ -1394,19 +1394,27 @@ When the acreage changed on 2026-11-24 (owner: the parcels are 1.20, 1.05
 and 0.75 acres, as on the aerials), two new slugs were added and the old
 ones moved to the package's `legacySlugs`, which `next.config.mjs` turns into
 exact-path 308s straight to the new slug (it throws on a chain):
-`…-1-3-acres-…` → `…-1-20-acres-…` and `…-1-2-acres-…` → `…-1-05-acres-…`.
-Nothing on the site links to a legacy slug. Acreage displays as "1.20-acre".
+`…-1-3-acres-…` → `…-1-20-acres-…` and `…-4-bed-2-bath-1-2-acres-…` →
+`…-3-bed-2-bath-1-05-acres-…` (on 2026-11-25 the 1.05-acre package's home
+became 3 bed, so its slug changed; its never-published 4-bed 1.05 URL has no
+redirect). Nothing on the site links to a legacy slug. Acreage displays as
+"1.20-acre".
 
 **Data:** `lib/packages.ts` — acreage, cash price and est. monthly payment
 per package, in the owner's order. Packages are NOT listings: not in
 `lib/sampleListings.ts`, `/browse` or the homes' filters.
 
-**Fixed-values rule (the home shown):** `PACKAGE_HOME_SPECS` (4 bed, 2 bath,
-1,493 sq ft, Double Wide) were COPIED as literals from The Austin (BMH-93) on
-2026-11-21. Never import them from the listing, so edits to The Austin can't
-change the packages. Never use The Austin's name, price, payment, photos,
-tour, features, description, year or manufacturer, and never name or link
-to it on a package page.
+**Fixed-values rule (each package's home, owner 2026-11-25):** each package's
+`home` (beds, baths, sq ft, wide type) was COPIED as literals from a real
+listing: 1.20 ac The San Saba (BMH-21: 4 bed, 2 bath, 2,280 sq ft), 1.05 ac
+The Sealy (BMH-19: 3 bed, 2 bath, 1,680 sq ft), 0.75 ac The Austin (BMH-93:
+4 bed, 2 bath, 1,493 sq ft), all new Double Wides. Never import them from the
+listings, so edits there can't change the packages. Never use those homes'
+names, prices, payments, tours, features, descriptions, years or
+manufacturers, and never name or link to them on land-home pages. The spec
+row, cards, description, FAQ and metas all fill in from `home`; the
+Floresville page and hub speak of "3 or 4 bedrooms" across the lots. Never
+state the San Saba plan's option rooms or extra bath.
 
 **Lot description (owner, 2026-11-24):** `components/landHome/PackageDescription.tsx`
 renders, in order: the lead line, "This 1.20-acre lot on FM 536 comes with a
@@ -1420,8 +1428,7 @@ text on the Floresville and package pages only, never in titles, metas,
 schema, alt text, `llms.txt` or the sitemap; no house number, coordinates
 or map. The school line keeps its year (`SCHOOL_RATING_YEAR`, TEA 2026: B;
 2023–2025 were C). Icons are inline SVG with aria-hidden; no emoji. Never
-"turnkey" on land-home pages (the hub's remaining uses await the owner's
-review).
+"turnkey" on land-home pages (validator 13i).
 
 **Unknown-facts rule:** use only the owner's facts (statewide land-home
 sales; three Floresville packages; all utilities; a 4-bed, 2-bath home shown
@@ -1444,8 +1451,8 @@ payments in any FAQ answer, title, meta description, schema or `llms.txt`.
 neutral names in `public/land-home/`, each at most 800KB; originals are never
 edited. In `lib/packages.ts`:
 - **Head image (`image`) = a front render**, an illustration of an example
-  home on the lot: 1.20 ac `example-render-1.jpg`, 1.05 ac
-  `example-render-2.jpg`, 0.75 ac `example-render-3.jpg` (2000×1116 copies of
+  home on the lot: 1.20 ac `example-render-3.jpg`, 1.05 ac
+  `example-render-2.jpg`, 0.75 ac `example-render-1.jpg` (swapped 2026-11-25) (2000×1116 copies of
   the owner's 2752×1536 renders, never cropped or retouched; a faint "©" mark
   is baked into the road and stays). **NOT CLEARED TO SHIP until the owner
   confirms the image rights.** A visible "Illustration" badge everywhere a
@@ -1459,11 +1466,16 @@ edited. In `lib/packages.ts`:
   it at native size in a lightbox (Close button, Esc). Alt text: "Aerial
   illustration of the three Floresville parcels". The Floresville page's
   "The Parcels" section shows both, two-up on desktop and stacked on phones.
-- **Gallery (`packageGallery`, max 13):** render, empty aerial, homes
-  aerial, nine example interiors (`example-interior-1…9`: three each from
-  three example homes, at least 900px wide), then the one example floor plan
-  (`example-floor-plan-4-bed-2-bath.png`, 4 bed, 2 bath like the package's
-  home), captioned "Example homes shown. You can choose your own home."
+- **Gallery (`packageGallery`):** render, empty aerial, homes aerial, then
+  that package's own home's three interiors (`lot-<acres>-interior-1…3`:
+  living room, kitchen, primary bath or bedroom; at least 900px wide) and
+  its floor plan last (`lot-<acres>-floor-plan`), captioned "Example homes
+  shown. You can choose your own home."; the floor plan adds "Example floor
+  plan. Dimensions are approximate and options may not be included." A
+  package never shows another home's interiors or plan (validator 13j's
+  per-package manifest, by the `lot-<acres>-` prefix). The 1.20-acre plan is
+  a copy cropped to the main plan, without the option insets printed below
+  it; the others are untouched copies.
   `components/landHome/LandHomeGallery.tsx`: large image plus thumbnail
   strip, arrow keys, swipe; no image drawn larger than its natural size.
 - No filename, alt text or caption names a home or manufacturer, and the
@@ -1487,7 +1499,7 @@ A package in another city joins the hub grid just by adding it to
 Packages never appear on /browse or in the homes' filters or counts.
 
 **Hub order (`/land-home-packages`):** H1 + one-line subline → strip
-(Turnkey · All utilities · Choose your own home) → Current Inventory (toggle
+(Lot and home together · All utilities · Choose your own home) → Current Inventory (toggle
 + all package cards + "Browse by location") → definition → How It Works →
 FAQ → CTAs → the "home alone vs. land-home package" comparison, always last.
 Hub copy is statewide: Floresville appears only in the inventory (cards,

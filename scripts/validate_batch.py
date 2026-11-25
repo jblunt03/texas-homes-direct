@@ -1591,7 +1591,7 @@ def lh_strip_owner_facts(path, visible):
     if not school.search(visible):
         problems.append(f"  {path}: school line missing, or without the verified year and 'Texas Education Agency'")
     visible = school.sub(" ", visible)
-    for cap in (lh_captions().get("empty"), lh_captions().get("homes")):
+    for cap in (lh_captions().get("empty"), lh_captions().get("homes"), lh_captions().get("floorplan")):
         if cap:
             visible = visible.replace(cap, " ")
     for rx in LH_OWNER_FACTS:
@@ -1762,10 +1762,29 @@ def step_land_home_images():
 # example floor plan; no render in og:image or schema; FM 536 only in the
 # land-home pages' visible body text; no emoji in land-home HTML; no image in schema.
 LH_IMG_NAME_RE = re.compile(
-    r"^/land-home/(example-render-\d+\.jpg|example-interior-\d+\.jpg|example-floor-plan-4-bed-2-bath\.png|parcels-aerial-(empty|homes)\.jpg)$"
+    r"^/land-home/(example-render-\d+\.jpg|lot-\d+-\d+-(interior-\d+|floor-plan)\.(jpg|png)|parcels-aerial-(empty|homes)\.jpg)$"
 )
 LH_RENDER_RE = re.compile(r"^/land-home/example-render-\d+\.jpg$")
-LH_FLOOR_PLAN = "/land-home/example-floor-plan-4-bed-2-bath.png"
+# Per-package manifest: a package's own home's interiors and floor plan are
+# named lot-<acres>-… (lot-1-20-…), and a package page may show only its own.
+LH_LOT_FILE_RE = re.compile(r"^/land-home/lot-(\d+-\d+)-(interior-\d+|floor-plan)\.(jpg|png)$")
+
+
+def lh_package_manifests():
+    """{lot key: set of interior/floor-plan srcs} from lib/packages.ts, and
+    {package path: lot key} from each package's acreage."""
+    src = (REPO_ROOT / "lib" / "packages.ts").read_text()
+    files = {}
+    for f in re.findall(r"src: '(/land-home/lot-[^']+)'", src):
+        m = LH_LOT_FILE_RE.match(f)
+        if m:
+            files.setdefault(m.group(1), set()).add(f)
+    pages = {}
+    for path in land_home_package_paths():
+        m = re.search(r"-(\d+-\d+)-acres-land-home-package$", path)
+        if m:
+            pages[path] = m.group(1)
+    return files, pages
 LH_AERIAL_SRC = {"empty": "/land-home/parcels-aerial-empty.jpg", "homes": "/land-home/parcels-aerial-homes.jpg"}
 LH_ROAD = "FM 536"
 EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF\uFE0F\u200D\u20E3]")
@@ -1774,9 +1793,12 @@ EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF\uFE0F\u2
 def lh_captions():
     src = (REPO_ROOT / "lib" / "packages.ts").read_text()
     out = {}
-    for kind, name in (("render", "RENDER_CAPTION"), ("empty", "AERIAL_EMPTY_CAPTION"), ("homes", "AERIAL_HOMES_CAPTION"), ("photo", "EXAMPLE_PHOTO_CAPTION")):
+    for kind, name in (("render", "RENDER_CAPTION"), ("empty", "AERIAL_EMPTY_CAPTION"), ("homes", "AERIAL_HOMES_CAPTION"), ("photo", "EXAMPLE_PHOTO_CAPTION"), ("floorplan_extra", "FLOOR_PLAN_CAPTION")):
         m = re.search(rf"export const {name} =\s*'((?:[^'\\]|\\.)*)'", src)
         out[kind] = m.group(1) if m else None
+    if out.get("photo") and out.get("floorplan_extra"):
+        out["floorplan"] = f"{out['photo']} {out['floorplan_extra']}"
+    out.pop("floorplan_extra", None)
     return out
 
 
@@ -1821,14 +1843,14 @@ def lh_file_problems():
     problems = []
     for img in sorted(approved_package_images()):
         if not LH_IMG_NAME_RE.match(img):
-            problems.append(f"  {img}: not a neutral land-home filename (example-render-N, example-interior-N, the example floor plan, parcels-aerial-empty/homes)")
+            problems.append(f"  {img}: not a neutral land-home filename (example-render-N, lot-<acres>-interior-N, lot-<acres>-floor-plan, parcels-aerial-empty/homes)")
         f = REPO_ROOT / "public" / img.lstrip("/")
         if not f.exists():
             continue
         if f.stat().st_size > 800 * 1024:
             problems.append(f"  {img}: {f.stat().st_size // 1024}KB (max 800KB)")
         size = jpeg_size(f)
-        if img.startswith("/land-home/example-interior-") and (not size or size[0] < 900):
+        if re.search(r"-interior-\d+\.", img) and (not size or size[0] < 900):
             problems.append(f"  {img}: {size and size[0]}px wide (interiors must be at least 900px)")
         if LH_RENDER_RE.match(img) and (not size or size[0] < 1200):
             problems.append(f"  {img}: {size and size[0]}px wide (renders must be at least 1,200px)")
@@ -1842,7 +1864,7 @@ def lh_page_photo_problems(path, html, names, captions):
     fact_pages = lh_owner_fact_pages()
     # Every full-size render sits in a figure: frame, then the caption directly beneath.
     renders = {"empty": 0, "homes": 0}
-    for fig in re.finditer(r'<figure\b[^>]*data-lh-figure="(render|empty|homes|photo)"[^>]*>(.*?)</figure>', main, re.S):
+    for fig in re.finditer(r'<figure\b[^>]*data-lh-figure="(render|empty|homes|photo|floorplan)"[^>]*>(.*?)</figure>', main, re.S):
         kind, body = fig.group(1), fig.group(2)
         m = re.match(
             rf'\s*<(button|div)\b([^>]*\bdata-lh-frame="{kind}"[^>]*)>(.*?)</\1>\s*<figcaption\b[^>]*>(.*?)</figcaption>\s*$',
@@ -1888,8 +1910,17 @@ def lh_page_photo_problems(path, html, names, captions):
         src = lh_img_src(tag)
         if src.startswith("/land-home/") and not LH_IMG_NAME_RE.match(src):
             problems.append(f"  {path}: image {src!r} isn't a neutral land-home filename")
-        if re.search(r"floor[-_ ]?plan", src, re.I) and src != LH_FLOOR_PLAN:
-            problems.append(f"  {path}: floor plan {src!r} isn't the approved 4 bed, 2 bath example")
+        # Per-package manifest: only this package's own interiors and floor plan.
+        if re.search(r"floor[-_ ]?plan|interior", src, re.I) and not LH_LOT_FILE_RE.match(src):
+            problems.append(f"  {path}: {src!r} isn't a package's own interior or floor plan file")
+        lot_m = LH_LOT_FILE_RE.match(src)
+        if lot_m:
+            manifest_files, manifest_pages = lh_package_manifests()
+            own = manifest_pages.get(path)
+            if own is None:
+                problems.append(f"  {path}: shows {src!r}; only package pages show a home's interiors or floor plan")
+            elif lot_m.group(1) != own or src not in manifest_files.get(own, set()):
+                problems.append(f"  {path}: shows {src!r}, which isn't in this package's own manifest (lot-{own}-…)")
         alt = re.search(r'\balt="([^"]*)"', tag)
         for n in names:
             if alt and re.search(rf"\b{re.escape(n)}\b", alt.group(1).lower()):
@@ -2008,11 +2039,16 @@ def step_land_home_hub_order():
         if re.search(r"<section\b", main[pos["comparison"]:]):
             problems.append(f"  {LAND_HOME_HUB}: another section follows the comparison (it must be last)")
         strip = main[pos["strip"]:pos["inventory"]]
-        for label in ("Turnkey", "All utilities", "Choose your own home"):
+        for label in ("Lot and home together", "All utilities", "Choose your own home"):
             if label not in strip:
                 problems.append(f"  {LAND_HOME_HUB}: strip is missing {label!r}")
         if re.search(r"<svg(?![^>]*aria-hidden=\"true\")", strip):
             problems.append(f"  {LAND_HOME_HUB}: strip icon without aria-hidden")
+    # "turnkey" is never used on land-home pages (owner, 2026-11-24).
+    for path in land_home_paths():
+        st, page_html = fetch_status(path)
+        if re.search(r"turn[- ]?key", visible_main_text(page_html) + page_meta_text(page_html), re.I):
+            problems.append(f"  {path}: says 'turnkey'")
     head = html.split("<body", 1)[0]
     title = re.search(r"<title>(.*?)</title>", head, re.S)
     desc = re.search(r'<meta name="description" content="([^"]*)"', head)
@@ -2027,7 +2063,7 @@ def step_land_home_hub_order():
     if "data-package-card" in browse or "Land-Home Package" in main_content(browse):
         problems.append("  /browse: shows a land-home package")
     ok = not problems
-    detail = problems[:40] or ["Hub: intro → strip → Current Inventory (all package cards) → definition → … → comparison last; title, meta and H1 have no 'Floresville'; ItemList has no image; no package on /browse."]
+    detail = problems[:40] or ["Hub: intro → strip (Lot and home together · All utilities · Choose your own home) → Current Inventory (all package cards) → definition → … → comparison last; title, meta and H1 have no 'Floresville'; ItemList has no image; no package on /browse; no 'turnkey' on any land-home page."]
     return report("13i. Land-Home hub order and statewide head", ok, detail)
 
 

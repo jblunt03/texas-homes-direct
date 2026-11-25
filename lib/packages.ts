@@ -15,19 +15,19 @@
  */
 
 /**
- * The home shown in every package. FIXED VALUES copied on 2026-11-21 from
- * The Austin (BMH-93) in lib/sampleListings.ts: beds 4, baths 2, sqft 1493,
- * wideType 'Double Wide'. Deliberately NOT imported from that listing, so
- * later edits to it can't change the packages. Its name, price, payment,
- * photos, tour, features, description, year and manufacturer are not used,
- * and package pages never name or link to it.
+ * Each package's home (owner, 2026-11-25). FIXED VALUES copied on 2026-11-25
+ * from lib/sampleListings.ts and the Notion rows (matched by name and Notion
+ * Listing ID). Deliberately NOT imported from the listings, so later edits to
+ * them can't change the packages. The homes' names, prices, payments, tours,
+ * features, descriptions, years and manufacturers are not used, and land-home
+ * pages never name or link to them.
+ *   0.75 ac: The Austin (BMH-93)  4 bed, 2 bath, 1,493 sq ft, Double Wide, new
+ *   1.05 ac: The Sealy (BMH-19)   3 bed, 2 bath, 1,680 sq ft, Double Wide, new
+ *   1.20 ac: The San Saba (BMH-21) 4 bed, 2 bath, 2,280 sq ft, Double Wide, new
  */
-export const PACKAGE_HOME_SPECS = {
-  beds: 4,
-  baths: 2,
-  sqft: 1493,
-  wideType: 'Double Wide',
-} as const
+const HOME_0_75: PackageHome = { beds: 4, baths: 2, sqft: 1493, wideType: 'Double Wide' }
+const HOME_1_05: PackageHome = { beds: 3, baths: 2, sqft: 1680, wideType: 'Double Wide' }
+const HOME_1_20: PackageHome = { beds: 4, baths: 2, sqft: 2280, wideType: 'Double Wide' }
 
 export const LAND_HOME_HUB_PATH = '/land-home-packages'
 export const FLORESVILLE_PACKAGES_PATH = '/land-home-packages-floresville-tx'
@@ -60,28 +60,41 @@ const RENDER_1: PackageImage = { src: '/land-home/example-render-1.jpg', width: 
 const RENDER_2: PackageImage = { src: '/land-home/example-render-2.jpg', width: 2000, height: 1116, alt: 'Illustration of an example home on the lot', kind: 'render' }
 const RENDER_3: PackageImage = { src: '/land-home/example-render-3.jpg', width: 2000, height: 1116, alt: 'Illustration of an example home on the lot', kind: 'render' }
 
-/** Interiors from three example homes, three each (living room, kitchen,
- *  primary bedroom or bath), in the owner's order. At least 900px wide. */
-export const EXAMPLE_INTERIORS: PackageImage[] = [
-  { src: '/land-home/example-interior-1.jpg', width: 961, height: 645, alt: 'Example home living room', kind: 'interior' },
-  { src: '/land-home/example-interior-2.jpg', width: 964, height: 645, alt: 'Example home kitchen', kind: 'interior' },
-  { src: '/land-home/example-interior-3.jpg', width: 962, height: 644, alt: 'Example home primary bedroom', kind: 'interior' },
-  { src: '/land-home/example-interior-4.jpg', width: 2560, height: 1920, alt: 'Example home living room', kind: 'interior' },
-  { src: '/land-home/example-interior-5.jpg', width: 2560, height: 1920, alt: 'Example home kitchen', kind: 'interior' },
-  { src: '/land-home/example-interior-6.jpg', width: 2560, height: 1920, alt: 'Example home primary bathroom', kind: 'interior' },
-  { src: '/land-home/example-interior-7.jpg', width: 1084, height: 1451, alt: 'Example home living room', kind: 'interior' },
-  { src: '/land-home/example-interior-8.jpg', width: 1086, height: 1448, alt: 'Example home kitchen', kind: 'interior' },
-  { src: '/land-home/example-interior-9.jpg', width: 1084, height: 1451, alt: 'Example home primary bedroom', kind: 'interior' },
+/**
+ * Each package's own home's interiors (living room, kitchen, primary bath or
+ * bedroom; at least 900px wide) and its floor plan, under neutral per-lot
+ * filenames (lot-<acres>-…). A package page shows only its own files
+ * (validator step 13j checks the lot prefix). Floor plans are untouched copies,
+ * except 1.20 ac: a copy cropped to the main plan, without the option insets
+ * printed below it (original untouched).
+ */
+const LOT_0_75_INTERIORS: PackageImage[] = [
+  { src: '/land-home/lot-0-75-interior-1.jpg', width: 961, height: 645, alt: 'Example home living room', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-2.jpg', width: 964, height: 645, alt: 'Example home kitchen', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-3.jpg', width: 962, height: 644, alt: 'Example home primary bedroom', kind: 'interior' },
 ]
-
-/** The one floor plan: a 4 bed, 2 bath example (matches the package's home). */
-export const EXAMPLE_FLOOR_PLAN: PackageImage = { src: '/land-home/example-floor-plan-4-bed-2-bath.png', width: 1548, height: 772, alt: 'Example floor plan, 4 bed, 2 bath', kind: 'floorplan' }
+const LOT_0_75_FLOOR_PLAN: PackageImage = { src: '/land-home/lot-0-75-floor-plan.png', width: 1548, height: 772, alt: 'Example floor plan, 4 bed, 2 bath', kind: 'floorplan' }
+const LOT_1_05_INTERIORS: PackageImage[] = [
+  { src: '/land-home/lot-1-05-interior-1.jpg', width: 2560, height: 1707, alt: 'Example home living room', kind: 'interior' },
+  { src: '/land-home/lot-1-05-interior-2.jpg', width: 2560, height: 1707, alt: 'Example home kitchen', kind: 'interior' },
+  { src: '/land-home/lot-1-05-interior-3.jpg', width: 2560, height: 1707, alt: 'Example home primary bathroom', kind: 'interior' },
+]
+const LOT_1_05_FLOOR_PLAN: PackageImage = { src: '/land-home/lot-1-05-floor-plan.jpg', width: 2560, height: 1513, alt: 'Example floor plan, 3 bed, 2 bath', kind: 'floorplan' }
+const LOT_1_20_INTERIORS: PackageImage[] = [
+  { src: '/land-home/lot-1-20-interior-1.jpg', width: 2560, height: 1706, alt: 'Example home living room', kind: 'interior' },
+  { src: '/land-home/lot-1-20-interior-2.jpg', width: 2560, height: 1707, alt: 'Example home kitchen', kind: 'interior' },
+  { src: '/land-home/lot-1-20-interior-3.jpg', width: 2560, height: 1707, alt: 'Example home primary bathroom', kind: 'interior' },
+]
+const LOT_1_20_FLOOR_PLAN: PackageImage = { src: '/land-home/lot-1-20-floor-plan.jpg', width: 1604, height: 693, alt: 'Example floor plan, 4 bed, 2 bath', kind: 'floorplan' }
 
 /** Caption under each render on the package page. */
 export const RENDER_CAPTION = 'Illustration. Home shown is an example. Not the actual property.'
 
 /** Caption under every interior and the floor plan, wherever they render. */
 export const EXAMPLE_PHOTO_CAPTION = 'Example homes shown. You can choose your own home.'
+
+/** Added under every floor plan, after EXAMPLE_PHOTO_CAPTION (owner, 2026-11-25). */
+export const FLOOR_PLAN_CAPTION = 'Example floor plan. Dimensions are approximate and options may not be included.'
 
 export interface AerialImage {
   src: string
@@ -145,13 +158,25 @@ export const FLORESVILLE_FACTS: LotFacts = {
   school: `Floresville ISD, a great school district rated B by the Texas Education Agency (${SCHOOL_RATING_YEAR})`,
 }
 
-/** The home in the description's sentence and included list. */
-export const PACKAGE_HOME_LINE = 'brand new 4 bed, 2 bath double wide'
+/** The facts about a package's home that the description fills in. Copied as
+ *  literals from the home's listing data, never imported from it. */
+export interface PackageHome {
+  beds: number
+  baths: number
+  sqft: number
+  wideType: 'Single Wide' | 'Double Wide'
+}
 
-/** What's included, in the owner's order and words. Nothing else. */
-export function includedItems(acres: string): string[] {
+/** "4 bed, 2 bath double wide": the description's home, from the data. */
+export function homeLine(h: PackageHome): string {
+  return `${h.beds} bed, ${h.baths} bath ${h.wideType.toLowerCase()}`
+}
+
+/** What's included, in the owner's order and words, with the numbers
+ *  filled in from the data. Nothing else. */
+export function includedItems(acres: string, bedsBaths: string): string[] {
   return [
-    'Brand new 4 bed, 2 bath home',
+    `Brand new ${bedsBaths} home`,
     `${acres} acres of land`,
     'Gravel driveway and parking pad',
     'Skirting installed',
@@ -183,6 +208,11 @@ export interface LandHomePackage {
   /** The head image (a render): the first gallery image, and the photo on cards. */
   image: PackageImage
   facts: LotFacts
+  /** The home's specs for this package (description, spec row, card). */
+  home: PackageHome
+  /** That home's interiors (up to 3) and its floor plan, for the gallery. */
+  interiors: PackageImage[]
+  floorPlan: PackageImage
 }
 
 /** In the owner's order. */
@@ -191,25 +221,28 @@ export const PACKAGES: LandHomePackage[] = [
     slug: 'floresville-texas-4-bed-2-bath-1-20-acres-land-home-package',
     legacySlugs: ['floresville-texas-4-bed-2-bath-1-3-acres-land-home-package'],
     city: 'Floresville', locationLabel: 'Floresville, TX', locationPath: FLORESVILLE_PACKAGES_PATH,
-    acres: '1.20', price: 249000, monthlyPayment: 2200, image: RENDER_1, facts: FLORESVILLE_FACTS,
+    acres: '1.20', price: 249000, monthlyPayment: 2200, image: RENDER_3, facts: FLORESVILLE_FACTS,
+    home: HOME_1_20, interiors: LOT_1_20_INTERIORS, floorPlan: LOT_1_20_FLOOR_PLAN,
   },
   {
-    slug: 'floresville-texas-4-bed-2-bath-1-05-acres-land-home-package',
+    slug: 'floresville-texas-3-bed-2-bath-1-05-acres-land-home-package',
     legacySlugs: ['floresville-texas-4-bed-2-bath-1-2-acres-land-home-package'],
     city: 'Floresville', locationLabel: 'Floresville, TX', locationPath: FLORESVILLE_PACKAGES_PATH,
     acres: '1.05', price: 229000, monthlyPayment: 2000, image: RENDER_2, facts: FLORESVILLE_FACTS,
+    home: HOME_1_05, interiors: LOT_1_05_INTERIORS, floorPlan: LOT_1_05_FLOOR_PLAN,
   },
   {
     slug: 'floresville-texas-4-bed-2-bath-0-75-acres-land-home-package',
     city: 'Floresville', locationLabel: 'Floresville, TX', locationPath: FLORESVILLE_PACKAGES_PATH,
-    acres: '0.75', price: 219000, monthlyPayment: 2000, image: RENDER_3, facts: FLORESVILLE_FACTS,
+    acres: '0.75', price: 219000, monthlyPayment: 2000, image: RENDER_1, facts: FLORESVILLE_FACTS,
+    home: HOME_0_75, interiors: LOT_0_75_INTERIORS, floorPlan: LOT_0_75_FLOOR_PLAN,
   },
 ]
 
-/** A package page's gallery (owner's order, at most 13): its render, the two
- *  aerials, the example interiors, then the floor plan last. */
+/** A package page's gallery (owner's order): its render, the two aerials,
+ *  its own home's interiors, then its own home's floor plan last. */
 export function packageGallery(p: LandHomePackage): (PackageImage | AerialImage)[] {
-  return [p.image, AERIAL_EMPTY, AERIAL_HOMES, ...EXAMPLE_INTERIORS, EXAMPLE_FLOOR_PLAN]
+  return [p.image, AERIAL_EMPTY, AERIAL_HOMES, ...p.interiors, p.floorPlan]
 }
 
 /** Packages in one city, in PACKAGES order. */
@@ -225,8 +258,8 @@ export function packageName(p: LandHomePackage): string {
   return `${p.city} Land-Home Package: ${p.acres} Acres`
 }
 
-export function packageSpecLine(): string {
-  const s = PACKAGE_HOME_SPECS
+export function packageSpecLine(p: LandHomePackage): string {
+  const s = p.home
   return `${s.beds} bed · ${s.baths} bath · ${s.sqft.toLocaleString('en-US')} sq ft · ${s.wideType.toLowerCase()}`
 }
 

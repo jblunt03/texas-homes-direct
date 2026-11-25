@@ -19,7 +19,6 @@ import {
   LAND_HOME_HUB_PATH,
   LAND_HOME_KEYWORDS,
   PACKAGES,
-  PACKAGE_HOME_SPECS,
   SITE_URL,
   type LandHomePackage,
   findPackage,
@@ -40,11 +39,11 @@ const INTRO: Record<string, string> = {
     'At 0.75 acres, this is the most compact of the three Floresville land-home packages, sold with all utilities.',
 }
 
-function packageFaq(acres: string) {
+function packageFaq(acres: string, home: { beds: number; baths: number }) {
   return [
     {
       q: `What is included in this ${acres}-acre package?`,
-      a: `A brand new 4 bed, 2 bath home and ${acres} acres of land, sold together, with a gravel driveway and parking pad, skirting installed, a front porch and all utilities connected to the house. It's move-in ready. You can choose a different home instead of the one shown.`,
+      a: `A brand new ${home.beds} bed, ${home.baths} bath home and ${acres} acres of land, sold together, with a gravel driveway and parking pad, skirting installed, a front porch and all utilities connected to the house. It's move-in ready. You can choose a different home instead of the one shown.`,
     },
     {
       q: `How is this ${acres}-acre package financed?`,
@@ -63,7 +62,7 @@ function packageFaq(acres: string) {
 
 const DESCRIPTION: Record<string, string> = {
   '1.20': 'The largest Floresville land-home package: a 1.20-acre lot and a home, with all utilities. The home shown is a 4-bed, 2-bath double wide, or choose your own.',
-  '1.05': 'A 1.05-acre Floresville, Texas lot sold together with a home and all utilities. The home shown is a 4-bed, 2-bath double wide; you can choose your own.',
+  '1.05': 'A 1.05-acre Floresville, Texas lot sold together with a home and all utilities. The home shown is a 3-bed, 2-bath double wide; you can choose your own.',
   '0.75': 'The most compact Floresville land-home package: 0.75 acres plus a home, with all utilities. Shown with a 4-bed, 2-bath double wide, or pick your own home.',
 }
 
@@ -102,7 +101,7 @@ export function generateMetadata({ params }: { params: { slug: string } }): Meta
 export default function PackagePage({ params }: { params: { slug: string } }) {
   const p = findPackage(params.slug)
   if (!LAND_HOME_PACKAGES || !p) notFound()
-  const S = PACKAGE_HOME_SPECS
+  const S = p.home
   const others = PACKAGES.filter((o) => o.slug !== p.slug)
   const page = `package-${p.acres}`
 
@@ -129,7 +128,7 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
       cssSelector: ['.bmh-faq-speakable', '.bmh-explainer-lead'],
     },
   }
-  const faq = packageFaq(p.acres)
+  const faq = packageFaq(p.acres, p.home)
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -175,7 +174,7 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
                 <div><dt>Bathrooms</dt><dd>{S.baths}</dd></div>
                 <div><dt>Square feet</dt><dd>{S.sqft.toLocaleString('en-US')}</dd></div>
                 <div><dt>Home</dt><dd>{S.wideType}</dd></div>
-                <div><dt>Sold</dt><dd>With all utilities</dd></div>
+                <div><dt>Utilities</dt><dd>All utilities connected to the house</dd></div>
               </dl>
             </div>
             <div>
@@ -195,7 +194,7 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
         <div className="bmh-container">
           <div className="bmh-city-prose">
             <h2 className="bmh-city-h2">About this lot</h2>
-            <PackageDescription facts={p.facts} acres={[p.acres]} />
+            <PackageDescription facts={p.facts} lots={[{ acres: p.acres, home: p.home }]} />
           </div>
         </div>
       </section>
@@ -245,7 +244,7 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
           <div className="bmh-city-prose">
             <h2 className="bmh-city-h2">Choose your own home</h2>
             <p className="bmh-lead" style={{ marginTop: 12 }}>
-              The package shown has a 4-bed, 2-bath home. You can choose your own home instead.
+              The package shown has a {S.beds}-bed, {S.baths}-bath home. You can choose your own home instead.
             </p>
             <div className="bmh-spacer-sm" />
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 10 }}>

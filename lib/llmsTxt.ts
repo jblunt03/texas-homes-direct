@@ -8,7 +8,7 @@ import { LAND_HOME_HUB_PATH } from '@/lib/packages'
  * the old file. No prices or payments here (validator step 11g).
  */
 const LAND_HOME_LINE = LAND_HOME_PACKAGES
-  ? `- Land-home packages (a home and its lot sold together, turnkey) across Texas: https://www.texashomesdirect.com${LAND_HOME_HUB_PATH}\n`
+  ? `- Land-home packages (a home and its lot sold together) across Texas: https://www.texashomesdirect.com${LAND_HOME_HUB_PATH}\n`
   : ''
 
 export const LLMS_TXT =

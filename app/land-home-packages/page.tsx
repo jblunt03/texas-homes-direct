@@ -49,11 +49,11 @@ export const metadata: Metadata = {
 const FAQ = [
   {
     q: 'What is a land-home package?',
-    a: 'A land-home package is a home and its lot sold together as one turnkey purchase, so you aren’t shopping for land and a home separately. Texas Homes Direct sells land-home packages across Texas, and each package in our current inventory includes all utilities.',
+    a: 'A land-home package is a home and its lot sold together as one purchase, so you aren’t shopping for land and a home separately. Texas Homes Direct sells land-home packages across Texas, and each package in our current inventory includes all utilities.',
   },
   {
     q: 'What comes with each Floresville land-home package?',
-    a: 'Each one is a single lot and a home, sold turnkey with all utilities. The three lots measure 1.20, 1.05 and 0.75 acres. Every package shows a 4-bedroom, 2-bathroom double wide of 1,493 square feet, and the buyer has the option to choose their own home instead.',
+    a: 'Each one is a single lot and a home, sold together with all utilities. The three lots measure 1.20, 1.05 and 0.75 acres. Every package shows a 2-bathroom double wide with 3 or 4 bedrooms, and the buyer has the option to choose their own home instead.',
   },
   {
     q: 'Where in Texas does Texas Homes Direct offer land-home packages?',
@@ -61,7 +61,7 @@ const FAQ = [
   },
   {
     q: 'Can I pick my own home instead of the one shown?',
-    a: 'Yes. Each package shows a 4-bedroom, 2-bathroom home, and you have the option to choose your own home instead. To talk through which home you have in mind, call Texas Homes Direct at (830) 381-1309 or request a free quote, and we’ll go over it with you.',
+    a: 'Yes. Each package shows an example home, and you have the option to choose your own home instead. To talk through which home you have in mind, call Texas Homes Direct at (830) 381-1309 or request a free quote, and we’ll go over it with you.',
   },
   {
     q: 'How do I get started on a land-home package?',
@@ -69,7 +69,7 @@ const FAQ = [
   },
   {
     q: 'How is a land-home package different from buying a home for my own land?',
-    a: 'When you buy a home alone, you provide the land, and utilities are estimated by phone, then bid exactly after our contractor visits your property. With a package from our current inventory, the lot comes with the home, turnkey, with all utilities. Texas Homes Direct sells both ways of buying.',
+    a: 'When you buy a home alone, you provide the land, and utilities are estimated by phone, then bid exactly after our contractor visits your property. With a package from our current inventory, the lot comes with the home and all utilities. Texas Homes Direct sells both ways of buying.',
   },
 ]
 
@@ -159,11 +159,10 @@ export default function LandHomePackagesPage() {
           <ul className="bmh-lh-strip" data-section="strip">
             <li>
               <Icon>
-                <circle cx="8" cy="15" r="4" />
-                <path d="M10.8 12.2 20 3" />
-                <path d="m16 7 3 3" />
+                <path d="M3 11 12 4l9 7" />
+                <path d="M5 10v10h14V10" />
               </Icon>
-              Turnkey
+              Lot and home together
             </li>
             <li>
               <Icon>
@@ -210,9 +209,9 @@ export default function LandHomePackagesPage() {
           <div className="bmh-city-prose">
             <h2 className="bmh-city-h2">What Is a Land-Home Package?</h2>
             <p className="bmh-lead bmh-explainer-lead" style={{ marginTop: 12 }}>
-              A land-home package is a home and its lot sold together as one turnkey purchase. Texas Homes Direct
+              A land-home package is a home and its lot sold together as one purchase. Texas Homes Direct
               sells land-home packages across Texas. Every package in our current inventory includes all utilities
-              and shows a 4-bedroom, 2-bathroom home, and you can choose your own home instead.
+              and shows an example home, and you can choose your own home instead.
             </p>
             <div className="bmh-spacer-md" />
             <h3 className="bmh-city-h3">How It Works</h3>

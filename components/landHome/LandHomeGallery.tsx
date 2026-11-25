@@ -8,6 +8,7 @@ import {
   AERIAL_HOMES,
   AERIAL_HOMES_CAPTION,
   EXAMPLE_PHOTO_CAPTION,
+  FLOOR_PLAN_CAPTION,
   RENDER_CAPTION,
   type AerialImage,
   type PackageImage,
@@ -25,7 +26,8 @@ import {
  *   rounded corners, AERIAL_EMPTY_CAPTION directly beneath;
  * - the homes-on-parcels aerial: a visible "Illustration" badge on the image
  *   and AERIAL_HOMES_CAPTION directly beneath;
- * - interiors and the floor plan: EXAMPLE_PHOTO_CAPTION beneath.
+ * - interiors: EXAMPLE_PHOTO_CAPTION beneath; the floor plan:
+ *   EXAMPLE_PHOTO_CAPTION then FLOOR_PLAN_CAPTION beneath.
  * No image is ever drawn larger than its natural size (max-width/max-height
  * are its own pixels) or cropped (object-fit: contain).
  * Thumbnails are navigation buttons (alt=""), also object-fit contain.
@@ -33,11 +35,11 @@ import {
  */
 
 type Item = PackageImage | AerialImage
-/** data-lh-figure value: interiors and the floor plan share 'photo'. */
-type Kind = 'render' | 'empty' | 'homes' | 'photo'
+/** data-lh-figure value: interiors are 'photo'. */
+type Kind = 'render' | 'empty' | 'homes' | 'photo' | 'floorplan'
 
 function kindOf(item: Item): Kind {
-  if (item.kind === 'interior' || item.kind === 'floorplan') return 'photo'
+  if (item.kind === 'interior') return 'photo'
   return item.kind
 }
 
@@ -45,6 +47,7 @@ function captionFor(kind: Kind): string {
   if (kind === 'render') return RENDER_CAPTION
   if (kind === 'empty') return AERIAL_EMPTY_CAPTION
   if (kind === 'homes') return AERIAL_HOMES_CAPTION
+  if (kind === 'floorplan') return `${EXAMPLE_PHOTO_CAPTION} ${FLOOR_PLAN_CAPTION}`
   return EXAMPLE_PHOTO_CAPTION
 }
 

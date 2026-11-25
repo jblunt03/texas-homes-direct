@@ -1213,7 +1213,7 @@ body.bmh-lh-lightbox-open chat-widget { display: none !important; }
 .bmh-location-label { font-weight: 600; color: var(--color-body-strong); }
 /* With 3 or fewer packages, the grid stays at 3 columns where /browse goes to 4. */
 @media (min-width: 1600px) { .bmh-wide-inventory .bmh-inv-grid.bmh-inv-grid-max3 { grid-template-columns: repeat(3, 1fr); } }
-/* Hub strip: Turnkey · All utilities · Choose your own home. */
+/* Hub strip: Lot and home together · All utilities · Choose your own home. */
 .bmh-lh-strip { display: flex; flex-wrap: wrap; gap: 10px 28px; margin: 20px 0 0; padding: 14px 0; border-top: 1px solid var(--color-hairline); border-bottom: 1px solid var(--color-hairline); list-style: none; }
 .bmh-lh-strip li { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-sans); font-size: 15px; font-weight: 600; color: var(--color-body-strong); }
 .bmh-lh-strip svg { width: 20px; height: 20px; color: var(--color-primary); flex-shrink: 0; }
