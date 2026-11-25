@@ -33,7 +33,10 @@ export const LAND_HOME_HUB_PATH = '/land-home-packages'
 export const FLORESVILLE_PACKAGES_PATH = '/land-home-packages-floresville-tx'
 
 export interface PackageImage {
+  /** The display file (interiors: at most 1600px wide and 400KB). */
   src: string
+  /** 240px-wide thumbnail for the gallery strip (lazy). */
+  thumb: string
   width: number
   height: number
   alt: string
@@ -56,36 +59,54 @@ export interface PackageImage {
  * wide, JPEG at the highest quality under 800KB; never cropped or retouched).
  * NOT CLEARED TO SHIP: the owner is checking the image rights.
  */
-const RENDER_1: PackageImage = { src: '/land-home/example-render-1.jpg', width: 2000, height: 1116, alt: 'Illustration of an example home on the lot', kind: 'render' }
-const RENDER_2: PackageImage = { src: '/land-home/example-render-2.jpg', width: 2000, height: 1116, alt: 'Illustration of an example home on the lot', kind: 'render' }
-const RENDER_3: PackageImage = { src: '/land-home/example-render-3.jpg', width: 2000, height: 1116, alt: 'Illustration of an example home on the lot', kind: 'render' }
+const RENDER_1: PackageImage = { src: '/land-home/example-render-1.jpg', thumb: '/land-home/example-render-1-thumb.jpg', width: 2000, height: 1116, alt: 'Illustration of an example home on the lot', kind: 'render' }
+const RENDER_2: PackageImage = { src: '/land-home/example-render-2.jpg', thumb: '/land-home/example-render-2-thumb.jpg', width: 2000, height: 1116, alt: 'Illustration of an example home on the lot', kind: 'render' }
+const RENDER_3: PackageImage = { src: '/land-home/example-render-3.jpg', thumb: '/land-home/example-render-3-thumb.jpg', width: 2000, height: 1116, alt: 'Illustration of an example home on the lot', kind: 'render' }
 
 /**
- * Each package's own home's interiors (living room, kitchen, primary bath or
- * bedroom; at least 900px wide) and its floor plan, under neutral per-lot
- * filenames (lot-<acres>-…). A package page shows only its own files
- * (validator step 13j checks the lot prefix). Floor plans are untouched copies,
- * except 1.20 ac: a copy cropped to the main plan, without the option insets
- * printed below it (original untouched).
+ * Each package's own home's interiors and floor plan (owner, 2026-11-25):
+ * every interior photo of that home in the database at 900px wide or more,
+ * minus near-duplicates, empty rooms with nothing to see, and any photo
+ * showing a logo, brand label, manufacturer or model name, people, license
+ * plates or text overlays. Grouped by room: living room, kitchen, dining,
+ * primary bedroom, primary bath, other bedrooms, other baths, laundry, other.
+ * Files are display copies (at most 1600px wide and 400KB, never upscaled)
+ * plus 240px thumbnails under neutral per-lot names (lot-<acres>-…); the
+ * originals are untouched. A package page shows only its own files
+ * (validator step 13j). Floor plans are display copies too; the 1.20-acre
+ * one comes from a copy cropped to the main plan, without the option insets.
  */
 const LOT_0_75_INTERIORS: PackageImage[] = [
-  { src: '/land-home/lot-0-75-interior-1.jpg', width: 961, height: 645, alt: 'Example home living room', kind: 'interior' },
-  { src: '/land-home/lot-0-75-interior-2.jpg', width: 964, height: 645, alt: 'Example home kitchen', kind: 'interior' },
-  { src: '/land-home/lot-0-75-interior-3.jpg', width: 962, height: 644, alt: 'Example home primary bedroom', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-01.jpg', thumb: '/land-home/lot-0-75-interior-01-thumb.jpg', width: 961, height: 645, alt: 'Example home living room', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-02.jpg', thumb: '/land-home/lot-0-75-interior-02-thumb.jpg', width: 964, height: 645, alt: 'Example home living room 2', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-03.jpg', thumb: '/land-home/lot-0-75-interior-03-thumb.jpg', width: 966, height: 645, alt: 'Example home living room 3', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-04.jpg', thumb: '/land-home/lot-0-75-interior-04-thumb.jpg', width: 966, height: 645, alt: 'Example home kitchen', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-05.jpg', thumb: '/land-home/lot-0-75-interior-05-thumb.jpg', width: 962, height: 644, alt: 'Example home kitchen 2', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-06.jpg', thumb: '/land-home/lot-0-75-interior-06-thumb.jpg', width: 964, height: 645, alt: 'Example home dining area', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-07.jpg', thumb: '/land-home/lot-0-75-interior-07-thumb.jpg', width: 962, height: 644, alt: 'Example home primary bedroom', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-08.jpg', thumb: '/land-home/lot-0-75-interior-08-thumb.jpg', width: 962, height: 644, alt: 'Example home primary bathroom', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-09.jpg', thumb: '/land-home/lot-0-75-interior-09-thumb.jpg', width: 960, height: 645, alt: 'Example home primary bathroom 2', kind: 'interior' },
+  { src: '/land-home/lot-0-75-interior-10.jpg', thumb: '/land-home/lot-0-75-interior-10-thumb.jpg', width: 968, height: 645, alt: 'Example home bathroom', kind: 'interior' },
 ]
-const LOT_0_75_FLOOR_PLAN: PackageImage = { src: '/land-home/lot-0-75-floor-plan.png', width: 1548, height: 772, alt: 'Example floor plan, 4 bed, 2 bath', kind: 'floorplan' }
+const LOT_0_75_FLOOR_PLAN: PackageImage = { src: '/land-home/lot-0-75-floor-plan-display.jpg', thumb: '/land-home/lot-0-75-floor-plan-thumb.jpg', width: 1548, height: 772, alt: 'Example floor plan, 4 bed, 2 bath', kind: 'floorplan' }
 const LOT_1_05_INTERIORS: PackageImage[] = [
-  { src: '/land-home/lot-1-05-interior-1.jpg', width: 2560, height: 1707, alt: 'Example home living room', kind: 'interior' },
-  { src: '/land-home/lot-1-05-interior-2.jpg', width: 2560, height: 1707, alt: 'Example home kitchen', kind: 'interior' },
-  { src: '/land-home/lot-1-05-interior-3.jpg', width: 2560, height: 1707, alt: 'Example home primary bathroom', kind: 'interior' },
+  { src: '/land-home/lot-1-05-interior-01.jpg', thumb: '/land-home/lot-1-05-interior-01-thumb.jpg', width: 1600, height: 1067, alt: 'Example home living room', kind: 'interior' },
+  { src: '/land-home/lot-1-05-interior-02.jpg', thumb: '/land-home/lot-1-05-interior-02-thumb.jpg', width: 1600, height: 1067, alt: 'Example home living room 2', kind: 'interior' },
+  { src: '/land-home/lot-1-05-interior-03.jpg', thumb: '/land-home/lot-1-05-interior-03-thumb.jpg', width: 1600, height: 1067, alt: 'Example home kitchen', kind: 'interior' },
+  { src: '/land-home/lot-1-05-interior-04.jpg', thumb: '/land-home/lot-1-05-interior-04-thumb.jpg', width: 1600, height: 1067, alt: 'Example home dining area', kind: 'interior' },
+  { src: '/land-home/lot-1-05-interior-05.jpg', thumb: '/land-home/lot-1-05-interior-05-thumb.jpg', width: 1600, height: 1067, alt: 'Example home primary bathroom', kind: 'interior' },
+  { src: '/land-home/lot-1-05-interior-06.jpg', thumb: '/land-home/lot-1-05-interior-06-thumb.jpg', width: 1600, height: 1067, alt: 'Example home primary bathroom 2', kind: 'interior' },
 ]
-const LOT_1_05_FLOOR_PLAN: PackageImage = { src: '/land-home/lot-1-05-floor-plan.jpg', width: 2560, height: 1513, alt: 'Example floor plan, 3 bed, 2 bath', kind: 'floorplan' }
+const LOT_1_05_FLOOR_PLAN: PackageImage = { src: '/land-home/lot-1-05-floor-plan-display.jpg', thumb: '/land-home/lot-1-05-floor-plan-thumb.jpg', width: 1600, height: 945, alt: 'Example floor plan, 3 bed, 2 bath', kind: 'floorplan' }
 const LOT_1_20_INTERIORS: PackageImage[] = [
-  { src: '/land-home/lot-1-20-interior-1.jpg', width: 2560, height: 1706, alt: 'Example home living room', kind: 'interior' },
-  { src: '/land-home/lot-1-20-interior-2.jpg', width: 2560, height: 1707, alt: 'Example home kitchen', kind: 'interior' },
-  { src: '/land-home/lot-1-20-interior-3.jpg', width: 2560, height: 1707, alt: 'Example home primary bathroom', kind: 'interior' },
+  { src: '/land-home/lot-1-20-interior-01.jpg', thumb: '/land-home/lot-1-20-interior-01-thumb.jpg', width: 1600, height: 1067, alt: 'Example home living room', kind: 'interior' },
+  { src: '/land-home/lot-1-20-interior-02.jpg', thumb: '/land-home/lot-1-20-interior-02-thumb.jpg', width: 1600, height: 1066, alt: 'Example home living room 2', kind: 'interior' },
+  { src: '/land-home/lot-1-20-interior-03.jpg', thumb: '/land-home/lot-1-20-interior-03-thumb.jpg', width: 1600, height: 1067, alt: 'Example home kitchen', kind: 'interior' },
+  { src: '/land-home/lot-1-20-interior-04.jpg', thumb: '/land-home/lot-1-20-interior-04-thumb.jpg', width: 1600, height: 1067, alt: 'Example home dining area', kind: 'interior' },
+  { src: '/land-home/lot-1-20-interior-05.jpg', thumb: '/land-home/lot-1-20-interior-05-thumb.jpg', width: 1600, height: 1067, alt: 'Example home primary bedroom', kind: 'interior' },
+  { src: '/land-home/lot-1-20-interior-06.jpg', thumb: '/land-home/lot-1-20-interior-06-thumb.jpg', width: 1600, height: 1067, alt: 'Example home primary bathroom', kind: 'interior' },
 ]
-const LOT_1_20_FLOOR_PLAN: PackageImage = { src: '/land-home/lot-1-20-floor-plan.jpg', width: 1604, height: 693, alt: 'Example floor plan, 4 bed, 2 bath', kind: 'floorplan' }
+const LOT_1_20_FLOOR_PLAN: PackageImage = { src: '/land-home/lot-1-20-floor-plan-display.jpg', thumb: '/land-home/lot-1-20-floor-plan-thumb.jpg', width: 1600, height: 691, alt: 'Example floor plan, 4 bed, 2 bath', kind: 'floorplan' }
 
 /** Caption under each render on the package page. */
 export const RENDER_CAPTION = 'Illustration. Home shown is an example. Not the actual property.'
@@ -98,6 +119,8 @@ export const FLOOR_PLAN_CAPTION = 'Example floor plan. Dimensions are approximat
 
 export interface AerialImage {
   src: string
+  /** 240px-wide thumbnail for the gallery strip (lazy). */
+  thumb: string
   width: number
   height: number
   alt: string
@@ -112,9 +135,9 @@ export interface AerialImage {
 export const AERIAL_ALT = 'Aerial illustration of the three Floresville parcels'
 
 /** The owner's file, unedited (native 1024x572; exempt from the 1,200px minimum). */
-export const AERIAL_EMPTY: AerialImage = { src: '/land-home/parcels-aerial-empty.jpg', width: 1024, height: 572, alt: AERIAL_ALT, kind: 'empty' }
+export const AERIAL_EMPTY: AerialImage = { src: '/land-home/parcels-aerial-empty.jpg', thumb: '/land-home/parcels-aerial-empty-thumb.jpg', width: 1024, height: 572, alt: AERIAL_ALT, kind: 'empty' }
 /** The owner's file re-encoded as JPEG q82 at the same 1672x941 (from a 3.7MB PNG). */
-export const AERIAL_HOMES: AerialImage = { src: '/land-home/parcels-aerial-homes.jpg', width: 1672, height: 941, alt: AERIAL_ALT, kind: 'homes' }
+export const AERIAL_HOMES: AerialImage = { src: '/land-home/parcels-aerial-homes.jpg', thumb: '/land-home/parcels-aerial-homes-thumb.jpg', width: 1672, height: 941, alt: AERIAL_ALT, kind: 'homes' }
 
 export const AERIAL_EMPTY_CAPTION =
   'Illustration only. Not a survey. All boundaries, dimensions and acreages are approximate and for illustrative purposes only. Not to be used as a legal survey. Buyers must independently verify all information.'

@@ -1466,16 +1466,25 @@ edited. In `lib/packages.ts`:
   it at native size in a lightbox (Close button, Esc). Alt text: "Aerial
   illustration of the three Floresville parcels". The Floresville page's
   "The Parcels" section shows both, two-up on desktop and stacked on phones.
-- **Gallery (`packageGallery`):** render, empty aerial, homes aerial, then
-  that package's own home's three interiors (`lot-<acres>-interior-1…3`:
-  living room, kitchen, primary bath or bedroom; at least 900px wide) and
-  its floor plan last (`lot-<acres>-floor-plan`), captioned "Example homes
-  shown. You can choose your own home."; the floor plan adds "Example floor
-  plan. Dimensions are approximate and options may not be included." A
-  package never shows another home's interiors or plan (validator 13j's
-  per-package manifest, by the `lot-<acres>-` prefix). The 1.20-acre plan is
-  a copy cropped to the main plan, without the option insets printed below
-  it; the others are untouched copies.
+- **Gallery (`packageGallery`, owner 2026-11-25):** render, empty aerial,
+  homes aerial, then ALL of that package's own home's usable interior photos
+  (every interior in the database at 900px wide or more, minus
+  near-duplicates, empty rooms with nothing to see, and any photo showing a
+  logo, brand label, manufacturer or model name, people, license plates or
+  text overlays), grouped living room, kitchen, dining, primary bedroom,
+  primary bath, other bedrooms, other baths, laundry, other; then its floor
+  plan last. Files: display copies `lot-<acres>-interior-NN.jpg` (at most
+  1600px wide and 400KB, never upscaled) and `…-thumb.jpg` (240px, at most
+  40KB); floor plans `lot-<acres>-floor-plan-display.jpg`. Alt text "Example
+  home <room>", numbered when a room repeats. Interiors are captioned
+  "Example homes shown. You can choose your own home."; the floor plan adds
+  "Example floor plan. Dimensions are approximate and options may not be
+  included." A package page never loads or lists another package's files
+  (validator 13j: per-package manifest by the `lot-<acres>-` prefix, plus a
+  scan of the whole HTML). Loading: only the render loads up front (high
+  priority); the strip loads thumbnails only, lazily; a large image loads
+  when selected and the next one is then preloaded. The strip scrolls with
+  arrow buttons; the counter reads "3 / 14".
   `components/landHome/LandHomeGallery.tsx`: large image plus thumbnail
   strip, arrow keys, swipe; no image drawn larger than its natural size.
 - No filename, alt text or caption names a home or manufacturer, and the

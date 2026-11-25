@@ -1689,7 +1689,7 @@ def step_land_home_payments():
 # "coming soon" text; no og:image.
 def approved_package_images():
     src = (REPO_ROOT / "lib" / "packages.ts").read_text()
-    return set(re.findall(r"src: '(/land-home/[^']+)'", src))
+    return set(re.findall(r"(?:src|thumb): '(/land-home/[^']+)'", src))
 
 
 def home_and_maker_names():
@@ -1762,12 +1762,22 @@ def step_land_home_images():
 # example floor plan; no render in og:image or schema; FM 536 only in the
 # land-home pages' visible body text; no emoji in land-home HTML; no image in schema.
 LH_IMG_NAME_RE = re.compile(
-    r"^/land-home/(example-render-\d+\.jpg|lot-\d+-\d+-(interior-\d+|floor-plan)\.(jpg|png)|parcels-aerial-(empty|homes)\.jpg)$"
+    r"^/land-home/(example-render-\d+(-thumb)?\.jpg|lot-\d+-\d+-(interior-\d+|floor-plan-display)(-thumb)?\.(jpg|png)|lot-\d+-\d+-floor-plan-thumb\.jpg|parcels-aerial-(empty|homes)(-thumb)?\.jpg)$"
 )
-LH_RENDER_RE = re.compile(r"^/land-home/example-render-\d+\.jpg$")
+LH_RENDER_RE = re.compile(r"^/land-home/example-render-\d+(-thumb)?\.jpg$")
+# Size limits (owner, 2026-11-25): interior and floor-plan display copies at most
+# 1600px wide and 400KB; thumbnails at most 240px wide and 40KB; renders and
+# aerials at most 800KB (checked by 13g).
+LH_DISPLAY_MAX = (1600, 400 * 1024)
+LH_THUMB_MAX = (240, 40 * 1024)
+
+
+def lh_base(src):
+    """The full-size file a thumbnail stands for (…-thumb.jpg → ….jpg)."""
+    return re.sub(r"-thumb\.jpg$", ".jpg", src)
 # Per-package manifest: a package's own home's interiors and floor plan are
 # named lot-<acres>-… (lot-1-20-…), and a package page may show only its own.
-LH_LOT_FILE_RE = re.compile(r"^/land-home/lot-(\d+-\d+)-(interior-\d+|floor-plan)\.(jpg|png)$")
+LH_LOT_FILE_RE = re.compile(r"^/land-home/lot-(\d+-\d+)-(interior-\d+|floor-plan-display|floor-plan)(-thumb)?\.(jpg|png)$")
 
 
 def lh_package_manifests():
@@ -1775,7 +1785,7 @@ def lh_package_manifests():
     {package path: lot key} from each package's acreage."""
     src = (REPO_ROOT / "lib" / "packages.ts").read_text()
     files = {}
-    for f in re.findall(r"src: '(/land-home/lot-[^']+)'", src):
+    for f in re.findall(r"(?:src|thumb): '(/land-home/lot-[^']+)'", src):
         m = LH_LOT_FILE_RE.match(f)
         if m:
             files.setdefault(m.group(1), set()).add(f)
@@ -1785,6 +1795,15 @@ def lh_package_manifests():
         if m:
             pages[path] = m.group(1)
     return files, pages
+
+
+def lh_package_renders():
+    """{package path: its own render's base filename} from lib/packages.ts."""
+    src = (REPO_ROOT / "lib" / "packages.ts").read_text()
+    out = {}
+    for slug, n in re.findall(r"slug: '([a-z0-9-]+-land-home-package)',[\s\S]*?image: RENDER_(\d+)", src):
+        out[f"{LAND_HOME_HUB}/{slug}"] = f"example-render-{n}"
+    return out
 LH_AERIAL_SRC = {"empty": "/land-home/parcels-aerial-empty.jpg", "homes": "/land-home/parcels-aerial-homes.jpg"}
 LH_ROAD = "FM 536"
 EMOJI_RE = re.compile("[\U0001F000-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF\uFE0F\u200D\u20E3]")
@@ -1850,6 +1869,13 @@ def lh_file_problems():
         if f.stat().st_size > 800 * 1024:
             problems.append(f"  {img}: {f.stat().st_size // 1024}KB (max 800KB)")
         size = jpeg_size(f)
+        if img.endswith("-thumb.jpg"):
+            if not size or size[0] > LH_THUMB_MAX[0] or f.stat().st_size > LH_THUMB_MAX[1]:
+                problems.append(f"  {img}: thumbnail is {size and size[0]}px / {f.stat().st_size // 1024}KB (max {LH_THUMB_MAX[0]}px, {LH_THUMB_MAX[1] // 1024}KB)")
+            continue
+        if re.search(r"-interior-\d+\.|-floor-plan-display\.", img):
+            if not size or size[0] > LH_DISPLAY_MAX[0] or f.stat().st_size > LH_DISPLAY_MAX[1]:
+                problems.append(f"  {img}: display copy is {size and size[0]}px / {f.stat().st_size // 1024}KB (max {LH_DISPLAY_MAX[0]}px, {LH_DISPLAY_MAX[1] // 1024}KB)")
         if re.search(r"-interior-\d+\.", img) and (not size or size[0] < 900):
             problems.append(f"  {img}: {size and size[0]}px wide (interiors must be at least 900px)")
         if LH_RENDER_RE.match(img) and (not size or size[0] < 1200):
@@ -1925,7 +1951,7 @@ def lh_page_photo_problems(path, html, names, captions):
         for n in names:
             if alt and re.search(rf"\b{re.escape(n)}\b", alt.group(1).lower()):
                 problems.append(f"  {path}: alt text names {n!r}")
-        if LH_RENDER_RE.match(src) or src == LH_AERIAL_SRC["homes"]:
+        if LH_RENDER_RE.match(src) or lh_base(src) == LH_AERIAL_SRC["homes"]:
             # The badge must sit in the same container: card photo, gallery frame or thumbnail.
             starts = [main.rfind(m, 0, im.start()) for m in ("<button", "bmh-inv-card-media", "data-lh-frame=")]
             box_start = max(starts)
@@ -1933,10 +1959,18 @@ def lh_page_photo_problems(path, html, names, captions):
             box = main[box_start:min(ends) if ends else im.end()] if box_start != -1 else ""
             if not re.search(r'data-lh-badge=""[^>]*>Illustration<', box):
                 problems.append(f"  {path}: {src!r} appears without a visible 'Illustration' badge")
-        kind = next((k for k, v in LH_AERIAL_SRC.items() if v == src), None)
+        render_attr = re.search(r'data-lh-render="(full|thumb)"', tag)
+        if render_attr and render_attr.group(1) == "thumb":
+            if not src.endswith("-thumb.jpg"):
+                problems.append(f"  {path}: thumbnail strip loads the full file {src!r} (thumbnails only)")
+            if 'loading="lazy"' not in tag:
+                problems.append(f"  {path}: thumbnail {src!r} isn't lazy")
+        elif src.endswith("-thumb.jpg"):
+            problems.append(f"  {path}: thumbnail file {src!r} used as a full-size image")
+        kind = next((k for k, v in LH_AERIAL_SRC.items() if v == lh_base(src)), None)
         if not kind:
             continue
-        render = re.search(r'data-lh-render="(full|thumb)"', tag)
+        render = render_attr
         if not render:
             problems.append(f"  {path}: {kind} aerial rendered outside the approved figure or thumbnail")
         elif render.group(1) == "thumb" and "object-fit:contain" not in tag.replace(" ", ""):
@@ -1946,6 +1980,19 @@ def lh_page_photo_problems(path, html, names, captions):
     for kind in renders:
         if counted[kind] != renders[kind]:
             problems.append(f"  {path}: {counted[kind]} full-size {kind} aerial render(s) but {renders[kind]} with the required frame and caption")
+    # A package page never loads or lists another package's files: every
+    # /land-home/lot-… or example-render-… reference anywhere in the HTML
+    # (markup, preload links, the client payload) must be this package's own.
+    manifest_files, manifest_pages = lh_package_manifests()
+    own_lot = manifest_pages.get(path)
+    own_render = lh_package_renders().get(path)
+    if own_lot:
+        for lot in sorted(set(re.findall(r"/land-home/lot-(\d+-\d+)-", html))):
+            if lot != own_lot:
+                problems.append(f"  {path}: references another package's files (lot-{lot}-…)")
+        for r in sorted(set(re.findall(r"/land-home/(example-render-\d+)", html))):
+            if r != own_render:
+                problems.append(f"  {path}: references another package's render ({r})")
     # FM 536: visible body text of the Floresville and package pages only.
     visible = visible_main_text(html)
     if LH_ROAD in visible and path not in fact_pages:

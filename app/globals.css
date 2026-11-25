@@ -1180,6 +1180,10 @@ button.bmh-lh-frame { cursor: zoom-in; }
 .bmh-lh-gallery-nav { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-top: 12px; }
 .bmh-lh-gallery-count { font-size: 14px; color: var(--color-muted); font-variant-numeric: tabular-nums; }
 .bmh-lh-thumb { background: var(--color-surface-soft); }
+.bmh-lh-strip-wrap { display: flex; align-items: center; gap: 8px; margin-top: 12px; }
+.bmh-lh-strip-wrap .bmh-lh-strip-thumbs { margin-top: 0; flex: 1; min-width: 0; scroll-behavior: smooth; }
+.bmh-lh-strip-arrow { flex: none; display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; border-radius: 50%; border: 1px solid var(--color-hairline); background: var(--color-canvas); color: var(--color-ink); cursor: pointer; }
+.bmh-lh-strip-arrow:focus-visible { outline: 3px solid var(--color-primary); outline-offset: 2px; }
 .bmh-lh-parcels { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; align-items: start; }
 @media (max-width: 760px) { .bmh-lh-parcels { grid-template-columns: 1fr; } }
 .bmh-lh-lightbox { position: fixed; inset: 0; z-index: 2147483647; background: rgba(0, 0, 0, 0.96); display: flex; flex-direction: column; }

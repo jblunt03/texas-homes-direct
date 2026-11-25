@@ -65,12 +65,15 @@ function Figure({
   item,
   aspect,
   priority = false,
+  eager = false,
   sizes,
   onOpen,
 }: {
   item: Item
   aspect: string
   priority?: boolean
+  /** Load now (the gallery's selected image) rather than lazily. */
+  eager?: boolean
   sizes: string
   onOpen?: () => void
 }) {
@@ -82,6 +85,7 @@ function Figure({
       width={item.width}
       height={item.height}
       priority={priority}
+      loading={priority ? undefined : eager ? 'eager' : 'lazy'}
       sizes={sizes}
       className="bmh-lh-img"
       style={{ maxWidth: `${item.width}px`, maxHeight: `${item.height}px`, objectFit: 'contain' }}
@@ -194,20 +198,50 @@ function useLightbox() {
 const GALLERY_ASPECT = `${AERIAL_EMPTY.width} / ${AERIAL_EMPTY.height}`
 
 /** A package page's gallery. The frame's aspect is the empty aerial's, so that
- *  aerial always fills it exactly; other images are contained, never cropped. */
+ *  aerial always fills it exactly; other images are contained, never cropped.
+ *  Loading: only the first image (the front render) loads up front, with high
+ *  priority. The strip shows 240px thumbnails, lazy. A large image loads when
+ *  it's selected, and the next one is then preloaded. */
 export function PackageGallery({ items }: { items: Item[] }) {
   const [i, setI] = useState(0)
+  const [touched, setTouched] = useState(false)
   const { setOpen, box } = useLightbox()
   const touchX = useRef<number | null>(null)
+  const strip = useRef<HTMLDivElement>(null)
   const n = items.length
-  const go = useCallback((d: number) => setI((x) => (x + d + n) % n), [n])
+  const select = useCallback((k: number) => { setTouched(true); setI(((k % n) + n) % n) }, [n])
+  const go = useCallback((d: number) => { setTouched(true); setI((x) => (x + d + n) % n) }, [n])
   const current = items[i]
+
+  // Preload the next large image once the visitor starts using the gallery.
+  useEffect(() => {
+    if (!touched) return
+    const next = items[(i + 1) % n]
+    const img = new window.Image()
+    img.decoding = 'async'
+    img.src = next.src
+  }, [i, n, items, touched])
+
+  // Keep the selected thumbnail in view inside the strip (never scrolls the page).
+  useEffect(() => {
+    const el = strip.current
+    const t = el?.children[i] as HTMLElement | undefined
+    if (!el || !t) return
+    const left = t.offsetLeft - el.offsetLeft
+    if (left < el.scrollLeft) el.scrollTo({ left, behavior: 'smooth' })
+    else if (left + t.offsetWidth > el.scrollLeft + el.clientWidth) el.scrollTo({ left: left + t.offsetWidth - el.clientWidth, behavior: 'smooth' })
+  }, [i])
+
+  const scrollStrip = (dir: number) => {
+    const el = strip.current
+    if (el) el.scrollBy({ left: dir * Math.max(120, el.clientWidth * 0.8), behavior: 'smooth' })
+  }
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (e.key === 'ArrowRight') { e.preventDefault(); go(1) }
     else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1) }
-    else if (e.key === 'Home') { e.preventDefault(); setI(0) }
-    else if (e.key === 'End') { e.preventDefault(); setI(n - 1) }
+    else if (e.key === 'Home') { e.preventDefault(); select(0) }
+    else if (e.key === 'End') { e.preventDefault(); select(n - 1) }
   }
   const onTouchStart = (e: TouchEvent) => { touchX.current = e.touches[0]?.clientX ?? null }
   const onTouchEnd = (e: TouchEvent) => {
@@ -236,7 +270,8 @@ export function PackageGallery({ items }: { items: Item[] }) {
           item={current}
           aspect={GALLERY_ASPECT}
           priority={i === 0}
-          sizes="(max-width: 1240px) 100vw, 1200px"
+          eager
+          sizes="(max-width: 1240px) 100vw, 1024px"
           onOpen={isAerial(current) ? () => setOpen(current) : undefined}
         />
       </div>
@@ -244,27 +279,37 @@ export function PackageGallery({ items }: { items: Item[] }) {
         <button type="button" className="bmh-pill bmh-pill-static" onClick={() => go(-1)} aria-label="Previous photo">
           ← Prev
         </button>
-        <span className="bmh-lh-gallery-count" aria-hidden="true">{i + 1} / {n}</span>
+        <span className="bmh-lh-gallery-count" aria-live="polite" data-lh-count="">
+          {i + 1} / {n}
+        </span>
         <button type="button" className="bmh-pill bmh-pill-static" onClick={() => go(1)} aria-label="Next photo">
           Next →
         </button>
       </div>
-      <div className="bmh-gallery-thumbs">
-        {items.map((item, k) => (
-          <button
-            key={item.src}
-            type="button"
-            onClick={() => setI(k)}
-            aria-label={`View photo ${k + 1} of ${n}`}
-            aria-current={k === i ? 'true' : undefined}
-            className={`bmh-gallery-thumb bmh-lh-thumb${k === i ? ' bmh-is-active' : ''}`}
-          >
-            <Image src={item.src} alt="" fill sizes="112px" style={{ objectFit: 'contain' }} data-lh-render="thumb" />
-            {(item.kind === 'render' || item.kind === 'homes') && (
-              <span className="bmh-lh-illustration-badge bmh-lh-illustration-badge-thumb" data-lh-badge="">Illustration</span>
-            )}
-          </button>
-        ))}
+      <div className="bmh-lh-strip-wrap">
+        <button type="button" className="bmh-lh-strip-arrow" onClick={() => scrollStrip(-1)} aria-label="Scroll thumbnails left">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6" /></svg>
+        </button>
+        <div className="bmh-gallery-thumbs bmh-lh-strip-thumbs" ref={strip}>
+          {items.map((item, k) => (
+            <button
+              key={item.src}
+              type="button"
+              onClick={() => select(k)}
+              aria-label={`View photo ${k + 1} of ${n}`}
+              aria-current={k === i ? 'true' : undefined}
+              className={`bmh-gallery-thumb bmh-lh-thumb${k === i ? ' bmh-is-active' : ''}`}
+            >
+              <Image src={item.thumb} alt="" fill loading="lazy" sizes="112px" style={{ objectFit: 'contain' }} data-lh-render="thumb" />
+              {(item.kind === 'render' || item.kind === 'homes') && (
+                <span className="bmh-lh-illustration-badge bmh-lh-illustration-badge-thumb" data-lh-badge="">Illustration</span>
+              )}
+            </button>
+          ))}
+        </div>
+        <button type="button" className="bmh-lh-strip-arrow" onClick={() => scrollStrip(1)} aria-label="Scroll thumbnails right">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
       </div>
       {box}
     </div>
