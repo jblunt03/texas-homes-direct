@@ -1468,10 +1468,11 @@ edited. In `lib/packages.ts`:
   "The Parcels" section shows both, two-up on desktop and stacked on phones.
 - **Gallery (`packageGallery`, owner 2026-11-25):** render, empty aerial,
   homes aerial, then ALL of that package's own home's usable interior photos
-  (every interior in the database at 900px wide or more, minus
-  near-duplicates, empty rooms with nothing to see, and any photo showing a
-  logo, brand label, manufacturer or model name, people, license plates or
-  text overlays), grouped living room, kitchen, dining, primary bedroom,
+  (every interior in the database at 900px wide or more, minus duplicates,
+  bare rooms, empty versions of furnished rooms, and any photo showing the
+  home builder's name, a model name, a HUD or certification tag, a barcode
+  label, people or license plates; appliance and window-maker logos and
+  stickers are allowed), grouped living room, kitchen, dining, primary bedroom,
   primary bath, other bedrooms, other baths, laundry, other; then its floor
   plan last. Files: display copies `lot-<acres>-interior-NN.jpg` (at most
   1600px wide and 400KB, never upscaled) and `…-thumb.jpg` (240px, at most
