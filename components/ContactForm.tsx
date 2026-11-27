@@ -1,5 +1,18 @@
 'use client'
 import { useState } from 'react'
+import { trackLeadFormSubmit } from '@/lib/analytics'
+
+function contactLeadType(interest: string, hasLand: string): string | undefined {
+  if (hasLand === 'yes') return 'owns_land'
+  const mapped: Record<string, string> = {
+    'Browsing the inventory': 'inventory',
+    'Financing pre-qualification': 'financing',
+    'Custom factory order': 'custom_order',
+    'Land + home package': 'land_home',
+    'Just general questions': 'general',
+  }
+  return mapped[interest]
+}
 
 export default function ContactForm() {
   const [showLandWhere, setShowLandWhere] = useState(false)
@@ -36,6 +49,12 @@ export default function ContactForm() {
       setError('Something went wrong — please try again or call us at (830) 381-1309.')
       return
     }
+
+    trackLeadFormSubmit({
+      form_id: 'contact',
+      form_name: 'Contact form',
+      lead_type: contactLeadType(String(data.interest ?? ''), String(data.hasLand ?? '')),
+    })
 
     form.reset()
     setShowLandWhere(false)

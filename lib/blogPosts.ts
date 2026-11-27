@@ -1,5 +1,6 @@
 import { blogBatch1Posts } from '@/lib/blogBatch1'
 import { blogBatch2Posts } from '@/lib/blogBatch2'
+import { ANALYSIS_CTA, CREDIT_DOWN, DELIVERY_ANSWER, LAND_DOWN } from '@/lib/flaggedCopy'
 
 export interface BlogPost {
   slug: string
@@ -9,7 +10,7 @@ export interface BlogPost {
   readTime: string
   author: string
   content: string
-  faq?: { q: string; a: string }[]
+  faq?: { q: string; a: string; flagged?: string[] }[]
   /** Absolute or site-relative image. When set, Article JSON-LD also gets url and dateModified. */
   image?: string
 }
@@ -214,6 +215,26 @@ Regardless of which loan type you pursue, lenders will generally evaluate:
 Every buyer's situation is different — credit profile, land equity, timeline, long-term plans, and veteran status all factor into which programs are available and what the terms will look like. The best approach is to discuss all of these programs with a lender who specializes in manufactured home financing before committing to any path.
 
 At Texas Homes Direct, we work with the top manufactured home lenders in Texas and have access to competitive financing across all of these programs. We are not paid to steer you toward any single loan type — our goal is to match you with the program that fits your situation. Call us at (830) 381-1309 and we will walk you through every option you qualify for.`,
+    faq: [
+      {
+        q: 'Can I finance a manufactured home on family land in Texas?',
+        a: `Yes. Several loan paths can work when the home will sit on land the family already owns. The article above walks through chattel, land-in-lieu, real-property mortgages, and other programs. ${LAND_DOWN} Call (830) 381-1309 and Texas Homes Direct will help you sort through the options that fit your situation.`,
+        flagged: [LAND_DOWN],
+      },
+      {
+        q: 'What down payment should I expect?',
+        a: `${CREDIT_DOWN} The right figure still depends on the program and the file. Start it on the free mortgage analysis page.`,
+        flagged: [CREDIT_DOWN],
+      },
+      {
+        q: 'Does the free mortgage analysis pull my credit?',
+        a: `No. The mortgage analysis does not pull your credit. ${ANALYSIS_CTA.replace('Start it', 'You can start it')}`,
+      },
+      {
+        q: 'How is delivery priced, and how long does setup take in Texas?',
+        a: DELIVERY_ANSWER,
+      },
+    ],
   },
   {
     slug: 'site-prep-costs-texas-well-septic-electric',

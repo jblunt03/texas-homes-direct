@@ -2,10 +2,28 @@ import type { Metadata } from 'next'
 import { blogPosts } from '@/lib/blogPosts'
 import BlogClient, { type BlogCat, type BlogPostItem } from './BlogClient'
 
+const TITLE = "Buyer's Blog | Texas Homes Direct"
+const DESCRIPTION =
+  'Plain-language guides on financing, floor plans, land prep, and delivery for manufactured home buyers in Texas.'
+const CANONICAL = 'https://www.texashomesdirect.com/blog'
+
 export const metadata: Metadata = {
-  title: "Buyer's Blog — Texas Homes Direct",
-  description:
-    'Plain-language guides on financing, floor plans, land prep, and delivery for manufactured home buyers in Texas.',
+  title: { absolute: TITLE },
+  description: DESCRIPTION,
+  alternates: { canonical: CANONICAL },
+  openGraph: {
+    title: TITLE,
+    description: DESCRIPTION,
+    url: CANONICAL,
+    siteName: 'Texas Homes Direct',
+    locale: 'en_US',
+    type: 'website',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: TITLE,
+    description: DESCRIPTION,
+  },
 }
 
 // Presentation-only metadata for the list page (category + placeholder image

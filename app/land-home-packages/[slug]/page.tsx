@@ -13,6 +13,7 @@ import PackageDescription from '@/components/landHome/PackageDescription'
 import TrackedLink from '@/components/landHome/TrackedLink'
 import { PACKAGE_PAYMENT_DISCLOSURE } from '@/lib/disclaimers'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
+import { ANALYSIS_CTA, CREDIT_DOWN, withFaqHtml } from '@/lib/flaggedCopy'
 import {
   FLORESVILLE_PACKAGES_PATH,
   LAND_HOME_DATE_MODIFIED,
@@ -47,11 +48,15 @@ function packageFaq(acres: string, home: { beds: number; baths: number }) {
     },
     {
       q: `How is this ${acres}-acre package financed?`,
-      a: 'Texas Homes Direct works with 21st Mortgage, Cascade, Triad, and Porch Pass. 0 down at 680+ credit; about 5% down in the mid-500s. Start the free mortgage analysis (normally $75, no credit pull).',
+      a: `${CREDIT_DOWN} ${ANALYSIS_CTA} This page is a home-and-lot package, so the lot is part of the purchase. If you would rather use land you already own, that land can stand in for a down payment, and you would buy a home alone instead of this package.`,
+      flagged: [
+        CREDIT_DOWN,
+        'If you would rather use land you already own, that land can stand in for a down payment, and you would buy a home alone instead of this package.',
+      ],
     },
     {
       q: `How is delivery priced for this ${acres}-acre package, and how long does it take?`,
-      a: 'Delivery is priced per mile. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew.',
+      a: 'Delivery is priced per mile. Texas Homes Direct delivers all over Texas, from Lubbock to Seguin and beyond, with its own crew. We do not publish a per-mile rate.',
     },
     {
       q: `Can I use land I already own instead of this ${acres}-acre package?`,
@@ -128,7 +133,7 @@ export default function PackagePage({ params }: { params: { slug: string } }) {
       cssSelector: ['.bmh-faq-speakable', '.bmh-explainer-lead'],
     },
   }
-  const faq = packageFaq(p.acres, p.home)
+  const faq = withFaqHtml(packageFaq(p.acres, p.home))
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',

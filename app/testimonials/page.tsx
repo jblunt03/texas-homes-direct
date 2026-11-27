@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import FaqAccordion from '@/components/FaqAccordion'
 import FeaturableReviews from '@/components/FeaturableReviews'
 import { CtaRow, RelatedLinks, TurnkeyChecklist } from '@/components/SiteBlocks'
+import { googleReviewUrl } from '@/lib/googleReview'
 
 // Reviews page rules (see CLAUDE.md "Reviews page"): the Google widget is the
 // only source of reviews here. No hard-coded reviews, customer names or
@@ -11,7 +12,6 @@ import { CtaRow, RelatedLinks, TurnkeyChecklist } from '@/components/SiteBlocks'
 
 const SITE_URL = 'https://www.texashomesdirect.com'
 const PAGE_URL = `${SITE_URL}/testimonials`
-const GOOGLE_REVIEW_URL = 'https://g.page/r/texashomesdirect/review'
 const TITLE = 'Customer Reviews from Google'
 const DESCRIPTION =
   'Read Texas Homes Direct reviews from our Google Business Profile, learn how to leave your own, and get a free 3-minute mortgage analysis with no credit pull.'
@@ -28,14 +28,17 @@ const STEPS = [
   'Write a few words about your experience and post it.',
 ]
 
-const FAQ = [
+function reviewFaq(reviewUrl: string | null) {
+  return [
   {
     q: 'Where do the reviews on this page come from?',
     a: 'They come from the Texas Homes Direct Google Business Profile. The widget on this page loads them from Google, so they read the way customers posted them there.',
   },
   {
     q: 'How do I leave a review for Texas Homes Direct?',
-    a: 'Use the “Leave a Google review” button on this page. It opens our Google review form, where you sign in to a Google account, pick a star rating and write about your experience.',
+    a: reviewUrl
+      ? 'Use the “Leave a Google review” button on this page. It opens our Google review form, where you sign in to a Google account, pick a star rating and write about your experience.'
+      : 'The reviews on this page come from the Texas Homes Direct Google Business Profile. A link to write a review is not shown on this page yet.',
   },
   {
     q: 'Where can I see your homes?',
@@ -45,9 +48,12 @@ const FAQ = [
     q: 'How do I get a quote or the free mortgage analysis?',
     a: 'Request a delivery quote through our contact form, start the free 3-minute mortgage analysis (no credit pull), or call (830) 381-1309.',
   },
-]
+  ]
+}
 
 export default function TestimonialsPage() {
+  const reviewUrl = googleReviewUrl()
+  const FAQ = reviewFaq(reviewUrl)
   const breadcrumbJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -119,7 +125,8 @@ export default function TestimonialsPage() {
         </div>
       </div>
 
-      {/* HOW TO LEAVE A REVIEW */}
+      {/* HOW TO LEAVE A REVIEW — button only when a Place ID is configured */}
+      {reviewUrl && (
       <section className="bmh-section bmh-surface-card">
         <div className="bmh-container-narrow">
           <span className="bmh-eyebrow">Already a customer?</span>
@@ -134,7 +141,7 @@ export default function TestimonialsPage() {
           <div className="bmh-spacer-lg" />
           <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
             <a
-              href={GOOGLE_REVIEW_URL}
+              href={reviewUrl}
               target="_blank"
               rel="noopener noreferrer"
               className="bmh-btn bmh-btn-primary bmh-btn-lg"
@@ -147,6 +154,7 @@ export default function TestimonialsPage() {
           </div>
         </div>
       </section>
+      )}
 
       {/* WE HANDLE IT ALL */}
       <section style={{ background: 'var(--color-canvas)', padding: '40px 0' }}>

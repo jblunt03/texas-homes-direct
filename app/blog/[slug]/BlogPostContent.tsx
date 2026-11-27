@@ -4,6 +4,7 @@ import { BlogPost } from '@/lib/blogPosts'
 import { useLang } from '@/components/LanguageContext'
 import FaqAccordion from '@/components/FaqAccordion'
 import LeadForm from '@/components/LeadForm'
+import { withFaqHtml } from '@/lib/flaggedCopy'
 
 const SITE = 'https://www.texashomesdirect.com'
 
@@ -181,8 +182,8 @@ export default function BlogPostContent({
           />
           {post.faq && post.faq.length > 0 && (
             <div className="bmh-faq-speakable mt-10">
-              <h2 className="font-display text-2xl font-bold text-navy">Frequently Asked Questions</h2>
-              <FaqAccordion items={post.faq} defaultOpen={0} />
+              <h2 className="font-display text-2xl font-bold text-navy">Frequently asked questions</h2>
+              <FaqAccordion items={withFaqHtml(post.faq)} defaultOpen={0} />
             </div>
           )}
         </div>

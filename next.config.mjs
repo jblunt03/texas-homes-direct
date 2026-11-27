@@ -66,6 +66,9 @@ const PACKAGE_REDIRECTS = (() => {
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  // Trailing-slash cleanup is a 301 from middleware.ts. Leaving Next's
+  // built-in redirect on would add a second 308 hop.
+  skipTrailingSlashRedirect: true,
   async redirects() {
     return [
       ...Object.entries(ARCHIVED_ROUTES)

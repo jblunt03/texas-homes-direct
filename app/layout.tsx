@@ -9,6 +9,7 @@ import Footer from '@/components/Footer'
 import { LanguageProvider } from '@/components/LanguageContext'
 import { UPGRADED_BUSINESS_JSON_LD, usesUpgradedBusinessSchema } from '@/lib/businessSchema'
 import { PRICE_MODE_BOOT_SCRIPT } from '@/lib/priceMode'
+import LeadEventListeners from '@/components/LeadEventListeners'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -53,9 +54,6 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Texas Homes Direct',
     description: 'Texas manufactured homes. Real numbers. No pressure.',
-  },
-  alternates: {
-    canonical: 'https://www.texashomesdirect.com',
   },
 }
 
@@ -126,6 +124,7 @@ export default function RootLayout({
           <main className="min-h-[60vh]">{children}</main>
           <Footer />
         </LanguageProvider>
+        <LeadEventListeners />
         <Script
           src="https://widgets.leadconnectorhq.com/loader.js"
           data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js"

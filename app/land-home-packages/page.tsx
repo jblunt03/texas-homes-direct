@@ -9,6 +9,13 @@ import PackageCtas from '@/components/landHome/PackageCtas'
 import PackageGrid from '@/components/landHome/PackageGrid'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
 import {
+  ANALYSIS_CTA,
+  CREDIT_DOWN,
+  DELIVERY_ANSWER,
+  LAND_STANDS_IN,
+  withFaqHtml,
+} from '@/lib/flaggedCopy'
+import {
   LAND_HOME_DATE_MODIFIED,
   LAND_HOME_HUB_PATH,
   LAND_HOME_KEYWORDS,
@@ -71,7 +78,21 @@ const FAQ = [
     q: 'How is a land-home package different from buying a home for my own land?',
     a: 'When you buy a home alone, you provide the land, and utilities are estimated by phone, then bid exactly after our contractor visits your property. With a package from our current inventory, the lot comes with the home and all utilities. Texas Homes Direct sells both ways of buying.',
   },
+  {
+    q: 'How do I finance a land-home package?',
+    a: `${CREDIT_DOWN} ${LAND_STANDS_IN} — that is more often relevant when you bring the land. On a package, the lot is part of the purchase. ${ANALYSIS_CTA}`,
+    flagged: [
+      CREDIT_DOWN,
+      `${LAND_STANDS_IN} — that is more often relevant when you bring the land.`,
+    ],
+  },
+  {
+    q: 'How is delivery priced, and how long does it take?',
+    a: DELIVERY_ANSWER,
+  },
 ]
+
+const FAQ_ITEMS = withFaqHtml(FAQ)
 
 const Icon = ({ children }: { children: React.ReactNode }) => (
   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false">
@@ -96,7 +117,7 @@ export default function LandHomePackagesPage() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((item) => ({
+    mainEntity: FAQ_ITEMS.map((item) => ({
       '@type': 'Question',
       name: item.q,
       acceptedAnswer: { '@type': 'Answer', text: item.a },
@@ -229,7 +250,7 @@ export default function LandHomePackagesPage() {
           <div className="bmh-city-prose bmh-faq-speakable">
             <h2 className="bmh-city-h2">Land-Home Package Questions</h2>
             <div className="bmh-spacer-sm" />
-            <FaqAccordion items={FAQ} defaultOpen={0} />
+            <FaqAccordion items={FAQ_ITEMS} defaultOpen={0} />
           </div>
         </div>
       </section>

@@ -4,6 +4,8 @@ import { useState } from 'react'
 export interface FaqItem {
   q: string
   a: string
+  /** Visible answer HTML when the answer needs a link or a wording-check comment. `a` stays the plain text. */
+  html?: string
 }
 
 export default function FaqAccordion({
@@ -44,7 +46,11 @@ export default function FaqAccordion({
               </svg>
             </span>
           </div>
-          <div className="bmh-faq-a">{item.a}</div>
+          {item.html ? (
+            <div className="bmh-faq-a" dangerouslySetInnerHTML={{ __html: item.html }} />
+          ) : (
+            <div className="bmh-faq-a">{item.a}</div>
+          )}
         </div>
       ))}
     </div>

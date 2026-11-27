@@ -11,6 +11,13 @@ import { ParcelAerials } from '@/components/landHome/LandHomeGallery'
 import PackageDescription from '@/components/landHome/PackageDescription'
 import { LAND_HOME_PACKAGES } from '@/lib/features'
 import {
+  ANALYSIS_CTA,
+  CREDIT_DOWN,
+  DELIVERY_ANSWER,
+  LAND_STANDS_IN,
+  withFaqHtml,
+} from '@/lib/flaggedCopy'
+import {
   FLORESVILLE_PACKAGES_PATH,
   LAND_HOME_DATE_MODIFIED,
   LAND_HOME_HUB_PATH,
@@ -65,7 +72,21 @@ const FAQ = [
     q: 'Where can I compare cash prices and monthly estimates for these packages?',
     a: 'Right on this page. Each package card shows its cash price by default; switch the view to Est. monthly payment to see the estimate instead, and tap the (i) beside any estimate to read what it means. Your choice carries over to the rest of the Texas Homes Direct site.',
   },
+  {
+    q: 'How do I finance a Floresville land-home package?',
+    a: `${CREDIT_DOWN} ${LAND_STANDS_IN} if you buy a home for your own land instead of one of these packages. On a Floresville package, the lot is part of the purchase. ${ANALYSIS_CTA}`,
+    flagged: [
+      CREDIT_DOWN,
+      `${LAND_STANDS_IN} if you buy a home for your own land instead of one of these packages.`,
+    ],
+  },
+  {
+    q: 'How is delivery priced for the Floresville packages, and how long does it take?',
+    a: DELIVERY_ANSWER,
+  },
 ]
+
+const FAQ_ITEMS = withFaqHtml(FAQ)
 
 export default function FloresvillePackagesPage() {
   if (!LAND_HOME_PACKAGES) notFound()
@@ -82,7 +103,7 @@ export default function FloresvillePackagesPage() {
   const faqJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
-    mainEntity: FAQ.map((item) => ({
+    mainEntity: FAQ_ITEMS.map((item) => ({
       '@type': 'Question',
       name: item.q,
       acceptedAnswer: { '@type': 'Answer', text: item.a },
@@ -186,7 +207,7 @@ export default function FloresvillePackagesPage() {
           <div className="bmh-city-prose bmh-faq-speakable">
             <h2 className="bmh-city-h2">Floresville Package Questions</h2>
             <div className="bmh-spacer-sm" />
-            <FaqAccordion items={FAQ} defaultOpen={0} />
+            <FaqAccordion items={FAQ_ITEMS} defaultOpen={0} />
           </div>
         </div>
       </section>

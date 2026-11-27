@@ -16,6 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'commercial',
     'contact',
     'blog',
+    'testimonials',
     'manufactured-vs-mobile-home',
     'how-pricing-works',
     'whats-included-in-setup',
